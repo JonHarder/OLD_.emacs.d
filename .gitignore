@@ -1,0 +1,7 @@
+*.dat
+amx-items
+elpa/
+*~
+*.eld
+recentf
+eshell/
