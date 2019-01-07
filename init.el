@@ -26,17 +26,24 @@ There are two things you can do about this warning:
 ;;; DONT TOUCH STUFF ABOVE HERE (probably...hopefuly)
 
 
+;; store all the backup files (the ones that end with ~) in a dedicated folder.
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
+
+
+
 (defun alist-keys (alist)
   "Get list of keys in the ALIST."
   (mapcar #'car alist))
 
 
 ;;; Utility functions
+
+;; SEARCHIN STUFF=============================
 (defvar search-engines
   '((google . "https://google.com/search?q=")
     (ddg . "https://ddg.gg/?q=")
     (stack-overflow . "https://stackoverflow.com/search?q=")))
-
 
 (defun how-do-i (engine search-term)
   "Use a specified search ENGINE to query your SEARCH-TERM."
@@ -44,7 +51,7 @@ There are two things you can do about this warning:
   (interactive (list
 		(completing-read "Enigne: " (alist-keys search-engines))
 		(read-string "Search: ")))
-  (let ((url (cdr (assoc engine search-engines))))
+  (let ((url (cdr (assoc (intern engine) search-engines))))
     (browse-url (concat url search-term))))
 
 (defun how-do-i-google (search-term)
@@ -52,19 +59,22 @@ There are two things you can do about this warning:
   (interactive "sSearch: ")
   (how-do-i "google" search-term))
 
-
 (defun how-do-i-ddg (search-term)
   "DuckDuckGo search for SEARCH-TERM."
   (interactive "sSearch: ")
   (how-do-i "ddg" search-term))
 
-
 (defun how-do-i-so (search-term)
   "Stack Overflow search for SEARCH-TERM."
   (interactive "sSearch: ")
   (how-do-i "stack-overflow" search-term))
+;; ======================================
 
 
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
 
 
 (use-package which-key
@@ -85,7 +95,7 @@ There are two things you can do about this warning:
   (use-package solarized-theme
     :ensure t
     :config
-    (load-theme 'solarized-dark t)))
+    (load-theme 'solarized-light t)))
 
 
 ;;; PACKAGE CONFIGURATION
@@ -240,7 +250,7 @@ There are two things you can do about this warning:
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-selected-packages
    (quote
-    (flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package))))
+    (dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
