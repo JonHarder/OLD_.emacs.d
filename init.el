@@ -18,6 +18,9 @@ There are two things you can do about this warning:
 (package-initialize)
 
 
+(setq org-agenda-files
+      '("~/Org"))
+
 
 (unless (package-installed-p 'use-package)
   (package-refreshh-contents)
@@ -29,7 +32,6 @@ There are two things you can do about this warning:
 ;; store all the backup files (the ones that end with ~) in a dedicated folder.
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
-
 
 
 (defun alist-keys (alist)
@@ -130,6 +132,12 @@ There are two things you can do about this warning:
   (projectile-mode +1))
 
 
+(defun find-init-file ()
+  "Open your init file."
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
+
 (defun init-bindings ()
   "Define the keyboard bindings."
   (use-package general
@@ -141,6 +149,7 @@ There are two things you can do about this warning:
       ;; find manipulation
       "f f" 'find-file
       "f s" 'save-buffer
+      "f i" 'find-init-file
       ;; buffer manipulation
       "b d" 'evil-delete-buffer
       ;; help
@@ -165,6 +174,10 @@ There are two things you can do about this warning:
       "s s" 'how-do-i
       "s d" 'how-do-i-ddg
       "s o" 'how-do-i-so
+      ;; org
+      "o c" 'org-ctrl-c-ctrl-c
+      "o a" 'org-archive-subtree
+      "o t" 'org-todo
       "a" 'org-agenda))
 
   (use-package flycheck
