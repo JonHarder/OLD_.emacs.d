@@ -18,6 +18,9 @@ There are two things you can do about this warning:
 (package-initialize)
 
 
+
+
+
 (setq org-agenda-files
       '("~/Org"))
 
@@ -108,22 +111,14 @@ There are two things you can do about this warning:
 (use-package magit
   :ensure t)
 
-;; Vim emulation
-(use-package evil
-  :ensure t ;; install the evil package if not installed
-  :init ;; tweak evil's configuration before loading it
-  (setq evil-search-module 'evil-search
-	evil-ex-complete-emacs-commands nil
-	evil-vsplit-window-right t
-	evil-split-window-below t
-	evil-shift-round nil
-	evil-want-C-u-scroll t)
-  :config
-  (evil-mode))
+
+(defun load-module (module-name &optional module-path)
+  "Load the module called MODULE-NAME defined in my modules folder, or in MODULE-PATH if given."
+  (let ((path (or module-path (concat user-emacs-directory "modules/"))))
+    (require module-name (concat path (symbol-name module-name) ".el"))))
 
 
-(use-package evil-magit
-  :ensure t)
+(load-module 'evil)
 
 
 (use-package projectile
