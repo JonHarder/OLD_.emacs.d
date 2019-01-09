@@ -18,7 +18,42 @@ There are two things you can do about this warning:
 (package-initialize)
 
 
+(defun load-module (module-name &optional module-path)
+  "Load the module called MODULE-NAME defined in my modules folder, or in MODULE-PATH if given."
+  (let* ((module-path (or module-path
+                          (concat user-emacs-directory "modules/")))
+         (path (concat module-path (symbol-name module-name) ".el")))
+    (require module-name path)))
 
+
+(setq-default indent-tabs-mode nil)
+
+(defgroup jh nil
+  "Group for storing generic customization for me."
+  :group 'convenience)
+
+(defcustom jh/font "Fira Code"
+  "The font to use for all text."
+  :group 'jh)
+(defcustom jh/font-size 15
+  "The size of font to use."
+  :group 'jh)
+
+(defcustom jh/color-theme "solarized"
+  "The color theme to use."
+  :group 'jh)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+
+(load-module 'appearance)
+(load-module 'evil)
+
+
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)) ;; one line at a time
+      mouse-wheel-progressive-speed nil ;; don't accelerate scrolling
+      mouse-wheel-follow-mouse 't ;; scroll window under mouse
+      scroll-step 1) ;; keyboard scroll one line at a time
 
 
 (setq org-agenda-files
@@ -88,20 +123,6 @@ There are two things you can do about this warning:
   (which-key-mode))
 
 
-;; UI, THEMEIMG, etc.
-(defun init-ui ()
-  "Initialize the visual components of Emacs."
-  (set-frame-font "Fira Code 14" nil t)
-  (menu-bar-mode -1)
-  (toggle-scroll-bar -1)
-  (tool-bar-mode -1)
-  (defalias 'yes-or-no-p 'y-or-n-p)
-
-  (use-package solarized-theme
-    :ensure t
-    :config
-    (load-theme 'solarized-light t)))
-
 
 ;;; PACKAGE CONFIGURATION
 
@@ -112,13 +133,14 @@ There are two things you can do about this warning:
   :ensure t)
 
 
-(defun load-module (module-name &optional module-path)
-  "Load the module called MODULE-NAME defined in my modules folder, or in MODULE-PATH if given."
-  (let ((path (or module-path (concat user-emacs-directory "modules/"))))
-    (require module-name (concat path (symbol-name module-name) ".el"))))
-
-
-(load-module 'evil)
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init
+  (setq markdown-command "multimarkdown"))
 
 
 (use-package projectile
@@ -173,6 +195,9 @@ There are two things you can do about this warning:
       "o c" 'org-ctrl-c-ctrl-c
       "o a" 'org-archive-subtree
       "o t" 'org-todo
+      ;; font stuff
+      "=" 'jh/increse-font-size
+      "-" 'jh/decrease-font-size
       "a" 'org-agenda))
 
   (use-package flycheck
@@ -215,7 +240,7 @@ There are two things you can do about this warning:
 
 (defun my-php-mode-hook ()
   "Configuration for php."
-  (setq indent-tabs-mode t
+  (setq indent-tabs-mode nil
 	c-basic-offset 4
 	php-template-compatibility nil)
   (subword-mode 1)
@@ -232,6 +257,18 @@ There are two things you can do about this warning:
   (add-hook 'php-mode-hook #'my-php-mode-hook))
 
 
+(add-hook 'php-mode-hook (lambda ()
+    (defun ywb-php-lineup-arglist-intro (langelem)
+      (save-excursion
+        (goto-char (cdr langelem))
+        (vector (+ (current-column) c-basic-offset))))
+    (defun ywb-php-lineup-arglist-close (langelem)
+      (save-excursion
+        (goto-char (cdr langelem))
+        (vector (current-column))))
+    (c-set-offset 'arglist-intro 'ywb-php-lineup-arglist-intro)
+    (c-set-offset 'arglist-close 'ywb-php-lineup-arglist-close)))
+
 
 
 ;;; python configuration
@@ -242,7 +279,6 @@ There are two things you can do about this warning:
     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))
 
 
-(init-ui)
 (init-bindings)
 
 
@@ -258,10 +294,11 @@ There are two things you can do about this warning:
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-selected-packages
    (quote
-    (dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package))))
+    (markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'narrow-to-region 'disabled nil)
