@@ -123,7 +123,6 @@ There are two things you can do about this warning:
   (which-key-mode))
 
 
-
 ;;; PACKAGE CONFIGURATION
 
 (use-package dash
