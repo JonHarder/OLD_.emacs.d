@@ -59,6 +59,26 @@ There are two things you can do about this warning:
 (setq org-agenda-files
       '("~/Org"))
 
+(use-package org-bullets
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (org-bullets-mode 1))))
+
+
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+            (lambda ()
+              (evil-org-set-key-theme)))
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
 
 (unless (package-installed-p 'use-package)
   (package-refreshh-contents)
@@ -244,7 +264,6 @@ There are two things you can do about this warning:
 	c-basic-offset 4
 	php-template-compatibility nil)
   (subword-mode 1)
-
   (auto-complete-mode t)
   (setq ac-sources '(ac-source-php))
   (yas-global-mode 1)
@@ -279,6 +298,13 @@ There are two things you can do about this warning:
     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))
 
 
+
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
+
 (init-bindings)
 
 
@@ -294,7 +320,7 @@ There are two things you can do about this warning:
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-selected-packages
    (quote
-    (markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package))))
+    (rainbow-delimiters org-bullets evil-org markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
