@@ -10,12 +10,42 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
+(defvar jh/color-themes nil "The available color themes, use in conjunction with jh/set-color-theme.")
+(setq jh/color-themes
+  '("solarized-dark"
+    "solarized-light"
+    "spacemacs-dark"
+    "spacemacs-light"
+    "challenger-deep"
+    "zenburn"))
 
-(if (equal jh/color-theme "solarized")
+
+(defun jh/set-color-theme (theme)
+  "Set the color theme to THEME."
+  (interactive (list
+                (completing-read "Theme: " jh/color-themes)))
+  (setq jh/color-theme theme)
+  (cond
+   ((member jh/color-theme '("solarized-light" "solarized-dark"))
     (use-package solarized-theme
       :ensure t
       :config
-      (load-theme 'solarized-dark t)))
+      (load-theme (intern jh/color-theme) t)))
+   ((string-equal jh/color-theme "challenger-deep")
+    (use-package challenger-deep-theme
+      :ensure t
+      :config
+      (load-theme 'challenger-deep t)))
+   ((string-equal jh/color-theme "zenburn")
+    (use-package zenburn-theme
+      :ensure t
+      :config
+      (load-theme (intern jh/color-theme) t)))
+   ((member jh/color-theme '("spacemacs-dark" "spacemacs-light"))
+    (use-package spacemacs-theme
+      :ensure t
+      :config
+      (load-theme (intern jh/color-theme) t)))))
 
 
 (defun jh/set-font-size (size)
@@ -33,6 +63,10 @@
   (interactive)
   (jh/set-font-size (- jh/font-size 1)))
 
+
+
+(message "setting color theme to %s" jh/color-theme)
+(jh/set-color-theme jh/color-theme)
 
 
 (provide 'appearance)

@@ -7,6 +7,8 @@
 
 ;;; Code:
 ;; Vim emulation
+
+
 (use-package evil
   :ensure t
   :init
@@ -15,12 +17,30 @@
 	evil-vsplit-window-right t
 	evil-split-window-below t
 	evil-shift-round nil
-	evil-want-C-u-scroll t)
+	evil-want-C-u-scroll t
+	evil-want-integration t
+	evil-want-keybinding nil)
   :config
-  (evil-mode))
+  (evil-mode 1))
 
 (use-package evil-magit
   :ensure t)
+
+
+(use-package evil-org
+  :ensure t
+  :after org
+  :hook ((org-mode . evil-org-mode)
+         (evil-org-mode . evil-org-set-key-theme))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
+
+(use-package evil-collection
+  :ensure t
+  :config
+  (evil-collection-init))
 
 
 (provide 'evil)
