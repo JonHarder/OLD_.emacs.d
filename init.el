@@ -32,6 +32,10 @@ There are two things you can do about this warning:
          (path (concat module-path (symbol-name module-name) ".el")))
     (require module-name path)))
 
+
+
+
+
 (defgroup jh nil
   "Group for storing generic customization for me."
   :group 'convenience)
@@ -43,7 +47,7 @@ There are two things you can do about this warning:
   "The size of font to use."
   :group 'jh)
 
-(defcustom jh/color-theme "solarized-light"
+(defcustom jh/color-theme "solarized-dark"
   "The color theme to use."
   :group 'jh)
 
@@ -55,6 +59,10 @@ There are two things you can do about this warning:
 (load-module 'evil)
 (load-module 'search)
 (load-module 'php)
+
+
+(show-paren-mode 1)
+
 
 
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)) ;; one line at a time
@@ -78,9 +86,15 @@ There are two things you can do about this warning:
   (global-git-gutter-mode +1))
 
 
-;; general package
+(use-package evil-lispy
+  :ensure t
+  :init
+  (add-hook 'emacs-lisp-mode-hook #'evil-lispy-mode))
+  
+
+
 (use-package dashboard
-  :after evil-org
+  :disabled t
   :ensure t
   :config
   (dashboard-setup-startup-hook))
@@ -107,7 +121,7 @@ There are two things you can do about this warning:
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init
-  (setq markdown-command "multimarkdown"))
+  (setq markdown-command "pandoc"))
 
 
 (use-package projectile
@@ -120,6 +134,11 @@ There are two things you can do about this warning:
   "Open your init file."
   (interactive)
   (find-file "~/.emacs.d/init.el"))
+
+
+(defun jh/term ()
+  (interactive)
+  (ansi-term "/usr/local/bin/fish"))
 
 
 (defun init-bindings ()
@@ -167,7 +186,9 @@ There are two things you can do about this warning:
       ;; font stuff
       "=" 'jh/increse-font-size
       "-" 'jh/decrease-font-size
-      "a" 'org-agenda))
+      ;; "applications"
+      "a a" 'org-agenda
+      "a t" 'jh/term))
 
   (use-package flycheck
     :ensure t
@@ -228,12 +249,13 @@ There are two things you can do about this warning:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(cider-lein-command "/Users/jharder/local/bin/lein")
  '(custom-safe-themes
    (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+    ("ec5f697561eaf87b1d3b087dd28e61a2fc9860e4c862ea8e6b0b77bd4967d0ba" "36c86cb6c648b9a15d849026c90bd6a4ae76e4d482f7bcd138dedd4707ff26a5" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-selected-packages
    (quote
-    (git-gutter spacemacs-theme zenburn-theme evil-collection dracula-theme challenger-deep-theme rainbow-delimiters org-bullets evil-org markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package))))
+    (evil-lispy cider groovy-mode gradle-mode git-gutter zenburn-theme evil-collection dracula-theme challenger-deep-theme rainbow-delimiters org-bullets evil-org markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

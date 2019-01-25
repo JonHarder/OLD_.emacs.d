@@ -7,7 +7,9 @@
 
 (setq org-agenda-files
       '("~/Org")
-      org-src-fontify-natively t)
+      org-src-fontify-natively t
+      org-archive-location (concat user-emacs-directory
+				   "archive/%s.archive::"))
 
 (use-package org-bullets
   :ensure t

@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(set-frame-font "Fira Code 14" nil t)
+(set-frame-font (format "%s %i" jh/font jh/font-size) nil t)
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
@@ -43,9 +43,8 @@
       (load-theme (intern jh/color-theme) t)))
    ((member jh/color-theme '("spacemacs-dark" "spacemacs-light"))
     (use-package spacemacs-theme
-      :ensure t
-      :config
-      (load-theme (intern jh/color-theme) t)))))
+      :defer t
+      :init (load-theme 'spacemacs-dark t)))))
 
 
 (defun jh/set-font-size (size)
