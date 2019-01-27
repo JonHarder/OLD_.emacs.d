@@ -34,8 +34,6 @@ There are two things you can do about this warning:
 
 
 
-
-
 (defgroup jh nil
   "Group for storing generic customization for me."
   :group 'convenience)
@@ -47,7 +45,7 @@ There are two things you can do about this warning:
   "The size of font to use."
   :group 'jh)
 
-(defcustom jh/color-theme "solarized-dark"
+(defcustom jh/color-theme "tango-plus"
   "The color theme to use."
   :group 'jh)
 

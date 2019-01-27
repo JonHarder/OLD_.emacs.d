@@ -11,21 +11,43 @@
 (tool-bar-mode -1)
 
 (defvar jh/color-themes nil "The available color themes, use in conjunction with jh/set-color-theme.")
+
+(defconst system-themes '("adwaita"
+			     "deeper-blue"
+			     "dichromacy"
+			     "leuven"
+			     "light-blue"
+			     "manoj-dark"
+			     "misterioso"
+			     "tango"
+			     "tango-dark"
+			     "tsdh-light"
+			     "tsdh-dark"
+			     "wheatgrass"
+			     "whiteboard"
+			     "wombat"))
+
+
 (setq jh/color-themes
-  '("solarized-dark"
-    "solarized-light"
-    "spacemacs-dark"
-    "spacemacs-light"
-    "challenger-deep"
-    "zenburn"))
+      (append system-themes
+	      '("solarized-dark"
+		"solarized-light"
+		"spacemacs-dark"
+		"spacemacs-light"
+		"challenger-deep"
+		"zenburn"
+		"tango-plus")))
 
 
 (defun jh/set-color-theme (theme)
   "Set the color theme to THEME."
   (interactive (list
                 (completing-read "Theme: " jh/color-themes)))
+  (disable-theme (car custom-enabled-themes))
   (setq jh/color-theme theme)
   (cond
+   ((member jh/color-theme system-themes)
+    (load-theme (intern jh/color-theme) t))
    ((member jh/color-theme '("solarized-light" "solarized-dark"))
     (use-package solarized-theme
       :ensure t
@@ -36,6 +58,11 @@
       :ensure t
       :config
       (load-theme 'challenger-deep t)))
+   ((string-equal jh/color-theme "tango-plus")
+    (use-package tango-plus-theme
+      :ensure t
+      :config
+      (load-theme 'tango-plus t)))
    ((string-equal jh/color-theme "zenburn")
     (use-package zenburn-theme
       :ensure t
