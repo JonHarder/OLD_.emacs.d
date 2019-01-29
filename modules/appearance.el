@@ -34,7 +34,12 @@
 		"solarized-light"
 		"spacemacs-dark"
 		"spacemacs-light"
-		"molokai"
+		"gruvbox-dark-hard"
+		"gruvbox-dark-medium"
+		"gruvbox-dark-soft"
+		"gruvbox-light-hard"
+		"gruvbox-light-medium"
+		"gruvbox-light-soft"
 		"challenger-deep"
 		"zenburn"
 		"tango-plus")))
@@ -49,16 +54,21 @@
   (cond
    ((member jh/color-theme system-themes)
     (load-theme (intern jh/color-theme) t))
+   ((s-matches-p (rx bol "gruvbox" (zero-or-more anything)) jh/color-theme)
+    (use-package gruvbox-theme
+      :ensure t
+      :config
+      (load-theme (intern jh/color-theme) t)))
    ((member jh/color-theme '("solarized-light" "solarized-dark"))
     (use-package solarized-theme
       :ensure t
       :config
       (load-theme (intern jh/color-theme) t)))
-   ((string-equal jh/color-theme "molokai")
-    (use-package molokai-theme
+   ((string-equal jh/color-theme "monokai")
+    (use-package monokai-theme
       :ensure t
       :config
-      (load-theme 'molokai t)))
+      (load-theme 'monokai t)))
    ((string-equal jh/color-theme "challenger-deep")
     (use-package challenger-deep-theme
       :ensure t
