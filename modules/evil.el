@@ -19,7 +19,8 @@
 	evil-shift-round nil
 	evil-want-C-u-scroll t
 	evil-want-integration t
-	evil-want-keybinding nil)
+	evil-want-keybinding nil
+	evil-want-minibuffer nil)
   :config
   (evil-mode 1))
 

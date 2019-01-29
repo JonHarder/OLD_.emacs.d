@@ -45,7 +45,7 @@ There are two things you can do about this warning:
 (defcustom jh/font "Fira Code"
   "The font to use for all text."
   :group 'jh)
-(defcustom jh/font-size 15
+(defcustom jh/font-size 17
   "The size of font to use."
   :group 'jh)
 
@@ -61,6 +61,11 @@ There are two things you can do about this warning:
 
 (show-paren-mode 1)
 
+
+;; Automatically kill terminal buffers after their process exists
+(defadvice term-handle-exit
+    (after term-kill-buffer-on-exit activate)
+  (kill-buffer))
 
 
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)) ;; one line at a time
@@ -89,6 +94,9 @@ There are two things you can do about this warning:
   :init
   (add-hook 'emacs-lisp-mode-hook #'evil-lispy-mode))
   
+
+(use-package fish-mode
+  :ensure t)
 
 
 (use-package dashboard
@@ -269,7 +277,7 @@ There are two things you can do about this warning:
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (molokai-theme monokai-theme evil-lispy cider groovy-mode gradle-mode git-gutter zenburn-theme evil-collection dracula-theme challenger-deep-theme rainbow-delimiters org-bullets evil-org markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package)))
+    (fish-mode molokai-theme monokai-theme evil-lispy cider groovy-mode gradle-mode git-gutter zenburn-theme evil-collection dracula-theme challenger-deep-theme rainbow-delimiters org-bullets evil-org markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)
