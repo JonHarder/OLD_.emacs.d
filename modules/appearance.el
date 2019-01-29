@@ -34,6 +34,7 @@
 		"solarized-light"
 		"spacemacs-dark"
 		"spacemacs-light"
+		"molokai"
 		"challenger-deep"
 		"zenburn"
 		"tango-plus")))
@@ -53,6 +54,11 @@
       :ensure t
       :config
       (load-theme (intern jh/color-theme) t)))
+   ((string-equal jh/color-theme "molokai")
+    (use-package molokai-theme
+      :ensure t
+      :config
+      (load-theme 'molokai t)))
    ((string-equal jh/color-theme "challenger-deep")
     (use-package challenger-deep-theme
       :ensure t
