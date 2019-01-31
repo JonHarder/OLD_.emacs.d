@@ -13,19 +13,19 @@
 (defvar jh/color-themes nil "The available color themes, use in conjunction with jh/set-color-theme.")
 
 (defconst system-themes '("adwaita"
-			     "deeper-blue"
-			     "dichromacy"
-			     "leuven"
-			     "light-blue"
-			     "manoj-dark"
-			     "misterioso"
-			     "tango"
-			     "tango-dark"
-			     "tsdh-light"
-			     "tsdh-dark"
-			     "wheatgrass"
-			     "whiteboard"
-			     "wombat"))
+			  "deeper-blue"
+			  "dichromacy"
+			  "leuven"
+			  "light-blue"
+			  "manoj-dark"
+			  "misterioso"
+			  "tango"
+			  "tango-dark"
+			  "tsdh-light"
+			  "tsdh-dark"
+			  "wheatgrass"
+			  "whiteboard"
+			  "wombat"))
 
 
 (setq jh/color-themes
@@ -40,6 +40,8 @@
 		"gruvbox-light-hard"
 		"gruvbox-light-medium"
 		"gruvbox-light-soft"
+		"material"
+		"material-light"
 		"challenger-deep"
 		"zenburn"
 		"tango-plus")))
@@ -54,8 +56,13 @@
   (cond
    ((member jh/color-theme system-themes)
     (load-theme (intern jh/color-theme) t))
-   ((s-matches-p (rx bol "gruvbox" (zero-or-more anything)) jh/color-theme)
+   ((string-match (rx bol "gruvbox" (zero-or-more anything)) jh/color-theme)
     (use-package gruvbox-theme
+      :ensure t
+      :config
+      (load-theme (intern jh/color-theme) t)))
+   ((string-match (rx bol "material" (zero-or-more anything)) jh/color-theme)
+    (use-package material-theme
       :ensure t
       :config
       (load-theme (intern jh/color-theme) t)))
@@ -105,11 +112,7 @@
   (interactive)
   (jh/set-font-size (- jh/font-size 1)))
 
-
-
-(message "setting color theme to %s" jh/color-theme)
 (jh/set-color-theme jh/color-theme)
-
 
 (provide 'appearance)
 ;;; appearance.el ends here

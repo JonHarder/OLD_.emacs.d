@@ -7,8 +7,6 @@
 
 ;;; Code:
 ;; Vim emulation
-
-
 (use-package evil
   :ensure t
   :init
