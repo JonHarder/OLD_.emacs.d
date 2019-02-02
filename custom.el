@@ -49,7 +49,7 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (material-theme gruvbox-theme fish-mode molokai-theme monokai-theme evil-lispy cider groovy-mode gradle-mode git-gutter zenburn-theme evil-collection dracula-theme challenger-deep-theme rainbow-delimiters org-bullets evil-org markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package)))
+    (dockerfile-mode material-theme gruvbox-theme fish-mode molokai-theme monokai-theme evil-lispy cider groovy-mode gradle-mode git-gutter zenburn-theme evil-collection dracula-theme challenger-deep-theme rainbow-delimiters org-bullets evil-org markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package)))
  '(vc-annotate-background nil)
  '(vc-annotate-background-mode nil))
 (custom-set-faces

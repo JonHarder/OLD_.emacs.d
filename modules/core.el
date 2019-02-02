@@ -45,6 +45,11 @@
   (mapcar #'car alist))
 
 
+(use-package dockerfile-mode
+  :ensure t
+  :mode "\\.Dockerfile")
+
+
 (use-package git-gutter
   :ensure t
   :config
