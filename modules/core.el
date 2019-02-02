@@ -23,6 +23,11 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+
+;; core settings behavior
+(setq inhibit-startup-message t)
+
+
 (show-paren-mode 1)
 
 (defadvice term-handle-exit
@@ -55,12 +60,6 @@
   :config
   (global-git-gutter-mode +1))
 
-
-(use-package evil-lispy
-  :ensure t
-  :init
-  (add-hook 'emacs-lisp-mode-hook #'evil-lispy-mode))
-  
 
 (use-package fish-mode
   :ensure t)

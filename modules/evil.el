@@ -11,9 +11,9 @@
   :ensure t
   :init
   (setq evil-search-module 'evil-search
-	evil-ex-complete-emacs-commands nil
-	evil-vsplit-window-right t
-	evil-split-window-below t
+	evil-ex-complete-emacs-commands t
+	evil-vsplit-window-right nil
+	evil-split-window-below nil
 	evil-shift-round nil
 	evil-want-C-u-scroll t
 	evil-want-integration t
@@ -37,9 +37,17 @@
 
 
 (use-package evil-collection
+  :after evil
   :ensure t
   :config
   (evil-collection-init))
+
+
+(use-package evil-lispy
+  :after evil
+  :ensure t
+  :init
+  (add-hook 'emacs-lisp-mode-hook #'evil-lispy-mode))
 
 
 (provide 'evil)
