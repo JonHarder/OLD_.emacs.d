@@ -8,7 +8,6 @@
 ;;; Code:
 ;; (package-initialize)
 
-(message "bootstrappin system")
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
 (message "loading modules")
@@ -20,9 +19,6 @@
   evil
   search
   php)
-
-(message "finished loading modules")
-
 
 (provide 'init)
 ;;; init.el ends here
