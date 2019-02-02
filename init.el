@@ -24,7 +24,5 @@
 (message "finished loading modules")
 
 
-(find-file "~/Org/todo.org")
-
 (provide 'init)
 ;;; init.el ends here
