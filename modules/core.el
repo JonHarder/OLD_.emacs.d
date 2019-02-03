@@ -6,7 +6,7 @@
 ;; and basic settings (or things that I can't find a better place to put them into)
 
 ;;; Code:
-(defcustom jh/color-theme "material-light"
+(defcustom jh/color-theme "spacemacs-dark"
   "The color theme to use."
   :group 'jh)
 

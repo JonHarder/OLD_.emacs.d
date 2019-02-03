@@ -34,6 +34,7 @@
 		"solarized-light"
 		"spacemacs-dark"
 		"spacemacs-light"
+		"rebecca"
 		"gruvbox-dark-hard"
 		"gruvbox-dark-medium"
 		"gruvbox-dark-soft"
@@ -76,6 +77,11 @@
       :ensure t
       :config
       (load-theme 'monokai t)))
+   ((string-equal jh/color-theme "rebecca")
+    (use-package rebecca-theme
+      :ensure t
+      :config
+      (load-theme 'rebecca t)))
    ((string-equal jh/color-theme "challenger-deep")
     (use-package challenger-deep-theme
       :ensure t

@@ -24,12 +24,10 @@
                           (concat user-emacs-directory "modules/")))
          (path (concat module-path (symbol-name module-name) ".el")))
     (load path)))
-(message "defined load-module")
 
 (defmacro defmodules (&rest modules)
   "Load the given MODULES."
   `(mapc 'load-module (quote ,modules)))
-(message "defined defmodules")
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
