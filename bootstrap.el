@@ -32,5 +32,13 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+
+
 (provide 'bootstrap)
 ;;; bootstrap.el ends here

@@ -18,5 +18,13 @@
 	    (lambda ()
 	      (org-bullets-mode 1))))
 
+(setq org-todo-keywords
+      '((sequence
+	 "TODO(t)"
+	 "WAIT(w@/!)"
+	 "|"
+	 "DONE(d!)"
+	 "CANCELED(c@)")))
+
 (provide 'org)
 ;;; org.el ends here

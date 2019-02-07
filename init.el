@@ -17,7 +17,10 @@
   org
   appearance
   evil
+  eshell
   search
+  python
+  clojure
   php)
 
 (provide 'init)

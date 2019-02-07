@@ -6,7 +6,7 @@
 ;; and basic settings (or things that I can't find a better place to put them into)
 
 ;;; Code:
-(defcustom jh/color-theme "spacemacs-dark"
+(defcustom jh/color-theme "monokai"
   "The color theme to use."
   :group 'jh)
 
@@ -98,6 +98,8 @@
 
 (use-package projectile
   :ensure t
+  :init
+  (setq projectile-completion-system 'ivy)
   :config
   (projectile-mode +1))
 
@@ -141,7 +143,7 @@
       ;; git stuff (using magit)
       "g s" 'magit-status
       ;; project stuff
-      "p f" 'project-find-file
+      "p f" 'projectile-find-file
       ;; jumpin an stuff
       "j d" 'xref-find-definitions
       ;; evalin stuff
@@ -196,15 +198,6 @@
 
 (use-package ansible
   :ensure t)
-
-
-;;; python configuration
-(use-package flycheck-pycheckers
-  :ensure t
-  :config
-  (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))
-
 
 
 (use-package rainbow-delimiters
