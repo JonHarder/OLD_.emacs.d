@@ -162,7 +162,8 @@
       "-" 'jh/decrease-font-size
       ;; "applications"
       "a a" 'org-agenda
-      "a t" 'jh/term))
+      "a t" 'jh/term
+      "a d" 'dired))
 
   (use-package flycheck
     :ensure t
