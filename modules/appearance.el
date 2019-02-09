@@ -34,6 +34,7 @@
 		"solarized-light"
 		"spacemacs-dark"
 		"spacemacs-light"
+		"cyberpunk"
 		"rebecca"
 		"gruvbox-dark-hard"
 		"gruvbox-dark-medium"
@@ -72,6 +73,11 @@
       :ensure t
       :config
       (load-theme (intern jh/color-theme) t)))
+   ((string-equal jh/color-theme "cyberpunk")
+    (use-package cyberpunk-theme
+      :ensure t
+      :config
+      (load-theme 'cyberpunk t)))
    ((string-equal jh/color-theme "monokai")
     (use-package monokai-theme
       :ensure t

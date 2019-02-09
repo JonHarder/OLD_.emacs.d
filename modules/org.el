@@ -11,6 +11,13 @@
       org-archive-location (concat user-emacs-directory
 				   "archive/%s.archive::"))
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (sh . t)
+   (python . t)))
+
+
 (use-package org-bullets
   :ensure t
   :config

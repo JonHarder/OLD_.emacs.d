@@ -6,7 +6,7 @@
 ;; and basic settings (or things that I can't find a better place to put them into)
 
 ;;; Code:
-(defcustom jh/color-theme "monokai"
+(defcustom jh/color-theme "cyberpunk"
   "The color theme to use."
   :group 'jh)
 
