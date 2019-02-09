@@ -20,6 +20,9 @@
 	evil-want-keybinding nil
 	evil-want-minibuffer nil)
   :config
+  (add-hook 'org-mode-hook
+	    (lambda ()
+	      (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
   (evil-mode 1))
 
 (use-package evil-magit
