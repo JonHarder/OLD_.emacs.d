@@ -124,7 +124,14 @@
   (interactive)
   (jh/set-font-size (- jh/font-size 1)))
 
-(jh/set-color-theme jh/color-theme)
+;; (jh/set-color-theme jh/color-theme)
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/moe-theme-20180617.200/")
+(add-to-list 'load-path "~/.emacs.d/elpa/moe-theme-20180617.200/")
+(require 'moe-theme)
+
+(load-theme 'moe-dark t)
+
 
 (provide 'appearance)
 ;;; appearance.el ends here
