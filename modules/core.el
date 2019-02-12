@@ -6,23 +6,7 @@
 ;; and basic settings (or things that I can't find a better place to put them into)
 
 ;;; Code:
-(defcustom jh/color-theme "gruvbox-dark-hard"
-  "The color theme to use."
-  :group 'jh)
-
-(defgroup jh nil
-  "Group for storing generic customization for me."
-  :group 'convenience)
-
-(defcustom jh/font "Fira Code"
-  "The font to use for all text."
-  :group 'jh)
-(defcustom jh/font-size 17
-  "The size of font to use."
-  :group 'jh)
-
 (defalias 'yes-or-no-p 'y-or-n-p)
-
 
 ;; core settings behavior
 (setq inhibit-startup-message t)
