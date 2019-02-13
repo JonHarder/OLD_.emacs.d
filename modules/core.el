@@ -11,6 +11,7 @@
 ;; core settings behavior
 (setq inhibit-startup-message t)
 
+(setq dired-listing-switches "-alh")
 
 (show-paren-mode 1)
 
