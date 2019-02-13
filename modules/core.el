@@ -56,12 +56,6 @@
   (dashboard-setup-startup-hook))
 
 
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode))
-
-
 (use-package dash
   :ensure t)
 
@@ -87,67 +81,6 @@
   :config
   (projectile-mode +1))
 
-
-(defun find-init-file ()
-  "Open your init file."
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
-
-
-(defun jh/term ()
-  (interactive)
-  (ansi-term "/usr/local/bin/fish"))
-
-
-(defun init-bindings ()
-  "Define the keyboard bindings."
-  (use-package general
-    :ensure t
-    :config
-    (general-create-definer space-leader :prefix "SPC")
-    (space-leader
-      :keymaps 'normal
-      ";" 'eval-expression
-      ;; find manipulation
-      "f f" 'find-file
-      "f s" 'save-buffer
-      "f i" 'find-init-file
-      ;; buffer manipulation
-      "b d" 'evil-delete-buffer
-      ;; help
-      "h f" 'describe-function
-      "h k" 'describe-key
-      "h v" 'describe-variable
-      ;; window manipulation
-      "w /" 'evil-window-vsplit
-      "w -" 'evil-window-split
-      "w w" 'evil-window-next
-      "w m" 'delete-other-windows
-      "w c" 'delete-window
-      ;; git stuff (using magit)
-      "g s" 'magit-status
-      ;; project stuff
-      "p f" 'projectile-find-file
-      ;; jumpin an stuff
-      "j d" 'xref-find-definitions
-      ;; evalin stuff
-      "e e" 'eval-expression
-      ;; searchin stuff
-      "s g" 'how-do-i-google
-      "s s" 'how-do-i
-      "s d" 'how-do-i-ddg
-      "s o" 'how-do-i-so
-      ;; org
-      "o c" 'org-ctrl-c-ctrl-c
-      "o a" 'org-archive-subtree
-      "o t" 'org-todo
-      ;; font stuff
-      "=" 'jh/increse-font-size
-      "-" 'jh/decrease-font-size
-      ;; "applications"
-      "a a" 'org-agenda
-      "a t" 'jh/term
-      "a d" 'dired))
 
   (use-package flycheck
     :ensure t
@@ -189,9 +122,6 @@
   :ensure t
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-
-
-(init-bindings)
 
 
 (provide 'core)

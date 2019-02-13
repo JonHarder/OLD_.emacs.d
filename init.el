@@ -31,6 +31,7 @@
 (defmodules
   core
   org
+  bindings
   appearance
   evil
   eshell
