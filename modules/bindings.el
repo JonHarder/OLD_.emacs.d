@@ -29,6 +29,14 @@
   (interactive)
   (ansi-term "/usr/local/bin/fish"))
 
+(defun jh/find-module (module)
+  "Open the MODULE, using completion from availble modules."
+  (interactive (list (completing-read "Module: "
+				      (directory-files (expand-file-name "~/.emacs.d/modules/")
+						       nil
+						       "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)"))))
+  (find-file module))
+
 
 (use-package general
   :ensure t
@@ -42,12 +50,17 @@
     "f f" 'find-file
     "f s" 'save-buffer
     "f i" 'find-init-file
+    "f m" 'jh/find-module
     ;; buffer manipulation
     "b d" 'evil-delete-buffer
     ;; help
     "h f" 'describe-function
     "h k" 'describe-key
     "h v" 'describe-variable
+    ;; narrowing
+    "n r" 'narrow-to-region
+    "n d" 'narrow-to-defun
+    "n w" 'widen
     ;; window manipulation
     "w /" 'evil-window-vsplit
     "w -" 'evil-window-split

@@ -38,7 +38,8 @@
   search
   python
   clojure
-  php)
+  php
+  work)
 
 (provide 'init)
 ;;; init.el ends here

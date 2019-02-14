@@ -83,33 +83,33 @@
   (projectile-mode +1))
 
 
-  (use-package flycheck
-    :ensure t
-    :config
-    (add-hook 'after-init-hook #'global-flycheck-mode))
-    
-  ;; COMPLETION/NARROWING
-  (use-package counsel
-    :ensure t)
+(use-package flycheck
+  :ensure t
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode))
 
-  (use-package amx
-    :ensure t
-    :config
-    (amx-mode))
+;; COMPLETION/NARROWING
+(use-package counsel
+  :ensure t)
 
-  (use-package ivy
-    :after (counsel general evil)
-    :ensure t
-    :init
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers 1
-	  enable-recursive-minibuffers t)
-    :config
-    (space-leader
-      :keymaps 'normal
-      "SPC" 'counsel-M-x
-      "b b" 'ivy-switch-buffer
-      "/" 'swiper)))
+(use-package amx
+  :ensure t
+  :config
+  (amx-mode))
+
+(use-package ivy
+  :after (counsel general evil)
+  :ensure t
+  :init
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers 1
+	enable-recursive-minibuffers t)
+  :config
+  (space-leader
+    :keymaps 'normal
+    "SPC" 'counsel-M-x
+    "b b" 'ivy-switch-buffer
+    "/" 'swiper))
 
 
 (use-package yaml-mode
