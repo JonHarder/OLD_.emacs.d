@@ -14,6 +14,7 @@
 (setq dired-listing-switches "-alh")
 
 (show-paren-mode 1)
+(electric-pair-mode 1)
 
 (defadvice term-handle-exit
     (after term-kill-buffer-on-exit activate)
