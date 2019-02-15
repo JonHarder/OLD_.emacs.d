@@ -10,13 +10,11 @@
 
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
-(message "loading modules")
-
 (defgroup jh nil
   "Group for storing generic customization for me."
   :group 'convenience)
 
-(defcustom jh/color-theme "leuven"
+(defcustom jh/color-theme "dracula"
   "The color theme to use."
   :group 'jh)
 

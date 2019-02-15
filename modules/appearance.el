@@ -73,6 +73,11 @@
       :ensure t
       :config
       (load-theme (intern jh/color-theme) t)))
+   ((string-equal jh/color-theme "dracula")
+    (use-package dracula-theme
+      :ensure t
+      :config
+      (load-theme 'dracula t)))
    ((string-equal jh/color-theme "cyberpunk")
     (use-package cyberpunk-theme
       :ensure t
@@ -124,13 +129,12 @@
   (interactive)
   (jh/set-font-size (- jh/font-size 1)))
 
-;; (jh/set-color-theme jh/color-theme)
+(jh/set-color-theme jh/color-theme)
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/moe-theme-20180617.200/")
-(add-to-list 'load-path "~/.emacs.d/elpa/moe-theme-20180617.200/")
-(require 'moe-theme)
-
-(load-theme 'moe-dark t)
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/moe-theme-20180617.200/")
+;; (add-to-list 'load-path "~/.emacs.d/elpa/moe-theme-20180617.200/")
+;; (require 'moe-theme)
+;; (load-theme 'moe-dark t)
 
 
 (provide 'appearance)

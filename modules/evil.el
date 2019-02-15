@@ -25,8 +25,8 @@
 	      (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
   (evil-mode 1))
 
-(use-package evil-magit
-  :ensure t)
+;; (use-package evil-magit
+;;   :ensure t)
 
 
 (use-package evil-org

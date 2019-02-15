@@ -35,7 +35,7 @@
 				      (directory-files (expand-file-name "~/.emacs.d/modules/")
 						       nil
 						       "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)"))))
-  (find-file module))
+  (find-file (format "~/.emacs.d/modules/%s" module)))
 
 
 (use-package general
@@ -84,13 +84,14 @@
     "o c" 'org-ctrl-c-ctrl-c
     "o a" 'org-archive-subtree
     "o t" 'org-todo
+    "o o" 'org-open-at-point
     ;; font stuff
     "=" 'jh/increse-font-size
     "-" 'jh/decrease-font-size
     ;; "applications"
     "a a" 'org-agenda
     "a t" 'jh/term
-    "a d" 'dired)
+    "a d" 'dired))
 
 
 (provide 'bindings)
