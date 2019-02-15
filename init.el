@@ -7,7 +7,6 @@
 
 ;;; Code:
 ;; (package-initialize)
-
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
 (defgroup jh nil
