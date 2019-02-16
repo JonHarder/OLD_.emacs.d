@@ -12,41 +12,42 @@
 
 (defvar jh/color-themes nil "The available color themes, use in conjunction with jh/set-color-theme.")
 
-(defconst system-themes '("adwaita"
-			  "deeper-blue"
-			  "dichromacy"
-			  "leuven"
-			  "light-blue"
-			  "manoj-dark"
-			  "misterioso"
-			  "tango"
-			  "tango-dark"
-			  "tsdh-light"
-			  "tsdh-dark"
-			  "wheatgrass"
-			  "whiteboard"
-			  "wombat"))
+(defconst system-themes
+  '("adwaita"
+    "deeper-blue"
+    "dichromacy"
+    "leuven"
+    "light-blue"
+    "manoj-dark"
+    "misterioso"
+    "tango"
+    "tango-dark"
+    "tsdh-light"
+    "tsdh-dark"
+    "wheatgrass"
+    "whiteboard"
+    "wombat"))
 
 
 (setq jh/color-themes
       (append system-themes
-	      '("solarized-dark"
-		"solarized-light"
-		"spacemacs-dark"
-		"spacemacs-light"
-		"cyberpunk"
-		"rebecca"
-		"gruvbox-dark-hard"
-		"gruvbox-dark-medium"
-		"gruvbox-dark-soft"
-		"gruvbox-light-hard"
-		"gruvbox-light-medium"
-		"gruvbox-light-soft"
-		"material"
-		"material-light"
-		"challenger-deep"
-		"zenburn"
-		"tango-plus")))
+        '("solarized-dark"
+          "solarized-light"
+          "spacemacs-dark"
+          "spacemacs-light"
+          "cyberpunk"
+          "rebecca"
+          "gruvbox-dark-hard"
+          "gruvbox-dark-medium"
+          "gruvbox-dark-soft"
+          "gruvbox-light-hard"
+          "gruvbox-light-medium"
+          "gruvbox-light-soft"
+          "material"
+          "material-light"
+          "challenger-deep"
+          "zenburn"
+          "tango-plus")))
 
 
 (defun jh/set-color-theme (theme)
@@ -116,6 +117,9 @@
    ((member jh/color-theme '("spacemacs-dark" "spacemacs-light"))
     (use-package spacemacs-theme
       :defer t
+      :config
+      (setq spacemacs-theme-org-highlight t
+            spacemacs-theme-underline-parens t)
       :init (load-theme 'spacemacs-dark t)))))
 
 
