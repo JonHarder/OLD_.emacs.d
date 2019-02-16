@@ -11,18 +11,18 @@
   :ensure t
   :init
   (setq evil-search-module 'evil-search
-	evil-ex-complete-emacs-commands t
-	evil-vsplit-window-right nil
-	evil-split-window-below nil
-	evil-shift-round nil
-	evil-want-C-u-scroll t
-	evil-want-integration t
-	evil-want-keybinding nil
-	evil-want-minibuffer nil)
+        evil-ex-complete-emacs-commands t
+        evil-vsplit-window-right nil
+        evil-split-window-below nil
+        evil-shift-round nil
+        evil-want-C-u-scroll t
+        evil-want-integration t
+        evil-want-keybinding nil
+        evil-want-minibuffer nil)
   :config
   (add-hook 'org-mode-hook
-	    (lambda ()
-	      (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
+      (lambda ()
+        (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
   (evil-mode 1))
 
 (use-package evil-magit
@@ -46,11 +46,16 @@
   (evil-collection-init))
 
 
-(use-package evil-lispy
-  :after evil
+(use-package parinfer
   :ensure t
   :init
-  (add-hook 'emacs-lisp-mode-hook #'evil-lispy-mode))
+  (setq parinfer-extensions
+    '(defaults
+      pretty-parens
+      evil
+      lispy))
+  (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
+  (add-hook 'clojure-mode-hook #'parinfer-mode))
 
 
 (provide 'evil)
