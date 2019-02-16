@@ -31,6 +31,7 @@
   bindings
   appearance
   evil
+  elm
   eshell
   search
   python
