@@ -68,6 +68,14 @@
       :ensure t
       :config
       (load-theme (intern jh/color-theme) t)))
+   ((string-match (rx bol "doom-" (zero-or-more anything)) jh/color-theme)
+    (use-package doom-themes
+      :ensure t
+      :init
+      (setq doom-solarized-light-brighter-comments t
+	    doom-solarized-light-brighter-modeline t)
+      :config
+      (load-theme (intern jh/color-theme) t)))
    ((member jh/color-theme '("solarized-light" "solarized-dark"))
     (use-package solarized-theme
       :ensure t
