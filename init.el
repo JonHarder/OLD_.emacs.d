@@ -13,7 +13,7 @@
   "Group for storing generic customization for me."
   :group 'convenience)
 
-(defcustom jh/color-theme "dracula"
+(defcustom jh/color-theme "spacemacs-dark"
   "The color theme to use."
   :group 'jh)
 
@@ -30,6 +30,7 @@
   org
   bindings
   appearance
+  modeline
   evil
   elm
   eshell
