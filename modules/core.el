@@ -9,10 +9,14 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; core settings behavior
-(setq inhibit-startup-message t)
-
-(setq dired-listing-switches "-alh")
-(setq ring-bell-function 'ignore)
+(setq inhibit-startup-message t
+      dired-listing-switches "-alh"
+      ring-bell-function 'ignore
+      mouse-wheel-scroll-amount '(1 ((shift) . 1)) ;; one line at a time
+      mouse-wheel-progressive-speed nil ;; don't accelerate scrolling
+      mouse-wheel-follow-mouse 't ;; scroll window under mouse
+      scroll-step 1 ;; keyboard scroll one line at a time
+      backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 
 
 (show-paren-mode 1)
@@ -22,15 +26,7 @@
     (after term-kill-buffer-on-exit activate)
   (kill-buffer))
 
-
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)) ;; one line at a time
-      mouse-wheel-progressive-speed nil ;; don't accelerate scrolling
-      mouse-wheel-follow-mouse 't ;; scroll window under mouse
-      scroll-step 1) ;; keyboard scroll one line at a time
-
 ;; store all the backup files (the ones that end with ~) in a dedicated folder.
-(setq backup-directory-alist
-      `(("." . ,(concat user-emacs-directory "backups"))))
 
 
 (defun alist-keys (alist)
@@ -100,19 +96,30 @@
   :config
   (amx-mode))
 
+
+(defun swiper--nohighlight (orig-func &rest args)
+  "Get rid of the highlighting after exiting swiper."
+  (apply orig-func args)
+  (evil-ex-nohighlight))
+
+(advice-add 'swiper :around #'swiper--nohighlight)
+
+
 (use-package ivy
   :after (counsel general evil)
   :ensure t
   :init
-  (ivy-mode 1)
   (setq ivy-use-virtual-buffers 1
-	enable-recursive-minibuffers t)
+        enable-recursive-minibuffers t)
   :config
+  (ivy-mode 1)
   (space-leader
     :keymaps 'normal
     "SPC" 'counsel-M-x
-    "b b" 'ivy-switch-buffer
-    "/" 'swiper))
+    "b b" 'ivy-switch-buffer)
+  (general-define-key
+   :states 'normal
+   "/" 'swiper))
 
 
 (use-package yaml-mode
