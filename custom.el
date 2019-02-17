@@ -72,7 +72,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (pipenv tao-theme parinfer doom-themes doom-modeline all-the-icons all-the-icond spacemacs-theme ac-php plan9-theme badger-theme darkokai-theme moe-theme anti-zenburn-theme elm-mode cyberpunk-theme exec-path-from-shell vue-mode rebecca-theme dockerfile-mode material-theme gruvbox-theme fish-mode monokai-theme evil-lispy cider groovy-mode gradle-mode git-gutter zenburn-theme evil-collection dracula-theme challenger-deep-theme rainbow-delimiters org-bullets evil-org markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package)))
+    (pipenv tao-theme parinfer doom-themes doom-modeline all-the-icons all-the-icond spacemacs-theme ac-php plan9-theme badger-theme darkokai-theme moe-theme anti-zenburn-theme elm-mode cyberpunk-theme exec-path-from-shell vue-mode rebecca-theme dockerfile-mode material-theme gruvbox-theme fish-mode monokai-theme cider groovy-mode gradle-mode git-gutter zenburn-theme evil-collection dracula-theme challenger-deep-theme rainbow-delimiters org-bullets evil-org markdown-mode dashboard flycheck-pycheckers amx which-key projectile evil-magit ansible yaml-mode solarized-theme counsel ivy magit general php-mode use-package)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
