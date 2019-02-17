@@ -12,6 +12,8 @@
 (setq inhibit-startup-message t)
 
 (setq dired-listing-switches "-alh")
+(setq ring-bell-function 'ignore)
+
 
 (show-paren-mode 1)
 (electric-pair-mode 1)

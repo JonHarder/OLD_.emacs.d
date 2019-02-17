@@ -35,17 +35,9 @@
           "solarized-light"
           "spacemacs-dark"
           "spacemacs-light"
+          "kooten"
+          "dracula"
           "cyberpunk"
-          "rebecca"
-          "gruvbox-dark-hard"
-          "gruvbox-dark-medium"
-          "gruvbox-dark-soft"
-          "gruvbox-light-hard"
-          "gruvbox-light-medium"
-          "gruvbox-light-soft"
-          "material"
-          "material-light"
-          "challenger-deep"
           "zenburn"
           "tango-plus")))
 
@@ -59,16 +51,6 @@
   (cond
    ((member jh/color-theme system-themes)
     (load-theme (intern jh/color-theme) t))
-   ((string-match (rx bol "gruvbox" (zero-or-more anything)) jh/color-theme)
-    (use-package gruvbox-theme
-      :ensure t
-      :config
-      (load-theme (intern jh/color-theme) t)))
-   ((string-match (rx bol "material" (zero-or-more anything)) jh/color-theme)
-    (use-package material-theme
-      :ensure t
-      :config
-      (load-theme (intern jh/color-theme) t)))
    ((string-match (rx bol "doom-" (zero-or-more anything)) jh/color-theme)
     (use-package doom-themes
       :ensure t
@@ -89,21 +71,6 @@
       :ensure t
       :config
       (load-theme 'cyberpunk t)))
-   ((string-equal jh/color-theme "monokai")
-    (use-package monokai-theme
-      :ensure t
-      :config
-      (load-theme 'monokai t)))
-   ((string-equal jh/color-theme "rebecca")
-    (use-package rebecca-theme
-      :ensure t
-      :config
-      (load-theme 'rebecca t)))
-   ((string-equal jh/color-theme "challenger-deep")
-    (use-package challenger-deep-theme
-      :ensure t
-      :config
-      (load-theme 'challenger-deep t)))
    ((string-equal jh/color-theme "tango-plus")
     (use-package tango-plus-theme
       :ensure t
@@ -120,7 +87,12 @@
       :config
       (setq spacemacs-theme-org-highlight t
             spacemacs-theme-underline-parens t)
-      :init (load-theme 'spacemacs-dark t)))))
+      :init (load-theme 'spacemacs-dark t)))
+   ((string-equal jh/color-theme "kooten")
+    (use-package kooten-theme
+      :ensure t
+      :config
+      (load-theme 'kooten t)))))
 
 
 (defun jh/set-font-size (size)
