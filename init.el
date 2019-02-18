@@ -38,6 +38,7 @@
   python
   clojure
   php
+  web
   work)
 
 (provide 'init)

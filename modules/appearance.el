@@ -1,6 +1,5 @@
 ;;; appearance --- Summary
 
-
 ;;; Commentary:
 
 ;;; Code:

@@ -32,10 +32,15 @@
 (defun jh/find-module (module)
   "Open the MODULE, using completion from availble modules."
   (interactive (list (completing-read "Module: "
-				      (directory-files (expand-file-name "~/.emacs.d/modules/")
-						       nil
-						       "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)"))))
+                        (directory-files (expand-file-name "~/.emacs.d/modules/")
+                          nil
+                          "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)"))))
   (find-file (format "~/.emacs.d/modules/%s" module)))
+
+
+(use-package ace-window
+  :ensure t
+  :commands (ace-window))
 
 
 (use-package general
@@ -57,6 +62,8 @@
     "h f" 'describe-function
     "h k" 'describe-key
     "h v" 'describe-variable
+    "h m" 'describe-mode
+    "h p" 'describe-package
     ;; narrowing
     "n r" 'narrow-to-region
     "n d" 'narrow-to-defun
@@ -64,7 +71,7 @@
     ;; window manipulation
     "w /" 'evil-window-vsplit
     "w -" 'evil-window-split
-    "w w" 'evil-window-next
+    "w w" 'ace-window
     "w m" 'delete-other-windows
     "w c" 'delete-window
     ;; git stuff (using magit)
