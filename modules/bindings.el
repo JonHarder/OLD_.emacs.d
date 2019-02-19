@@ -43,10 +43,23 @@
   :commands (ace-window))
 
 
+(use-package ivy
+  :after (counsel general evil)
+  :ensure t
+  :init
+  (setq ivy-use-virtual-buffers 1
+        enable-recursive-minibuffers t)
+  :config
+  (ivy-mode 1))
+
+
 (use-package general
   :ensure t
   :config
   (general-create-definer space-leader :prefix "SPC")
+  (general-define-key
+   :states 'normal
+   "/" 'swiper)
   (space-leader
     :keymaps 'normal
     ";" 'eval-expression
@@ -57,6 +70,8 @@
     "f i" 'find-init-file
     "f m" 'jh/find-module
     ;; buffer manipulation
+    "b b" 'ivy-switch-buffer
+    "b i" 'ibuffer
     "b d" 'evil-delete-buffer
     ;; help
     "h f" 'describe-function
@@ -78,6 +93,8 @@
     "g s" 'magit-status
     ;; project stuff
     "p f" 'projectile-find-file
+    ;; find in file
+    "i" 'counsel-imenu
     ;; jumpin an stuff
     "j d" 'xref-find-definitions
     ;; evalin stuff

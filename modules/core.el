@@ -19,14 +19,17 @@
       backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 
 
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier nil
+        mac-command-modifier 'meta))
+
+
 (show-paren-mode 1)
 (electric-pair-mode 1)
 
 (defadvice term-handle-exit
     (after term-kill-buffer-on-exit activate)
   (kill-buffer))
-
-;; store all the backup files (the ones that end with ~) in a dedicated folder.
 
 
 (defun alist-keys (alist)
@@ -103,23 +106,6 @@
   (evil-ex-nohighlight))
 
 (advice-add 'swiper :around #'swiper--nohighlight)
-
-
-(use-package ivy
-  :after (counsel general evil)
-  :ensure t
-  :init
-  (setq ivy-use-virtual-buffers 1
-        enable-recursive-minibuffers t)
-  :config
-  (ivy-mode 1)
-  (space-leader
-    :keymaps 'normal
-    "SPC" 'counsel-M-x
-    "b b" 'ivy-switch-buffer)
-  (general-define-key
-   :states 'normal
-   "/" 'swiper))
 
 
 (use-package yaml-mode
