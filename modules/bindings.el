@@ -53,15 +53,41 @@
   (ivy-mode 1))
 
 
+(use-package ivy-rich
+  :after ivy
+  :ensure t
+  :init
+  (setq ivy-virtual-abbreviate 'full
+        ivy-rich-path-style 'abbrev
+        ivy-format-function #'ivy-format-function-line)
+  :config
+  (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
+  (ivy-rich-mode))
+
+
+(defun jh/copy-to-mac-clipboard (from to)
+  "Copy the selected region starting at FROM and ending at TO to the clipboard."
+  (interactive
+   (if (use-region-p)
+     (list (region-beginning) (region-end))
+     (error "Region not selected!")))
+  (shell-command-on-region from to "pbcopy")
+  (evil-exit-visual-state)
+  (message "copied to clipboard"))
+
+
 (use-package general
   :ensure t
   :config
   (general-create-definer space-leader :prefix "SPC")
   (general-define-key
    :states 'normal
-   "/" 'swiper)
+   "/" 'swiper
+   :states 'visual
+   "M-c" 'jh/copy-to-mac-clipboard)
   (space-leader
     :keymaps 'normal
+    "SPC" 'counsel-M-x
     ";" 'eval-expression
     "1" 'shell-command
     ;; find manipulation
@@ -92,6 +118,7 @@
     ;; git stuff (using magit)
     "g s" 'magit-status
     ;; project stuff
+    "p p" 'projectile-switch-project
     "p f" 'projectile-find-file
     ;; find in file
     "i" 'counsel-imenu
