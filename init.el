@@ -13,7 +13,7 @@
   "Group for storing generic customization for me."
   :group 'convenience)
 
-(defcustom jh/color-theme "material-light"
+(defcustom jh/color-theme "twilight-bright"
   "The color theme to use."
   :group 'jh)
 

@@ -34,11 +34,14 @@
           "solarized-light"
           "spacemacs-dark"
           "spacemacs-light"
+          "material"
+          "material-light"
           "kooten"
           "dracula"
           "cyberpunk"
           "zenburn"
-          "tango-plus")))
+          "tango-plus"
+          "twilight-bright")))
 
 
 (defun jh/set-color-theme (theme)
@@ -55,6 +58,11 @@
       :ensure t
       :config
       (load-theme (intern jh/color-theme) t)))
+   ((string-match (rx bol "material" (zero-or-more anything)) jh/color-theme)
+    (use-package material-theme
+      :ensure t
+      :config
+      (load-theme (intern jh/color-theme) t)))
    ((member jh/color-theme '("solarized-light" "solarized-dark"))
     (use-package solarized-theme
       :ensure t
@@ -65,6 +73,11 @@
       :ensure t
       :config
       (load-theme 'dracula t)))
+   ((string-equal jh/color-theme "twilight-bright")
+    (use-package twilight-bright-theme
+      :ensure t
+      :config
+      (load-theme 'twilight-bright t)))
    ((string-equal jh/color-theme "cyberpunk")
     (use-package cyberpunk-theme
       :ensure t
