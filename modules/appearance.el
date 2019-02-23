@@ -32,6 +32,7 @@
       (append system-themes
         '("solarized-dark"
           "solarized-light"
+          "doom-solarized-light"
           "spacemacs-dark"
           "spacemacs-light"
           "material"
@@ -56,6 +57,9 @@
    ((string-match (rx bol "doom-" (zero-or-more anything)) jh/color-theme)
     (use-package doom-themes
       :ensure t
+      :init
+      (when (string-equal jh/color-theme "doom-solarized-light")
+        (setq doom-solarized-light-brighter-comments t))
       :config
       (load-theme (intern jh/color-theme) t)))
    ((string-match (rx bol "material" (zero-or-more anything)) jh/color-theme)
