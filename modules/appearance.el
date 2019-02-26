@@ -33,7 +33,7 @@
           "solarized-light"
           "doom-solarized-light"
           "doom-challenger-deep"
-	  "doom-dracula"
+          "doom-dracula"
           "spacemacs-dark"
           "spacemacs-light"
           "material"
@@ -62,6 +62,9 @@
       (when (string-equal theme "doom-challenger-deep")
         (setq doom-challenger-deep-brighter-comments t
               doom-challenger-deep-brighter-modeline t)) 
+      (when (string-equal theme "doom-challenger-deep")
+        (setq doom-dracula-brighter-comments t
+              doom-dracula-brighter-modeline t))
       :config
       (load-theme (intern theme) t)))
    ((string-match (rx bol "material" (zero-or-more anything)) theme)

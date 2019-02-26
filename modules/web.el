@@ -11,5 +11,16 @@
   :hook 'sgml-mode)
 
 
+(use-package rainbow-mode
+  :ensure t
+  :hook (vue-mode css-mode))
+
+
+(use-package vue-mode
+  :ensure t
+  :config
+  (setq mmm-submode-decoration-level 2))
+
+
 (provide 'web)
 ;;; web.el ends here

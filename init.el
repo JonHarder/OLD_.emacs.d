@@ -10,24 +10,24 @@
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
 
-(defvar jh/config
-  '(:color-theme "doom-dracula"
-    :font "Fira Code"
-    :font-size 17
-    :modules '(core
-               org
-               bindings
-               appearance
-               modeline
-               evil
-               elm
-               eshell
-               search
-               python
-               clojure
-               php
-               web
-               work)))
+(defconfig jh/config
+  :color-theme "doom-dracula"
+  :font "Fira Code"
+  :font-size 17
+  :modules '(core
+             org
+             bindings
+             appearance
+             modeline
+             evil
+             elm
+             eshell
+             search
+             python
+             clojure
+             php
+             web
+             work))
 
 
 (jh/config-init jh/config)
