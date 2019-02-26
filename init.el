@@ -9,37 +9,29 @@
 ;; (package-initialize)
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
-(defgroup jh nil
-  "Group for storing generic customization for me."
-  :group 'convenience)
 
-(defcustom jh/color-theme "doom-solarized-light"
-  "The color theme to use."
-  :group 'jh)
+(defvar jh/config
+  '(:color-theme "doom-dracula"
+    :font "Fira Code"
+    :font-size 17
+    :modules '(core
+               org
+               bindings
+               appearance
+               modeline
+               evil
+               elm
+               eshell
+               search
+               python
+               clojure
+               php
+               web
+               work)))
 
-(defcustom jh/font "Fira Code"
-  "The font to use for all text."
-  :group 'jh)
-(defcustom jh/font-size 17
-  "The size of font to use."
-  :group 'jh)
 
+(jh/config-init jh/config)
 
-(defmodules
-  core
-  org
-  bindings
-  appearance
-  modeline
-  evil
-  elm
-  eshell
-  search
-  python
-  clojure
-  php
-  web
-  work)
 
 (provide 'init)
 ;;; init.el ends here

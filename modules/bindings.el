@@ -29,12 +29,19 @@
   (interactive)
   (ansi-term "/usr/local/bin/fish"))
 
+
+(defun jh/expand-directory (dir)
+  "Expand the given DIR to the list of all of its files."
+  (interactive)
+  (directory-files (expand-file-name dir)
+    nil
+    "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)"))
+
+
 (defun jh/find-module (module)
   "Open the MODULE, using completion from availble modules."
   (interactive (list (completing-read "Module: "
-                        (directory-files (expand-file-name "~/.emacs.d/modules/")
-                          nil
-                          "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)"))))
+                        (jh/expand-directory "~/.emacs.d/modules/"))))
   (find-file (format "~/.emacs.d/modules/%s" module)))
 
 
@@ -137,8 +144,8 @@
     "o t" 'org-todo
     "o o" 'org-open-at-point
     ;; font stuff
-    "=" 'jh/increse-font-size
-    "-" 'jh/decrease-font-size
+    "=" 'text-scale-increase
+    "-" 'text-scale-decrease
     ;; "applications"
     "a a" 'org-agenda
     "a t" 'jh/term
