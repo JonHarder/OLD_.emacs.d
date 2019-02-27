@@ -68,7 +68,6 @@
         ivy-rich-path-style 'abbrev
         ivy-format-function #'ivy-format-function-line)
   :config
-  (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
   (ivy-rich-mode))
 
 
