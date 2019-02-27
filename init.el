@@ -11,7 +11,7 @@
 
 
 (defconfig jh/config
-  :color-theme "doom-dracula"
+  :color-theme "doom-Iosvkem"
   :font "Fira Code"
   :font-size 17
   :modules '(core
