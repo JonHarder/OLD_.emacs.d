@@ -71,6 +71,12 @@
   (ivy-rich-mode))
 
 
+(defun jh/paste-from-mac-clipboard ()
+  "Insert the contents of the clipboard into the current buffer."
+  (interactive)
+  (insert (shell-command-to-string "pbpaste")))
+
+
 (defun jh/copy-to-mac-clipboard (from to)
   "Copy the selected region starting at FROM and ending at TO to the clipboard."
   (interactive
@@ -90,7 +96,8 @@
    :states 'normal
    "/" 'swiper
    :states 'visual
-   "M-c" 'jh/copy-to-mac-clipboard)
+   "M-c" 'jh/copy-to-mac-clipboard
+   "M-v" 'jh/paste-from-mac-clipboard)
   (space-leader
     :keymaps 'normal
     "SPC" 'counsel-M-x
