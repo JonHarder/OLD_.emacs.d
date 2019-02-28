@@ -57,14 +57,10 @@
     (use-package doom-themes
       :ensure t
       :init
-      (when (string-equal theme "doom-solarized-light")
-        (setq doom-solarized-light-brighter-comments t))
-      (when (string-equal theme "doom-challenger-deep")
-        (setq doom-challenger-deep-brighter-comments t
-              doom-challenger-deep-brighter-modeline t)) 
-      (when (string-equal theme "doom-challenger-deep")
-        (setq doom-dracula-brighter-comments t
-              doom-dracula-brighter-modeline t))
+      (pcase theme
+	("doom-solarized-light" (setq doom-solarized-light-brighter-comments t))
+	("doom-challenger-deep" (setq doom-challenger-deep-brighter-comments t))
+	("doom-dracula" (setq doom-dracula-brighter-comments t)))
       :config
       (load-theme (intern theme) t)))
    ((string-match (rx bol "material" (zero-or-more anything)) theme)
