@@ -26,6 +26,7 @@
 
 
 (defun jh/term ()
+  "Open my terminal."
   (interactive)
   (ansi-term "/usr/local/bin/fish"))
 
@@ -95,12 +96,13 @@
   (general-define-key
    :states 'normal
    "/" 'swiper
+   "M-v" 'jh/paste-from-mac-clipboard
    :states 'visual
-   "M-c" 'jh/copy-to-mac-clipboard
-   "M-v" 'jh/paste-from-mac-clipboard)
+   "M-c" 'jh/copy-to-mac-clipboard)
   (space-leader
     :keymaps 'normal
     "SPC" 'counsel-M-x
+    "/" 'counsel-ag
     ";" 'eval-expression
     "1" 'shell-command
     ;; find manipulation

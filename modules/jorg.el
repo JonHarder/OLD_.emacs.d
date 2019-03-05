@@ -14,10 +14,10 @@
 
 (setq org-babel-python-command "python3")
 (org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (sh . t)
-   (python . t)))
+  'org-babel-load-languages
+  '((emacs-lisp . t)
+    (shell . t)
+    (python . t)))
 
 
 (use-package org-journal
@@ -40,5 +40,5 @@
            "DONE(d!)"
            "CANCELED(c@)")))
 
-(provide 'org)
-;;; org.el ends here
+(provide 'jorg)
+;;; jorg.el ends here
