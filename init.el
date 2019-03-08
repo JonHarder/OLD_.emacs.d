@@ -13,7 +13,7 @@
 ;; doom-solarized-light
 ;; doom-tomorrow-night
 (defconfig jh/config
-  :color-theme "doom-one"
+  :color-theme "doom-spacegrey"
   :font "Fira Code"
   :font-size 17
   :modules '(core
