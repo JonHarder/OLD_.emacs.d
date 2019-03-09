@@ -13,7 +13,7 @@
 ;; doom-solarized-light
 ;; doom-tomorrow-night
 (defconfig jh/config
-  :color-theme "doom-Iosvkem"
+  :color-theme "spacemacs-dark"
   :font "Fira Code"
   :font-size 17
   :modules '(core
