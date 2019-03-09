@@ -80,6 +80,11 @@
       :ensure t
       :config
       (load-theme 'birds-of-paradise-plus t)))
+   ((string-equal theme "flatui-dark")
+    (use-package flatui-dark-theme
+      :ensure t
+      :config
+      (load-theme 'flatui-dark t)))
    ((string-equal theme "dracula")
     (use-package dracula-theme
       :ensure t

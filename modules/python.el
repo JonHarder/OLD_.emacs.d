@@ -15,6 +15,7 @@
 
 
 (use-package pipenv
+  :ensure t
   :hook (python-mode . pipenv-mode)
   :init
   (setq
