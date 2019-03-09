@@ -8,6 +8,8 @@
 ;;; Code:
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+
 ;; core settings behavior
 (setq inhibit-startup-message t
       dired-listing-switches "-alh"
@@ -53,8 +55,9 @@
 
 
 (use-package dashboard
-  :disabled t
   :ensure t
+  :init
+  (setq dashboard-startup-banner 'logo)
   :config
   (dashboard-setup-startup-hook))
 

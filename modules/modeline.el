@@ -3,9 +3,6 @@
 ;;; Commentary:
 
 ;;; Code:
-(use-package all-the-icons
-  :ensure t)
-
 (use-package doom-modeline
   :ensure t
   :init

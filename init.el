@@ -9,17 +9,19 @@
 ;; (package-initialize)
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
-;; doom-Ioskvem is good
+;; doom-Iosvkem is good
 ;; doom-solarized-light
 ;; doom-tomorrow-night
 (defconfig jh/config
-  :color-theme "doom-spacegrey"
+  :color-theme "doom-Iosvkem"
   :font "Fira Code"
   :font-size 17
   :modules '(core
+             completion
              bindings
-             jorg ;; naming something "org" seems to conflict with built in org
+             jorg
              appearance
+             icons
              modeline
              evil
              elm

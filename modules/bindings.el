@@ -51,27 +51,6 @@
   :commands (ace-window))
 
 
-(use-package ivy
-  :after (counsel general evil)
-  :ensure t
-  :init
-  (setq ivy-use-virtual-buffers 1
-        enable-recursive-minibuffers t)
-  :config
-  (ivy-mode 1))
-
-
-(use-package ivy-rich
-  :after ivy
-  :ensure t
-  :init
-  (setq ivy-virtual-abbreviate 'full
-        ivy-rich-path-style 'abbrev
-        ivy-format-function #'ivy-format-function-line)
-  :config
-  (ivy-rich-mode))
-
-
 (defun jh/paste-from-mac-clipboard ()
   "Insert the contents of the clipboard into the current buffer."
   (interactive)
