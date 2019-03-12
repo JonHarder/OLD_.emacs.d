@@ -136,7 +136,8 @@
     ;; "applications"
     "a a" 'org-agenda
     "a t" 'jh/term
-    "a d" 'dired))
+    "a d" 'dired
+    "a e" 'eshell))
 
 
 (provide 'bindings)
