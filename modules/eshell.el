@@ -108,8 +108,8 @@
 
 (defun eshell/clear ()
   "Clears the screen."
-  (let ((eshell-buffer-maximum-lines 0))
-    (eshell-truncate-buffer)))
+  (let ((inhibit-read-only t))
+    (erase-buffer)))
 
 (defun eshell/e (file)
   "Shorthand command to open FILE."
