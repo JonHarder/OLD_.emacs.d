@@ -12,6 +12,7 @@
 
 ;; core settings behavior
 (setq inhibit-startup-message t
+      initial-scratch-message ""
       dired-listing-switches "-alh"
       ring-bell-function 'ignore
       mouse-wheel-scroll-amount '(1 ((shift) . 1)) ;; one line at a time

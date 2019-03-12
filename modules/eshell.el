@@ -17,6 +17,10 @@
       (eshell/pwd)
       " $ ")))
 
+(defun eshell/e (file)
+  "Shorthand command to open FILE."
+  (find-file file))
+
 
 (provide 'eshell)
 ;;; eshell.el ends here

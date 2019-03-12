@@ -12,8 +12,9 @@
 ;; doom-Iosvkem is good
 ;; doom-solarized-light
 ;; doom-tomorrow-night
+;; spacemacs-dark
 (defconfig jh/config
-  :color-theme "spacemacs-dark"
+  :color-theme "doom-dracula"
   :font "Fira Code"
   :font-size 17
   :modules '(core

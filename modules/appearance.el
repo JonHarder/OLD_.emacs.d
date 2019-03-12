@@ -37,6 +37,8 @@
       "doom-tomorrow-night"
       "doom-tomorrow-day"
       "doom-dracula"
+      "flatui"
+      "flatui-dark"
       "spacemacs-dark"
       "spacemacs-light"
       "material"
@@ -62,7 +64,8 @@
       (pcase theme
         ("doom-solarized-light" (setq doom-solarized-light-brighter-comments t))
         ("doom-challenger-deep" (setq doom-challenger-deep-brighter-comments t))
-        ("doom-dracula" (setq doom-dracula-brighter-comments t)))
+        ("doom-dracula" (setq doom-dracula-brighter-comments t
+                              doom-dracula-brighter-modeline t)))
       :config
       (load-theme (intern theme) t)))
    ((string-match (rx bol "material" (zero-or-more anything)) theme)
@@ -80,6 +83,11 @@
       :ensure t
       :config
       (load-theme 'birds-of-paradise-plus t)))
+   ((string-equal theme "flatui")
+    (use-package flatui-theme
+      :ensure t
+      :config
+      (load-theme 'flatui t)))
    ((string-equal theme "flatui-dark")
     (use-package flatui-dark-theme
       :ensure t
