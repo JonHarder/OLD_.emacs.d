@@ -116,5 +116,14 @@
   (find-file file))
 
 
+(add-hook 'eshell-mode-hook
+  (lambda ()
+    (define-key eshell-mode-map
+      (kbd "<tab>")
+      (lambda ()
+        (interactive)
+        (completion-at-point)))))
+
+
 (provide 'eshell)
 ;;; eshell.el ends here
