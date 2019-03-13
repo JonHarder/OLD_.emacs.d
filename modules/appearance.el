@@ -10,6 +10,36 @@
 
 (defvar jh/color-themes nil "The available color themes, use in conjunction with jh/set-color-theme.")
 
+(setq current-theme "dark")
+
+(defun ensure-lmutracker ()
+  (when (not (file-exists-p "~/.emacs.d/external_scripts/lmutracker"))
+    (shell-command "bash -c 'cd ~/.emacs.d/external_scripts && clang -o lmutracker lmutracker.cpp -framework IOKit -framework CoreFoundation'")))
+
+(ensure-lmutracker)
+
+;;; ambient light tracking
+(defun change-theme-for-lighting ()
+  "Switch color themes based on ambient light.
+
+Toggles between the first and second items in the pair defined in under the
+:color-theme section of your config."
+  (let* ((light-theme (plist-get jh/config :color-theme-light))
+         (dark-theme (plist-get jh/config :color-theme-dark))
+         (current-light-sensor-reading
+          (string-to-number
+            (shell-command-to-string "~/.emacs.d/external_scripts/lmutracker"))))
+   (if (< current-light-sensor-reading 100000)
+       (when (not (string-equal current-theme "dark"))
+         (load-theme dark-theme t)
+         (setq current-theme "dark"))
+     (when (not (string-equal current-theme "light"))
+       (load-theme light-theme t)
+       (setq current-theme "light")))))
+
+(run-with-timer 0 1 #'change-theme-for-lighting)
+
+
 (defconst system-themes
   '("adwaita"
     "deeper-blue"

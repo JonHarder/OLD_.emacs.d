@@ -50,7 +50,6 @@
         (font-size (plist-get config :font-size))
         (modules (plist-get config :modules)))
     (defmodules (cadr modules))
-    (jh/set-color-theme color-theme)
     (set-frame-font (format "%s %i" font font-size))))
 
 
