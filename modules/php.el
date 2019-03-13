@@ -24,8 +24,8 @@
 (defun my-php-mode-hook ()
   "Configuration for php."
   (setq indent-tabs-mode nil
-	c-basic-offset 4
-	php-template-compatibility nil)
+        c-basic-offset 4
+        php-template-compatibility nil)
   (subword-mode 1)
   (auto-complete-mode t)
   (setq ac-sources '(ac-source-php))
@@ -39,6 +39,10 @@
   :ensure t
   :init
   (add-hook 'php-mode-hook #'my-php-mode-hook))
+
+
+(use-package phpunit
+  :ensure t)
 
 
 (provide 'php)

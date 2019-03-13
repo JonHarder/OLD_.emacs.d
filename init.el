@@ -14,7 +14,7 @@
 ;; doom-tomorrow-night
 ;; spacemacs-dark
 (defconfig jh/config
-  :color-theme "doom-dracula"
+  :color-theme "gotham"
   :font "Fira Code"
   :font-size 17
   :modules '(core

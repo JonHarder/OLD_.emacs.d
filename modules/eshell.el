@@ -93,7 +93,7 @@
 (pretty-eshell-section
  esh-clock
  "\xf017"  ; 
- (format-time-string "%H:%M" (current-time))
+ (format-time-string "%I:%M %p" (current-time))
  '(:foreground "forest green"))
 
 (setq pretty-eshell-funcs

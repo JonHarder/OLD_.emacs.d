@@ -39,6 +39,7 @@
       "doom-dracula"
       "flatui"
       "flatui-dark"
+      "gotham"
       "spacemacs-dark"
       "spacemacs-light"
       "material"
@@ -78,6 +79,11 @@
       :ensure t
       :config
       (load-theme (intern theme) t)))
+   ((string-equal theme "gotham")
+    (use-package gotham-theme
+      :ensure t
+      :config
+      (load-theme 'gotham t)))
    ((string-equal theme "birds-of-paradise-plus")
     (use-package birds-of-paradise-plus-theme
       :ensure t
