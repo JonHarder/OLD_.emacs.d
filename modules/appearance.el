@@ -82,6 +82,8 @@
    ((string-equal theme "gotham")
     (use-package gotham-theme
       :ensure t
+      :init
+      (setq gotham-tty-256-colors t)
       :config
       (load-theme 'gotham t)))
    ((string-equal theme "birds-of-paradise-plus")
