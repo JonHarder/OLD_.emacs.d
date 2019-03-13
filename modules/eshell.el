@@ -108,8 +108,15 @@
 
 (defun eshell/clear ()
   "Clears the screen."
+  (interactive)
   (let ((inhibit-read-only t))
     (erase-buffer)))
+
+(defun eshell/c ()
+  "A shorthand alias for eshell/clear."
+  (interactive)
+  (eshell/clear))
+
 
 (defun eshell/e (file)
   "Shorthand command to open FILE."

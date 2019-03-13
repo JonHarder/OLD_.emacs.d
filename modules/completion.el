@@ -25,5 +25,6 @@
   :config
   (ivy-rich-mode))
 
+
 (provide 'completion)
 ;;; completion.el ends here
