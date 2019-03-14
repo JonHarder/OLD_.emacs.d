@@ -18,24 +18,37 @@
 
 (ensure-lmutracker)
 
+(defun set-theme (variant)
+  "Set the theme specified by VARIANT to it's dark or light version."
+  (interactive (list (completing-read "Theme: " '("light" "dark"))))
+  (let ((light-theme (plist-get jh/config :color-theme-light))
+        (dark-theme (plist-get jh/config :color-theme-dark)))
+    (cond
+     ((string-equal variant "light")
+      (when (not (string-equal current-theme "light"))
+        (load-theme light-theme t)
+        (setq current-theme "light")))
+     ((string-equal variant "dark")
+      (when (not (string-equal current-theme "dark"))
+        (load-theme dark-theme t)
+        (setq current-theme "dark"))))))
+
+(defun ambient-light-reading ()
+  "Get the ambient light as recorded by light sensor on laptop."
+  (string-to-number
+   (shell-command-to-string
+    "~/.emacs.d/external_scripts/lmutracker")))
+
 ;;; ambient light tracking
 (defun change-theme-for-lighting ()
   "Switch color themes based on ambient light.
 
-Toggles between the first and second items in the pair defined in under the
-:color-theme section of your config."
-  (let* ((light-theme (plist-get jh/config :color-theme-light))
-         (dark-theme (plist-get jh/config :color-theme-dark))
-         (current-light-sensor-reading
-          (string-to-number
-            (shell-command-to-string "~/.emacs.d/external_scripts/lmutracker"))))
-   (if (< current-light-sensor-reading 100000)
-       (when (not (string-equal current-theme "dark"))
-         (load-theme dark-theme t)
-         (setq current-theme "dark"))
-     (when (not (string-equal current-theme "light"))
-       (load-theme light-theme t)
-       (setq current-theme "light")))))
+Toggles between the first and second items in the light and dark color themes."
+  (let* ((ambient-light (ambient-light-reading))
+         (light-threshold 110000))
+   (if (< ambient-light light-threshold)
+       (set-theme "dark")
+     (set-theme "light"))))
 
 (run-with-timer 0 1 #'change-theme-for-lighting)
 

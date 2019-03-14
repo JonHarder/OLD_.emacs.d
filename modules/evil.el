@@ -27,6 +27,13 @@
         (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
   (evil-mode 1))
 
+
+(use-package evil-goggles
+  :ensure t
+  :config
+  (evil-goggles-mode))
+
+
 (use-package evil-magit
   :ensure t)
 
