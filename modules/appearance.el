@@ -16,7 +16,6 @@
   (when (not (file-exists-p "~/.emacs.d/external_scripts/lmutracker"))
     (shell-command "bash -c 'cd ~/.emacs.d/external_scripts && clang -o lmutracker lmutracker.cpp -framework IOKit -framework CoreFoundation'")))
 
-(ensure-lmutracker)
 
 (defun set-theme (variant)
   "Set the theme specified by VARIANT to it's dark or light version."
@@ -50,7 +49,21 @@ Toggles between the first and second items in the light and dark color themes."
        (set-theme "dark")
      (set-theme "light"))))
 
-(run-with-timer 0 1 #'change-theme-for-lighting)
+(defun change-theme-for-time-of-day ()
+  (let ((hour (string-to-number (format-time-string "%H"))))
+    (if (or (< hour 5)
+            (> hour 17))
+      (set-theme "dark")
+     (set-theme "light"))))
+
+(if (eq system-type 'darwin)
+    (progn
+      (ensure-lmutracker)
+      (setq change-theme-func #'change-theme-for-lighting))
+  (setq change-theme-func #'change-theme-for-time-of-day))
+
+(load-theme (plist-get jh/config :color-theme-dark) t)
+(run-with-timer 0 1 change-theme-func)
 
 
 (defconst system-themes
