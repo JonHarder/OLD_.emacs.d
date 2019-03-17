@@ -109,6 +109,7 @@
     "w w" 'ace-window
     "w m" 'delete-other-windows
     "w c" 'delete-window
+    "w =" 'balance-windows
     ;; git stuff (using magit)
     "g s" 'magit-status
     ;; project stuff

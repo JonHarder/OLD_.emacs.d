@@ -1,0 +1,4 @@
+alias c clear
+alias clear eshell/clear-scrollback
+alias q exit
+alias prp pipenv run python $*

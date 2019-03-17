@@ -15,7 +15,7 @@
   "List of `pretty-eshell-section' to enable.")
 
 (defvar pretty-eshell-sep " | "
-  "String delimits each `pretty-eshell-section'")
+  "String delimits each `pretty-eshell-section'.")
 
 (defvar pretty-eshell-section-delim " "
   "String delimits icons and their text.")
@@ -24,7 +24,7 @@
   "Initial string composing the eshell prompt.")
 
 (defvar pretty-eshell-prompt-string " "
-  "Prompt string, must match builtin `eshell-prompt-regexp'")
+  "Prompt string, must match builtin `eshell-prompt-regexp'.")
 
 (setq eshell-prompt-regexp " ")
 
@@ -54,7 +54,7 @@
                 (with-face ,@props))))))
 
 (defun pretty-eshell--acc (acc x)
-  "Accumulator for evaluating and concatenating pretty-eshell-sections."
+  "Used to accumulate shell sections into ACC, using X."
   (--if-let (funcall x)
       (if (s-blank? acc)
           it
@@ -105,19 +105,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; custom functions
-
-(defun eshell/clear ()
-  "Clears the screen."
-  (interactive)
-  (let ((inhibit-read-only t))
-    (erase-buffer)))
-
-(defun eshell/c ()
-  "A shorthand alias for eshell/clear."
-  (interactive)
-  (eshell/clear))
-
-
 (defun eshell/e (file)
   "Shorthand command to open FILE."
   (find-file file))

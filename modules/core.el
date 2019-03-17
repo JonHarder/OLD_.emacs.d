@@ -30,10 +30,6 @@
 (show-paren-mode 1)
 (electric-pair-mode 1)
 
-(defadvice term-handle-exit
-    (after term-kill-buffer-on-exit activate)
-  (kill-buffer))
-
 
 (defun alist-keys (alist)
   "Get list of keys in the ALIST."
@@ -45,29 +41,23 @@
   :mode "\\.Dockerfile")
 
 
-(use-package git-gutter
-  :ensure t
-  :config
-  (global-git-gutter-mode +1))
-
-
-(use-package fish-mode
-  :ensure t)
-
-
 (use-package dashboard
   :ensure t
+  :preface
+  (defun jh/dashboard-banner ()
+    "Set a dashboard banner including information on package initialization."
+    (setq dashboard-banner-logo-title
+      (format "Emacs ready in %.2f seconds with %d garbage collections."
+        (float-time (time-subtract after-init-time before-init-time)) gcs-done)))
   :init
   (setq dashboard-startup-banner 'logo)
   :config
-  (dashboard-setup-startup-hook))
+  (dashboard-setup-startup-hook)
+  :hook ((after-init . dashboard-refresh-buffer)
+         (dashboard-mode . jh/dashboard-banner)))
 
 
 (use-package dash
-  :ensure t)
-
-
-(use-package magit
   :ensure t)
 
 
@@ -93,23 +83,6 @@
   :ensure t
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
-
-;; COMPLETION/NARROWING
-(use-package counsel
-  :ensure t)
-
-(use-package amx
-  :ensure t
-  :config
-  (amx-mode))
-
-
-(defun swiper--nohighlight (orig-func &rest args)
-  "Get rid of the highlighting after exiting swiper."
-  (apply orig-func args)
-  (evil-ex-nohighlight))
-
-(advice-add 'swiper :around #'swiper--nohighlight)
 
 
 (use-package yaml-mode

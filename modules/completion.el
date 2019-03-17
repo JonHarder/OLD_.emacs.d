@@ -4,6 +4,14 @@
 ;;; Commentary:
 
 ;;; Code:
+(use-package counsel
+  :ensure t)
+
+(use-package amx
+  :ensure t
+  :config
+  (amx-mode))
+
 (use-package ivy
   :after (counsel general evil)
   :ensure t
@@ -24,6 +32,14 @@
         ivy-format-function #'ivy-format-function-line)
   :config
   (ivy-rich-mode))
+
+
+(defun swiper--nohighlight (orig-func &rest args)
+  "Get rid of the highlighting after exiting swiper."
+  (apply orig-func args)
+  (evil-ex-nohighlight))
+
+(advice-add 'swiper :around #'swiper--nohighlight)
 
 
 (provide 'completion)

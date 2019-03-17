@@ -55,7 +55,7 @@
 
 (defmacro defconfig (config-name &rest params-plist)
   "Contruct a settings object called CONFIG-NAME out of the PARAMS-PLIST."
-  `(defvar ,config-name
+  `(setq ,config-name
      (quote ,params-plist)))
 
 

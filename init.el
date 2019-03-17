@@ -14,13 +14,14 @@
 ;; doom-tomorrow-night
 ;; spacemacs-dark
 (defconfig jh/config
-  :color-theme-light spacemacs-light
-  :color-theme-dark spacemacs-dark
+  :color-theme-light doom-molokai
+  :color-theme-dark doom-molokai
   :font "Fira Code"
   :font-size 17
   :modules '(core
              completion
              bindings
+             git
              jorg
              appearance
              icons
@@ -28,6 +29,7 @@
              evil
              elm
              eshell
+             term
              search
              python
              clojure
