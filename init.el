@@ -9,10 +9,15 @@
 ;; (package-initialize)
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
-;; doom-Iosvkem is good
-;; doom-solarized-light
-;; doom-tomorrow-night
-;; spacemacs-dark
+(defvar jh/config nil
+  "The configuration object used to store user settings.
+
+Meant to be used alongside `defconfig', which will take a series of keyword
+arguments and generate a valid configuration.
+
+This will later be used in `jh/config-init', which will load the settings.")
+
+
 (defconfig jh/config
   :color-theme-light doom-molokai
   :color-theme-dark doom-molokai
