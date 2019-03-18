@@ -4,4 +4,7 @@ elpa/
 *~
 *.eld
 recentf
-eshell/
+archive/
+external_scripts/lmutracker
+eshell/history
+eshell/lastdir
