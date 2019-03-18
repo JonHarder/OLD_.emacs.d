@@ -22,5 +22,5 @@
   (setq mmm-submode-decoration-level 2))
 
 
-(provide 'web)
-;;; web.el ends here
+(provide 'jh-web)
+;;; jh-web.el ends here

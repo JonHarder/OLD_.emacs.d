@@ -15,5 +15,5 @@
 (use-package magit
   :ensure t)
 
-(provide 'git)
-;;; git.el ends here
+(provide 'jh-git)
+;;; jh-git.el ends here

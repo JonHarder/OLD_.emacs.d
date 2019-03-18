@@ -34,7 +34,7 @@
   "Load the module called MODULE-NAME defined in my modules folder, or in MODULE-PATH if given."
   (let* ((module-path (or module-path
                           (concat user-emacs-directory "modules/")))
-         (path (concat module-path (symbol-name module-name) ".el")))
+         (path (concat module-path "jh-" (symbol-name module-name) ".el")))
     (load path)))
 
 

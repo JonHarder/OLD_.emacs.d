@@ -119,5 +119,5 @@
         (completion-at-point)))))
 
 
-(provide 'eshell)
-;;; eshell.el ends here
+(provide 'jh-eshell)
+;;; jh-eshell.el ends here

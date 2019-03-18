@@ -23,5 +23,5 @@
    #'pipenv-projectile-after-switch-extended))
 
 
-(provide 'python)
-;;; python.el ends here
+(provide 'jh-python)
+;;; jh-python.el ends here

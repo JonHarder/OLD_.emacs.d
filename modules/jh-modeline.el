@@ -9,5 +9,5 @@
   (setq doom-modeline-major-mode-color-icon t)
   :hook (after-init . doom-modeline-mode))
 
-(provide 'modeline)
-;;; modeline.el ends here
+(provide 'jh-modeline)
+;;; jh-modeline.el ends here

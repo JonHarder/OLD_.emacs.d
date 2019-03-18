@@ -66,5 +66,5 @@
   (add-hook 'clojure-mode-hook #'parinfer-mode))
 
 
-(provide 'evil)
-;;; evil.el ends here
+(provide 'jh-evil)
+;;; jh-evil.el ends here

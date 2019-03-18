@@ -196,5 +196,5 @@ Toggles between the first and second items in the light and dark color themes."
       (load-theme 'kooten t)))))
 
 
-(provide 'appearance)
-;;; appearance.el ends here
+(provide 'jh-appearance)
+;;; jh-appearance.el ends here

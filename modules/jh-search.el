@@ -35,5 +35,5 @@
   (how-do-i "stack-overflow" search-term))
 
 
-(provide 'search)
-;;; search.el ends here
+(provide 'jh-search)
+;;; jh-search.el ends here

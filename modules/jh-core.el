@@ -50,11 +50,11 @@
       (format "Emacs ready in %.2f seconds with %d garbage collections."
         (float-time (time-subtract after-init-time before-init-time)) gcs-done)))
   :init
-  (setq dashboard-startup-banner 'logo)
+  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  (add-hook 'dashboard-mode-hook 'jh/dashboard-banner)
   :config
-  (dashboard-setup-startup-hook)
-  :hook ((after-init . dashboard-refresh-buffer)
-         (dashboard-mode . jh/dashboard-banner)))
+  (setq dashboard-startup-banner 'logo)
+  (dashboard-setup-startup-hook))
 
 
 (use-package dash
@@ -98,5 +98,5 @@
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 
-(provide 'core)
-;;; core.el ends here
+(provide 'jh-core)
+;;; jh-core.el ends here

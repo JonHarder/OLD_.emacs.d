@@ -42,5 +42,5 @@
 (advice-add 'swiper :around #'swiper--nohighlight)
 
 
-(provide 'completion)
-;;; completion.el ends here
+(provide 'jh-completion)
+;;; jh-completion.el ends here

@@ -12,5 +12,5 @@
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
 
-(provide 'elm)
-;;; elm.el ends here
+(provide 'jh-elm)
+;;; jh-elm.el ends here

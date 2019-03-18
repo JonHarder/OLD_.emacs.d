@@ -141,5 +141,5 @@
     "a e" 'eshell))
 
 
-(provide 'bindings)
-;;; bindings.el ends here
+(provide 'jh-bindings)
+;;; jh-bindings.el ends here

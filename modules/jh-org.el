@@ -40,5 +40,5 @@
            "DONE(d!)"
            "CANCELED(c@)")))
 
-(provide 'jorg)
-;;; jorg.el ends here
+(provide 'jh-org)
+;;; jh-org.el ends here

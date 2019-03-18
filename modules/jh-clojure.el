@@ -24,5 +24,5 @@
     (context 2)))
 
 
-(provide 'clojure)
-;;; clojure.el ends here
+(provide 'jh-clojure)
+;;; jh-clojure.el ends here

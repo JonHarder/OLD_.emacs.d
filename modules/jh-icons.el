@@ -14,5 +14,5 @@
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 
-(provide 'icons)
-;;; icons.el ends here
+(provide 'jh-icons)
+;;; jh-icons.el ends here

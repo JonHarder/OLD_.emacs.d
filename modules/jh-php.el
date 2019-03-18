@@ -45,5 +45,5 @@
   :ensure t)
 
 
-(provide 'php)
-;;; php.el ends here
+(provide 'jh-php)
+;;; jh-php.el ends here

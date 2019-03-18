@@ -19,15 +19,15 @@ This will later be used in `jh/config-init', which will load the settings.")
 
 
 (defconfig jh/config
-  :color-theme-light doom-molokai
-  :color-theme-dark doom-molokai
+  :color-theme-light doom-one-light
+  :color-theme-dark doom-one
   :font "Fira Code"
   :font-size 17
   :modules '(core
              completion
              bindings
              git
-             jorg
+             org
              appearance
              icons
              modeline

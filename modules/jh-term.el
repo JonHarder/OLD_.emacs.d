@@ -16,5 +16,5 @@
   :ensure t)
 
 
-(provide 'term)
-;;; term.el ends here
+(provide 'jh-term)
+;;; jh-term.el ends here
