@@ -30,6 +30,9 @@
 (show-paren-mode 1)
 (electric-pair-mode 1)
 
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(setq display-line-numbers 'relative)
+
 
 (defun alist-keys (alist)
   "Get list of keys in the ALIST."

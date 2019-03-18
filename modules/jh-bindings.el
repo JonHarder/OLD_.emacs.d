@@ -76,6 +76,8 @@
    :states 'normal
    "/" 'swiper
    "M-v" 'jh/paste-from-mac-clipboard
+   :states 'insert
+   "M-v" 'jh/paste-from-mac-clipboard
    :states 'visual
    "M-c" 'jh/copy-to-mac-clipboard)
   (space-leader
