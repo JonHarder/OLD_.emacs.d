@@ -104,10 +104,28 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; custom completion
+(defconst pcmpl-git-commands
+  '("add" "bisect" "branch" "checkout" "clone"
+    "commit" "diff" "fetch" "grep"
+    "init" "log" "merge" "mv" "pull" "push" "rebase"
+    "reset" "rm" "show" "status" "tag")
+  "List of `git' commands.")
+
+(defun pcomplete/git ()
+  "Completion for `git'."
+  (pcomplete-here* pcmpl-git-commands))
+
 ;;; custom functions
 (defun eshell/e (file)
   "Shorthand command to open FILE."
   (find-file file))
+
+(defun eshell/git (&rest command)
+  "Intercept 'git status' and run magit-status instead, run regular command line git command with COMMAND othrewise."
+  (if (string-equal (car command) "status")
+      (magit-status)
+    (shell-command-to-string (string-join (cons "git" command) " "))))
 
 
 (add-hook 'eshell-mode-hook

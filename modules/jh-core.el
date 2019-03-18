@@ -30,8 +30,9 @@
 (show-paren-mode 1)
 (electric-pair-mode 1)
 
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(setq display-line-numbers 'relative)
+(add-hook 'prog-mode-hook (lambda ()
+                           (display-line-numbers-mode 1)
+                           (setq display-line-numbers 'relative)))
 
 
 (defun alist-keys (alist)
