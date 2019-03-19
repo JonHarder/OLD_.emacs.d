@@ -3,6 +3,7 @@
 ;;; Commentary:
 
 ;;; Code:
+(require 'seq)
 
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
@@ -20,8 +21,12 @@
 (defun set-theme (variant)
   "Set the theme specified by VARIANT to it's dark or light version."
   (interactive (list (completing-read "Theme: " '("light" "dark"))))
-  (let ((light-theme (plist-get jh/config :color-theme-light))
-        (dark-theme (plist-get jh/config :color-theme-dark)))
+  (let* ((light-theme (plist-get jh/config :color-theme-light))
+         (dark-theme (plist-get jh/config :color-theme-dark))
+         (theme (if (string-equal variant "light") light-theme dark-theme))
+         (other-themes (seq-filter (lambda (other-theme) (not (string-equal theme other-theme)))
+                          custom-enabled-themes)))
+    (mapc 'disable-theme other-themes)
     (cond
      ((string-equal variant "light")
       (when (not (string-equal current-theme "light"))
