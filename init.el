@@ -19,8 +19,8 @@ This will later be used in `jh/config-init', which will load the settings.")
 
 
 (defconfig jh/config
-  :color-theme-light doom-one-light
-  :color-theme-dark doom-one
+  :color-theme-light doom-tomorrow-day
+  :color-theme-dark doom-tomorrow-night
   :font "Fira Code"
   :font-size 17
   :modules '(core
