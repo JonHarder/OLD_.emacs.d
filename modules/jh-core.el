@@ -26,14 +26,21 @@
   (setq mac-option-modifier nil
         mac-command-modifier 'meta))
 
+(setq-default indent-tabs-mode nil)
 
 (show-paren-mode 1)
 (electric-pair-mode 1)
 
-(add-hook 'prog-mode-hook (lambda ()
-                           (display-line-numbers-mode 1)
-                           (setq display-line-numbers 'relative)))
+(require 'whitespace)
 
+(defun jh/prog-mode-hook ()
+  "Settings that should be enabled or disabled for all programming modes."
+  (display-line-numbers-mode 1)
+  (setq whitespace-style '(face tabs space-before-tab empty space-after-tab tab-mark))
+  (whitespace-mode 1)
+  (setq display-line-numbers 'relative))
+
+(add-hook 'prog-mode-hook #'jh/prog-mode-hook)
 
 (defun alist-keys (alist)
   "Get list of keys in the ALIST."
