@@ -19,7 +19,7 @@
 (use-package vue-mode
   :ensure t
   :config
-  (setq mmm-submode-decoration-level 2))
+  (setq mmm-submode-decoration-level 0))
 
 
 (provide 'jh-web)
