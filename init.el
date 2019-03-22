@@ -36,6 +36,7 @@ This will later be used in `jh/config-init', which will load the settings.")
              eshell
              term
              search
+             go
              python
              clojure
              php

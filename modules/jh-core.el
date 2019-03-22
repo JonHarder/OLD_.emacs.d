@@ -26,7 +26,8 @@
   (setq mac-option-modifier nil
         mac-command-modifier 'meta))
 
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil
+              tab-width 4)
 
 (show-paren-mode 1)
 (electric-pair-mode 1)
