@@ -36,10 +36,10 @@
 
 (defun jh/prog-mode-hook ()
   "Settings that should be enabled or disabled for all programming modes."
-  (display-line-numbers-mode 1)
+  ;; (display-line-numbers-mode 1)
   (setq whitespace-style '(face tabs space-before-tab empty space-after-tab tab-mark))
-  (whitespace-mode 1)
-  (setq display-line-numbers 'relative))
+  (whitespace-mode 1))
+  ;; (setq display-line-numbers 'relative))
 
 (add-hook 'prog-mode-hook #'jh/prog-mode-hook)
 

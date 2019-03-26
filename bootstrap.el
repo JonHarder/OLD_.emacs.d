@@ -55,8 +55,10 @@
 
 (defmacro defconfig (config-name &rest params-plist)
   "Contruct a settings object called CONFIG-NAME out of the PARAMS-PLIST."
-  `(setq ,config-name
-     (quote ,params-plist)))
+  `(progn
+     (setq ,config-name
+           (quote ,params-plist))
+     (jh/config-init ,config-name)))
 
 
 (provide 'bootstrap)

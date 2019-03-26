@@ -142,6 +142,5 @@
     "a d" 'dired
     "a e" 'eshell))
 
-
 (provide 'jh-bindings)
 ;;; jh-bindings.el ends here

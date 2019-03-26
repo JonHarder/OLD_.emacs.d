@@ -4,6 +4,11 @@
 ;;; Commentary:
 
 ;;; Code:
+(use-package company
+  :ensure t
+  :config
+  (company-mode t))
+
 (use-package counsel
   :ensure t)
 
@@ -21,6 +26,10 @@
         ivy-height 20)
   :config
   (ivy-mode 1))
+
+
+(use-package ivy-hydra
+  :ensure t)
 
 
 (use-package ivy-rich

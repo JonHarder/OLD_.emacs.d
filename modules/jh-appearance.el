@@ -49,7 +49,7 @@
 
 Toggles between the first and second items in the light and dark color themes."
   (let* ((ambient-light (ambient-light-reading))
-         (light-threshold 110000))
+         (light-threshold 3300000))
    (if (< ambient-light light-threshold)
        (set-theme "dark")
      (set-theme "light"))))
