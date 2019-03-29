@@ -67,8 +67,25 @@ Toggles between the first and second items in the light and dark color themes."
       (setq change-theme-func #'change-theme-for-lighting))
   (setq change-theme-func #'change-theme-for-time-of-day))
 
-(load-theme (plist-get jh/config :color-theme-dark) t)
-(run-with-timer 0 1 change-theme-func)
+(load-theme (plist-get jh/config :color-theme-light) t)
+
+(setq theme-switch-timer nil)
+
+(defun jh/enable-theme-switcher ()
+  (interactive)
+  (setq theme-switch-timer (run-with-timer 0 1 change-theme-func)))
+
+(defun jh/disable-theme-switcher ()
+  (interactive)
+  (when (and (boundp 'theme-switch-timer)
+             (timerp theme-switch-timer))
+      (cancel-timer theme-switch-timer)
+      (setq theme-switch-timer nil)))
+
+(let ((enable-theme-switch (plist-get jh/config :enable-theme-switch)))
+  (if enable-theme-switch
+      (jh/enable-theme-switcher)
+     (jh/disable-theme-switcher)))
 
 
 (defconst system-themes

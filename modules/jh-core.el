@@ -34,11 +34,23 @@
 
 (require 'whitespace)
 
+
+;; file specific mode overrides
+(add-to-list 'auto-mode-alist '("hosts" . conf-mode))
+
+
+(use-package highlight-indent-guides
+  :ensure t
+  :init
+  (setq highlight-indent-guides-method 'column
+        highlight-indent-guides-responsive 'top))
+
 (defun jh/prog-mode-hook ()
   "Settings that should be enabled or disabled for all programming modes."
   ;; (display-line-numbers-mode 1)
   (setq whitespace-style '(face tabs space-before-tab empty space-after-tab tab-mark))
-  (whitespace-mode 1))
+  (whitespace-mode 1)
+  (highlight-indent-guides-mode 1))
   ;; (setq display-line-numbers 'relative))
 
 (add-hook 'prog-mode-hook #'jh/prog-mode-hook)
