@@ -21,7 +21,7 @@ This will later be used in `jh/config-init', which will load the settings.")
 (defconfig jh/config
   :color-theme-light doom-solarized-light
   :color-theme-dark doom-Iosvkem
-  :enable-theme-switch nil
+  :enable-theme-switch t
   :font "Fira Code"
   :font-size 17
   :modules '(core
