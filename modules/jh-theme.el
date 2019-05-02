@@ -6,28 +6,27 @@
 (require 'seq)
 
 
-(defvar current-theme "dark"
-  "The current variant of theme.  Values can be \"dark\" and \"light\".")
+(defun jh/get-theme-variant (variant)
+  "Get the configured theme according to VARIANT."
+  (let ((light-theme (plist-get jh/config :color-theme-light))
+        (dark-theme (plist-get jh/config :color-theme-dark)))
+    (and (string-equal "light" variant) light-theme dark-theme)))
 
+
+(defvar current-theme (jh/get-theme-variant (plist-get jh/config :color-theme-default)))
+
+(load-theme current-theme t)
 
 (defun jh/set-theme (variant)
   "Set the theme specified by VARIANT to it's dark or light version."
   (interactive (list (completing-read "Theme: " '("light" "dark"))))
-  (let* ((light-theme (plist-get jh/config :color-theme-light))
-         (dark-theme (plist-get jh/config :color-theme-dark))
-         (theme (if (string-equal variant "light") light-theme dark-theme))
+  (let* ((theme (jh/get-theme-variant variant))
          (other-themes (seq-filter (lambda (other-theme) (not (string-equal theme other-theme)))
                           custom-enabled-themes)))
-    (mapc 'disable-theme other-themes)
-    (cond
-     ((string-equal variant "light")
-      (when (not (string-equal current-theme "light"))
-        (load-theme light-theme t)
-        (setq current-theme "light")))
-     ((string-equal variant "dark")
-      (when (not (string-equal current-theme "dark"))
-        (load-theme dark-theme t)
-        (setq current-theme "dark"))))))
+    (when (not (string-equal theme current-theme))
+      (mapc 'disable-theme other-themes)
+      (load-theme theme t)
+      (setq current-theme theme))))
 
 
 (defun ensure-lmutracker ()
@@ -86,9 +85,8 @@ Toggles between the first and second items in the light and dark color themes."
   (interactive)
   (when (and (boundp 'theme-switch-timer)
              (timerp theme-switch-timer))
-      (cancel-timer theme-switch-timer)
-      (setq theme-switch-timer nil)))
-
+      (cancel-timer theme-switch-timer))
+  (setq theme-switch-timer nil))
 
 (provide 'jh-theme)
 ;;; jh-theme.el ends here
