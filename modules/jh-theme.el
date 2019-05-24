@@ -10,7 +10,9 @@
   "Get the configured theme according to VARIANT."
   (let ((light-theme (plist-get jh/config :color-theme-light))
         (dark-theme (plist-get jh/config :color-theme-dark)))
-    (and (string-equal "light" variant) light-theme dark-theme)))
+    (if (string-equal "light" variant)
+        light-theme
+      dark-theme)))
 
 
 (defvar current-theme nil "The currently applied theme.")
