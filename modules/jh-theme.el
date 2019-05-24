@@ -13,9 +13,7 @@
     (and (string-equal "light" variant) light-theme dark-theme)))
 
 
-(defvar current-theme (jh/get-theme-variant (plist-get jh/config :color-theme-default)))
-
-(load-theme current-theme t)
+(defvar current-theme nil "The currently applied theme.")
 
 (defun jh/set-theme (variant)
   "Set the theme specified by VARIANT to it's dark or light version."
@@ -23,10 +21,13 @@
   (let* ((theme (jh/get-theme-variant variant))
          (other-themes (seq-filter (lambda (other-theme) (not (string-equal theme other-theme)))
                           custom-enabled-themes)))
-    (when (not (string-equal theme current-theme))
+    (when (not (string-equal (symbol-name theme) current-theme))
       (mapc 'disable-theme other-themes)
       (load-theme theme t)
       (setq current-theme theme))))
+
+
+(jh/set-theme (plist-get jh/config :color-theme-default))
 
 
 (defun ensure-lmutracker ()

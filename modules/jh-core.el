@@ -122,5 +122,8 @@
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 
+(server-start)
+
+
 (provide 'jh-core)
 ;;; jh-core.el ends here
