@@ -23,7 +23,7 @@
   (let* ((theme (jh/get-theme-variant variant))
          (other-themes (seq-filter (lambda (other-theme) (not (string-equal theme other-theme)))
                           custom-enabled-themes)))
-    (when (not (string-equal (symbol-name theme) current-theme))
+    (when (not (equal theme current-theme))
       (mapc 'disable-theme other-themes)
       (load-theme theme t)
       (setq current-theme theme))))
