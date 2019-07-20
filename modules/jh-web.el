@@ -19,6 +19,11 @@
 (use-package vue-mode
   :ensure t)
 
+(use-package web-mode
+  :ensure t
+  :mode "\\.html\\'")
+  
+
 
 (provide 'jh-web)
 ;;; jh-web.el ends here
