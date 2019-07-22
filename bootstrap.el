@@ -18,12 +18,6 @@
 (load custom-file)
 
 
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
-
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
