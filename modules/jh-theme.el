@@ -20,7 +20,8 @@
 (defun jh/set-theme (variant)
   "Set the theme specified by VARIANT to it's dark or light version."
   (interactive (list (completing-read "Theme: " '("light" "dark"))))
-  (let* ((theme (jh/get-theme-variant variant))
+  (let* ((variant-str (if (symbolp variant) (symbol-name variant) variant))
+         (theme (jh/get-theme-variant variant-str))
          (other-themes (seq-filter (lambda (other-theme) (not (string-equal theme other-theme)))
                           custom-enabled-themes)))
     (when (not (string-equal (symbol-name theme) current-theme))
