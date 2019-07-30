@@ -28,7 +28,7 @@
 (defun jh/term ()
   "Open my terminal."
   (interactive)
-  (ansi-term "/bin/bash"))
+  (ansi-term (getenv "SHELL")))
 
 
 (defun jh/expand-directory (dir)
