@@ -22,6 +22,18 @@
 ;; End bootstrap straight.el
 
 
+(use-package exec-path-from-shell
+ :straight t
+ :config
+ (when (memq window-system '(mac ns x))
+   (setq exec-path-from-shell-variables
+         '("PATH"
+           "MANPATH"
+           "EMACS_FONT"
+           "EMACS_FONT_SIZE"))
+   (exec-path-from-shell-initialize)))
+
+
 (defun load-module (module-name &optional module-path)
   "Load the module called MODULE-NAME defined in my modules folder, or in MODULE-PATH if given."
   (let* ((module-path (or module-path

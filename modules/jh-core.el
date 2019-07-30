@@ -6,12 +6,6 @@
 ;; and basic settings (or things that I can't find a better place to put them into)
 
 ;;; Code:
-(use-package exec-path-from-shell
- :straight t
- :config
- (when (memq window-system '(mac ns x))
-   (exec-path-from-shell-initialize)))
-
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
