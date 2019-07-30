@@ -42,19 +42,19 @@
         (eq "1" var)
       var)))
 
-(defun config/eval-var (var-symbol)
-  "Get an environment variable based of the symbol VAR-SYMBOL, normalizing to t/nil if IS-BOOL is true."
+(defun config/eval-var (config config-key)
   (interactive)
-  (if (config/is-env var-symbol)
-      (config/get-env (cadr var-symbol) (caddr var-symbol))
-    var-symbol))
+  (let ((var-symbol (plist-get config config-key)))
+   (if (config/is-env var-symbol)
+       (config/get-env (cadr var-symbol) (caddr var-symbol))
+     var-symbol)))
 
 
 (defun jh/config-init (config)
   "Initialize configuration using settings found in CONFIG."
-  (let ((font (config/eval-var (plist-get config :font)))
-        (font-size (config/eval-var (plist-get config :font-size)))
-        (modules (plist-get config :modules)))
+  (let ((font (config/eval-var config :font))
+        (font-size (config/eval-var config :font-size))
+        (modules (config/eval-var config :modules)))
     (mapc 'load-module (cadr modules))
     (set-frame-font (format "%s %s" font font-size))))
 

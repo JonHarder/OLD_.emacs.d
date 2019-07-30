@@ -10,10 +10,10 @@
 (tool-bar-mode -1)
 
 
-(let ((default-variant (plist-get jh/config :color-theme-default)))
+(let ((default-variant (config/eval-var jh/config :color-theme-default)))
    (jh/set-theme default-variant))
 
-(let ((enable-theme-switch (plist-get jh/config :enable-theme-switch)))
+(let ((enable-theme-switch (config/eval-var jh/config :enable-theme-switch)))
   (if enable-theme-switch
       (progn
         (message "enabling theme switcher")

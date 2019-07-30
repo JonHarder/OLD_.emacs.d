@@ -8,8 +8,8 @@
 
 (defun jh/get-theme-variant (variant)
   "Get the configured theme according to VARIANT."
-  (let ((light-theme (plist-get jh/config :color-theme-light))
-        (dark-theme (plist-get jh/config :color-theme-dark)))
+  (let ((light-theme (config/eval-var jh/config :color-theme-light))
+        (dark-theme (config/eval-var jh/config :color-theme-dark)))
     (if (string-equal "light" variant)
         light-theme
       dark-theme)))
@@ -30,7 +30,7 @@
       (setq current-theme theme))))
 
 
-(jh/set-theme (plist-get jh/config :color-theme-default))
+(jh/set-theme (config/eval-var jh/config :color-theme-default))
 
 
 (defun ensure-lmutracker ()
