@@ -9,5 +9,8 @@
   (interactive "nTicket Number:")
   (insert (format "https://kipsudev.atlassian.net/browse/KIPSU-%i" jira-number)))
 
+(use-package restclient
+  :ensure t)
+
 (provide 'jh-work)
 ;;; jh-work.el ends here

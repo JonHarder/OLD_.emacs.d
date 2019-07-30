@@ -23,6 +23,7 @@ This will later be used in `jh/config-init', which will load the settings.")
   :color-theme-dark doom-Iosvkem
   :color-theme-default "light"
   :enable-theme-switch t
+  :color-theme-default dark
   :font "Fira Code"
   :font-size 17
   :modules '(core
@@ -33,6 +34,7 @@ This will later be used in `jh/config-init', which will load the settings.")
              appearance
              icons
              modeline
+             dired
              evil
              elm
              eshell

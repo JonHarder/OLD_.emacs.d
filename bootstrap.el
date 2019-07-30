@@ -41,8 +41,7 @@
 
 (defun jh/config-init (config)
   "Initialize configuration using settings found in CONFIG."
-  (let ((color-theme (plist-get config :color-theme))
-        (font (plist-get config :font))
+  (let ((font (plist-get config :font))
         (font-size (plist-get config :font-size))
         (modules (plist-get config :modules)))
     (defmodules (cadr modules))
