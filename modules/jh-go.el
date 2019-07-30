@@ -5,7 +5,7 @@
 ;;; Code:
 
 (use-package go-mode
-  :ensure t
+  :straight t
   :init
   (setq flycheck-go-vet-executable "go vet"))
 

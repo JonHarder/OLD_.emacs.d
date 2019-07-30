@@ -4,7 +4,7 @@
 
 ;;; Code:
 (use-package ranger
-  :ensure t)
+  :straight t)
 
 (provide 'jh-dired)
 ;;; jh-dired.el ends here

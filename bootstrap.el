@@ -4,24 +4,22 @@
 ;; initializes package.el, loads use-package, defines the module concept.
 
 ;;; Code:
-(require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  (when (< emacs-major-version 24)
-    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
-(package-initialize)
-(package-refresh-contents)
 
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
-
-
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(require 'use-package)
+;; Bootstrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (boostrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(straight-use-package 'use-package)
+;; End bootstrap straight.el
 
 
 (defun load-module (module-name &optional module-path)
@@ -32,18 +30,33 @@
     (load path)))
 
 
-(defun defmodules (modules)
-  "Load the given MODULES."
-  (mapc 'load-module modules))
+(defun config/is-env (s)
+  (interactive)
+  (and (listp s) (eq (car s) :env)))
+
+
+(defun config/get-env (s &optional is-bool)
+  (interactive)
+  (let ((var (getenv (symbol-name s))))
+    (if is-bool
+        (eq "1" var)
+      var)))
+
+(defun config/eval-var (config config-key)
+  (interactive)
+  (let ((var-symbol (plist-get config config-key)))
+   (if (config/is-env var-symbol)
+       (config/get-env (cadr var-symbol) (caddr var-symbol))
+     var-symbol)))
 
 
 (defun jh/config-init (config)
   "Initialize configuration using settings found in CONFIG."
-  (let ((font (plist-get config :font))
-        (font-size (plist-get config :font-size))
-        (modules (plist-get config :modules)))
-    (defmodules (cadr modules))
-    (set-frame-font (format "%s %i" font font-size))))
+  (let ((font (config/eval-var config :font))
+        (font-size (config/eval-var config :font-size))
+        (modules (config/eval-var config :modules)))
+    (mapc 'load-module (cadr modules))
+    (set-frame-font (format "%s %s" font font-size))))
 
 
 (defmacro defconfig (config-name &rest params-plist)

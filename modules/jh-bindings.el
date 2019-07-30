@@ -14,7 +14,7 @@
 ;;; Code:
 
 (use-package which-key
-  :ensure t
+  :straight t
   :config
   (which-key-mode))
 
@@ -28,7 +28,7 @@
 (defun jh/term ()
   "Open my terminal."
   (interactive)
-  (ansi-term "/usr/local/bin/fish"))
+  (ansi-term (getenv "SHELL")))
 
 
 (defun jh/expand-directory (dir)
@@ -47,7 +47,7 @@
 
 
 (use-package ace-window
-  :ensure t
+  :straight t
   :commands (ace-window))
 
 
@@ -69,7 +69,7 @@
 
 
 (use-package general
-  :ensure t
+  :straight t
   :config
   (general-create-definer space-leader :prefix "SPC")
   (general-define-key

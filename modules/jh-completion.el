@@ -5,21 +5,21 @@
 
 ;;; Code:
 (use-package company
-  :ensure t
+  :straight t
   :config
   (company-mode t))
 
 (use-package counsel
-  :ensure t)
+  :straight t)
 
 (use-package amx
-  :ensure t
+  :straight t
   :config
   (amx-mode))
 
 (use-package ivy
   :after (counsel general evil)
-  :ensure t
+  :straight t
   :init
   (setq ivy-use-virtual-buffers 1
         enable-recursive-minibuffers t
@@ -29,12 +29,12 @@
 
 
 (use-package ivy-hydra
-  :ensure t)
+  :straight t)
 
 
 (use-package ivy-rich
   :after ivy
-  :ensure t
+  :straight t
   :init
   (setq ivy-virtual-abbreviate 'full
         ivy-rich-path-style 'abbrev

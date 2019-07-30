@@ -13,7 +13,7 @@
 
 
 (use-package fish-mode
-  :ensure t)
+  :straight t)
 
 
 (provide 'jh-term)

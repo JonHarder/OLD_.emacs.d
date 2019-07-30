@@ -8,7 +8,7 @@
 ;;; Code:
 ;; Vim emulation
 (use-package evil
-  :ensure t
+  :straight t
   :init
   (setq evil-search-module 'evil-search
         evil-ex-complete-emacs-commands t
@@ -28,17 +28,17 @@
   (evil-mode 1))
 
 (use-package evil-surround
-  :ensure t
+  :straight t
   :config
   (global-evil-surround-mode 1))
 
 
 (use-package evil-magit
-  :ensure t)
+  :straight t)
 
 
 (use-package evil-org
-  :ensure t
+  :straight t
   :after org
   :hook ((org-mode . evil-org-mode)
          (evil-org-mode . evil-org-set-key-theme))
@@ -49,13 +49,13 @@
 
 (use-package evil-collection
   :after evil
-  :ensure t
+  :straight t
   :config
   (evil-collection-init))
 
 
 (use-package parinfer
-  :ensure t
+  :straight t
   :init
   (setq parinfer-extensions
     '(defaults
