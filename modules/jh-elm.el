@@ -4,10 +4,10 @@
 
 ;;; Code:
 (use-package elm-mode
-  :ensure t)
+  :straight t)
 
 (use-package flycheck-elm
-  :ensure t
+  :straight t
   :after (flycheck)
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-elm-setup))

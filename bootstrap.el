@@ -4,27 +4,20 @@
 ;; initializes package.el, loads use-package, defines the module concept.
 
 ;;; Code:
-(require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives
-               (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  (when (< emacs-major-version 24)
-    (add-to-list 'package-archives
-                 (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
-(package-initialize)
-(package-refresh-contents)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (boostrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
-
-
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(require 'use-package)
-
+(straight-use-package 'use-package)
 
 (defun load-module (module-name &optional module-path)
   "Load the module called MODULE-NAME defined in my modules folder, or in MODULE-PATH if given."

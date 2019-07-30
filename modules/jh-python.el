@@ -8,14 +8,14 @@
 ;;; Code:
 
 (use-package flycheck-pycheckers
-  :ensure t
+  :straight t
   :config
   (with-eval-after-load 'flycheck
     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))
 
 
 (use-package pipenv
-  :ensure t
+  :straight t
   :hook (python-mode . pipenv-mode)
   :init
   (setq

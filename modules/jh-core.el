@@ -7,7 +7,7 @@
 
 ;;; Code:
 (use-package exec-path-from-shell
- :ensure t
+ :straight t
  :config
  (when (memq window-system '(mac ns x))
    (exec-path-from-shell-initialize)))
@@ -47,7 +47,7 @@
 
 
 (use-package highlight-indent-guides
-  :ensure t
+  :straight t
   :init
   (setq highlight-indent-guides-method 'column
         highlight-indent-guides-responsive 'top))
@@ -68,12 +68,12 @@
 
 
 (use-package dockerfile-mode
-  :ensure t
+  :straight t
   :mode "\\.Dockerfile")
 
 
 (use-package dashboard
-  :ensure t
+  :straight t
   :preface
   (defun jh/dashboard-banner ()
     "Set a dashboard banner including information on package initialization."
@@ -89,11 +89,11 @@
 
 
 (use-package dash
-  :ensure t)
+  :straight t)
 
 
 (use-package markdown-mode
-  :ensure t
+  :straight t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
@@ -103,7 +103,7 @@
 
 
 (use-package projectile
-  :ensure t
+  :straight t
   :init
   (setq projectile-completion-system 'ivy)
   :config
@@ -111,20 +111,20 @@
 
 
 (use-package flycheck
-  :ensure t
+  :straight t
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 
 (use-package yaml-mode
-  :ensure t)
+  :straight t)
 
 (use-package ansible
-  :ensure t)
+  :straight t)
 
 
 (use-package rainbow-delimiters
-  :ensure t
+  :straight t
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 

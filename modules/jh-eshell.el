@@ -6,7 +6,7 @@
 ;;; Code:
 (require 'dash)
 (use-package dash-functional
-  :ensure t)
+  :straight t)
 (require 's)
 
 (setq eshell-banner-message "")
