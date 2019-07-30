@@ -30,13 +30,33 @@
     (load path)))
 
 
+(defun config/is-env (s)
+  (interactive)
+  (and (listp s) (eq (car s) :env)))
+
+
+(defun config/get-env (s &optional is-bool)
+  (interactive)
+  (let ((var (getenv (symbol-name s))))
+    (if is-bool
+        (eq "1" var)
+      var)))
+
+(defun config/eval-var (var-symbol)
+  "Get an environment variable based of the symbol VAR-SYMBOL, normalizing to t/nil if IS-BOOL is true."
+  (interactive)
+  (if (config/is-env var-symbol)
+      (config/get-env (cadr var-symbol) (caddr var-symbol))
+    var-symbol))
+
+
 (defun jh/config-init (config)
   "Initialize configuration using settings found in CONFIG."
-  (let ((font (plist-get config :font))
-        (font-size (plist-get config :font-size))
+  (let ((font (config/eval-var (plist-get config :font)))
+        (font-size (config/eval-var (plist-get config :font-size)))
         (modules (plist-get config :modules)))
     (mapc 'load-module (cadr modules))
-    (set-frame-font (format "%s %i" font font-size))))
+    (set-frame-font (format "%s %s" font font-size))))
 
 
 (defmacro defconfig (config-name &rest params-plist)

@@ -20,16 +20,12 @@ This will later be used in `jh/config-init', which will load the settings.")
 (straight-use-package 'doom-themes)
 
 (defconfig jh/config
-  :color-theme-light doom-solarized-light
-  :color-theme-dark doom-Iosvkem
-  :color-theme-default "light"
-  :enable-theme-switch t
-  :color-theme-default dark
-  :font "Fira Code"
-  :font-size 17
-  :color-theme-light doom-one-light
-  :color-theme-dark doom-one
-  :color-theme-default dark
+  :color-theme-light    doom-one-light
+  :color-theme-dark     doom-one
+  :color-theme-default  dark
+  :enable-theme-switch  nil
+  :font                 (:env EMACS_FONT)
+  :font-size            (:env EMACS_FONT_SIZE)
   :modules '(core
              completion
              bindings
