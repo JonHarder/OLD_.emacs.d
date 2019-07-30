@@ -133,6 +133,8 @@
     "o a" 'org-archive-subtree
     "o t" 'org-todo
     "o o" 'org-open-at-point
+    "o s s" 'org-schedule
+    "o s d" 'org-deadline
     ;; font stuff
     "=" 'text-scale-increase
     "-" 'text-scale-decrease
@@ -140,6 +142,7 @@
     "a a" 'org-agenda
     "a t" 'jh/term
     "a d" 'dired
+    "a c" 'calc
     "a e" 'eshell))
 
 (provide 'jh-bindings)

@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(setq org-agenda-files '("~/Org")
+(setq org-agenda-files '("~/Org" "~/todo.org")
       org-src-fontify-natively t
       org-archive-location (concat user-emacs-directory
                                    "archive/%s.archive::")
