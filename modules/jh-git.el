@@ -7,13 +7,13 @@
 
 ;;; Code:
 (use-package git-gutter
-  :ensure t
+  :straight t
   :config
   (global-git-gutter-mode +1))
 
 
 (use-package magit
-  :ensure t)
+  :straight t)
 
 (provide 'jh-git)
 ;;; jh-git.el ends here

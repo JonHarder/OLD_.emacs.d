@@ -5,7 +5,7 @@
 
 ;;; Code:
 (use-package cider
-  :ensure t
+  :straight t
   :init
   (setq cider-repl-display-help-banner nil)
   :config

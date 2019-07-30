@@ -6,7 +6,7 @@
 ;;; Code:
 
 (use-package ac-php
-  :ensure t)
+  :straight t)
 
 
 (defun ywb-php-lineup-arglist-intro (langelem)
@@ -36,13 +36,13 @@
 
   
 (use-package php-mode
-  :ensure t
+  :straight t
   :init
   (add-hook 'php-mode-hook #'my-php-mode-hook))
 
 
 (use-package phpunit
-  :ensure t)
+  :straight t)
 
 
 (provide 'jh-php)

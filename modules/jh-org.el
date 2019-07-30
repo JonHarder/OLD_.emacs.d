@@ -21,12 +21,12 @@
 
 
 (use-package org-journal
-  :ensure t
+  :straight t
   :init
   (setq org-journal-dir "~/Org/journal/"))
 
 (use-package org-bullets
-  :ensure t
+  :straight t
   :config
   (add-hook 'org-mode-hook
       (lambda ()

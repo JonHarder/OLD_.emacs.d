@@ -17,6 +17,7 @@ arguments and generate a valid configuration.
 
 This will later be used in `jh/config-init', which will load the settings.")
 
+(straight-use-package 'doom-themes)
 
 (defconfig jh/config
   :color-theme-light doom-solarized-light
@@ -26,6 +27,9 @@ This will later be used in `jh/config-init', which will load the settings.")
   :color-theme-default dark
   :font "Fira Code"
   :font-size 17
+  :color-theme-light doom-one-light
+  :color-theme-dark doom-one
+  :color-theme-default dark
   :modules '(core
              completion
              bindings

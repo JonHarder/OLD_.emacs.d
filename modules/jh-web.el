@@ -7,18 +7,22 @@
 ;;; Code:
 
 (use-package emmet-mode
-  :ensure t
+  :straight t
   :hook 'sgml-mode)
 
 
 (use-package rainbow-mode
-  :ensure t
+  :straight t
   :hook (vue-mode css-mode))
 
 
 (use-package vue-mode
-  :ensure t)
+  :straight t)
 
+(use-package web-mode
+  :straight t
+  :mode "\\.html\\'")
+  
 
 (provide 'jh-web)
 ;;; jh-web.el ends here
