@@ -20,7 +20,10 @@
       mouse-wheel-progressive-speed nil ;; don't accelerate scrolling
       mouse-wheel-follow-mouse 't ;; scroll window under mouse
       scroll-step 1 ;; keyboard scroll one line at a time
-      backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
+      backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
+      custom-file "~/.emacs.d/custom.el")
+
+(load custom-file 'noerror)
 
 
 (when (eq system-type 'darwin)
