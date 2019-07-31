@@ -43,18 +43,26 @@
 
 
 (defun config/is-env (s)
+  "Determine if the configuration value S is an environment variable."
   (interactive)
   (and (listp s) (eq (car s) :env)))
 
 
 (defun config/get-env (s &optional is-bool)
+  "Get the value of the environment variable S, normalizing to bool if IS-BOOL."
   (interactive)
   (let ((var (getenv (symbol-name s))))
     (if is-bool
-        (eq "1" var)
+        (string-equal "1" var)
       var)))
 
+
 (defun config/eval-var (config config-key)
+  "Get the value of the from object CONFIG under the setting CONFIG-KEY.
+
+This is aware of the different shapes a configuration value can take,
+including hardcoded values, and values stored in environment variables
+e.x. (:env FOO_BAR)"
   (interactive)
   (let ((var-symbol (plist-get config config-key)))
    (if (config/is-env var-symbol)

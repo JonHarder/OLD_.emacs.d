@@ -20,8 +20,8 @@ This will later be used in `jh/config-init', which will load the settings.")
 (straight-use-package 'doom-themes)
 
 (defconfig jh/config
-  :color-theme-light    doom-one-light
-  :color-theme-dark     doom-one
+  :color-theme-light    doom-solarized-light
+  :color-theme-dark     doom-solarized-dark
   :color-theme-default  dark
   :enable-theme-switch  nil
   :font                 (:env EMACS_FONT)
