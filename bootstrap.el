@@ -29,6 +29,7 @@
    (setq exec-path-from-shell-variables
          '("PATH"
            "MANPATH"
+           "ANSIBLE_PLAYBOOK_DIR"
            "EMACS_FONT"
            "EMACS_FONT_SIZE"))
    (exec-path-from-shell-initialize)))
