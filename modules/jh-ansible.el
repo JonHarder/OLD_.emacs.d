@@ -8,6 +8,9 @@
 (defvar ansible/playbooks-directory (getenv "ANSIBLE_PLAYBOOK_DIR"))
 
 
+(defvar ansible/playbook-process nil)
+
+
 (defun ansible/make-var (value)
   "Format VALUE as an ansible extra var."
   (let ((formatted
@@ -15,6 +18,26 @@
              value
            (format "%s=yes" value))))
     (format "--extra-vars='%s'" formatted)))
+
+
+(defun ansible/continue-playbook ()
+  "Continue the running playbook."
+  (interactive)
+  (if (not (null ansible/playbook-process))
+      (progn
+        (interrupt-process ansible/playbook-process)
+        (process-send-string ansible/playbook-process "c"))
+    (message "There is no currently running playbook")))
+
+
+(defun ansible/abort-playbook ()
+  "Abort the running playbook."
+  (interactive)
+  (if (not (null ansible/playbook-process))
+      (progn
+        (interrupt-process ansible/playbook-process)
+        (process-send-string ansible/playbook-process "a"))
+    (message "There is no currently running playbook")))
 
 
 (defun ansible/run-playbook (&rest args)
@@ -28,7 +51,15 @@
          (buffer "*ansible*")
          (extra-vars (mapcar #'ansible/make-var args)))
     (start-file-process process buffer ansible/ansible-executible (cons playbook args))
+    (setq ansible/playbook-process process)
     (switch-to-buffer buffer)))
+
+
+(define-transient-command ansible/interactive-playbook-transient ()
+  "Interact with a running playbook"
+  ["Actions"
+   ("c" "Continue running playbook" ansible/continue-playbook)
+   ("a" "Abort running playbook" ansible/abort-playbook)])
 
 
 (define-transient-command ansible/devtest-update-transient ()
