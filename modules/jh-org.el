@@ -7,8 +7,8 @@
 
 (setq org-agenda-files '("~/Org" "~/todo.org")
       org-src-fontify-natively t
-      org-archive-location (concat user-emacs-directory
-                                   "archive/%s.archive::")
+      org-archive-location (concat user-emacs-directory "archive/%s.archive::")
+      org-agenda-include-diary t
       org-agenda-timegrid-use-ampm t)
 
 

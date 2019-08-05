@@ -17,13 +17,12 @@ arguments and generate a valid configuration.
 
 This will later be used in `jh/config-init', which will load the settings.")
 
-(straight-use-package 'doom-themes)
 (straight-use-package 'kaolin-themes)
 
 
 (defconfig jh/config
-  :color-theme-light    doom-solarized-light
-  :color-theme-dark     kaolin-aurora
+  :color-theme-light    kaolin-breeze
+  :color-theme-dark     kaolin-galaxy
   :color-theme-default  dark
   :enable-theme-switch  nil
   :font                 (:env EMACS_FONT)
