@@ -6,11 +6,12 @@
 ;;; Code:
 
 (defun jh/jira-link (jira-number)
+  "Generate the jira link given a JIRA-NUMBER."
   (interactive "nTicket Number:")
   (insert (format "https://kipsudev.atlassian.net/browse/KIPSU-%i" jira-number)))
 
-(use-package restclient
-  :straight t)
+(straight-use-package 'restclient)
+(straight-use-package 'zpresent)
 
 (provide 'jh-work)
 ;;; jh-work.el ends here

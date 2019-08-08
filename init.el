@@ -22,7 +22,7 @@ This will later be used in `jh/config-init', which will load the settings.")
 
 (defconfig jh/config
   :color-theme-light    kaolin-breeze
-  :color-theme-dark     kaolin-galaxy
+  :color-theme-dark     kaolin-temple
   :color-theme-default  dark
   :enable-theme-switch  nil
   :font                 (:env EMACS_FONT)
