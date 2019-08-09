@@ -18,11 +18,12 @@ arguments and generate a valid configuration.
 This will later be used in `jh/config-init', which will load the settings.")
 
 (straight-use-package 'kaolin-themes)
+(straight-use-package 'zenburn-theme)
 
 
 (defconfig jh/config
   :color-theme-light    kaolin-breeze
-  :color-theme-dark     kaolin-temple
+  :color-theme-dark     zenburn
   :color-theme-default  dark
   :enable-theme-switch  nil
   :font                 (:env EMACS_FONT)

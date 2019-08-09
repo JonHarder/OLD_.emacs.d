@@ -4,6 +4,11 @@
 ;;; Commentary:
 
 ;;; Code:
+(use-package jinja2-mode
+  :straight t
+  :mode "\\.j2\\'")
+
+
 (defvar ansible/ansible-executible "~/bin/ans")
 (defvar ansible/playbooks-directory (getenv "ANSIBLE_PLAYBOOK_DIR"))
 

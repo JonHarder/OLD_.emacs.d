@@ -23,6 +23,7 @@
 
 
 (use-package exec-path-from-shell
+ :if (memq window-system '(mac ns))
  :straight t
  :config
  (when (memq window-system '(mac ns x))
