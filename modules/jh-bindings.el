@@ -122,7 +122,7 @@
     ;; jumpin an stuff
     "j d" 'xref-find-definitions
     ;; evalin stuff
-    "e e" 'eval-expression
+    "e e" 'eval-last-sexp
     ;; searchin stuff
     "s g" 'how-do-i-google
     "s s" 'how-do-i
