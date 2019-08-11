@@ -36,6 +36,7 @@
              clojure
              php
              web
+             ansible
              work))
 
 
