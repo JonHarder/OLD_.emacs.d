@@ -23,7 +23,6 @@
 
 
 (use-package exec-path-from-shell
- :if (memq window-system '(mac ns))
  :straight t
  :config
  (when (memq window-system '(mac ns x))
@@ -59,33 +58,58 @@
       var)))
 
 
-(defun config/eval-var (config config-key)
+(defun config/eval-var (var)
   "Get the value of the from object CONFIG under the setting CONFIG-KEY.
 
 This is aware of the different shapes a configuration value can take,
 including hardcoded values, and values stored in environment variables
 e.x. (:env FOO_BAR)"
   (interactive)
-  (let ((var-symbol (plist-get config config-key)))
-   (if (config/is-env var-symbol)
-       (config/get-env (cadr var-symbol) (caddr var-symbol))
-     var-symbol)))
+   (if (config/is-env var)
+       (config/get-env (cadr var) (caddr var))
+     var))
+
+
+(defun jh/load-config (config)
+  "Evaluate any special forms in CONFIG."
+  (map-alist-values #'config/eval-var config))
 
 
 (defun jh/config-init (config)
   "Initialize configuration using settings found in CONFIG."
-  (let ((font (config/eval-var config :font))
-        (font-size (config/eval-var config :font-size))
-        (modules (config/eval-var config :modules)))
+  (let ((font (alist-get :font config))
+        (font-size (alist-get :font-size config))
+        (modules (alist-get :modules config)))
     (mapc 'load-module (cadr modules))
-    (set-frame-font (format "%s %s" font font-size))))
+    (set-frame-font (format "%s %s" font font-size))
+    config))
+
+
+(defun plist-to-alist (plist &optional alist)
+  "Convert a PLIST into an ALIST."
+  (interactive)
+  (let ((alist (if (null alist) '() alist)))
+    (if plist
+        (let* ((new-alist-front (cons (car plist) (cadr plist)))
+               (new-alist (cons new-alist-front alist)))
+          (plist-to-alist (cddr plist) new-alist))
+      (reverse alist))))
+
+
+(defun map-alist-values (f alist)
+  "Map function F over each value in the ALIST.
+
+Perserves order and keys."
+  (interactive)
+  (mapcar (lambda (p) (cons (car p) (funcall f (cdr p))))
+          alist))
 
 
 (defmacro defconfig (config-name &rest params-plist)
   "Contruct a settings object called CONFIG-NAME out of the PARAMS-PLIST."
   `(progn
-     (setq ,config-name
-           (quote ,params-plist))
+     (defvar ,config-name
+       (jh/load-config (plist-to-alist (quote ,params-plist))))
      (jh/config-init ,config-name)))
 
 

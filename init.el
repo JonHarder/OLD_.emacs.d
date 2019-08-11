@@ -9,23 +9,12 @@
 ;; (package-initialize)
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
-(defvar jh/config nil
-  "The configuration object used to store user settings.
 
-Meant to be used alongside `defconfig', which will take a series of keyword
-arguments and generate a valid configuration.
-
-This will later be used in `jh/config-init', which will load the settings.")
-
-(straight-use-package 'kaolin-themes)
-(straight-use-package 'zenburn-theme)
+(straight-use-package 'doom-themes)
 
 
 (defconfig jh/config
-  :color-theme-light    kaolin-breeze
-  :color-theme-dark     zenburn
-  :color-theme-default  dark
-  :enable-theme-switch  nil
+  :color-theme          doom-gruvbox
   :font                 (:env EMACS_FONT)
   :font-size            (:env EMACS_FONT_SIZE)
   :modules '(core

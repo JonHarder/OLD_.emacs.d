@@ -10,17 +10,10 @@
 (tool-bar-mode -1)
 
 
-(let ((default-variant (config/eval-var jh/config :color-theme-default)))
-   (jh/set-theme default-variant))
+(let ((font (alist-get :font jh/config))
+      (font-size (alist-get :font-size jh/config)))
+  (set-frame-font (format "%s %s" font font-size)))
 
-(let ((enable-theme-switch (config/eval-var jh/config :enable-theme-switch)))
-  (if enable-theme-switch
-      (progn
-        (message "enabling theme switcher")
-        (jh/enable-theme-switcher))
-    (progn
-      (message "disabling theme switcher")
-      (jh/disable-theme-switcher))))
 
 (provide 'jh-appearance)
 ;;; jh-appearance.el ends here
