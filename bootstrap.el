@@ -80,7 +80,7 @@ e.x. (:env FOO_BAR)"
   (let ((font (alist-get :font config))
         (font-size (alist-get :font-size config))
         (modules (alist-get :modules config)))
-    (mapc 'load-module (cadr modules))
+    (mapc 'load-module modules)
     (set-frame-font (format "%s %s" font font-size))
     config))
 
@@ -108,8 +108,11 @@ Perserves order and keys."
 (defmacro defconfig (config-name &rest params-plist)
   "Contruct a settings object called CONFIG-NAME out of the PARAMS-PLIST."
   `(progn
-     (defvar ,config-name
-       (jh/load-config (plist-to-alist (quote ,params-plist))))
+     (when (not (boundp (quote ,config-name)))
+       (defvar ,config-name nil
+         "The configuration object storing settings for emacs."))
+     (setq ,config-name
+           (jh/load-config (plist-to-alist (quote ,params-plist))))
      (jh/config-init ,config-name)))
 
 

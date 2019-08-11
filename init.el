@@ -17,27 +17,27 @@
   :color-theme          doom-gruvbox
   :font                 (:env EMACS_FONT)
   :font-size            (:env EMACS_FONT_SIZE)
-  :modules '(core
-             completion
-             bindings
-             git
-             org
-             appearance
-             icons
-             modeline
-             dired
-             evil
-             elm
-             eshell
-             term
-             search
-             go
-             python
-             clojure
-             php
-             web
-             ansible
-             work))
+  :modules (core
+            completion
+            bindings
+            git
+            org
+            appearance
+            icons
+            modeline
+            dired
+            evil
+            elm
+            eshell
+            term
+            search
+            go
+            python
+            clojure
+            php
+            web
+            ansible
+            work))
 
 
 (provide 'init)
