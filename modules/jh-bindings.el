@@ -135,6 +135,7 @@
     "o o" 'org-open-at-point
     "o s s" 'org-schedule
     "o s d" 'org-deadline
+    "o l" 'org-insert-link
     ;; font stuff
     "=" 'text-scale-increase
     "-" 'text-scale-decrease
