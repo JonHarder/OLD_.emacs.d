@@ -3,24 +3,30 @@
 ;;; Commentary:
 
 ;;; Code:
-(load-module 'theme)
+(require 'seq)
 
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
 
-(let ((default-variant (config/eval-var jh/config :color-theme-default)))
-   (jh/set-theme default-variant))
+(defun jh/set-theme (theme)
+  "Enable THEME, disabling all others."
+  (interactive)
+  (let ((other-themes (seq-filter
+                       (lambda (other-theme)
+                         (not (string-equal theme other-theme)))
+                       custom-enabled-themes)))
+    (mapc 'disable-theme other-themes)
+    (load-theme theme t)))
 
-(let ((enable-theme-switch (config/eval-var jh/config :enable-theme-switch)))
-  (if enable-theme-switch
-      (progn
-        (message "enabling theme switcher")
-        (jh/enable-theme-switcher))
-    (progn
-      (message "disabling theme switcher")
-      (jh/disable-theme-switcher))))
+
+(jh/set-theme (alist-get :color-theme jh/config))
+
+(let ((font (alist-get :font jh/config))
+      (font-size (alist-get :font-size jh/config)))
+  (set-frame-font (format "%s %s" font font-size)))
+
 
 (provide 'jh-appearance)
 ;;; jh-appearance.el ends here

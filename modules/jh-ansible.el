@@ -9,6 +9,12 @@
   :mode "\\.j2\\'")
 
 
+(use-package ansible
+  :straight t)
+
+
+(add-to-list 'auto-mode-alist '("hosts" . conf-mode))
+
 (defvar ansible/ansible-executible "~/bin/ans")
 (defvar ansible/playbooks-directory (getenv "ANSIBLE_PLAYBOOK_DIR"))
 

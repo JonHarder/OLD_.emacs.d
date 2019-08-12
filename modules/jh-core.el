@@ -39,15 +39,12 @@
 (require 'whitespace)
 
 
-;; file specific mode overrides
-(add-to-list 'auto-mode-alist '("hosts" . conf-mode))
-
-
 (use-package highlight-indent-guides
   :straight t
   :init
   (setq highlight-indent-guides-method 'column
         highlight-indent-guides-responsive 'top))
+
 
 (defun jh/prog-mode-hook ()
   "Settings that should be enabled or disabled for all programming modes."
@@ -116,17 +113,15 @@
 (use-package yaml-mode
   :straight t)
 
-(use-package ansible
-  :straight t)
-
-
 (use-package rainbow-delimiters
   :straight t
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 
-(server-start)
+(require 'server)
+(when (not (server-running-p))
+  (server-start))
 
 
 (provide 'jh-core)
