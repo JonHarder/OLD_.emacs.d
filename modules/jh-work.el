@@ -12,6 +12,7 @@
 
 (straight-use-package 'restclient)
 (straight-use-package 'zpresent)
+(straight-use-package 'coffee-mode)
 
 (provide 'jh-work)
 ;;; jh-work.el ends here
