@@ -10,11 +10,11 @@
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
 
-(straight-use-package 'doom-themes)
+(straight-use-package 'cyberpunk-theme)
 
 
 (defconfig jh/config
-  :color-theme          doom-gruvbox
+  :color-theme          cyberpunk
   :font                 (:env EMACS_FONT)
   :font-size            (:env EMACS_FONT_SIZE)
   :modules (core
