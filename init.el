@@ -10,9 +10,6 @@
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
 
-(straight-use-package 'cyberpunk-theme)
-
-
 (defconfig jh/config
   :color-theme          cyberpunk
   :font                 (:env EMACS_FONT)
