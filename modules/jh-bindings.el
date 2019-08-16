@@ -18,6 +18,10 @@
   :config
   (which-key-mode))
 
+(defun jh/reload-config ()
+  "Evaluates current settings of emacs configuration."
+  (interactive)
+  (load-file "~/.emacs.d/init.el"))
 
 (defun find-init-file ()
   "Open your init file."
@@ -105,6 +109,9 @@
     "h v" 'describe-variable
     "h m" 'describe-mode
     "h p" 'describe-package
+
+    "c" '(:ignore t :which-key "configuration")
+    "c r" 'jh/reload-config
 
     "n" '(:ignore t :which-key "narrowing")
     "n r" 'narrow-to-region

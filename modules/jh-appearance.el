@@ -10,6 +10,12 @@
 (tool-bar-mode -1)
 
 
+(use-package eyebrowse
+  :straight t
+  :config
+  (eyebrowse-mode t))
+
+
 (defun jh/set-theme (theme)
   "Enable THEME, disabling all others."
   (interactive)

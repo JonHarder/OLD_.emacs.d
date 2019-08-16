@@ -27,6 +27,12 @@
         (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
   (evil-mode 1))
 
+
+(use-package vi-tilde-fringe
+  :straight t
+  :hook (prog-mode . vi-tilde-fringe-mode))
+
+
 (use-package evil-surround
   :straight t
   :config
