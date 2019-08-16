@@ -18,6 +18,10 @@
   :config
   (which-key-mode))
 
+(defun jh/reload-config ()
+  "Evaluates current settings of emacs configuration."
+  (interactive)
+  (load-file "~/.emacs.d/init.el"))
 
 (defun find-init-file ()
   "Open your init file."
@@ -87,30 +91,33 @@
     "/" 'counsel-ag
     ";" 'eval-expression
     "1" 'shell-command
-    ;; find manipulation
+
     "f" '(:ignore t :which-key "files")
     "f f" 'find-file
     "f s" 'save-buffer
     "f i" 'find-init-file
     "f m" 'jh/find-module
-    ;; buffer manipulation
+
     "b" '(:ignore t :which-key "buffers")
     "b b" 'ivy-switch-buffer
     "b i" 'ibuffer
     "b d" 'evil-delete-buffer
-    ;; help
+
     "h" '(:ignore t :which-key "help")
     "h f" 'describe-function
     "h k" 'describe-key
     "h v" 'describe-variable
     "h m" 'describe-mode
     "h p" 'describe-package
-    ;; narrowing
+
+    "c" '(:ignore t :which-key "configuration")
+    "c r" 'jh/reload-config
+
     "n" '(:ignore t :which-key "narrowing")
     "n r" 'narrow-to-region
     "n d" 'narrow-to-defun
     "n w" 'widen
-    ;; window manipulation
+
     "w" '(:ignore t :which-key "windows")
     "w /" 'evil-window-vsplit
     "w -" 'evil-window-split
@@ -118,37 +125,38 @@
     "w m" 'delete-other-windows
     "w c" 'delete-window
     "w =" 'balance-windows
-    ;; git stuff (using magit)
+
     "g s" 'magit-status
-    ;; project stuff
+
     "p" '(:ignore t :which-key "projectile")
     "p p" 'projectile-switch-project
     "p f" 'projectile-find-file
-    ;; find in file
+
     "i" 'counsel-imenu
-    ;; jumpin an stuff
+
     "j d" 'xref-find-definitions
-    ;; evalin stuff
+
     "e e" 'eval-last-sexp
-    ;; searchin stuff
+
     "s" '(:ignore t :which-key "searching")
     "s g" 'how-do-i-google
     "s s" 'how-do-i
     "s d" 'how-do-i-ddg
     "s o" 'how-do-i-so
-    ;; org
+
     "o" '(:ignore t :which-key "org")
     "o c" 'org-ctrl-c-ctrl-c
     "o a" 'org-archive-subtree
     "o t" 'org-todo
+    "o e" 'org-export-dispatch
     "o o" 'org-open-at-point
     "o s s" 'org-schedule
     "o s d" 'org-deadline
     "o l" 'org-insert-link
-    ;; font stuff
+
     "=" 'text-scale-increase
     "-" 'text-scale-decrease
-    ;; "applications"
+
     "a" '(:ignore t :which-key "applications")
     "a a" 'org-agenda
     "a t" 'jh/term
