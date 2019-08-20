@@ -60,16 +60,5 @@
   (evil-collection-init))
 
 
-(use-package parinfer
-  :straight t
-  :init
-  (setq parinfer-extensions
-    '(defaults
-      pretty-parens
-      evil))
-  (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
-  (add-hook 'clojure-mode-hook #'parinfer-mode))
-
-
 (provide 'jh-evil)
 ;;; jh-evil.el ends here
