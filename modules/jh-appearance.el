@@ -22,8 +22,10 @@
   (let ((other-themes (seq-filter
                        (lambda (other-theme)
                          (not (string-equal theme other-theme)))
-                       custom-enabled-themes)))
+                       custom-enabled-themes))
+        (theme-package (intern (format "%s-theme" (symbol-name theme)))))
     (mapc 'disable-theme other-themes)
+    (straight-use-package theme-package)
     (load-theme theme t)))
 
 

@@ -21,18 +21,18 @@
 (straight-use-package 'use-package)
 ;; End bootstrap straight.el
 
+(defvar config/env-vars
+  '("ANSIBLE_PLAYBOOK_DIR"))
+
 
 (use-package exec-path-from-shell
- :straight t
- :config
- (when (memq window-system '(mac ns x))
-   (setq exec-path-from-shell-variables
-         '("PATH"
-           "MANPATH"
-           "ANSIBLE_PLAYBOOK_DIR"
-           "EMACS_FONT"
-           "EMACS_FONT_SIZE"))
-   (exec-path-from-shell-initialize)))
+  :straight t
+  :config
+  (when (memq window-system '(mac ns x))
+    (setq exec-path-from-shell-variables
+          (append '("PATH" "MANPATH")
+                  config/env-vars))
+    (exec-path-from-shell-initialize)))
 
 
 (defun load-module (module-name &optional module-path)
@@ -53,13 +53,15 @@
   "Get the value of the environment variable S, normalizing to bool if IS-BOOL."
   (interactive)
   (let ((var (getenv (symbol-name s))))
+    (when (null var)
+      (error (format "environment variable '%s' was not found" s)))
     (if is-bool
         (string-equal "1" var)
       var)))
 
 
 (defun config/eval-var (var)
-  "Get the value of the from object CONFIG under the setting CONFIG-KEY.
+  "Evaluate VAR to see if it is a regular value, or a special form.
 
 This is aware of the different shapes a configuration value can take,
 including hardcoded values, and values stored in environment variables
