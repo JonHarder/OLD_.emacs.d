@@ -10,11 +10,8 @@
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
 
-(straight-use-package 'spacemacs-theme)
-
-
 (defconfig jh/config
-  :color-theme          spacemacs-dark
+  :color-theme          (spacemacs-dark . spacemacs-theme)
   :font                 (:env EMACS_FONT)
   :font-size            (:env EMACS_FONT_SIZE)
   :modules (core

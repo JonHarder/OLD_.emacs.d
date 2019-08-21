@@ -19,13 +19,18 @@
 (defun jh/set-theme (theme)
   "Enable THEME, disabling all others."
   (interactive)
-  (let ((other-themes (seq-filter
-                       (lambda (other-theme)
-                         (not (string-equal theme other-theme)))
-                       custom-enabled-themes))
-        (theme-package (intern (format "%s-theme" (symbol-name theme)))))
+  (let* ((theme-name (symbol-name (if (listp theme) (car theme) theme)))
+         (theme-package (if (listp theme)
+                            (cdr theme)
+                          (intern (format "%s-theme" theme))))
+         (other-themes (seq-filter
+                        (lambda (other-theme)
+                          (not (string-equal theme-name other-theme)))
+                        custom-enabled-themes))
+         (theme (intern theme-name)))
     (mapc 'disable-theme other-themes)
-    (straight-use-package theme-package)
+    (when (not (memq theme (custom-available-themes)))
+      (straight-use-package theme-package))
     (load-theme theme t)))
 
 
