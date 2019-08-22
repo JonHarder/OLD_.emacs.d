@@ -5,43 +5,44 @@
 ;;; Code:
 (require 'seq)
 
-(menu-bar-mode -1)
-(toggle-scroll-bar -1)
-(tool-bar-mode -1)
-
-(global-hl-line-mode t)
-
-
 (use-package eyebrowse
   :straight t
   :config
   (eyebrowse-mode t))
 
 
-(defun jh/set-theme (theme)
-  "Enable THEME, disabling all others."
+(defun jh/set-theme (theme &optional theme-package)
+  "Enable THEME, optionally found in THEME-PACKAGE if supplied, disabling all others."
   (interactive)
-  (let* ((theme-name (symbol-name (if (listp theme) (car theme) theme)))
-         (theme-package (if (listp theme)
-                            (cdr theme)
-                          (intern (format "%s-theme" theme))))
+  (let* ((theme-name (symbol-name theme))
          (other-themes (seq-filter
-                        (lambda (other-theme)
-                          (not (string-equal theme-name other-theme)))
-                        custom-enabled-themes))
-         (theme (intern theme-name)))
-    (mapc 'disable-theme other-themes)
+                       (lambda (other-theme)
+                         (not (string-equal theme-name other-theme)))
+                       custom-enabled-themes))
+         (theme-package (if theme-package theme-package (intern (format "%s-theme" theme-name)))))
     (when (not (memq theme (custom-available-themes)))
       (straight-use-package theme-package))
+    (mapc 'disable-theme other-themes)
     (load-theme theme t)))
 
 
-(jh/set-theme (alist-get :color-theme jh/config))
 
-(let ((font (alist-get :font jh/config))
-      (font-size (alist-get :font-size jh/config)))
-  (set-frame-font (format "%s %s" font font-size)))
+(defun modules/appearance--load (config)
+  "Load appearance settings based off of CONFIG."
+  (let ((color-theme (alist-get :color-theme config))
+        (color-theme-package (alist-get :color-theme-package config))
+        (font (alist-get :font config))
+        (font-size (alist-get :font-size config)))
+    (menu-bar-mode -1)
+    (toggle-scroll-bar -1)
+    (tool-bar-mode -1)
+    (global-hl-line-mode t)
 
+    (jh/set-theme color-theme color-theme-package)
+    (set-frame-font (format "%s %s" font font-size))))
+
+
+(modules/appearance--load jh/config)
 
 (provide 'jh-appearance)
 ;;; jh-appearance.el ends here
