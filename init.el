@@ -11,7 +11,7 @@
 
 
 (defconfig jh/config
-  :color-theme          (spacemacs-dark . spacemacs-theme)
+  :color-theme          (doom-solarized-dark . doom-themes)
   :font                 (:env EMACS_FONT)
   :font-size            (:env EMACS_FONT_SIZE)
   :modules (core
