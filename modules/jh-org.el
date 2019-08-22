@@ -7,6 +7,7 @@
 
 (setq org-agenda-files '("~/Org")
       org-src-fontify-natively t
+      org-hide-emphasis-markers t
       org-archive-location (concat user-emacs-directory "archive/%s.archive::")
       org-agenda-include-diary t
       org-agenda-timegrid-use-ampm t)

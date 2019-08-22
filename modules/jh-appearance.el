@@ -9,6 +9,8 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
+(global-hl-line-mode t)
+
 
 (use-package eyebrowse
   :straight t

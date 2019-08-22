@@ -22,7 +22,9 @@
 ;; End bootstrap straight.el
 
 (defvar config/env-vars
-  '("ANSIBLE_PLAYBOOK_DIR"))
+  '("ANSIBLE_PLAYBOOK_DIR"
+    "EMACS_FONT"
+    "EMACS_FONT_SIZE"))
 
 
 (use-package exec-path-from-shell
