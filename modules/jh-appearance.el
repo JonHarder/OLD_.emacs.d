@@ -5,12 +5,6 @@
 ;;; Code:
 (require 'seq)
 
-(use-package eyebrowse
-  :straight t
-  :config
-  (eyebrowse-mode t))
-
-
 (defun jh/set-theme (theme &optional theme-package)
   "Enable THEME, optionally found in THEME-PACKAGE if supplied, disabling all others."
   (interactive)
@@ -26,9 +20,13 @@
     (load-theme theme t)))
 
 
-
 (defun modules/appearance--load (config)
   "Load appearance settings based off of CONFIG."
+  (use-package eyebrowse
+    :straight t
+    :config
+    (eyebrowse-mode t))
+
   (let ((color-theme (alist-get :color-theme config))
         (color-theme-package (alist-get :color-theme-package config))
         (font (alist-get :font config))
@@ -40,9 +38,6 @@
 
     (jh/set-theme color-theme color-theme-package)
     (set-frame-font (format "%s %s" font font-size))))
-
-
-(modules/appearance--load jh/config)
 
 (provide 'jh-appearance)
 ;;; jh-appearance.el ends here
