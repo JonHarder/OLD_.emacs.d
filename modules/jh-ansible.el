@@ -4,21 +4,8 @@
 ;;; Commentary:
 
 ;;; Code:
-(use-package jinja2-mode
-  :straight t
-  :mode "\\.j2\\'")
-
-
-(use-package ansible
-  :straight t)
-
-
-(add-to-list 'auto-mode-alist '("hosts" . conf-mode))
-
 (defvar ansible/ansible-executible "~/bin/ans")
 (defvar ansible/playbooks-directory (getenv "ANSIBLE_PLAYBOOK_DIR"))
-
-
 (defvar ansible/playbook-process nil)
 
 
@@ -80,6 +67,16 @@
   ("-u" "Ubuntu 18.04?" "ubuntu_1804")]
  ["Actions"
   ("r" "Run playbook" ansible/run-playbook)])
+
+
+(defun modules/ansible--load (config)
+  "Load some general ansible packages and ignore CONFIG."
+  (use-package jinja2-mode
+    :straight t
+    :mode "\\.j2\\'")
+  (use-package ansible
+    :straight t)
+  (add-to-list 'auto-mode-alist '("hosts" . conf-mode)))
 
 
 (provide 'jh-ansible)

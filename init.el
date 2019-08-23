@@ -29,7 +29,6 @@
             eshell
             term
             search
-            go
             python
             clojure
             php

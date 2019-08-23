@@ -12,8 +12,9 @@
   (kill-buffer))
 
 
-(use-package fish-mode
-  :straight t)
+(defun modules/term--load (config)
+  (use-package fish-mode
+    :straight t))
 
 
 (provide 'jh-term)

@@ -14,5 +14,8 @@
 (straight-use-package 'zpresent)
 (straight-use-package 'coffee-mode)
 
+
+(defun modules/work--load (config))
+
 (provide 'jh-work)
 ;;; jh-work.el ends here

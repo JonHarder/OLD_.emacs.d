@@ -37,12 +37,20 @@
     (exec-path-from-shell-initialize)))
 
 
-(defun load-module (module-name &optional module-path)
-  "Load the module called MODULE-NAME defined in my modules folder, or in MODULE-PATH if given."
+(defun module-init-func (module-name)
+  "Helper function to get the load method of MODULE-NAME."
+  (intern (format "modules/%s--load" module-name)))
+
+
+(defun jh/load-module (module config &optional module-path)
+  "Load the MODULE using given CONFIG, loading from MODULE-PATH if provided."
   (let* ((module-path (or module-path
                           (concat user-emacs-directory "modules/")))
-         (path (concat module-path "jh-" (symbol-name module-name) ".el")))
-    (load path)))
+         (module-name (symbol-name module))
+         (path (concat module-path "jh-" module-name ".el"))
+         (load-func (module-init-func module-name)))
+    (load path)
+    (apply load-func (list config))))
 
 
 (defun config/is-env (s)
@@ -81,11 +89,8 @@ e.x. (:env FOO_BAR)"
 
 (defun jh/config-init (config)
   "Initialize configuration using settings found in CONFIG."
-  (let ((font (alist-get :font config))
-        (font-size (alist-get :font-size config))
-        (modules (alist-get :modules config)))
-    (mapc 'load-module modules)
-    (set-frame-font (format "%s %s" font font-size))
+  (let ((modules (alist-get :modules config)))
+    (mapc (lambda (module) (jh/load-module module config)) modules)
     config))
 
 

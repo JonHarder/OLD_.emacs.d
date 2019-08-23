@@ -35,5 +35,7 @@
   (how-do-i "stack-overflow" search-term))
 
 
+(defun modules/search--load (config))
+
 (provide 'jh-search)
 ;;; jh-search.el ends here

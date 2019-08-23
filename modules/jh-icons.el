@@ -4,14 +4,15 @@
 ;;; Commentary:
 
 ;;; Code:
-(use-package all-the-icons
-  :straight t)
-
-(use-package all-the-icons-dired
-  :straight t
-  :after all-the-icons
-  :init
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+(defun modules/icons--load (config)
+  (use-package all-the-icons
+    :straight t)
+  
+  (use-package all-the-icons-dired
+    :straight t
+    :after all-the-icons
+    :init
+    (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)))
 
 
 (provide 'jh-icons)

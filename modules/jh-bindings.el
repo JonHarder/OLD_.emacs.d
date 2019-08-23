@@ -13,10 +13,6 @@
 
 ;;; Code:
 
-(use-package which-key
-  :straight t
-  :config
-  (which-key-mode))
 
 (defun jh/reload-config ()
   "Evaluates current settings of emacs configuration."
@@ -50,11 +46,6 @@
   (find-file (format "~/.emacs.d/modules/%s" module)))
 
 
-(use-package ace-window
-  :straight t
-  :commands (ace-window))
-
-
 (defun jh/paste-from-mac-clipboard ()
   "Insert the contents of the clipboard into the current buffer."
   (interactive)
@@ -72,97 +63,109 @@
   (message "copied to clipboard"))
 
 
-(use-package general
-  :straight t
-  :config
-  (general-evil-setup t)
-  (general-create-definer space-leader :prefix "SPC")
-  (general-define-key
-   :states 'normal
-   "/" 'swiper
-   "M-v" 'jh/paste-from-mac-clipboard
-   :states 'insert
-   "M-v" 'jh/paste-from-mac-clipboard
-   :states 'visual
-   "M-c" 'jh/copy-to-mac-clipboard)
-  (space-leader
-    :keymaps 'normal
-    "SPC" 'counsel-M-x
-    "/" 'counsel-ag
-    ";" 'eval-expression
-    "1" 'shell-command
 
-    "f" '(:ignore t :which-key "files")
-    "f f" 'find-file
-    "f s" 'save-buffer
-    "f i" 'find-init-file
-    "f m" 'jh/find-module
 
-    "b" '(:ignore t :which-key "buffers")
-    "b b" 'ivy-switch-buffer
-    "b i" 'ibuffer
-    "b d" 'evil-delete-buffer
+(defun modules/bindings--load (config)
+  (use-package which-key
+    :straight t
+    :config
+    (which-key-mode))
 
-    "h" '(:ignore t :which-key "help")
-    "h f" 'describe-function
-    "h k" 'describe-key
-    "h v" 'describe-variable
-    "h m" 'describe-mode
-    "h p" 'describe-package
+  (use-package ace-window
+    :straight t
+    :commands (ace-window))
 
-    "c" '(:ignore t :which-key "configuration")
-    "c r" 'jh/reload-config
-
-    "n" '(:ignore t :which-key "narrowing")
-    "n r" 'narrow-to-region
-    "n d" 'narrow-to-defun
-    "n w" 'widen
-
-    "w" '(:ignore t :which-key "windows")
-    "w /" 'evil-window-vsplit
-    "w -" 'evil-window-split
-    "w w" 'ace-window
-    "w m" 'delete-other-windows
-    "w c" 'delete-window
-    "w =" 'balance-windows
-
-    "g s" 'magit-status
-
-    "p" '(:ignore t :which-key "projectile")
-    "p p" 'projectile-switch-project
-    "p f" 'projectile-find-file
-
-    "i" 'counsel-imenu
-
-    "j d" 'xref-find-definitions
-
-    "e e" 'eval-last-sexp
-
-    "s" '(:ignore t :which-key "searching")
-    "s g" 'how-do-i-google
-    "s s" 'how-do-i
-    "s d" 'how-do-i-ddg
-    "s o" 'how-do-i-so
-
-    "o" '(:ignore t :which-key "org")
-    "o c" 'org-ctrl-c-ctrl-c
-    "o a" 'org-archive-subtree
-    "o t" 'org-todo
-    "o e" 'org-export-dispatch
-    "o o" 'org-open-at-point
-    "o s s" 'org-schedule
-    "o s d" 'org-deadline
-    "o l" 'org-insert-link
-
-    "=" 'text-scale-increase
-    "-" 'text-scale-decrease
-
-    "a" '(:ignore t :which-key "applications")
-    "a a" 'org-agenda
-    "a t" 'jh/term
-    "a d" 'dired
-    "a c" 'calc
-    "a e" 'eshell))
+  (use-package general
+    :straight t
+    :config
+    (general-evil-setup t)
+    (general-create-definer space-leader :prefix "SPC")
+    (general-define-key
+     :states 'normal
+     "/" 'swiper
+     "M-v" 'jh/paste-from-mac-clipboard
+     :states 'insert
+     "M-v" 'jh/paste-from-mac-clipboard
+     :states 'visual
+     "M-c" 'jh/copy-to-mac-clipboard)
+    (space-leader
+      :keymaps 'normal
+      "SPC" 'counsel-M-x
+      "/" 'counsel-ag
+      ";" 'eval-expression
+      "1" 'shell-command
+  
+      "f" '(:ignore t :which-key "files")
+      "f f" 'find-file
+      "f s" 'save-buffer
+      "f i" 'find-init-file
+      "f m" 'jh/find-module
+  
+      "b" '(:ignore t :which-key "buffers")
+      "b b" 'ivy-switch-buffer
+      "b i" 'ibuffer
+      "b d" 'evil-delete-buffer
+  
+      "h" '(:ignore t :which-key "help")
+      "h f" 'describe-function
+      "h k" 'describe-key
+      "h v" 'describe-variable
+      "h m" 'describe-mode
+      "h p" 'describe-package
+  
+      "c" '(:ignore t :which-key "configuration")
+      "c r" 'jh/reload-config
+  
+      "n" '(:ignore t :which-key "narrowing")
+      "n r" 'narrow-to-region
+      "n d" 'narrow-to-defun
+      "n w" 'widen
+  
+      "w" '(:ignore t :which-key "windows")
+      "w /" 'evil-window-vsplit
+      "w -" 'evil-window-split
+      "w w" 'ace-window
+      "w m" 'delete-other-windows
+      "w c" 'delete-window
+      "w =" 'balance-windows
+  
+      "g s" 'magit-status
+  
+      "p" '(:ignore t :which-key "projectile")
+      "p p" 'projectile-switch-project
+      "p f" 'projectile-find-file
+  
+      "i" 'counsel-imenu
+  
+      "j d" 'xref-find-definitions
+  
+      "e e" 'eval-last-sexp
+  
+      "s" '(:ignore t :which-key "searching")
+      "s g" 'how-do-i-google
+      "s s" 'how-do-i
+      "s d" 'how-do-i-ddg
+      "s o" 'how-do-i-so
+  
+      "o" '(:ignore t :which-key "org")
+      "o c" 'org-ctrl-c-ctrl-c
+      "o a" 'org-archive-subtree
+      "o t" 'org-todo
+      "o e" 'org-export-dispatch
+      "o o" 'org-open-at-point
+      "o s s" 'org-schedule
+      "o s d" 'org-deadline
+      "o l" 'org-insert-link
+  
+      "=" 'text-scale-increase
+      "-" 'text-scale-decrease
+  
+      "a" '(:ignore t :which-key "applications")
+      "a a" 'org-agenda
+      "a t" 'jh/term
+      "a d" 'dired
+      "a c" 'calc
+      "a e" 'eshell)))
 
 (provide 'jh-bindings)
 ;;; jh-bindings.el ends here

@@ -5,11 +5,8 @@
 
 ;;; Code:
 (require 'dash)
-(use-package dash-functional
-  :straight t)
 (require 's)
 
-(setq eshell-banner-message "")
 
 (defvar pretty-eshell-funcs nil
   "List of `pretty-eshell-section' to enable.")
@@ -70,37 +67,7 @@
 
 ;;; define the sections
 
-(pretty-eshell-section
- esh-dir
- "\xf016"  ;
- (abbreviate-file-name (eshell/pwd))
- '(:foreground "#268bd2" :bold bold :underline t))
-
 ;; Git Branch
-(pretty-eshell-section
- esh-git
- "\xe907"  ; 
- (magit-get-current-branch)
- '(:foreground "#8D6B94"))
-
-;; Python Virtual Environment
-(pretty-eshell-section
- esh-python
- "\xe928"  ; 
- pyvenv-virtual-env-name)
-
-;; Time
-(pretty-eshell-section
- esh-clock
- "\xf017"  ; 
- (format-time-string "%I:%M %p" (current-time))
- '(:foreground "forest green"))
-
-(setq pretty-eshell-funcs
-      (list esh-dir esh-git esh-python esh-clock))
-
-(setq eshell-prompt-function
-      'pretty-eshell-prompt-func)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -128,13 +95,50 @@
     (shell-command-to-string (string-join (cons "git" command) " "))))
 
 
-(add-hook 'eshell-mode-hook
-  (lambda ()
-    (define-key eshell-mode-map
-      (kbd "<tab>")
-      (lambda ()
-        (interactive)
-        (completion-at-point)))))
+(defun modules/eshell--load (config)
+  (use-package dash-functional
+    :straight t)
+
+  (setq eshell-banner-message "")
+
+  (pretty-eshell-section
+   esh-git
+   "\xe907"  ; 
+   (magit-get-current-branch)
+   '(:foreground "#8D6B94"))
+  
+  ;; Python Virtual Environment
+  (pretty-eshell-section
+   esh-python
+   "\xe928"  ; 
+   pyvenv-virtual-env-name)
+  
+  ;; Time
+  (pretty-eshell-section
+   esh-clock
+   "\xf017"  ; 
+   (format-time-string "%I:%M %p" (current-time))
+   '(:foreground "forest green"))
+  
+  (pretty-eshell-section
+   esh-dir
+   "\xf016"  ;
+   (abbreviate-file-name (eshell/pwd))
+   '(:foreground "#268bd2" :bold bold :underline t))
+
+  (setq pretty-eshell-funcs
+        (list esh-dir esh-git esh-python esh-clock))
+  
+  (setq eshell-prompt-function
+        'pretty-eshell-prompt-func)
+
+  (add-hook 'eshell-mode-hook
+    (lambda ()
+      (define-key eshell-mode-map
+        (kbd "<tab>")
+        (lambda ()
+          (interactive)
+          (completion-at-point))))))
 
 
 (provide 'jh-eshell)
