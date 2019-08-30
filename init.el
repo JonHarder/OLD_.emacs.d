@@ -11,10 +11,10 @@
 
 
 (defconfig jh/config
-  :color-theme          doom-solarized-dark
+  :color-theme          doom-palenight
   :color-theme-package  doom-themes
   :font                 (:env EMACS_FONT)
-  :font-size            (:env EMACS_FONT_SIZE)
+  :font-size            15
   :modules (core
             appearance
             modeline

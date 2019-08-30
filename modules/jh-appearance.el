@@ -17,7 +17,9 @@
     (when (not (memq theme (custom-available-themes)))
       (straight-use-package theme-package))
     (mapc 'disable-theme other-themes)
-    (load-theme theme t)))
+    (load-theme theme t)
+    (when (functionp 'doom-themes-org-config)
+      (doom-themes-org-config))))
 
 
 (defun modules/appearance--load (config)

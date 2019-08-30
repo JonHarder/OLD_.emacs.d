@@ -16,7 +16,7 @@
   (use-package fish-mode
     :straight t)
 
-  (use-package vterm-mode
+  (use-package vterm
     :straight t))
 
 
