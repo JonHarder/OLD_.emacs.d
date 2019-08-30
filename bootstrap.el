@@ -44,13 +44,14 @@
 
 (defun jh/load-module (module config &optional module-path)
   "Load the MODULE using given CONFIG, loading from MODULE-PATH if provided."
-  (let* ((module-path (or module-path
-                          (concat user-emacs-directory "modules/")))
-         (module-name (symbol-name module))
-         (path (concat module-path "jh-" module-name ".el"))
-         (load-func (module-init-func module-name)))
-    (load path)
-    (apply load-func (list config))))
+  (when (not (listp module))
+    (let* ((module-path (or module-path
+                            (concat user-emacs-directory "modules/")))
+           (module-name (symbol-name module))
+           (path (concat module-path "jh-" module-name ".el"))
+           (load-func (module-init-func module-name)))
+      (load path)
+      (apply load-func (list config)))))
 
 
 (defun config/is-env (s)

@@ -14,6 +14,9 @@
 
 (defun modules/term--load (config)
   (use-package fish-mode
+    :straight t)
+
+  (use-package vterm-mode
     :straight t))
 
 

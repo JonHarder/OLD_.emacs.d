@@ -18,6 +18,9 @@
   (use-package vue-mode
     :straight t)
   
+  (use-package typescript-mode
+    :straight t)
+
   (use-package web-mode
     :straight t
     :mode "\\.html\\'"))
