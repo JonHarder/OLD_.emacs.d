@@ -36,7 +36,7 @@
     (menu-bar-mode -1)
     (toggle-scroll-bar -1)
     (tool-bar-mode -1)
-    (global-hl-line-mode t)
+    (add-hook 'prog-mode-hook 'hl-line-mode)
 
     (jh/set-theme color-theme color-theme-package)
     (set-frame-font (format "%s %s" font font-size))))
