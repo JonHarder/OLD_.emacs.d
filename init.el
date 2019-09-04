@@ -11,8 +11,8 @@
 
 
 (defconfig jh/config
-  :color-theme          doom-palenight
-  :color-theme-package  doom-themes
+  :color-theme          spacemacs-dark
+  :color-theme-package  spacemacs-themes
   :font                 (:env EMACS_FONT)
   :font-size            15
   :modules (core

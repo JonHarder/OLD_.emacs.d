@@ -6,7 +6,7 @@
 ;;; Code:
 
 (defun modules/org--load (config)
-  (setq org-agenda-files '("~/Org")
+  (setq org-agenda-files '("~/Org" "~/Org/agenda")
         org-src-fontify-natively t
         org-hide-emphasis-markers t
         org-archive-location (concat user-emacs-directory "archive/%s.archive::")
