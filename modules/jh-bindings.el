@@ -126,6 +126,14 @@
       "w w" 'ace-window
       "w m" 'delete-other-windows
       "w c" 'delete-window
+      "w l" 'evil-window-right
+      "w h" 'evil-window-left
+      "w k" 'evil-window-up
+      "w j" 'evil-window-down
+      "w H" 'evil-window-move-far-left
+      "w L" 'evil-window-move-far-right
+      "w K" 'evil-window-move-far-up
+      "w J" 'evil-window-move-far-down
       "w =" 'balance-windows
   
       "g s" 'magit-status

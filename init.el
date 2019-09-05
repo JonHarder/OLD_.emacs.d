@@ -12,7 +12,7 @@
 
 (defconfig jh/config
   :color-theme          spacemacs-dark
-  :color-theme-package  spacemacs-themes
+  :color-theme-package  spacemacs-theme
   :font                 (:env EMACS_FONT)
   :font-size            15
   :modules (core
