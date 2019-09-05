@@ -37,6 +37,26 @@
     (exec-path-from-shell-initialize)))
 
 
+(defun map-alist-values (f alist)
+  "Map function F over each value in the ALIST.
+
+Perserves order and keys."
+  (interactive)
+  (mapcar (lambda (p) (cons (car p) (funcall f (cdr p))))
+          alist))
+
+
+(defun plist-to-alist (plist &optional alist)
+  "Convert a PLIST into an ALIST."
+  (interactive)
+  (let ((alist (if (null alist) '() alist)))
+    (if plist
+        (let* ((new-alist-front (cons (car plist) (cadr plist)))
+               (new-alist (cons new-alist-front alist)))
+          (plist-to-alist (cddr plist) new-alist))
+      (reverse alist))))
+
+
 (defun module-init-func (module-name)
   "Helper function to get the load method of MODULE-NAME."
   (intern (format "modules/%s--load" module-name)))
@@ -93,26 +113,6 @@ e.x. (:env FOO_BAR)"
   (let ((modules (alist-get :modules config)))
     (mapc (lambda (module) (jh/load-module module config)) modules)
     config))
-
-
-(defun plist-to-alist (plist &optional alist)
-  "Convert a PLIST into an ALIST."
-  (interactive)
-  (let ((alist (if (null alist) '() alist)))
-    (if plist
-        (let* ((new-alist-front (cons (car plist) (cadr plist)))
-               (new-alist (cons new-alist-front alist)))
-          (plist-to-alist (cddr plist) new-alist))
-      (reverse alist))))
-
-
-(defun map-alist-values (f alist)
-  "Map function F over each value in the ALIST.
-
-Perserves order and keys."
-  (interactive)
-  (mapcar (lambda (p) (cons (car p) (funcall f (cdr p))))
-          alist))
 
 
 (defmacro defconfig (config-name &rest params-plist)

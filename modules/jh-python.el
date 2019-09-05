@@ -14,6 +14,11 @@
     :config
     (with-eval-after-load 'flycheck
       (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))
+
+  (use-package elpy
+    :straight t
+    :init
+    (elpy-enable))
   
   (use-package pipenv
     :straight t

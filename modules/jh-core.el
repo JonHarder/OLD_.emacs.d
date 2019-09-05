@@ -50,13 +50,10 @@
   (electric-pair-mode 1)
   
   (require 'whitespace)
-  
-  
-  (use-package highlight-indent-guides
+
+  (use-package indent-guide
     :straight t
-    :init
-    (setq highlight-indent-guides-method 'column
-          highlight-indent-guides-responsive 'top))
+    :hook (prog-mode . indent-guide-mode))
 
   (add-hook 'prog-mode-hook #'jh/prog-mode-hook)
 

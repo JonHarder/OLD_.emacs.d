@@ -162,7 +162,7 @@
   
       "a" '(:ignore t :which-key "applications")
       "a a" 'org-agenda
-      "a t" 'vterm
+      "a t" 'jh/term
       "a d" 'dired
       "a c" 'calc
       "a e" 'eshell)))

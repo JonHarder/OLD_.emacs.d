@@ -25,6 +25,7 @@
             icons
             dired
             evil
+            lisp
             elm
             eshell
             term
