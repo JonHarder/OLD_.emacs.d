@@ -91,7 +91,6 @@
     (space-leader
       :keymaps 'normal
       "SPC" 'counsel-M-x
-      "/" 'counsel-ag
       ";" 'eval-expression
       "1" 'shell-command
   
@@ -134,6 +133,7 @@
       "p" '(:ignore t :which-key "projectile")
       "p p" 'projectile-switch-project
       "p f" 'projectile-find-file
+      "p /" 'counsel-ag
   
       "i" 'counsel-imenu
   
