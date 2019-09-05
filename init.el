@@ -28,6 +28,7 @@
             elm
             eshell
             term
+            terraform
             search
             python
             clojure
