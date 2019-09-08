@@ -11,8 +11,8 @@
 
 
 (defconfig jh/config
-  :color-theme          spacemacs-dark
-  :color-theme-package  spacemacs-themes
+  :color-theme          doom-solarized-dark
+  :color-theme-package  doom-themes
   :font                 (:env EMACS_FONT)
   :font-size            15
   :modules (core
@@ -29,6 +29,7 @@
             elm
             eshell
             term
+            terraform
             search
             python
             clojure

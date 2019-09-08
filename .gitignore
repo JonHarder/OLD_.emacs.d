@@ -13,3 +13,8 @@ transient/
 /straight/build-cache.el
 /straight/build/
 /straight/repos/
+/url/
+/custom.el
+/lsp-cache/
+/straight/modified/
+/.lsp-session-v1

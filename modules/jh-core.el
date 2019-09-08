@@ -15,8 +15,7 @@
   "Settings that should be enabled or disabled for all programming modes."
   ;; (display-line-numbers-mode 1)
   (setq whitespace-style '(face tabs space-before-tab empty space-after-tab tab-mark))
-  (whitespace-mode 1)
-  (highlight-indent-guides-mode 1))
+  (whitespace-mode 1))
 
 
 (defun modules/core--load (config)
