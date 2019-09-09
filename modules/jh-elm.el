@@ -4,11 +4,10 @@
 
 ;;; Code:
 (defun modules/elm--load (config)
-  (use-package elm-mode
-    :straight t)
+  "Load configuration for elm, using CONFIG."
+  (straight-use-package 'elm-mode)
   
   (use-package flycheck-elm
-    :straight t
     :after (flycheck)
     :config
     (add-hook 'flycheck-mode-hook #'flycheck-elm-setup)))

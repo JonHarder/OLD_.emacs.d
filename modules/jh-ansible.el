@@ -72,10 +72,8 @@
 (defun modules/ansible--load (config)
   "Load some general ansible packages and ignore CONFIG."
   (use-package jinja2-mode
-    :straight t
     :mode "\\.j2\\'")
-  (use-package ansible
-    :straight t)
+  (use-package ansible)
   (use-package ansible-doc
     :hook (yaml-mode . ansible-doc-mode))
   (add-to-list 'auto-mode-alist '("hosts" . conf-mode)))

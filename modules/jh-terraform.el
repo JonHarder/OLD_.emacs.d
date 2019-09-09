@@ -8,8 +8,7 @@
 
 (defun modules/terraform--load (config)
   "Install terraform mode and ignore CONFIG."
-  (use-package terraform-mode
-    :straight t))
+  (straight-use-package 'terraform-mode))
 
 
 (provide 'jh-terraform)

@@ -7,13 +7,12 @@
 
 ;;; Code:
 (defun modules/git--load (config)
+  "Load configuration for working with git using CONFIG."
   (use-package git-gutter
-    :straight t
     :config
     (global-git-gutter-mode +1))
   
-  (use-package magit
-    :straight t))
+  (stragiht-use-package 'magit))
 
 (provide 'jh-git)
 ;;; jh-git.el ends here

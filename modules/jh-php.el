@@ -31,43 +31,37 @@
 
 
 (defun modules/php--load (config)
-  (use-package ac-php
-    :straight t)
+  "Load configuration for php uising CONFIG."
+  (use-package ac-php)
 
   (use-package php-mode
-    :straight t
     :init
     (add-hook 'php-mode-hook #'my-php-mode-hook))
   
   
-  (use-package phpunit
-    :straight t)
+  (use-package phpunit)
   
   (use-package lsp-mode
-    :straight t
     :hook (php-mode . lsp)
     :commands lsp
     :config
     (setq lsp-prefer-flymake nil))
   
   (use-package lsp-mode
-    :straight t
     :config
     (setq lsp-prefer-flymake nil)
     :hook (php-mode . lsp)
     :commands lsp)
   
   (use-package lsp-ui
-    :straight t
     :requires lsp-mode flycheck
     :config
     (setq lsp-ui-doc-enable t
-          lsp-ui-doc-use-childframe t
+          lsp-ui-doc-use-childframe nil
           lsp-ui-doc-position 'top
-          lsp-ui-doc-include-signature t
-          lsp-ui-sideline-enable nil
+          lsp-ui-doc-include-signature nil ;; modified, was t
           lsp-ui-flycheck-enable t
-          lsp-ui-flycheck-list-position 'right
+          lsp-ui-flycheck-list-position 'bottom ;; modified was 'right
           lsp-ui-flycheck-live-reporting t
           lsp-ui-peek-enable t
           lsp-ui-peek-list-width 60

@@ -53,7 +53,8 @@
   
   (use-package indent-guide
     :straight t
-    :hook (prog-mode . indent-guide-mode))
+    :hook ((prog-mode . indent-guide-mode)
+           (hcl-mode . indent-guide-mode)))
 
   (add-hook 'prog-mode-hook #'jh/prog-mode-hook)
 

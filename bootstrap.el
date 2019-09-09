@@ -19,6 +19,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 ;; End bootstrap straight.el
 
 (defvar config/env-vars
@@ -28,7 +29,6 @@
 
 
 (use-package exec-path-from-shell
-  :straight t
   :config
   (when (memq window-system '(mac ns x))
     (setq exec-path-from-shell-variables
