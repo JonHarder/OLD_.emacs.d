@@ -30,27 +30,25 @@
   
   (use-package ivy
     :after (counsel general evil)
+    :custom
+    (ivy-use-virtual-buffers 1)
+    (ivy-hight 20)
+    (ivy-virtual-abbreviate 'full)
+    (ivy-format-function #'ivy-format-function-line)
     :config
-    (progn
-      (setq-default
-       ivy-use-virtual-buffers 1
-       enable-recursive-minibuffers t
-       ivy-height 20)
-      (ivy-mode 1)))
+    (setq-default enable-recursive-minibuffers t)
+    (ivy-mode 1))
   
   
-  (use-package ivy-hydra)
+  (straight-use-package 'ivy-hydra)
   
   
   (use-package ivy-rich
     :after ivy
+    :custom
+    (ivy-rich-path-style 'abbrev)
     :config
-    (progn
-      (setq-default
-       ivy-virtual-abbreviate 'full
-       ivy-rich-path-style 'abbrev
-       ivy-format-function #'ivy-format-function-line)
-      (ivy-rich-mode)))
+    (ivy-rich-mode))
 
   (advice-add 'swiper :around #'swiper--nohighlight))
 
