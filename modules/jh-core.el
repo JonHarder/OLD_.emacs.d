@@ -13,12 +13,12 @@
 
 (defun jh/prog-mode-hook ()
   "Settings that should be enabled or disabled for all programming modes."
-  ;; (display-line-numbers-mode 1)
-  (setq whitespace-style '(face tabs space-before-tab empty space-after-tab tab-mark))
+  (setq-default whitespace-style '(face tabs space-before-tab empty space-after-tab tab-mark))
   (whitespace-mode 1))
 
 
 (defun modules/core--load (config)
+  "Load general core features, configure programming hook using CONFIG."
   (defalias 'yes-or-no-p 'y-or-n-p)
   
   (add-hook 'dired-mode-hook 'dired-hide-details-mode)
@@ -37,13 +37,12 @@
   
   (load custom-file 'noerror)
   
-  
   (when (eq system-type 'darwin)
-    (setq mac-option-modifier nil
-          mac-command-modifier 'meta))
-  
-  (setq-default indent-tabs-mode nil
-                tab-width 4)
+    (setq-default
+     mac-option-modifier nil
+     mac-command-modifier 'meta
+     indent-tabs-mode nil
+     tab-width 4))
   
   (show-paren-mode 1)
   (electric-pair-mode 1)
@@ -51,7 +50,6 @@
   (require 'whitespace)
 
   (use-package indent-guide
-    :straight t
     :hook ((prog-mode . indent-guide-mode)
            (hcl-mode . indent-guide-mode)))
 
@@ -62,35 +60,29 @@
     (server-start))
 
   (use-package dockerfile-mode
-    :straight t
     :mode "\\.Dockerfile")
   
   
-  (use-package dash
-    :straight t)
+  (straight-use-package 'dash)
 
   (use-package flycheck
-    :straight t
     :config
     (add-hook 'after-init-hook #'global-flycheck-mode))
   
   
-  (use-package yaml-mode
-    :straight t)
+  (straight-use-package 'yaml-mode)
   
   (use-package rainbow-delimiters
-    :straight t
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
   (use-package markdown-mode
-    :straight t
     :commands (markdown-mode gfm-mode)
     :mode (("README\\.md\\'" . gfm-mode)
            ("\\.md\\'" . markdown-mode)
            ("\\.markdown\\'" . markdown-mode))
-    :init
-    (setq markdown-command "pandoc")))
+    :custom
+    (markdown-command "pandoc")))
 
 (provide 'jh-core)
 ;;; jh-core.el ends here
