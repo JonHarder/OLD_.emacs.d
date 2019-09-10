@@ -11,10 +11,10 @@
 
 
 (defconfig jh/config
-  :color-theme          doom-solarized-dark
+  :color-theme          doom-outrun-electric
   :color-theme-package  doom-themes
   :font                 (:env EMACS_FONT)
-  :font-size            15
+  :font-size            (:env EMACS_FONT_SIZE)
   :modules (core
             appearance
             modeline
