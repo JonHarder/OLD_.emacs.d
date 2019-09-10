@@ -15,8 +15,9 @@
     :straight t
     :hook (vue-mode css-mode))
   
-  (use-package vue-mode
-    :straight t)
+  (straight-use-package 'vue-mode)
+
+  (straight-use-package 'rjsx-mode)
   
   (use-package typescript-mode
     :straight t)
