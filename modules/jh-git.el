@@ -12,7 +12,7 @@
     :config
     (global-git-gutter-mode +1))
   
-  (stragiht-use-package 'magit))
+  (straight-use-package 'magit))
 
 (provide 'jh-git)
 ;;; jh-git.el ends here
