@@ -13,47 +13,40 @@
 
 (defun modules/completion--load (config)
   (use-package company
-    :straight t
     :config
     (company-mode t))
 
   (use-package projectile
-    :straight t
     :init
-    (setq projectile-completion-system 'ivy)
+    (setq-default projectile-completion-system 'ivy)
     :config
     (projectile-mode +1))
   
-  (use-package counsel
-    :straight t)
+  (use-package counsel)
   
   (use-package amx
-    :straight t
     :config
     (amx-mode))
   
   (use-package ivy
     :after (counsel general evil)
-    :straight t
-    :init
-    (setq ivy-use-virtual-buffers 1
-          enable-recursive-minibuffers t
-          ivy-height 20)
+    :custom
+    (ivy-use-virtual-buffers 1)
+    (ivy-hight 20)
+    (ivy-virtual-abbreviate 'full)
+    (ivy-format-function #'ivy-format-function-line)
     :config
+    (setq-default enable-recursive-minibuffers t)
     (ivy-mode 1))
   
   
-  (use-package ivy-hydra
-    :straight t)
+  (straight-use-package 'ivy-hydra)
   
   
   (use-package ivy-rich
     :after ivy
-    :straight t
-    :init
-    (setq ivy-virtual-abbreviate 'full
-          ivy-rich-path-style 'abbrev
-          ivy-format-function #'ivy-format-function-line)
+    :custom
+    (ivy-rich-path-style 'abbrev)
     :config
     (ivy-rich-mode))
 

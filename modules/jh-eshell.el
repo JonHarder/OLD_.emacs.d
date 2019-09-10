@@ -96,8 +96,8 @@
 
 
 (defun modules/eshell--load (config)
-  (use-package dash-functional
-    :straight t)
+  "Load configuration for eshell using CONFIG."
+  (straight-use-package 'dash-functional)
 
   (setq eshell-banner-message "")
 

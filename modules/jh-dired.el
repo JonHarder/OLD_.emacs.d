@@ -4,8 +4,8 @@
 
 ;;; Code:
 (defun modules/dired--load (config)
-  (use-package ranger
-    :straight t))
+  "Load configuration for dired, using CONFIG."
+  (stragiht-use-package 'ranger))
 
 (provide 'jh-dired)
 ;;; jh-dired.el ends here
