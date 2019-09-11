@@ -25,7 +25,8 @@
 (defvar config/env-vars
   '("ANSIBLE_PLAYBOOK_DIR"
     "EMACS_FONT"
-    "EMACS_FONT_SIZE"))
+    "EMACS_FONT_SIZE"
+    "EMACS_COLOR_THEME"))
 
 
 (use-package exec-path-from-shell
@@ -88,7 +89,7 @@ Perserves order and keys."
       (error (format "environment variable '%s' was not found" s)))
     (if is-bool
         (string-equal "1" var)
-      var)))
+      (intern var))))
 
 
 (defun config/eval-var (var)

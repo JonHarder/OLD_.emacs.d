@@ -9,9 +9,8 @@
 ;; (package-initialize)
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
-
 (defconfig jh/config
-  :color-theme          doom-outrun-electric
+  :color-theme          (:env EMACS_COLOR_THEME)
   :color-theme-package  doom-themes
   :font                 (:env EMACS_FONT)
   :font-size            (:env EMACS_FONT_SIZE)
