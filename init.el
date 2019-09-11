@@ -31,6 +31,7 @@
             terraform
             search
             python
+            rss
             clojure
             php
             web
