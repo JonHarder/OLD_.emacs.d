@@ -26,7 +26,8 @@
   '("ANSIBLE_PLAYBOOK_DIR"
     "EMACS_FONT"
     "EMACS_FONT_SIZE"
-    "EMACS_COLOR_THEME"))
+    "EMACS_COLOR_THEME"
+    "EMACS_COLOR_THEME_PACKAGE"))
 
 
 (use-package exec-path-from-shell

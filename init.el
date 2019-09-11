@@ -11,7 +11,7 @@
 
 (defconfig jh/config
   :color-theme          (:env EMACS_COLOR_THEME)
-  :color-theme-package  doom-themes
+  :color-theme-package  (:env EMACS_COLOR_THEME_PACKAGE)
   :font                 (:env EMACS_FONT)
   :font-size            (:env EMACS_FONT_SIZE)
   :modules (core
