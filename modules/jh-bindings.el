@@ -12,10 +12,8 @@
 ;; which keys will perform which actions in mid chord.
 
 ;;; Code:
-
-
 (defun jh/reload-config ()
-  "Evaluates current settings of emacs configuration."
+  "Evaluate current settings of Emacs configuration."
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
@@ -66,17 +64,17 @@
 
 
 (defun modules/bindings--load (config)
+  "Configure all things key bindings using CONFIG."
   (use-package which-key
-    :straight t
     :config
     (which-key-mode))
 
   (use-package ace-window
-    :straight t
     :commands (ace-window))
 
+  (straight-use-package 'imenu-list)
+
   (use-package general
-    :straight t
     :config
     (general-evil-setup t)
     (general-create-definer space-leader :prefix "SPC")
@@ -143,7 +141,10 @@
       "p f" 'projectile-find-file
       "p /" 'counsel-ag
   
-      "i" 'counsel-imenu
+      "i" '(:ignore t :which-key "imenu")
+      "i i" 'counsel-imenu
+      "i l" 'imenu-list-smart-toggle
+
   
       "j d" 'xref-find-definitions
   
