@@ -13,11 +13,8 @@
 
 
 (defun modules/term--load (config)
-  (use-package fish-mode
-    :straight t)
-
-  (use-package vterm
-    :straight t))
+  "Load term stuff using CONFIG."
+  (straight-use-package 'fish-mode))
 
 
 (provide 'jh-term)

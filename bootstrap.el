@@ -1,11 +1,14 @@
 ;;; bootstrap -- Pre-configuration initialization
 
 ;;; Commentary:
-;; initializes package.el, loads use-package, defines the module concept.
+;; initializes straight.el, loads use-package, defines the module concept.
 
 ;;; Code:
 
 ;; Bootstrap straight.el
+(require 'contrib "~/.emacs.d/contrib")
+
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -19,7 +22,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'use-package)
-(setq straight-use-package-by-default t)
+(setq-default straight-use-package-by-default t)
 ;; End bootstrap straight.el
 
 (defvar config/env-vars
@@ -33,30 +36,10 @@
 (use-package exec-path-from-shell
   :config
   (when (memq window-system '(mac ns x))
-    (setq exec-path-from-shell-variables
+    (setq-default exec-path-from-shell-variables
           (append '("PATH" "MANPATH")
                   config/env-vars))
     (exec-path-from-shell-initialize)))
-
-
-(defun map-alist-values (f alist)
-  "Map function F over each value in the ALIST.
-
-Perserves order and keys."
-  (interactive)
-  (mapcar (lambda (p) (cons (car p) (funcall f (cdr p))))
-          alist))
-
-
-(defun plist-to-alist (plist &optional alist)
-  "Convert a PLIST into an ALIST."
-  (interactive)
-  (let ((alist (if (null alist) '() alist)))
-    (if plist
-        (let* ((new-alist-front (cons (car plist) (cadr plist)))
-               (new-alist (cons new-alist-front alist)))
-          (plist-to-alist (cddr plist) new-alist))
-      (reverse alist))))
 
 
 (defun module-init-func (module-name)
@@ -64,9 +47,9 @@ Perserves order and keys."
   (intern (format "modules/%s--load" module-name)))
 
 
-(defun jh/load-module (module config &optional module-path)
+(defun config/load-module (module config &optional module-path)
   "Load the MODULE using given CONFIG, loading from MODULE-PATH if provided."
-  (when (not (listp module))
+  (when (not (listp module)) ;; why is this here?
     (let* ((module-path (or module-path
                             (concat user-emacs-directory "modules/")))
            (module-name (symbol-name module))
@@ -97,35 +80,42 @@ Perserves order and keys."
   "Evaluate VAR to see if it is a regular value, or a special form.
 
 This is aware of the different shapes a configuration value can take,
-including hardcoded values, and values stored in environment variables
-e.x. (:env FOO_BAR)"
+including hardcoded values, and values stored in environment variables.
+
+Currently, values can be a symbol
+e.x.
+  (config/eval-var 'foo)
+
+Or an environment variable
+e.x.
+  (config/eval-var '(:env FOO))"
   (interactive)
    (if (config/is-env var)
        (config/get-env (cadr var) (caddr var))
      var))
 
 
-(defun jh/load-config (config)
+(defun config/load-config (config)
   "Evaluate any special forms in CONFIG."
-  (map-alist-values #'config/eval-var config))
+  (contrib/map-alist-values #'config/eval-var config))
 
 
-(defun jh/config-init (config)
+(defun config/init-with-config (config)
   "Initialize configuration using settings found in CONFIG."
   (let ((modules (alist-get :modules config)))
-    (mapc (lambda (module) (jh/load-module module config)) modules)
+    (mapc (lambda (module) (config/load-module module config)) modules)
     config))
 
 
-(defmacro defconfig (config-name &rest params-plist)
-  "Contruct a settings object called CONFIG-NAME out of the PARAMS-PLIST."
+(defmacro defconfig (config-name &rest params)
+  "Contruct a settings object called CONFIG-NAME out of the PARAMS."
   `(progn
      (when (not (boundp (quote ,config-name)))
        (defvar ,config-name nil
          "The configuration object storing settings for emacs."))
      (setq ,config-name
-           (jh/load-config (plist-to-alist (quote ,params-plist))))
-     (jh/config-init ,config-name)))
+           (config/load-config (contrib/plist-to-alist (quote ,params))))
+     (config/init-with-config ,config-name)))
 
 
 (provide 'bootstrap)
