@@ -46,8 +46,13 @@
   
   (show-paren-mode 1)
   (electric-pair-mode 1)
+  (global-prettify-symbols-mode +1)
   
   (require 'whitespace)
+
+  (use-package aggressive-indent
+    :config
+    (global-aggressive-indent-mode +1))
 
   (use-package indent-guide
     :hook ((prog-mode . indent-guide-mode)
