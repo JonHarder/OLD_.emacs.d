@@ -5,8 +5,7 @@
 
 ;;; Code:
 (defun modules/haskell--load (config)
-  (use-package intero
-    :straight t))
+  (use-package intero))
 
 (provide 'jh-haskell)
 ;;; jh-haskell.el ends here

@@ -6,6 +6,7 @@
 ;;; Code:
 
 ;; Bootstrap straight.el
+(byte-recompile-directory "~/.emacs.d/modules" 0)
 (require 'contrib "~/.emacs.d/contrib")
 
 
@@ -53,7 +54,7 @@
     (let* ((module-path (or module-path
                             (concat user-emacs-directory "modules/")))
            (module-name (symbol-name module))
-           (path (concat module-path "jh-" module-name ".el"))
+           (path (concat module-path "jh-" module-name))
            (load-func (module-init-func module-name)))
       (load path)
       (apply load-func (list config)))))

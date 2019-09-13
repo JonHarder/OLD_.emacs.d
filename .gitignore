@@ -1,3 +1,4 @@
+*.elc
 *.dat
 amx-items
 elpa/
