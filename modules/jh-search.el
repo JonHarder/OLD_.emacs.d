@@ -13,9 +13,10 @@
 (defun how-do-i (engine search-term)
   "Use a specified search ENGINE to query your SEARCH-TERM."
   ;; use region if active for search-term
-  (interactive (list
-		(completing-read "Enigne: " (alist-keys search-engines))
-		(read-string "Search: ")))
+  (interactive
+   (list
+	(completing-read "Enigne: " (contrib/alist-keys search-engines))
+	(read-string "Search: ")))
   (let ((url (cdr (assoc (intern engine) search-engines))))
     (browse-url (concat url search-term))))
 
