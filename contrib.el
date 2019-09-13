@@ -23,5 +23,10 @@ Perserves order and keys."
           (contrib/plist-to-alist (cddr plist) new-alist))
       (reverse alist))))
 
+(defun contrib/alist-keys (alist)
+  "Get list of keys in the ALIST."
+  (mapcar #'car alist))
+
+
 (provide 'contrib)
 ;;; contrib.el ends here

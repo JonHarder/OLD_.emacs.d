@@ -46,6 +46,7 @@
             terraform
             search
             python
+	    docker
             rss
             clojure
             php

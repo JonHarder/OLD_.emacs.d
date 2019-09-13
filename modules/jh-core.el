@@ -6,11 +6,6 @@
 ;; and basic settings (or things that I can't find a better place to put them into)
 
 ;;; Code:
-(defun alist-keys (alist)
-  "Get list of keys in the ALIST."
-  (mapcar #'car alist))
-
-
 (defun jh/prog-mode-hook ()
   "Settings that should be enabled or disabled for all programming modes."
   (setq-default whitespace-style '(face tabs space-before-tab empty space-after-tab tab-mark))
@@ -26,6 +21,8 @@
   ;; core settings behavior
   (setq inhibit-startup-message t
         initial-scratch-message ""
+        indent-tabs-mode nil
+        tab-width 4
         dired-listing-switches "-alh"
         ring-bell-function 'ignore
         mouse-wheel-scroll-amount '(1 ((shift) . 1)) ;; one line at a time
@@ -40,16 +37,8 @@
   (when (eq system-type 'darwin)
     (setq-default
      mac-option-modifier nil
-     mac-command-modifier 'meta
-     indent-tabs-mode nil
-     tab-width 4))
+     mac-command-modifier 'meta))
   
-  (show-paren-mode 1)
-  (electric-pair-mode 1)
-  (global-prettify-symbols-mode +1)
-  
-  (require 'whitespace)
-
   (use-package aggressive-indent
     :config
     (global-aggressive-indent-mode +1))
@@ -64,10 +53,6 @@
   (when (not (server-running-p))
     (server-start))
 
-  (use-package dockerfile-mode
-    :mode "\\.Dockerfile")
-  
-  
   (straight-use-package 'dash)
 
   (use-package flycheck
@@ -77,10 +62,6 @@
   
   (straight-use-package 'yaml-mode)
   
-  (use-package rainbow-delimiters
-    :config
-    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-
   (use-package markdown-mode
     :commands (markdown-mode gfm-mode)
     :mode (("README\\.md\\'" . gfm-mode)

@@ -29,6 +29,16 @@
     :config
     (eyebrowse-mode t))
 
+  (require 'whitespace)
+
+  (show-paren-mode 1)
+  (electric-pair-mode 1)
+  (global-prettify-symbols-mode +1)
+
+  (use-package rainbow-delimiters
+    :config
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
   (let ((color-theme (alist-get :color-theme config))
         (color-theme-package (alist-get :color-theme-package config))
         (font (alist-get :font config))
