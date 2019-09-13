@@ -20,28 +20,28 @@
    org-babel-python-command "python3")
   
   (org-babel-do-load-languages
-    'org-babel-load-languages
-    '((emacs-lisp . t)
-      (shell . t)
-      (python . t)))
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell . t)
+     (python . t)))
   
   (use-package org-journal
     :init
     (setq org-journal-dir "~/Org/journal/"))
-  
+
   (use-package org-bullets
     :config
     (add-hook 'org-mode-hook
-        (lambda ()
-          (org-bullets-mode 1))))
+              (lambda ()
+		(org-bullets-mode 1))))
   
   (setq org-todo-keywords
         '((sequence
-             "TODO(t)"
-             "WAIT(w@/!)"
-             "|"
-             "DONE(d!)"
-             "CANCELED(c@)"))))
+           "TODO(t)"
+           "WAIT(w@/!)"
+           "|"
+           "DONE(d!)"
+           "CANCELED(c@)"))))
 
 (provide 'jh-org)
 ;;; jh-org.el ends here

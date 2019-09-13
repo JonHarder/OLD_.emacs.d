@@ -25,6 +25,50 @@
 (setq-default straight-use-package-by-default t)
 ;; End bootstrap straight.el
 
+
+;; some performance hacks
+(setq apropos-do-all t)
+(setq frame-inhibit-implied-resize t)
+(setq fast-but-imprecise-scrolling t)
+(setq-default cursor-in-non-selected-windows nil)
+(setq highlight-nonselected-windows nil)
+(setq-default bidi-display-reordering 'left-to-right)
+(setq idle-update-delay 1)
+(add-hook 'focus-out-hook #'garbage-collect)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+
+;; core settings behavior
+(setq inhibit-startup-message t)
+(setq initial-scratch-message "")
+(setq indent-tabs-mode nil)
+(setq tab-width 4)
+(setq dired-listing-switches "-alh")
+(setq ring-bell-function 'ignore)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling)
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+(setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
+(setq custom-file "~/.emacs.d/custom.el")
+
+(load custom-file 'noerror)
+
+(when (eq system-type 'darwin)
+  (setq-default
+   mac-option-modifier nil
+   mac-command-modifier 'meta
+   mac-redisplay-dont-reset-vscroll t
+   mac-mouse-wheel-smooth-scroll nil))
+
+
+(require 'server)
+(when (not (server-running-p))
+  (server-start))
+
+
 (defvar config/env-vars
   '("ANSIBLE_PLAYBOOK_DIR"
     "EMACS_FONT"

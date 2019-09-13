@@ -26,6 +26,7 @@
   "Load appearance settings based off of CONFIG."
   (require 'whitespace)
 
+  (blink-cursor-mode -1)
   (show-paren-mode 1)
   (electric-pair-mode 1)
   (global-prettify-symbols-mode +1)

@@ -14,30 +14,6 @@
 
 (defun modules/core--load (config)
   "Load general core features, configure programming hook using CONFIG."
-  (defalias 'yes-or-no-p 'y-or-n-p)
-  
-  (add-hook 'dired-mode-hook 'dired-hide-details-mode)
-  
-  ;; core settings behavior
-  (setq inhibit-startup-message t
-        initial-scratch-message ""
-        indent-tabs-mode nil
-        tab-width 4
-        dired-listing-switches "-alh"
-        ring-bell-function 'ignore
-        mouse-wheel-scroll-amount '(1 ((shift) . 1)) ;; one line at a time
-        mouse-wheel-progressive-speed nil ;; don't accelerate scrolling
-        mouse-wheel-follow-mouse 't ;; scroll window under mouse
-        scroll-step 1 ;; keyboard scroll one line at a time
-        backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
-        custom-file "~/.emacs.d/custom.el")
-  
-  (load custom-file 'noerror)
-  
-  (when (eq system-type 'darwin)
-    (setq-default
-     mac-option-modifier nil
-     mac-command-modifier 'meta))
   
   (use-package aggressive-indent
     :config
@@ -48,10 +24,6 @@
            (hcl-mode . indent-guide-mode)))
 
   (add-hook 'prog-mode-hook #'jh/prog-mode-hook)
-
-  (require 'server)
-  (when (not (server-running-p))
-    (server-start))
 
   (straight-use-package 'dash)
 
