@@ -15,6 +15,8 @@
     (with-eval-after-load 'flycheck
       (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))
 
+  (add-to-list 'auto-mode-alist '("\\Pipfile\\'" . conf-mode))
+
   (use-package elpy
     :straight t
     :init
