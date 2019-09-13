@@ -24,11 +24,6 @@
 
 (defun modules/appearance--load (config)
   "Load appearance settings based off of CONFIG."
-  (use-package eyebrowse
-    :straight t
-    :config
-    (eyebrowse-mode t))
-
   (require 'whitespace)
 
   (show-paren-mode 1)

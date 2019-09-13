@@ -6,7 +6,6 @@
 ;;; Code:
 
 ;; Bootstrap straight.el
-(byte-recompile-directory "~/.emacs.d/modules" 0)
 (require 'contrib "~/.emacs.d/contrib")
 
 
