@@ -90,9 +90,13 @@
 
 (defun eshell/git (&rest command)
   "Intercept 'git status' and run magit-status instead, run regular command line git command with COMMAND othrewise."
-  (if (string-equal (car command) "status")
-      (magit-status)
-    (shell-command-to-string (string-join (cons "git" command) " "))))
+  (let ((sub-command (car command)))
+    (cond
+     ((string-equal sub-command "status")
+      (magit-status))
+     ((string-equal sub-command "log")
+      (magit-log-head))
+     (t (shell-command-to-string (string-join (cons "git" command) " "))))))
 
 
 (defun modules/eshell--load (config)

@@ -14,7 +14,7 @@
    org-agenda-files '("~/Org" "~/Org/agenda/")
    org-src-fontify-natively t
    org-hide-emphasis-markers nil
-   org-archive-location (concat user-emacs-directory "archive/%s.archive::")
+   org-archive-location "~/Org/archive/%s.archive::"
    org-agenda-include-diary t
    org-agenda-timegrid-use-ampm t
    org-babel-python-command "python3")
