@@ -7,14 +7,13 @@
 ;;; This module aims to make the transition as painless as possible.
 
 ;;; Code:
-(defadvice term-handle-exit
-    (after term-kill-buffer-on-exit activate)
-  (kill-buffer))
-
-
 (defun modules/term--load (config)
   "Load term stuff using CONFIG."
-  (straight-use-package 'fish-mode))
+  (straight-use-package 'fish-mode)
+
+  (defadvice term-handle-exit
+      (after term-kill-buffer-on-exit activate)
+    (kill-buffer)))
 
 
 (provide 'jh-term)
