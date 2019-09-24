@@ -61,6 +61,11 @@
   (message "copied to clipboard"))
 
 
+(defun eshell-new ()
+  "Open a new instance of eshell."
+  (interactive)
+  (eshell 'N))
+
 
 
 (defun modules/bindings--load (config)
@@ -134,6 +139,7 @@
       "w J" 'evil-window-move-far-down
       "w =" 'balance-windows
   
+      "g" '(:ignore t :which-key "git")
       "g s" 'magit-status
   
       "p" '(:ignore t :which-key "projectile")
@@ -148,6 +154,7 @@
   
       "j d" 'xref-find-definitions
   
+      "e" '(:ignore t :which-key "eval")
       "e e" 'eval-last-sexp
   
       "s" '(:ignore t :which-key "searching")
@@ -174,7 +181,7 @@
       "a t" 'jh/term
       "a d" 'dired
       "a c" 'calc
-      "a e" 'eshell)))
+      "a e" 'eshell-new)))
 
 (provide 'jh-bindings)
 ;;; jh-bindings.el ends here
