@@ -15,10 +15,6 @@
 (defun modules/core--load (config)
   "Load general core features, configure programming hook using CONFIG."
   
-  (use-package aggressive-indent
-    :config
-    (global-aggressive-indent-mode +1))
-
   (use-package indent-guide
     :hook ((prog-mode . indent-guide-mode)
            (hcl-mode . indent-guide-mode)))
@@ -30,6 +26,11 @@
   (use-package flycheck
     :config
     (add-hook 'after-init-hook #'global-flycheck-mode))
+
+
+  (use-package editorconfig
+    :config
+    (editorconfig-mode 1))
   
   
   (straight-use-package 'yaml-mode)
