@@ -61,13 +61,6 @@
   (message "copied to clipboard"))
 
 
-(defun eshell-new ()
-  "Open a new instance of eshell."
-  (interactive)
-  (eshell 'N))
-
-
-
 (defun modules/bindings--load (config)
   "Configure all things key bindings using CONFIG."
   (use-package which-key
@@ -181,7 +174,7 @@
       "a t" 'jh/term
       "a d" 'dired
       "a c" 'calc
-      "a e" 'eshell-new)))
+      "a e" 'eshell)))
 
 (provide 'jh-bindings)
 ;;; jh-bindings.el ends here
