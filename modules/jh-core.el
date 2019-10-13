@@ -23,6 +23,10 @@
 
   (straight-use-package 'dash)
 
+  (use-package origami
+    :config
+    (global-origami-mode))
+
   (use-package flycheck
     :config
     (add-hook 'after-init-hook #'global-flycheck-mode))

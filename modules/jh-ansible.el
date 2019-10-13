@@ -73,8 +73,7 @@
   "Load some general ansible packages and ignore CONFIG."
   (use-package jinja2-mode
     :mode "\\.j2\\'")
-  (use-package ansible
-    :hook (yaml-mode . ansible))
+  (straight-use-package 'ansible)
   (use-package ansible-doc
     :hook (yaml-mode . ansible-doc-mode))
   (add-to-list 'auto-mode-alist '("hosts" . conf-mode)))

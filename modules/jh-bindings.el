@@ -60,6 +60,8 @@
   (evil-exit-visual-state)
   (message "copied to clipboard"))
 
+(defalias 'jump-to-function 'counsel-imenu)
+(defalias 'jump-to-definition 'xref-find-definitions)
 
 (defun modules/bindings--load (config)
   "Configure all things key bindings using CONFIG."
@@ -140,12 +142,10 @@
       "p f" 'projectile-find-file
       "p /" 'counsel-ag
   
-      "i" '(:ignore t :which-key "imenu")
-      "i i" 'counsel-imenu
-      "i l" 'imenu-list-smart-toggle
-
-  
-      "j d" 'xref-find-definitions
+      "j" '(:ignore t :which-key "jumping")
+      "j d" 'jump-to-definition
+      "j f" 'jump-to-function
+      "j l" 'imenu-list-smart-toggle
   
       "e" '(:ignore t :which-key "eval")
       "e e" 'eval-last-sexp

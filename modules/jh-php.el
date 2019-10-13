@@ -58,8 +58,8 @@
     :config
     (setq lsp-ui-doc-enable t
           lsp-ui-doc-use-childframe nil
-          lsp-ui-doc-position 'top
-          lsp-ui-doc-include-signature nil ;; modified, was t
+          lsp-ui-doc-position 'bottom
+          lsp-ui-doc-include-signature t
           lsp-ui-flycheck-enable t
           lsp-ui-flycheck-list-position 'bottom ;; modified was 'right
           lsp-ui-flycheck-live-reporting t
