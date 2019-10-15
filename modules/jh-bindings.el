@@ -143,7 +143,7 @@
       "p /" 'counsel-ag
   
       "j" '(:ignore t :which-key "jumping")
-      "j d" 'jump-to-definition
+      "j d" 'xref-find-definitions-other-window
       "j f" 'jump-to-function
       "j l" 'imenu-list-smart-toggle
   
@@ -165,6 +165,7 @@
       "o s s" 'org-schedule
       "o s d" 'org-deadline
       "o l" 'org-insert-link
+      "o p" 'org-priority
   
       "=" 'text-scale-increase
       "-" 'text-scale-decrease

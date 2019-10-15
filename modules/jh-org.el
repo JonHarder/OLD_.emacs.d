@@ -25,10 +25,6 @@
      (shell . t)
      (python . t)))
   
-  (use-package org-journal
-    :init
-    (setq org-journal-dir "~/Org/journal/"))
-
   (use-package org-bullets
     :config
     (add-hook 'org-mode-hook
