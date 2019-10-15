@@ -29,6 +29,7 @@
   :color-theme-package  (:env EMACS_COLOR_THEME_PACKAGE)
   :font                 (:env EMACS_FONT)
   :font-size            16
+  :highlight-line       nil
   :modules (core
             appearance
             modeline
@@ -40,6 +41,7 @@
             dired
             evil
             lisp
+	    haskell
             elm
             eshell
             term
