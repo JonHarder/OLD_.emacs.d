@@ -166,6 +166,9 @@
       "o s d" 'org-deadline
       "o l" 'org-insert-link
       "o p" 'org-priority
+
+      "m" '(:ignore t :which-key "meetings")
+      "m s" 'jh/standup-today
   
       "=" 'text-scale-increase
       "-" 'text-scale-decrease

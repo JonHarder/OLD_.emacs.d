@@ -33,6 +33,7 @@
   (menu-bar-mode -1)
   (toggle-scroll-bar -1)
   (tool-bar-mode -1)
+
   (when (alist-get :highlight-line config nil)
     (add-hook 'prog-mode-hook 'hl-line-mode))
 
@@ -44,7 +45,7 @@
         (color-theme-package (alist-get :color-theme-package config))
         (font (alist-get :font config))
         (font-size (alist-get :font-size config)))
-    (jh/set-theme color-theme color-theme-package)
+    (load-theme 'modus-vivendi t)
     (set-frame-font (format "%s %s" font font-size))))
 
 (provide 'jh-appearance)

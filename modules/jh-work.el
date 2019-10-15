@@ -15,6 +15,13 @@
 (straight-use-package 'coffee-mode)
 
 
+(defun jh/standup-today ()
+  "Open or create an agenda for a standup."
+  (interactive)
+  (let ((datestr (format-time-string "%Y%m%d")))
+    (find-file (format "~/Org/standups/%s.org" datestr))))
+
+
 (defun modules/work--load (config))
 
 (provide 'jh-work)
