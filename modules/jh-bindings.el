@@ -133,6 +133,7 @@
       "w K" 'evil-window-move-far-up
       "w J" 'evil-window-move-far-down
       "w =" 'balance-windows
+      "w t f" 'flycheck-list-errors
   
       "g" '(:ignore t :which-key "git")
       "g s" 'magit-status
