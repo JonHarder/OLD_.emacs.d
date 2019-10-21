@@ -42,12 +42,6 @@
   (use-package phpunit)
   
   (use-package lsp-mode
-    :hook (php-mode . lsp)
-    :commands lsp
-    :config
-    (setq lsp-prefer-flymake nil))
-  
-  (use-package lsp-mode
     :config
     (setq lsp-prefer-flymake nil)
     :hook (php-mode . lsp)
