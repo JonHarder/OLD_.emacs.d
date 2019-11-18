@@ -18,7 +18,8 @@
 
   (straight-use-package 'rjsx-mode)
   
-  (use-package typescript-mode)
+  (use-package typescript-mode
+    :mode "\\.tsx\\'")
 
   (use-package web-mode
     :mode "\\.html\\'"))

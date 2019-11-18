@@ -23,6 +23,16 @@
   (find-file "~/.emacs.d/init.el"))
 
 
+(defun new-buffer (&optional name)
+  "Create a new buffer, called NAME."
+  (interactive)
+  (let ((buf (generate-new-buffer (or name "untitled"))))
+    (switch-to-buffer buf)
+    (funcall initial-major-mode)
+    (setq buffer-offer-save t)
+    buf))
+
+
 (defun jh/term ()
   "Open my terminal."
   (interactive)
@@ -116,6 +126,7 @@
       "n" '(:ignore t :which-key "narrowing")
       "n r" 'narrow-to-region
       "n d" 'narrow-to-defun
+      "n n" 'narrow-to-defun
       "n w" 'widen
   
       "w" '(:ignore t :which-key "windows")

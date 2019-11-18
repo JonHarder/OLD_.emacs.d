@@ -45,7 +45,7 @@
         (color-theme-package (alist-get :color-theme-package config))
         (font (alist-get :font config))
         (font-size (alist-get :font-size config)))
-    (load-theme 'modus-vivendi t)
+    (jh/set-theme color-theme color-theme-package)
     (set-frame-font (format "%s %s" font font-size))))
 
 (provide 'jh-appearance)
