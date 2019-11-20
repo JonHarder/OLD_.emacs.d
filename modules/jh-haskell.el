@@ -5,7 +5,12 @@
 
 ;;; Code:
 (defun modules/haskell--load (config)
-  (use-package intero))
+  "Load configuration for Haskell using CONFIG."
+  (use-package lsp-haskell
+    :config
+    (progn
+      (setq lsp-haskell-process-path-hie "/home/jon/.local/bin/hie-wrapper")
+      (add-hook 'haskell-mode-hook #'lsp))))
 
 (provide 'jh-haskell)
 ;;; jh-haskell.el ends here
