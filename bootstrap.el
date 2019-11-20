@@ -69,20 +69,11 @@
   (server-start))
 
 
-(defvar config/env-vars
-  '("ANSIBLE_PLAYBOOK_DIR"
-    "EMACS_FONT"
-    "EMACS_FONT_SIZE"
-    "EMACS_COLOR_THEME"
-    "EMACS_COLOR_THEME_PACKAGE"))
-
-
 (use-package exec-path-from-shell
   :config
   (when (memq window-system '(mac ns x))
     (setq-default exec-path-from-shell-variables
-          (append '("PATH" "MANPATH")
-                  config/env-vars))
+          '("PATH" "MANPATH"))
     (exec-path-from-shell-initialize)))
 
 
@@ -112,7 +103,7 @@
 (defun config/get-env (s &optional is-bool)
   "Get the value of the environment variable S, normalizing to bool if IS-BOOL."
   (interactive)
-  (let ((var (getenv (symbol-name s))))
+  (let ((var (exec-path-from-shell-copy-env (symbol-name s))))
     (when (null var)
       (error (format "environment variable '%s' was not found" s)))
     (if is-bool

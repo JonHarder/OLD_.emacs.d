@@ -7,6 +7,8 @@
 (require 'org)
 (require 'org-agenda)
 (require 'ob-python)
+(require 'ob-php (concat user-emacs-directory "ob-php.el"))
+
 
 (defun modules/org--load (config)
   "Load configuration related to org using CONFIG."
@@ -23,18 +25,24 @@
    'org-babel-load-languages
    '((emacs-lisp . t)
      (shell . t)
-     (python . t)))
+     (sql . t)
+     (python . t)
+     (php . t)
+     (js . t)))
   
   (use-package org-bullets
     :config
-    (add-hook 'org-mode-hook
-              (lambda ()
-		(org-bullets-mode 1))))
+    (add-hook
+     'org-mode-hook
+     (lambda ()
+       (org-bullets-mode 1))))
   
   (setq org-todo-keywords
         '((sequence
            "TODO(t)"
            "WAIT(w@/!)"
+	   "REVIEW(r)"
+	   "TESTING(s)"
            "|"
            "DONE(d!)"
            "CANCELED(c@)"))))
