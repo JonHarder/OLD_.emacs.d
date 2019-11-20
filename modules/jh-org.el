@@ -19,7 +19,10 @@
    org-archive-location "~/Org/archive/%s.archive::"
    org-agenda-include-diary t
    org-agenda-timegrid-use-ampm t
-   org-babel-python-command "python3")
+   org-babel-python-command "python3"
+   org-capture-templates
+   '(("p" "Pull Request" entry (file+headline "~/Org/pull-requests.org" "Pull Requests")
+      "* TODO %?\n  SCHEDULED: %t\n  - %^L")))
   
   (org-babel-do-load-languages
    'org-babel-load-languages
