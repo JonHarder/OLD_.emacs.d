@@ -24,6 +24,10 @@
 ;; (package-initialize)
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
+
+(defvar jh/config nil)
+
+
 (defconfig jh/config
   :color-theme          (:env EMACS_COLOR_THEME)
   :color-theme-package  (:env EMACS_COLOR_THEME_PACKAGE)
