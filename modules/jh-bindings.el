@@ -101,6 +101,7 @@
       "SPC" 'counsel-M-x
       ";" 'eval-expression
       "1" 'shell-command
+      "RET" 'org-capture
   
       "f" '(:ignore t :which-key "files")
       "f f" 'find-file
