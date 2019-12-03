@@ -5,21 +5,33 @@
 ;;; Code:
 (require 'seq)
 
-(defun jh/set-theme (theme &optional theme-package)
-  "Enable THEME, optionally found in THEME-PACKAGE if supplied, disabling all others."
-  (interactive)
+(defun jh/pull-theme (theme &optional theme-package)
+  "Download THEME-PACKAGE if THEME is not a built in theme."
   (let* ((theme-name (symbol-name theme))
-         (other-themes (seq-filter
-                       (lambda (other-theme)
-                         (not (string-equal theme-name other-theme)))
-                       custom-enabled-themes))
          (theme-package (if theme-package theme-package (intern (format "%s-theme" theme-name)))))
     (when (not (memq theme (custom-available-themes)))
-      (straight-use-package theme-package))
-    (mapc 'disable-theme other-themes)
-    (load-theme theme t)
-    (when (functionp 'doom-themes-org-config)
-      (doom-themes-org-config))))
+      (straight-use-package theme-package))))
+
+
+(defun jh/load-theme (theme)
+  "Load THEME, disabling other enabled themes."
+  (let* ((theme-name (symbol-name theme))
+         (other-themes (seq-filter (lambda (other-theme)
+                                    (not (string-equal theme-name other-theme)))
+                       custom-enabled-themes)))
+    (mapc 'diable-theme other-themes)
+    (load-theme theme t)))
+
+
+(defun jh/set-theme (theme &optional theme-package)
+  "Enable THEME, optionally found in THEME-PACKAGE.
+
+ If theme is not a built in theme, and not present on the machine, it will be installed."
+  (interactive)
+  (jh/pull-theme theme theme-package)
+  (jh/load-theme theme)
+  (when (functionp 'doom-themes-org-config)
+    (doom-themes-org-config)))
 
 
 (defun modules/appearance--load (config)
