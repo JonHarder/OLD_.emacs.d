@@ -45,17 +45,17 @@
             dired
             evil
             lisp
-	    haskell
+            haskell
             elm
             eshell
             term
             terraform
             search
             python
-	    docker
+            docker
             rss
             clojure
-	    php
+            php
             web
             ansible
             work))
