@@ -150,10 +150,11 @@
       "g" '(:ignore t :which-key "git")
       "g s" 'magit-status
   
-      "p" '(:ignore t :which-key "projectile")
+      "p" '(:ignore t :which-key "project")
       "p p" 'projectile-switch-project
       "p f" 'projectile-find-file
       "p /" 'counsel-ag
+      "p c" 'compile
   
       "j" '(:ignore t :which-key "jumping")
       "j d" 'xref-find-definitions-other-window

@@ -100,13 +100,17 @@
   (and (listp s) (eq (car s) :env)))
 
 
-(defun config/get-env (s &optional is-bool)
+(defun config/get-env (s)
   "Get the value of the environment variable S, normalizing to bool if IS-BOOL."
   (interactive)
-  (let ((var (exec-path-from-shell-copy-env (symbol-name s))))
+  (let* ((var-name (plist-get s :env))
+	 (default  (plist-get s :default))
+	 (type     (plist-get s :type))
+	 (var (or (exec-path-from-shell-copy-env (symbol-name var-name))
+		  default)))
     (when (null var)
-      (error (format "environment variable '%s' was not found" s)))
-    (if is-bool
+      (error (format "environment variable '%s' was not found and no :default provided" var-name)))
+    (if (and type (= type 'bool))
         (string-equal "1" var)
       (intern var))))
 
@@ -126,7 +130,7 @@ e.x.
   (config/eval-var '(:env FOO))"
   (interactive)
    (if (config/is-env var)
-       (config/get-env (cadr var) (caddr var))
+       (config/get-env var)
      var))
 
 
