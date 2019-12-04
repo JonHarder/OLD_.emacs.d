@@ -107,7 +107,7 @@
 	 (default  (plist-get s :default))
 	 (type     (plist-get s :type))
 	 (var (or (exec-path-from-shell-copy-env (symbol-name var-name))
-		  default)))
+		  (symbol-name default))))
     (when (null var)
       (error (format "environment variable '%s' was not found and no :default provided" var-name)))
     (if (and type (= type 'bool))

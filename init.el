@@ -29,8 +29,8 @@
 
 
 (defconfig jh/config
-  :color-theme          (:env EMACS_COLOR_THEME)
-  :color-theme-package  (:env EMACS_COLOR_THEME_PACKAGE)
+  :color-theme          (:env EMACS_COLOR_THEME :default modus-vivendi)
+  :color-theme-package  (:env EMACS_COLOR_THEME_PACKAGE :default modus-vivendi-theme)
   :font                 (:env EMACS_FONT)
   :font-size            16
   :highlight-line       nil
