@@ -153,7 +153,7 @@
       "p" '(:ignore t :which-key "project")
       "p p" 'projectile-switch-project
       "p f" 'projectile-find-file
-      "p /" 'counsel-ag
+      "p /" 'projectile-ag
       "p c" 'compile
   
       "j" '(:ignore t :which-key "jumping")
