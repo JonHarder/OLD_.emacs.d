@@ -23,7 +23,7 @@
    org-capture-templates
    '(("p" "Pull Request" entry (file+headline "~/Org/pull-requests.org" "Pull Requests")
       "* TODO %?\n  SCHEDULED: %t\n  - %^L")))
-  
+
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)

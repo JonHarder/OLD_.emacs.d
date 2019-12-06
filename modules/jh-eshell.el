@@ -23,7 +23,8 @@
 (defvar pretty-eshell-prompt-string " "
   "Prompt string, must match builtin `eshell-prompt-regexp'.")
 
-(setq eshell-prompt-regexp " ")
+(setq eshell-prompt-regexp " "
+      eshell-cmpl-ignore-case t)
 
 (defvar pretty-eshell-prompt-num 0
   "Prompt number for current eshell session.")
