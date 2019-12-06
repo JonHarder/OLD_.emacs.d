@@ -19,7 +19,7 @@
          (other-themes (seq-filter (lambda (other-theme)
                                     (not (string-equal theme-name other-theme)))
                        custom-enabled-themes)))
-    (mapc 'diable-theme other-themes)
+    (mapc 'disable-theme other-themes)
     (load-theme theme t)))
 
 
