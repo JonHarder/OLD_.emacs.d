@@ -163,6 +163,7 @@
   
       "e" '(:ignore t :which-key "eval")
       "e e" 'eval-last-sexp
+      "e ;" 'eval-expression
   
       "s" '(:ignore t :which-key "searching")
       "s g" 'how-do-i-google
