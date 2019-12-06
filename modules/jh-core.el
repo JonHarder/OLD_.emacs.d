@@ -23,6 +23,8 @@
 
   (straight-use-package 'dash)
 
+  (straight-use-package 'fireplace)
+
   (use-package origami
     :config
     (global-origami-mode))
