@@ -13,6 +13,7 @@
 (straight-use-package 'restclient)
 (straight-use-package 'zpresent)
 (straight-use-package 'coffee-mode)
+(straight-use-package 'wsd-mode)
 (straight-use-package 'notmuch)
 
 
