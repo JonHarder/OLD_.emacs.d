@@ -120,6 +120,7 @@
       "h v" 'describe-variable
       "h m" 'describe-mode
       "h p" 'describe-package
+      "h a" 'counsel-apropos
   
       "c" '(:ignore t :which-key "configuration")
       "c r" 'jh/reload-config
