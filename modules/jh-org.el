@@ -43,9 +43,9 @@
   (setq org-todo-keywords
         '((sequence
            "TODO(t)"
-           "WAIT(w@/!)"
-	   "REVIEW(r)"
-	   "TESTING(s)"
+           "WORKING(w)"
+           "REVIEW(r)"
+           "TESTING(s)"
            "|"
            "DONE(d!)"
            "CANCELED(c@)"))))
