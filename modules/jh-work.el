@@ -13,6 +13,7 @@
 (straight-use-package 'restclient)
 (straight-use-package 'zpresent)
 (straight-use-package 'coffee-mode)
+(straight-use-package 'notmuch)
 
 
 (defun jh/standup-today ()
