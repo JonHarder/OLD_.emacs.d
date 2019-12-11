@@ -25,8 +25,14 @@
   (add-hook 'prog-mode-hook #'jh/prog-mode-hook)
 
   (straight-use-package 'dash)
+  (straight-use-package 'ag)
 
   (straight-use-package 'fireplace)
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'forward)
 
   (use-package origami
     :config

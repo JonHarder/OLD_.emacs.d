@@ -42,6 +42,7 @@
   
   (setq org-todo-keywords
         '((sequence
+           "BLOCKED(b)"
            "TODO(t)"
            "WORKING(w)"
            "REVIEW(r)"

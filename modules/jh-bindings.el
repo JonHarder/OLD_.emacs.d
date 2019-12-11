@@ -161,6 +161,7 @@
       "j d" 'xref-find-definitions-other-window
       "j f" 'jump-to-function
       "j l" 'imenu-list-smart-toggle
+      "j t" (lambda () (interactive) (find-file "~/Org/todo.org"))
   
       "e" '(:ignore t :which-key "eval")
       "e e" 'eval-last-sexp
