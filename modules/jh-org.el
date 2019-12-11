@@ -20,6 +20,8 @@
    org-agenda-include-diary t
    org-agenda-timegrid-use-ampm t
    org-babel-python-command "python3"
+   org-highest-priority ?A
+   org-lowest-priority ?F
    org-capture-templates
    '(("p" "Pull Request" entry (file+headline "~/Org/pull-requests.org" "Pull Requests")
       "* TODO %?\n  SCHEDULED: %t\n  - %^L")))
