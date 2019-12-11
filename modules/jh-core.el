@@ -15,6 +15,9 @@
 (defun modules/core--load (config)
   "Load general core features, configure programming hook using CONFIG."
   
+
+  (setq epa-pinentry-mode 'loopback)
+
   (use-package indent-guide
     :hook ((prog-mode . indent-guide-mode)
            (hcl-mode . indent-guide-mode)))
