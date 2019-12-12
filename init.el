@@ -32,7 +32,7 @@
   :color-theme          (:env EMACS_COLOR_THEME         :default modus-vivendi)
   :color-theme-package  (:env EMACS_COLOR_THEME_PACKAGE :default modus-vivendi-theme)
   :font                 (:env EMACS_FONT)
-  :font-size            16
+  :font-size            (:env EMACS_FONT_SIZE           :default 16)
   :highlight-line       nil
   :modules (core
             appearance
