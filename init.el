@@ -58,6 +58,7 @@
             php
             web
             ansible
+            mail
             work))
 
 
