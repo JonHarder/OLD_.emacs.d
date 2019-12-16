@@ -98,9 +98,6 @@
      :states 'visual
      "M-c" 'jh/copy-to-mac-clipboard)
     (space-leader
-      :keymaps 'visual
-      "n r" 'narrow-to-region
-
       :keymaps 'normal
       "SPC" 'counsel-M-x
       ";" 'eval-expression
