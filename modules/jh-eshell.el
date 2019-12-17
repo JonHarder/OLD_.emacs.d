@@ -89,6 +89,18 @@
   "Shorthand command to open FILE."
   (find-file file))
 
+
+(defun eshell/back (num)
+  "Travel back NUM directories."
+  (unless (integerp num)
+    (error "Argument must be an integer"))
+  (let* ((dots (make-list num ".."))
+         (dir (mapconcat 'identity dots "/")))
+  (eshell/cd dir)))
+
+(defalias 'eshell/b #'eshell/back)
+
+
 (defun eshell/git (&rest command)
   "Intercept 'git status' and run magit-status instead, run regular command line git command with COMMAND othrewise."
   (let ((sub-command (car command)))
