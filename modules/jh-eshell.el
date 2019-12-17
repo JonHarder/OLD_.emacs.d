@@ -95,7 +95,7 @@
   (unless (integerp num)
     (error "Argument must be an integer"))
   (let* ((dots (make-list num ".."))
-         (dir (mapconcat 'identity dots "/")))
+         (dir (contrib/str-join dots "/")))
   (eshell/cd dir)))
 
 (defalias 'eshell/b #'eshell/back)

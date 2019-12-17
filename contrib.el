@@ -28,5 +28,10 @@ Perserves order and keys."
   (mapcar #'car alist))
 
 
+(defun contrib/str-join (items glue)
+  "Concat the list of strings, ITEMS together, separated the string GLUE."
+  (mapconcat 'identity items glue))
+
+
 (provide 'contrib)
 ;;; contrib.el ends here
