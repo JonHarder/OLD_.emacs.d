@@ -90,13 +90,14 @@
   (find-file file))
 
 
-(defun eshell/back (num)
+(defun eshell/back (&optional num)
   "Travel back NUM directories."
-  (unless (integerp num)
-    (error "Argument must be an integer"))
-  (let* ((dots (make-list num ".."))
-         (dir (contrib/str-join dots "/")))
-  (eshell/cd dir)))
+  (let ((num (or num 1)))
+    (unless (integerp num)
+      (error "Argument must be an integer"))
+    (let* ((dots (make-list num ".."))
+           (dir (contrib/str-join dots "/")))
+      (eshell/cd dir))))
 
 (defalias 'eshell/b #'eshell/back)
 
