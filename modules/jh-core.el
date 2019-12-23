@@ -29,6 +29,7 @@
 
   (straight-use-package 'fireplace)
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+  (add-to-list 'c-default-style '(php-mode . "bsd"))
 
 
   (require 'uniquify)

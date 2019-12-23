@@ -1,9 +1,10 @@
-alias vs vagrant ssh
-alias plays cd ~/Kipsu/ansible-playbooks/playbooks
-alias ap pipenv run ansible-playbook $*
-alias prp pipenv run python $*
-alias q exit
-alias clear eshell/clear-scrollback
-alias c clear
-alias kc cd /Users/jharder/Kipsu/ansible-playbooks/vagrant_kipsu/acct/
+alias d dired $1
 alias kv cd /Users/jharder/Kipsu/ansible-playbooks/vagrant_kipsu/
+alias kc cd /Users/jharder/Kipsu/ansible-playbooks/vagrant_kipsu/acct/
+alias c clear
+alias clear eshell/clear-scrollback
+alias q exit
+alias prp pipenv run python $*
+alias ap pipenv run ansible-playbook $*
+alias plays cd ~/Kipsu/ansible-playbooks/playbooks
+alias vs vagrant ssh
