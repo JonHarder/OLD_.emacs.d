@@ -21,9 +21,9 @@
   (setq indent-tabs-mode nil
         c-basic-offset 4
         php-template-compatibility nil
-	php-mode-coding-style 'psr2))
+        php-mode-coding-style 'psr2)
   (subword-mode 1)
-  (auto-complete-mode t)
+  ;; (auto-complete-mode t)
   (setq ac-sources '(ac-source-php))
   (yas-global-mode 1)
   (ac-php-core-eldoc-setup)
