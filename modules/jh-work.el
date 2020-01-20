@@ -10,6 +10,9 @@
 (defun modules/work--load (config)
   "Load various helper packages and functions according to CONFIG."
 
+
+  (defvar jh/kipsu-dir "~/Kipsu/ansible-playbooks/vagrant_kipsu/acct")
+
   (defun jh/jira-link (jira-number)
     "Generate the jira link given a JIRA-NUMBER."
     (interactive "nTicket Number:")
@@ -22,6 +25,10 @@
   (straight-use-package 'coffee-mode)
   (straight-use-package 'wsd-mode)
   (straight-use-package 'notmuch)
+
+  (defun jh/kipsu-git ()
+    (interactive)
+    (magit-status jh/kipsu-dir))
 
   (defun jh/standup-today ()
     "Open or create an agenda for a standup."

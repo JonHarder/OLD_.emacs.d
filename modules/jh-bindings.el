@@ -104,16 +104,35 @@
       "1" 'shell-command
       "RET" 'org-capture
   
+      "a" '(:ignore t :which-key "applications")
+      "a a" 'org-agenda
+      "a t" 'vterm
+      "a d" 'dired
+      "a c" 'calc
+      "a e" 'eshell
+
+      "b" '(:ignore t :which-key "buffers")
+      "b b" 'ivy-switch-buffer
+      "b i" 'ibuffer
+      "b d" 'evil-delete-buffer
+  
+      "c" '(:ignore t :which-key "configuration")
+      "c r" 'jh/reload-config
+  
+      ;;; d
+
+      "e" '(:ignore t :which-key "eval")
+      "e e" 'eval-last-sexp
+      "e ;" 'eval-expression
+  
       "f" '(:ignore t :which-key "files")
       "f f" 'find-file
       "f s" 'save-buffer
       "f i" 'find-init-file
       "f m" 'jh/find-module
   
-      "b" '(:ignore t :which-key "buffers")
-      "b b" 'ivy-switch-buffer
-      "b i" 'ibuffer
-      "b d" 'evil-delete-buffer
+      "g" '(:ignore t :which-key "git")
+      "g s" 'magit-status
   
       "h" '(:ignore t :which-key "help")
       "h f" 'describe-function
@@ -122,15 +141,50 @@
       "h m" 'describe-mode
       "h p" 'describe-package
       "h a" 'counsel-apropos
+
+      ;;; i
   
-      "c" '(:ignore t :which-key "configuration")
-      "c r" 'jh/reload-config
+      "j" '(:ignore t :which-key "jumping")
+      "j d" 'xref-find-definitions-other-window
+      "j f" 'jump-to-function
+      "j l" 'imenu-list-smart-toggle
+      "j t" (lambda () (interactive) (find-file "~/Org/todo.org"))
+
+      ;;; k
+      "k" '(:ignore t :which-key "kipsu")
+      "k g" 'jh/kipsu-git
+
+      "m" '(:ignore t :which-key "meetings")
+      "m s" 'jh/standup-today
   
       "n" '(:ignore t :which-key "narrowing")
       "n r" 'narrow-to-region
       "n d" 'narrow-to-defun
       "n n" 'narrow-to-defun
       "n w" 'widen
+  
+      "o" '(:ignore t :which-key "org")
+      "o c" 'org-ctrl-c-ctrl-c
+      "o a" 'org-archive-subtree
+      "o t" 'org-todo
+      "o e" 'org-export-dispatch
+      "o o" 'org-open-at-point
+      "o s s" 'org-schedule
+      "o s d" 'org-deadline
+      "o l" 'org-insert-link
+      "o p" 'org-priority
+
+      "p" '(:ignore t :which-key "project")
+      "p p" 'projectile-switch-project
+      "p f" 'projectile-find-file
+      "p /" 'projectile-ag
+      "p c" 'compile
+
+      "s" '(:ignore t :which-key "searching")
+      "s g" 'how-do-i-google
+      "s s" 'how-do-i
+      "s d" 'how-do-i-ddg
+      "s o" 'how-do-i-so
   
       "w" '(:ignore t :which-key "windows")
       "w /" 'evil-window-vsplit
@@ -149,54 +203,10 @@
       "w =" 'balance-windows
       "w t f" 'flycheck-list-errors
   
-      "g" '(:ignore t :which-key "git")
-      "g s" 'magit-status
-  
-      "p" '(:ignore t :which-key "project")
-      "p p" 'projectile-switch-project
-      "p f" 'projectile-find-file
-      "p /" 'projectile-ag
-      "p c" 'compile
-  
-      "j" '(:ignore t :which-key "jumping")
-      "j d" 'xref-find-definitions-other-window
-      "j f" 'jump-to-function
-      "j l" 'imenu-list-smart-toggle
-      "j t" (lambda () (interactive) (find-file "~/Org/todo.org"))
-  
-      "e" '(:ignore t :which-key "eval")
-      "e e" 'eval-last-sexp
-      "e ;" 'eval-expression
-  
-      "s" '(:ignore t :which-key "searching")
-      "s g" 'how-do-i-google
-      "s s" 'how-do-i
-      "s d" 'how-do-i-ddg
-      "s o" 'how-do-i-so
-  
-      "o" '(:ignore t :which-key "org")
-      "o c" 'org-ctrl-c-ctrl-c
-      "o a" 'org-archive-subtree
-      "o t" 'org-todo
-      "o e" 'org-export-dispatch
-      "o o" 'org-open-at-point
-      "o s s" 'org-schedule
-      "o s d" 'org-deadline
-      "o l" 'org-insert-link
-      "o p" 'org-priority
-
-      "m" '(:ignore t :which-key "meetings")
-      "m s" 'jh/standup-today
   
       "=" 'text-scale-increase
-      "-" 'text-scale-decrease
+      "-" 'text-scale-decrease)))
   
-      "a" '(:ignore t :which-key "applications")
-      "a a" 'org-agenda
-      "a t" 'vterm
-      "a d" 'dired
-      "a c" 'calc
-      "a e" 'eshell)))
 
 (provide 'jh-bindings)
 ;;; jh-bindings.el ends here

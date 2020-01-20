@@ -50,7 +50,8 @@
            "REVIEW(r)"
            "TESTING(s)"
            "|"
-           "DONE(d!)"
+           "DONE(d)"
+           "DEFERRED(f)"
            "CANCELED(c@)"))))
 
 (provide 'jh-org)
