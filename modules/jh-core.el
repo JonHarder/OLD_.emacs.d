@@ -42,6 +42,7 @@
     :config
     (add-hook 'after-init-hook #'global-flycheck-mode))
 
+  (use-package avy)
 
   (use-package editorconfig
     :config

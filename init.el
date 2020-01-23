@@ -24,6 +24,9 @@
 ;; (package-initialize)
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
+;;; TODO: figure out better model between centralized logging module
+;;; and module specific imports of packages which have keys bound
+;;; in the bindings module.  This creates a gross implicit dependency
 
 (defvar jh/config nil)
 

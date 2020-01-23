@@ -147,6 +147,7 @@
       "j" '(:ignore t :which-key "jumping")
       "j d" 'xref-find-definitions-other-window
       "j f" 'jump-to-function
+      "j c" 'avy-goto-char
       "j l" 'imenu-list-smart-toggle
       "j t" (lambda () (interactive) (find-file "~/Org/todo.org"))
 
