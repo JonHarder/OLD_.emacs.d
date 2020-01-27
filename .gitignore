@@ -18,3 +18,8 @@ transient/
 /lsp-cache/
 /straight/modified/
 /.lsp-session-v1
+/geben/
+/forge-database.sqlite
+/bookmarks
+/.DS_Store
+/network-security.data

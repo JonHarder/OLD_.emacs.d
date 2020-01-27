@@ -127,11 +127,16 @@ e.x.
 
 Or an environment variable
 e.x.
-  (config/eval-var '(:env FOO))"
+  (config/eval-var '(:env FOO))
+
+Environment variable names can also specify a fallback by giving a value after
+the :default keyword
+e.x.
+  (config/eval-var '(:env FOO :default 1))"
   (interactive)
-   (if (config/is-env var)
-       (config/get-env var)
-     var))
+  (if (config/is-env var)
+      (config/get-env var)
+    var))
 
 
 (defun config/load-config (config)
