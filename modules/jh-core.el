@@ -27,6 +27,9 @@
   (straight-use-package 'dash)
   (straight-use-package 'ag)
 
+  (use-package helpful)
+    
+
   (straight-use-package 'fireplace)
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 

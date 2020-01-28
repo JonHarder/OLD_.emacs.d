@@ -135,9 +135,9 @@
       "g s" 'magit-status
   
       "h" '(:ignore t :which-key "help")
-      "h f" 'describe-function
-      "h k" 'describe-key
-      "h v" 'describe-variable
+      "h f" 'helpful-callable
+      "h k" 'helpful-key
+      "h v" 'helpful-variable
       "h m" 'describe-mode
       "h p" 'describe-package
       "h a" 'counsel-apropos
