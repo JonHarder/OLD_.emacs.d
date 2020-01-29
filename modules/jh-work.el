@@ -19,7 +19,7 @@
     (insert (format "https://kipsudev.atlassian.net/browse/KIPSU-%i" jira-number)))
   
   (use-package restclient
-    :mode "\\.http")
+    :mode ("\\.http\\'" . restclient-mode))
 
   (straight-use-package 'zpresent)
   (straight-use-package 'coffee-mode)
