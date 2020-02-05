@@ -10,7 +10,7 @@
   (use-package dockerfile-mode
     :mode "\\.Dockerfile")
 
-  (use-package 'docker
+  (use-package docker
     :config
     (dolist (mode '(docker-image-mode
                     docker-container-mode
