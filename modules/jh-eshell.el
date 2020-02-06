@@ -112,6 +112,7 @@
       (magit-log-head))
      (t (shell-command-to-string (string-join (cons "git" command) " "))))))
 
+(defalias 'eshell/gs (lambda () (eshell/git "status")))
 
 (defun modules/eshell--load (config)
   "Load configuration for eshell using CONFIG."
