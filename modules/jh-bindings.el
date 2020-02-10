@@ -73,6 +73,11 @@
 (defalias 'jump-to-function 'counsel-imenu)
 (defalias 'jump-to-definition 'xref-find-definitions)
 
+(defun jh/find-config ()
+  "Open the configuration file."
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
 (defun modules/bindings--load (config)
   "Configure all things key bindings using CONFIG."
   (put 'narrow-to-region 'disabled nil)
@@ -118,6 +123,7 @@
   
       "c" '(:ignore t :which-key "configuration")
       "c r" 'jh/reload-config
+      "c f" 'jh/find-config
   
       ;;; d
 
@@ -149,7 +155,6 @@
       "j f" 'jump-to-function
       "j c" 'avy-goto-char
       "j l" 'imenu-list-smart-toggle
-      "j t" (lambda () (interactive) (find-file "~/Org/todo.org"))
 
       ;;; k
       "k" '(:ignore t :which-key "kipsu")
