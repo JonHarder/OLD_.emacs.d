@@ -11,10 +11,8 @@
   (use-package emmet-mode
     :hook 'sgml-mode)
   
-  (use-package rainbow-mode
-    :hook (vue-mode css-mode))
-  
-  (straight-use-package 'vue-mode)
+  (use-package web-mode
+    :mode "\\.vue\\'")
 
   (straight-use-package 'rjsx-mode)
   
