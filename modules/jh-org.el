@@ -31,6 +31,7 @@
    '((emacs-lisp . t)
      (shell . t)
      (sql . t)
+     (haskell t)
      (python . t)
      (php . t)
      (js . t)))
