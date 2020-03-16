@@ -26,15 +26,19 @@
    '(("p" "Pull Request" entry (file+headline "~/Org/pull-requests.org" "Pull Requests")
       "* TODO %?\n  SCHEDULED: %t\n  - %^L")))
 
+  (use-package ob-mermaid)
+
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
      (shell . t)
      (sql . t)
+     (mermaid . t)
      (haskell t)
      (python . t)
      (php . t)
      (js . t)))
+
   
   (use-package org-bullets
     :config

@@ -26,6 +26,10 @@
   (straight-use-package 'wsd-mode)
   (straight-use-package 'notmuch)
 
+  (straight-use-package 'mermaid-mode)
+  (straight-use-package 'ob-mermaid)
+  (setq ob-mermaid-cli-path "~/bin/mmdc")
+
   (defun jh/kipsu-git ()
     (interactive)
     (magit-status jh/kipsu-dir))

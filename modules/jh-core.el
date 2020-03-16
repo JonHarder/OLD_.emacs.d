@@ -9,6 +9,7 @@
 (defun jh/prog-mode-hook ()
   "Settings that should be enabled or disabled for all programming modes."
   (setq-default whitespace-style '(face tabs space-before-tab line-tail empty space-after-tab tab-mark))
+  (hl-line-mode)
   (whitespace-mode 1))
 
 

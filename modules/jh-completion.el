@@ -32,7 +32,7 @@
     :after (counsel general evil)
     :custom
     (ivy-use-virtual-buffers 1)
-    (ivy-hight 20)
+    (ivy-hight 30)
     (ivy-virtual-abbreviate 'full)
     (ivy-format-function #'ivy-format-function-line)
     :config
