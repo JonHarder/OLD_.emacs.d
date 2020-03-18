@@ -23,6 +23,12 @@
   (find-file "~/.emacs.d/init.el"))
 
 
+(defun find-shell-config ()
+  "Open shell configuration file."
+  (interactive)
+  (find-file "~/.config/fish/config.fish"))
+
+
 (defun new-buffer (&optional name)
   "Create a new buffer, called NAME."
   (interactive)
@@ -132,6 +138,7 @@
       "e ;" 'eval-expression
   
       "f" '(:ignore t :which-key "files")
+      "f c" 'find-shell-config
       "f f" 'find-file
       "f s" 'save-buffer
       "f i" 'find-init-file

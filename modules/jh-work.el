@@ -26,9 +26,14 @@
   (straight-use-package 'wsd-mode)
   (straight-use-package 'notmuch)
 
-  (straight-use-package 'mermaid-mode)
-  (straight-use-package 'ob-mermaid)
-  (setq ob-mermaid-cli-path "~/bin/mmdc")
+  (use-package mermaid-mode
+    :mode ("\\.mermaid\\'" . mermaid-mode))
+
+  (use-package ob-mermaid
+    :custom
+    (ob-mermaid-cli-path "~/bin/mmdc")
+    (mermaid-mmdc-location "~/bin/mmdc")
+    (mermaid-output-format ".svg"))
 
   (defun jh/kipsu-git ()
     (interactive)
