@@ -44,6 +44,7 @@
 
   (use-package flycheck
     :config
+    (setq-default flycheck-emacs-lisp-load-path 'inherit)
     (add-hook 'after-init-hook #'global-flycheck-mode))
 
   (use-package avy)

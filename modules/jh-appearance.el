@@ -5,6 +5,7 @@
 ;;; Code:
 (require 'seq)
 
+
 (defun jh/pull-theme (theme &optional theme-package)
   "Download THEME-PACKAGE if THEME is not a built in theme."
   (let* ((theme-name (symbol-name theme))
@@ -45,6 +46,19 @@
   (menu-bar-mode -1)
   (toggle-scroll-bar -1)
   (tool-bar-mode -1)
+
+  (use-package diff-hl
+    :config
+    (setq diff-hl-draw-borders nil)
+    (setq diff-hl-side 'left)
+    :hook ((after-init . global-diff-hl-mode)))
+
+  (fringe-mode '(8 . 8))
+  (setq-default fringes-outside-margins nil)
+  (setq-default indicate-buffer-boundaries nil)
+  (setq-default indicate-empty-lines nil)
+  (setq-default overflow-newlines-into-fringe t)
+
 
   (when (alist-get :highlight-line config nil)
     (add-hook 'prog-mode-hook 'hl-line-mode))
