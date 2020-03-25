@@ -29,6 +29,8 @@
   (straight-use-package 'ag)
 
   (use-package helpful)
+
+  (use-package rg)
     
 
   (straight-use-package 'fireplace)
