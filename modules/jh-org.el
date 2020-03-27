@@ -40,12 +40,11 @@
      (js . t)))
 
   
-  (use-package org-bullets
-    :config
-    (add-hook
-     'org-mode-hook
-     (lambda ()
-       (org-bullets-mode 1))))
+  (use-package org-superstar
+    :custom
+    (org-hide-leading-stars t)
+    (org-superstar-special-todo-items t)
+    :hook (org-mode . org-superstar-mode))
   
   (setq org-todo-keywords
         '((sequence
