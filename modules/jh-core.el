@@ -29,6 +29,10 @@
   (straight-use-package 'ag)
 
   (use-package helpful)
+
+  (use-package rg
+    :config
+    (rg-enable-menu))
     
 
   (straight-use-package 'fireplace)
