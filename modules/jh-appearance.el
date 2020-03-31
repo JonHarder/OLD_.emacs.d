@@ -71,7 +71,7 @@
         (color-theme-package (alist-get :color-theme-package config))
         (font (alist-get :font config))
         (font-size (alist-get :font-size config)))
-    (when (string-prefix-p "modus-" color-theme)
+    (when (string-prefix-p "modus-" (symbol-name color-theme))
       (defvar modus-operandi-theme-bold-constructs t)
       (defvar modus-operandi-theme-proportional-fonts nil)
       (defvar modus-operandi-theme-scale-headings t))

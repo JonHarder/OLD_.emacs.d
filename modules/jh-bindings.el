@@ -118,7 +118,7 @@
       "a" '(:ignore t :which-key "applications")
       "a a" 'org-agenda
       "a t" 'vterm
-      "a d" 'dired
+      "a d" (lambda () (interactive) (dired "."))
       "a c" 'calc
       "a e" 'eshell
 
@@ -190,7 +190,7 @@
       "p" '(:ignore t :which-key "project")
       "p p" 'projectile-switch-project
       "p f" 'projectile-find-file
-      "p /" 'projectile-ag
+      "p /" 'rg
       "p c" 'compile
 
       "s" '(:ignore t :which-key "searching")

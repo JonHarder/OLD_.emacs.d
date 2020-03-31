@@ -43,7 +43,7 @@
   (use-package org-superstar
     :custom
     (org-hide-leading-stars t)
-    (org-superstar-special-todo-items t)
+    (org-superstar-special-todo-items nil)
     :hook (org-mode . org-superstar-mode))
   
   (setq org-todo-keywords
