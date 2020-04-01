@@ -1,10 +1,11 @@
 ;;; org --- Summary
-;; All things related or org mode configuration.
+;; All things related to org mode configuration.
 
 ;;; Commentary:
 
 ;;; Code:
 (require 'org)
+(require 'org-habit)
 (require 'org-agenda)
 (require 'ob-python)
 (require 'ob-php (concat user-emacs-directory "ob-php.el"))
@@ -22,9 +23,13 @@
    org-babel-python-command "python3"
    org-highest-priority ?A
    org-lowest-priority ?F
+   org-treat-insert-todo-heading-as-stage-change t
+   org-log-into-drawer t
    org-capture-templates
    '(("p" "Pull Request" entry (file+headline "~/Org/pull-requests.org" "Pull Requests")
       "* TODO %?\n  SCHEDULED: %t\n  - %^L")))
+
+  (add-to-list 'org-modules 'org-habit t)
 
   (use-package ob-mermaid)
 
@@ -48,15 +53,15 @@
   
   (setq org-todo-keywords
         '((sequence
+           "TODO(t!)"
            "BLOCKED(b)"
-           "TODO(t)"
            "WORKING(w)"
            "REVIEW(r)"
            "TESTING(s)"
            "|"
-           "DONE(d)"
-           "DEFERRED(f)"
-           "CANCELED(c@)"))))
+           "DONE(d!)"
+           "DEFERRED(f!)"
+           "CANCELED(c!)"))))
 
 (provide 'jh-org)
 ;;; jh-org.el ends here
