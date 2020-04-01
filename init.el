@@ -51,6 +51,7 @@
             haskell
             elm
             eshell
+            elixir
             term
             terraform
             search
