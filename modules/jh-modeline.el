@@ -10,11 +10,7 @@
   (use-package doom-modeline
     :init
     (setq doom-modeline-major-mode-color-icon t)
-    :hook (after-init . doom-modeline-mode))
-
-  (use-package nyan-mode
-    :config
-    (nyan-mode)))
+    :hook (after-init . doom-modeline-mode)))
 
 (provide 'jh-modeline)
 ;;; jh-modeline.el ends here

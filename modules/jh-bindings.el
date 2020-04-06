@@ -39,6 +39,21 @@
     buf))
 
 
+(defun jh/switch-buffer-right (buf)
+  "Split window to the right, and switch to buffer BUF."
+  (interactive "bBuffer: ")
+  (evil-window-vsplit)
+  (evil-window-right 1)
+  (switch-to-buffer buf))
+
+
+(defun jh/switch-buffer-left (buf)
+  "Split window to the left, and switch to buffer BUF."
+  (interactive "bBuffer: ")
+  (evil-window-vsplit)
+  (switch-to-buffer buf))
+
+
 (defun jh/term ()
   "Open my terminal."
   (interactive)
@@ -126,6 +141,8 @@
       "b b" 'ivy-switch-buffer
       "b i" 'ibuffer
       "b d" 'evil-delete-buffer
+      "b l" 'jh/switch-buffer-right
+      "b r" 'jh/switch-buffer-left
   
       "c" '(:ignore t :which-key "configuration")
       "c r" 'jh/reload-config
