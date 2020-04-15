@@ -44,6 +44,7 @@
 (setq inhibit-startup-message t)
 (setq initial-scratch-message "")
 (setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 (setq tab-width 4)
 (setq dired-listing-switches "-alh")
 (setq ring-bell-function 'ignore)

@@ -40,7 +40,7 @@
 
 
 (defun jh/switch-buffer-right (buf)
-  "Split window to the right, and switch to buffer BUF."
+  "Split window to the right, and switch to buffer."
   (interactive "bBuffer: ")
   (evil-window-vsplit)
   (evil-window-right 1)
@@ -48,7 +48,7 @@
 
 
 (defun jh/switch-buffer-left (buf)
-  "Split window to the left, and switch to buffer BUF."
+  "Split window to the left, and switch to buffer."
   (interactive "bBuffer: ")
   (evil-window-vsplit)
   (switch-to-buffer buf))
@@ -91,7 +91,7 @@
   (evil-exit-visual-state)
   (message "copied to clipboard"))
 
-(defalias 'jump-to-function 'counsel-imenu)
+;; (defalias 'jump-to-function 'counsel-imenu)
 (defalias 'jump-to-definition 'xref-find-definitions)
 
 (defun jh/find-config ()
@@ -117,7 +117,7 @@
     (general-create-definer space-leader :prefix "SPC")
     (general-define-key
      :states 'normal
-     "/" 'swiper
+     ;; "/" 'swiper
      "M-v" 'jh/paste-from-mac-clipboard
      :states 'insert
      "M-v" 'jh/paste-from-mac-clipboard
@@ -125,10 +125,11 @@
      "M-c" 'jh/copy-to-mac-clipboard)
     (space-leader
       :keymaps 'normal
-      "SPC" 'counsel-M-x
+      "SPC" 'execute-extended-command
       ";" 'eval-expression
       "1" 'shell-command
       "RET" 'org-capture
+      "/" 'occur
   
       "a" '(:ignore t :which-key "applications")
       "a a" 'org-agenda
@@ -138,11 +139,11 @@
       "a e" 'eshell
 
       "b" '(:ignore t :which-key "buffers")
-      "b b" 'ivy-switch-buffer
+      "b b" 'switch-to-buffer
       "b i" 'ibuffer
       "b d" 'evil-delete-buffer
-      "b l" 'jh/switch-buffer-right
-      "b r" 'jh/switch-buffer-left
+      "b l" 'jh/switch-buffer-left
+      "b r" 'jh/switch-buffer-right
   
       "c" '(:ignore t :which-key "configuration")
       "c r" 'jh/reload-config
@@ -170,13 +171,13 @@
       "h v" 'helpful-variable
       "h m" 'describe-mode
       "h p" 'describe-package
-      "h a" 'counsel-apropos
+      "h a" 'apropos
 
       ;;; i
   
       "j" '(:ignore t :which-key "jumping")
-      "j d" 'xref-find-definitions-other-window
-      "j f" 'jump-to-function
+      "j d" 'dumb-jump-go
+      "j f" 'dumb-jump-go
       "j c" 'avy-goto-char
       "j l" 'imenu-list-smart-toggle
 
