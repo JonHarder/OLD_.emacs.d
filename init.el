@@ -49,6 +49,7 @@
             evil
             lisp
             haskell
+            rust
             elm
             eshell
             elixir

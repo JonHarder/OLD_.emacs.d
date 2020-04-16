@@ -18,7 +18,7 @@
 
   (use-package projectile
     :init
-    (setq-default projectile-completion-system 'ivy)
+    (setq-default projectile-completion-system 'selectrum-read)
     :config
     (projectile-mode +1))
   

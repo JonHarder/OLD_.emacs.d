@@ -176,8 +176,7 @@
       ;;; i
   
       "j" '(:ignore t :which-key "jumping")
-      "j d" 'dumb-jump-go
-      "j f" 'dumb-jump-go
+      "j d" 'dumb-jump-go-other-window
       "j c" 'avy-goto-char
       "j l" 'imenu-list-smart-toggle
 
