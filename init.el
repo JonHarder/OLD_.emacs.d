@@ -42,6 +42,7 @@
             modeline
             completion
             bindings
+            code
             git
             org
             icons
@@ -52,7 +53,6 @@
             rust
             elm
             eshell
-            elixir
             term
             terraform
             search

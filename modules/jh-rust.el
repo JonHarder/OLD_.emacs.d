@@ -12,5 +12,5 @@
             (lambda () (setq indent-tabs-mode nil))))
 
 
-(provide 'jh-ruest)
+(provide 'jh-rust)
 ;;; jh-rust.el ends here

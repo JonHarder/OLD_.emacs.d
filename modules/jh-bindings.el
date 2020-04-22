@@ -188,7 +188,7 @@
       "m s" 'jh/standup-today
   
       "n" '(:ignore t :which-key "narrowing")
-      "n r" 'narrow-to-region
+      ;; "n r" 'narrow-to-region
       "n d" 'narrow-to-defun
       "n n" 'narrow-to-defun
       "n w" 'widen
