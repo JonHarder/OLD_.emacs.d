@@ -9,26 +9,17 @@
 
 
 (defun modules/python--load (config)
+  "Python configuration using CONFIG."
   (use-package flycheck-pycheckers
     :straight t
     :config
     (with-eval-after-load 'flycheck
       (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))
 
-  (add-to-list 'auto-mode-alist '("\\Pipfile\\'" . conf-mode))
+  (straight-use-package 'pyvenv)
 
-  (use-package elpy
-    :straight t
-    :init
-    (elpy-enable))
-  
-  (use-package pipenv
-    :straight t
-    :hook (python-mode . pipenv-mode)
-    :init
-    (setq
-     pipenv-projectile-after-switch-function
-     #'pipenv-projectile-after-switch-extended)))
+  (add-to-list 'auto-mode-alist '("\\Pipfile\\'" . conf-mode)))
+
 
 (provide 'jh-python)
 ;;; jh-python.el ends here

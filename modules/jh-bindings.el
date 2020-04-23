@@ -22,6 +22,11 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+(defun find-todo-file ()
+  "Go to my tasks file."
+  (interactive)
+  (find-file "~/Org/todo.org"))
+
 
 (defun find-shell-config ()
   "Open shell configuration file."
@@ -160,6 +165,7 @@
       "f f" 'find-file
       "f s" 'save-buffer
       "f i" 'find-init-file
+      "f t" 'find-todo-file
       "f m" 'jh/find-module
   
       "g" '(:ignore t :which-key "git")
