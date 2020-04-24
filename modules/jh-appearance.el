@@ -8,31 +8,45 @@
 
 (defun jh/pull-theme (theme &optional theme-package)
   "Download THEME-PACKAGE if THEME is not a built in theme."
-  (let* ((theme-name (symbol-name theme))
-         (theme-package (if theme-package theme-package (intern (format "%s-theme" theme-name)))))
+  (let ((theme-package (if theme-package theme-package (intern (format "%s-theme" theme)))))
     (when (not (memq theme (custom-available-themes)))
       (straight-use-package theme-package))))
 
 
 (defun jh/load-theme (theme)
   "Load THEME, disabling other enabled themes."
-  (let* ((theme-name (symbol-name theme))
-         (other-themes (seq-filter (lambda (other-theme)
-                                    (not (string-equal theme-name other-theme)))
-                       custom-enabled-themes)))
+  (let ((other-themes (seq-filter (lambda (other-theme)
+                                    (not (string-equal theme other-theme)))
+                                  custom-enabled-themes)))
     (mapc 'disable-theme other-themes)
-    (load-theme theme t)))
+    (load-theme (intern theme) t)))
+
+
+(defun jh/theme-config (theme)
+  "Perform any theme specific configuration for a given THEME."
+  (cond
+   ;;; modus themes
+   ((string-prefix-p "modus-" theme)
+    (progn
+      (defvar modus-operandi-theme-bold-constructs t)
+      (defvar modus-operandi-theme-proportional-fonts nil)
+      (defvar modus-operandi-theme-scale-headings t)
+      (defvar modus-vivendi-theme-bold-constructs t)
+      (defvar modus-vivendi-theme-proportional-fonts nil)
+      (defvar modus-vivendi-theme-scale-headings t)))
+   ;;; doom themes
+   ((functionp 'doom-themes-org-config)
+    (doom-themes-org-config))))
 
 
 (defun jh/set-theme (theme &optional theme-package)
   "Enable THEME, optionally found in THEME-PACKAGE.
 
  If theme is not a built in theme, and not present on the machine, it will be installed."
-  (interactive)
+  (interactive "sTheme: ")
   (jh/pull-theme theme theme-package)
   (jh/load-theme theme)
-  (when (functionp 'doom-themes-org-config)
-    (doom-themes-org-config)))
+  (jh/theme-config theme))
 
 
 (defun modules/appearance--load (config)
@@ -59,18 +73,6 @@
   (setq-default indicate-empty-lines nil)
   (setq-default overflow-newlines-into-fringe t)
 
-  (defun theme-config (theme)
-    (cond
-     ((string-prefix-p "modus-" theme)
-      (progn
-        (defvar modus-operandi-theme-bold-constructs t)
-        (defvar modus-operandi-theme-proportional-fonts nil)
-        (defvar modus-operandi-theme-scale-headings t)
-        (defvar modus-vivendi-theme-bold-constructs t)
-        (defvar modus-vivendi-theme-proportional-fonts nil)
-        (defvar modus-vivendi-theme-scale-headings t)))))
-
-
   (when (alist-get :highlight-line config nil)
     (add-hook 'prog-mode-hook 'hl-line-mode))
 
@@ -82,8 +84,7 @@
         (color-theme-package (alist-get :color-theme-package config))
         (font (alist-get :font config))
         (font-size (alist-get :font-size config)))
-    (theme-config (symbol-name color-theme))
-    (jh/set-theme color-theme color-theme-package)
+    (jh/set-theme (symbol-name color-theme) (symbol-name color-theme-package))
     (set-frame-font (format "%s %s" font font-size))))
 
 
