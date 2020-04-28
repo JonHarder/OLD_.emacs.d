@@ -7,7 +7,23 @@
 
 (defun modules/code--load (config)
   "Module definition for generic programming, configured by CONFIG."
-  (straight-use-package 'dumb-jump))
+  (straight-use-package 'dumb-jump)
+
+  (defun jh/prog-mode-hook ()
+    "Settings that should be enabled or disabled for all programming modes."
+    (setq-default whitespace-style '(face tabs space-before-tab line-tail empty space-after-tab tab-mark))
+    (hl-line-mode)
+    (whitespace-mode 1))
+
+  (add-hook 'prog-mode-hook #'jh/prog-mode-hook)
+
+  (use-package indent-guide
+    :hook ((prog-mode . indent-guide-mode)
+           (hcl-mode . indent-guide-mode)))
+
+  (use-package editorconfig
+    :config
+    (editorconfig-mode 1)))
 
 
 (provide 'jh-code)
