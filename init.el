@@ -64,7 +64,6 @@
             web
             ansible
             mail
-            productivity
             kubernetes
             work))
 
