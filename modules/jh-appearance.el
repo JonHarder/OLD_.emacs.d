@@ -13,15 +13,6 @@
       (straight-use-package theme-package))))
 
 
-(defun jh/load-theme (theme)
-  "Load THEME, disabling other enabled themes."
-  (let ((other-themes (seq-filter (lambda (other-theme)
-                                    (not (string-equal theme other-theme)))
-                                  custom-enabled-themes)))
-    (mapc 'disable-theme other-themes)
-    (load-theme (intern theme) t)))
-
-
 (defun jh/theme-config (theme)
   "Perform any theme specific configuration for a given THEME."
   (cond
@@ -39,14 +30,24 @@
     (doom-themes-org-config))))
 
 
+(defun jh/load-theme (theme)
+  "Load THEME, disabling other enabled themes."
+  (interactive "sTheme: ")
+  (let ((other-themes (seq-filter (lambda (other-theme)
+                                    (not (string-equal theme other-theme)))
+                                  custom-enabled-themes)))
+    (mapc 'disable-theme other-themes)
+    (load-theme (intern theme) t)
+    (jh/theme-config theme)))
+
+
 (defun jh/set-theme (theme &optional theme-package)
   "Enable THEME, optionally found in THEME-PACKAGE.
 
  If theme is not a built in theme, and not present on the machine, it will be installed."
   (interactive "sTheme: ")
   (jh/pull-theme theme theme-package)
-  (jh/load-theme theme)
-  (jh/theme-config theme))
+  (jh/load-theme theme))
 
 
 (defun modules/appearance--load (config)
