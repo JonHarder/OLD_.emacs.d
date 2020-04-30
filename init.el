@@ -22,6 +22,9 @@
 
 ;;; Code:
 ;; (package-initialize)
+(defvar orig-gc-cons-threshold gc-cons-threshold)
+(setq gc-cons-threshold 80000000)
+
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
 ;;; TODO: figure out better model between centralized bindings module
@@ -67,6 +70,7 @@
             kubernetes
             work))
 
+(setq gc-cons-threshold orig-gc-cons-threshold)
 
 (provide 'init)
 ;;; init.el ends here

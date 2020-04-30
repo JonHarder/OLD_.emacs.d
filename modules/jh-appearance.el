@@ -85,7 +85,7 @@
         (color-theme-package (alist-get :color-theme-package config))
         (font (alist-get :font config))
         (font-size (alist-get :font-size config)))
-    (jh/set-theme (symbol-name color-theme) (symbol-name color-theme-package))
+    (jh/set-theme (symbol-name color-theme) color-theme-package)
     (set-frame-font (format "%s %s" font font-size))))
 
 

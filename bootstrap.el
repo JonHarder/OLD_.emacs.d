@@ -8,7 +8,6 @@
 ;; Bootstrap straight.el
 (require 'contrib "~/.emacs.d/contrib")
 
-
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -105,14 +104,14 @@
   "Get the value of the environment variable S, normalizing to bool if IS-BOOL."
   (interactive)
   (let* ((var-name (plist-get s :env))
-	 (default  (plist-get s :default))
-	 (type     (plist-get s :type))
-	 (var (or (exec-path-from-shell-copy-env (symbol-name var-name))
-		  (symbol-name default))))
+         (default  (plist-get s :default))
+         (type     (plist-get s :type))
+         (var (or (exec-path-from-shell-copy-env (symbol-name var-name))
+                  (symbol-name default))))
     (when (null var)
       (error (format "environment variable '%s' was not found and no :default provided" var-name)))
     (if (and type (= type 'bool))
-        (string-equal "1" var)
+        (or (string-equal "1" var) (string-equal "true" var))
       (intern var))))
 
 
