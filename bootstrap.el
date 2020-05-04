@@ -76,7 +76,6 @@
           '("PATH" "MANPATH"))
     (exec-path-from-shell-initialize)))
 
-
 (defun module-init-func (module-name)
   "Helper function to get the load method of MODULE-NAME."
   (intern (format "modules/%s--load" module-name)))
@@ -101,13 +100,15 @@
 
 
 (defun config/get-env (s)
-  "Get the value of the environment variable S, normalizing to bool if IS-BOOL."
+  "Get the value of the environment variable S, normalizing to bool if keyword :type is bool."
   (interactive)
   (let* ((var-name (plist-get s :env))
          (default  (plist-get s :default))
          (type     (plist-get s :type))
-         (var (or (exec-path-from-shell-copy-env (symbol-name var-name))
-                  (symbol-name default))))
+         (var (if (string-equal window-system "w32")
+                  default
+                (or (exec-path-from-shell-copy-env var-name)
+                    default))))
     (when (null var)
       (error (format "environment variable '%s' was not found and no :default provided" var-name)))
     (if (and type (= type 'bool))
