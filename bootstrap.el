@@ -70,6 +70,7 @@
 
 
 (use-package exec-path-from-shell
+  :demand
   :config
   (when (memq window-system '(mac ns x))
     (setq-default exec-path-from-shell-variables

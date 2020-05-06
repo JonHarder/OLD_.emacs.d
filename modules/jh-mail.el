@@ -6,7 +6,8 @@
 ;;; Code:
 (defun modules/mail--load (config)
   "Load some general ansible packages and ignore CONFIG."
-  (straight-use-package 'notmuch)
+  (use-package notmuch
+    :demand)
   (require 'smtpmail)
   (setq mail-user-agent 'message-user-agent
         user-mail-address "jharder@kipsu.com"

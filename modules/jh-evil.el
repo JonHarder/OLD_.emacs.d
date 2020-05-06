@@ -11,7 +11,7 @@
 (defun modules/evil--load (config)
   "Some stuff with CONFIG."
   (use-package evil
-    :straight t
+    :demand
     :init
     (setq evil-search-module 'evil-search
           evil-ex-complete-emacs-commands t
@@ -32,22 +32,22 @@
   
   
   (use-package vi-tilde-fringe
-    :straight t
+    :defer 3
     :hook (prog-mode . vi-tilde-fringe-mode))
   
   
   (use-package evil-surround
-    :straight t
+    :demand
     :config
     (global-evil-surround-mode 1))
   
   
   (use-package evil-magit
-    :straight t)
+    :defer 5)
   
   
   (use-package evil-org
-    :straight t
+    :demand
     :after org
     :hook ((org-mode . evil-org-mode)
            (evil-org-mode . evil-org-set-key-theme))
@@ -58,7 +58,7 @@
   
   (use-package evil-collection
     :after evil
-    :straight t
+    :demand
     :config
     (evil-collection-init)))
 

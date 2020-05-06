@@ -13,10 +13,12 @@
 
 (defun modules/completion--load (config)
   (use-package company
+    :demand
     :config
     (company-mode t))
 
   (use-package projectile
+    :demand
     :init
     (setq-default projectile-completion-system 'selectrum-read)
     :config
@@ -28,10 +30,11 @@
   ;;   :config
   ;;   (amx-mode))
 
-  (straight-use-package 'selectrum-prescient)
-  (selectrum-mode +1)
-  (selectrum-prescient-mode +1)
-  (prescient-persist-mode +1))
+  (use-package selectrum-prescient
+    :config
+    (selectrum-mode +1)
+    (selectrum-prescient-mode +1)
+    (prescient-persist-mode +1)))
   
   ;; (use-package ivy
   ;;   :after (counsel general evil)

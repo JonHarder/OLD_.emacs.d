@@ -5,8 +5,10 @@
 ;;; Code:
 
 (defun modules/kubernetes--load (config)
-  (straight-use-package 'kubernetes)
-  (straight-use-package 'kubernetes-evil))
+  (use-package kubernetes
+    :demand)
+  (use-package kubernetes-evil
+    :demand))
 
 (provide 'jh-kubernetes)
 ;;; jh-kubernetes.el ends here

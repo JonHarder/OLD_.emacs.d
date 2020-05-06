@@ -6,12 +6,13 @@
 ;;; Code:
 (defun modules/lisp--load (config)
   (use-package slime
-    :straight t
+    :demand
     :init
     (setq inferior-lisp-program "/usr/bin/sbcl"
           slime-contribs '(slime-fancy)))
 
   (use-package parinfer
+    :demand
     :init
     (progn
       (setq parinfer-extensions
@@ -26,5 +27,5 @@
       (add-hook 'lisp-mode-hook #'parinfer-mode))))
 
 
-(provide 'jh-clojure)
-;;; jh-clojure.el ends here
+(provide 'jh-lisp)
+;;; jh-lisp.el ends here
