@@ -11,7 +11,7 @@
 (defun modules/python--load (config)
   "Python configuration using CONFIG."
   (use-package flycheck-pycheckers
-    :straight t
+    :defer 8
     :config
     (with-eval-after-load 'flycheck
       (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))

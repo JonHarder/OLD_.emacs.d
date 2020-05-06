@@ -36,11 +36,13 @@
   (use-package ac-php)
 
   (use-package php-mode
+    :defer 3
     :init
     (add-hook 'php-mode-hook #'my-php-mode-hook))
   
   
-  (use-package phpunit))
+  (use-package phpunit
+    :defer 3))
   
   ;; (use-package lsp-mode
   ;;   :config

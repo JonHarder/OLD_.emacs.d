@@ -11,7 +11,8 @@
   "Load term stuff using CONFIG."
   (straight-use-package 'fish-mode)
 
-  (straight-use-package 'vterm)
+  (use-package vterm
+    :defer 1)
 
   (defadvice term-handle-exit
       (after term-kill-buffer-on-exit activate)
