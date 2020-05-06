@@ -31,7 +31,8 @@
 
   (add-to-list 'org-modules 'org-habit t)
 
-  (use-package ob-mermaid)
+  (use-package ob-mermaid
+    :defer 5)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -46,6 +47,7 @@
 
   
   (use-package org-superstar
+    :demand t
     :custom
     (org-hide-leading-stars t)
     (org-superstar-special-todo-items nil)

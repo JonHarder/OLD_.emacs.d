@@ -6,13 +6,13 @@
 ;;; Code:
 (defun modules/lisp--load (config)
   (use-package slime
-    :demand
+    :demand t
     :init
     (setq inferior-lisp-program "/usr/bin/sbcl"
           slime-contribs '(slime-fancy)))
 
   (use-package parinfer
-    :demand
+    :demand t
     :init
     (progn
       (setq parinfer-extensions

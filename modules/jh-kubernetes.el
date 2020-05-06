@@ -6,9 +6,9 @@
 
 (defun modules/kubernetes--load (config)
   (use-package kubernetes
-    :demand)
+    :defer 2)
   (use-package kubernetes-evil
-    :demand))
+    :defer 2))
 
 (provide 'jh-kubernetes)
 ;;; jh-kubernetes.el ends here

@@ -11,7 +11,7 @@
     :mode "\\.Dockerfile")
 
   (use-package docker
-    :demand
+    :defer 2
     :config
     (dolist (mode '(docker-image-mode
                     docker-container-mode

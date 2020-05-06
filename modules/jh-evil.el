@@ -11,7 +11,7 @@
 (defun modules/evil--load (config)
   "Some stuff with CONFIG."
   (use-package evil
-    :demand
+    :demand t
     :init
     (setq evil-search-module 'evil-search
           evil-ex-complete-emacs-commands t
@@ -37,17 +37,17 @@
   
   
   (use-package evil-surround
-    :demand
+    :defer 1
     :config
     (global-evil-surround-mode 1))
   
   
   (use-package evil-magit
-    :defer 5)
+    :demand t)
   
   
   (use-package evil-org
-    :demand
+    :defer 1
     :after org
     :hook ((org-mode . evil-org-mode)
            (evil-org-mode . evil-org-set-key-theme))
@@ -58,7 +58,7 @@
   
   (use-package evil-collection
     :after evil
-    :demand
+    :demand t
     :config
     (evil-collection-init)))
 

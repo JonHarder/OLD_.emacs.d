@@ -13,12 +13,12 @@
 
 (defun modules/completion--load (config)
   (use-package company
-    :demand
+    :defer 3
     :config
     (company-mode t))
 
   (use-package projectile
-    :demand
+    :defer 3
     :init
     (setq-default projectile-completion-system 'selectrum-read)
     :config
