@@ -81,12 +81,14 @@
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
-  (let ((color-theme (alist-get :color-theme config))
-        (color-theme-package (alist-get :color-theme-package config))
-        (font (alist-get :font config))
-        (font-size (alist-get :font-size config)))
+  (let* ((color-theme (alist-get :color-theme config))
+         (color-theme-package (alist-get :color-theme-package config))
+         (font-name (alist-get :font config))
+         (font-size (alist-get :font-size config))
+         (font (format "%s %s" font-name font-size)))
     (jh/set-theme (symbol-name color-theme) color-theme-package)
-    (set-frame-font (format "%s %s" font font-size))))
+    (set-frame-font font)
+    (add-to-list 'default-frame-alist `(font . ,font))))
 
 
 (provide 'jh-appearance)

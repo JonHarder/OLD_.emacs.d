@@ -43,6 +43,7 @@
   :modules (core
             appearance
             modeline
+            buffers
             completion
             bindings
             code
