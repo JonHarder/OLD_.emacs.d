@@ -26,8 +26,11 @@
       (defvar modus-vivendi-theme-proportional-fonts nil)
       (defvar modus-vivendi-theme-scale-headings t)))
    ;;; doom themes
-   ((functionp 'doom-themes-org-config)
-    (doom-themes-org-config))))
+   ((string-prefix-p "doom-" theme)
+    (progn
+      (doom-themes-org-config)
+      (setq doom-themes-enable-bold t
+            doom-themes-enable-italic t)))))
 
 
 (defun jh/load-theme (theme)

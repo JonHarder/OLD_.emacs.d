@@ -8,8 +8,14 @@
   (straight-use-package 'ranger)
   (straight-use-package 'diredfl)
   (put 'dired-find-alternate-file 'disabled nil)
-  (straight-use-package 'dired-plus)
-  (diredp-toggle-find-file-reuse-dir 1)
+
+  (use-package dired-narrow
+    :config
+    (general-define-key
+     :states 'normal
+     :keymaps 'dired-mode-map
+     "/" 'dired-narrow))
+
   (use-package dired-subtree
     :defer 2
     :bind (:map dired-mode-map
