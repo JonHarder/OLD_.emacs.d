@@ -16,11 +16,19 @@
      :keymaps 'dired-mode-map
      "/" 'dired-narrow))
 
+  (use-package dired-collapse)
+  (use-package dired-rainbow)
+
   (use-package dired-subtree
-    :defer 2
-    :bind (:map dired-mode-map
-            ("<tab>" . 'dired-subtree-toggle)
-            ("<c-tab>" . 'dired-subtree-cycle))))
+    :config
+    (general-define-key
+     :states 'normal
+     :keymaps 'dired-mode-map
+     "TAB" 'dired-subtree-toggle
+     [?\C-\t] 'dired-subtree-cycle)))
+    ;; :bind (:map dired-mode-map
+    ;;         ("<tab>" . 'dired-subtree-toggle)
+    ;;         ("<c-tab>" . 'dired-subtree-cycle))))
 
 (provide 'jh-dired)
 ;;; jh-dired.el ends here

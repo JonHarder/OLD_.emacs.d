@@ -9,7 +9,7 @@
 (defun jh/pull-theme (theme &optional theme-package)
   "Download THEME-PACKAGE if THEME is not a built in theme."
   (let ((theme-package (if theme-package theme-package (intern (format "%s-theme" theme)))))
-    (when (not (memq theme (custom-available-themes)))
+    (when (not (memq (intern theme) (custom-available-themes)))
       (straight-use-package theme-package))))
 
 
@@ -33,9 +33,8 @@
             doom-themes-enable-italic t)))))
 
 
-(defun jh/load-theme (theme)
+(defun jh/set-theme (theme)
   "Load THEME, disabling other enabled themes."
-  (interactive "sTheme: ")
   (let ((other-themes (seq-filter (lambda (other-theme)
                                     (not (string-equal theme other-theme)))
                                   custom-enabled-themes)))
@@ -44,13 +43,14 @@
     (jh/theme-config theme)))
 
 
-(defun jh/set-theme (theme &optional theme-package)
+(defun jh/load-theme (&optional theme theme-package)
   "Enable THEME, optionally found in THEME-PACKAGE.
 
  If theme is not a built in theme, and not present on the machine, it will be installed."
-  (interactive "sTheme: ")
-  (jh/pull-theme theme theme-package)
-  (jh/load-theme theme))
+  (interactive)
+  (let ((theme (or theme (completing-read "Theme: " (custom-available-themes)))))
+    (jh/pull-theme theme theme-package)
+    (jh/set-theme theme)))
 
 
 (defun modules/appearance--load (config)
@@ -89,7 +89,7 @@
          (font-name (alist-get :font config))
          (font-size (alist-get :font-size config))
          (font (format "%s %s" font-name font-size)))
-    (jh/set-theme (symbol-name color-theme) color-theme-package)
+    (jh/load-theme (symbol-name color-theme) color-theme-package)
     (set-frame-font font)
     (add-to-list 'default-frame-alist `(font . ,font))))
 
