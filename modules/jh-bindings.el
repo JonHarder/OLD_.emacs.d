@@ -134,7 +134,7 @@
       ";" 'eval-expression
       "1" 'shell-command
       "RET" 'org-capture
-      "/" 'occur
+      "/" (lambda () (interactive) (call-interactively 'occur) (other-window 1))
   
       "a" '(:ignore t :which-key "applications")
       "a a" 'org-agenda
