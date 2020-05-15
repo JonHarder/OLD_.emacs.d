@@ -34,12 +34,16 @@
   (use-package ob-mermaid
     :defer 5)
 
+  (use-package ob-restclient
+    :defer 5)
+
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
      (shell . t)
      (sql . t)
      (mermaid . t)
+     (restclient . t)
      (haskell t)
      (python . t)
      (php . t)

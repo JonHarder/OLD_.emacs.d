@@ -104,6 +104,12 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+(defun jh/occur-other-window ()
+  "Run `occur', then switch to generated pane."
+  (interactive)
+  (call-interactively 'occur)
+  (other-window 1))
+
 (defun modules/bindings--load (config)
   "Configure all things key bindings using CONFIG."
   (put 'narrow-to-region 'disabled nil)
@@ -134,7 +140,7 @@
       ";" 'eval-expression
       "1" 'shell-command
       "RET" 'org-capture
-      "/" (lambda () (interactive) (call-interactively 'occur) (other-window 1))
+      "/" 'jh/occur-other-window
   
       "a" '(:ignore t :which-key "applications")
       "a a" 'org-agenda
