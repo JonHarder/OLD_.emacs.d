@@ -13,9 +13,8 @@
 
 (defun modules/completion--load (config)
   (use-package company
-    :defer 3
     :config
-    (company-mode t))
+    (global-company-mode t))
 
   (use-package projectile
     :defer 3
