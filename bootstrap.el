@@ -53,7 +53,6 @@
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 (setq custom-file "~/.emacs.d/custom.el")
-
 (load custom-file 'noerror)
 
 (when (eq system-type 'darwin)
