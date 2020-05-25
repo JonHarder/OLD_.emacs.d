@@ -5,7 +5,8 @@
 
 ;;; Code:
 (defun modules/haskell--load (config)
-  "Load configuration for Haskell using CONFIG.")
+  "Load configuration for Haskell using CONFIG."
+  (straight-use-package 'haskell-mode))
   ;; (use-package lsp-haskell
   ;;   :demand
   ;;   :config

@@ -108,7 +108,7 @@
          (type     (plist-get s :type))
          (var (if (string-equal window-system "w32")
                   default
-                (or (exec-path-from-shell-copy-env var-name)
+                (or (getenv var-name)
                     default))))
     (when (null var)
       (error (format "environment variable '%s' was not found and no :default provided" var-name)))
