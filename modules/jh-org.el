@@ -4,15 +4,15 @@
 ;;; Commentary:
 
 ;;; Code:
-(require 'org)
-(require 'org-habit)
-(require 'org-agenda)
-(require 'ob-python)
-(require 'ob-php (concat user-emacs-directory "ob-php.el"))
 
 
 (defun modules/org--load (config)
   "Load configuration related to org using CONFIG."
+  (straight-use-package 'org)
+  (require 'org-habit)
+  (require 'org-agenda)
+  (require 'ob-python)
+  (require 'ob-php (concat user-emacs-directory "ob-php.el"))
   (setq-default
    org-agenda-files '("~/Org" "~/Org/agenda/")
    org-src-fontify-natively t

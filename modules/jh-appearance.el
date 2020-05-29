@@ -19,12 +19,12 @@
    ;;; modus themes
    ((string-prefix-p "modus-" theme)
     (progn
-      (defvar modus-operandi-theme-bold-constructs t)
-      (defvar modus-operandi-theme-proportional-fonts nil)
-      (defvar modus-operandi-theme-scale-headings t)
-      (defvar modus-vivendi-theme-bold-constructs t)
-      (defvar modus-vivendi-theme-proportional-fonts nil)
-      (defvar modus-vivendi-theme-scale-headings t)))
+      (setq modus-operandi-theme-scale-headings t
+            modus-vivendi-theme-scale-headings t
+            modus-operandi-theme-bold-constructs t
+            modus-vivendi-theme-bold-constructs t
+            modus-operandi-theme-proportional-fonts nil
+            modus-vivendi-theme-proportional-fonts nil)))
    ;;; doom themes
    ((string-prefix-p "doom-" theme)
     (progn

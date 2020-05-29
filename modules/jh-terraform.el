@@ -12,7 +12,10 @@
   (straight-use-package 'company-terraform)
 
   (defun jh/terraform-mode-hook ()
-    (company-terraform-init))
+    (company-terraform-init)
+    (terraform-format-on-save-mode t))
+
+
 
   (add-hook 'terraform-mode-hook #'jh/terraform-mode-hook))
 

@@ -69,7 +69,6 @@
 
 
 (use-package exec-path-from-shell
-  :defer 1
   :config
   (when (memq window-system '(mac ns x))
     (setq-default exec-path-from-shell-variables
@@ -99,6 +98,12 @@
   (and (listp s) (eq (car s) :env)))
 
 
+(defun jh/getenv (name)
+  "OS aware version of `getenv' to retrieve environment variable NAME."
+  (if (memq window-system '(mac ns x))
+      (exec-path-from-shell-getenv name)
+    (getenv name)))
+
 (defun config/get-env (s)
   "Get the value of the environment variable S, normalizing to bool if keyword :type is bool."
   (interactive)
@@ -107,7 +112,7 @@
          (type     (plist-get s :type))
          (var (if (string-equal window-system "w32")
                   default
-                (or (getenv var-name)
+                (or (jh/getenv var-name)
                     default))))
     (when (null var)
       (error (format "environment variable '%s' was not found and no :default provided" var-name)))
