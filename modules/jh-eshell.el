@@ -108,8 +108,6 @@
     (cond
      ((string-equal sub-command "status")
       (magit-status))
-     ((string-equal sub-command "log")
-      (magit-log-head))
      (t (shell-command-to-string (string-join (cons "git" command) " "))))))
 
 (defalias 'eshell/gs (lambda () (eshell/git "status")))

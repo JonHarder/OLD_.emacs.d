@@ -23,3 +23,7 @@ transient/
 /bookmarks
 /.DS_Store
 /network-security.data
+/diary
+/elpy/
+/tramp
+/var/
