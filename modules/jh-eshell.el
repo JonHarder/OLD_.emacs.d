@@ -8,6 +8,13 @@
 (require 's)
 
 
+;;; some programs don't play nice with eshell, for these, we can use ansi-term automatically
+;;; use
+;;;  'eshell-visual-commands
+;;; or
+;;;  'eshell-visual-subcommands
+;;; to update which programs will use this shell
+
 (defvar pretty-eshell-funcs nil
   "List of `pretty-eshell-section' to enable.")
 

@@ -5,12 +5,14 @@
 
 ;;; Code:
 (defun ywb-php-lineup-arglist-intro (langelem)
+  "Line up arguments at the start according to LANGELEM."
   (save-excursion
     (goto-char (cdr langelem))
     (vector (+ (current-column) c-basic-offset))))
 
 
 (defun ywb-php-lineup-arglist-close (langelem)
+  "Line up the closing argument list according to LANGELEM."
   (save-excursion
     (goto-char (cdr langelem))
     (vector (current-column))))
