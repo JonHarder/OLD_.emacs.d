@@ -110,6 +110,12 @@
   (call-interactively 'occur)
   (other-window 1))
 
+(defun jh/dired-open-in-current-directory ()
+  "Open `dired' in current directory."
+  (interactive)
+  (dired "."))
+  
+
 (defun modules/bindings--load (config)
   "Configure all things key bindings using CONFIG."
   (put 'narrow-to-region 'disabled nil)
@@ -145,14 +151,15 @@
       "a" '(:ignore t :which-key "applications")
       "a a" 'org-agenda
       "a t" 'vterm
-      "a d" (lambda () (interactive) (dired "."))
+      "a d" 'jh/dired-open-in-current-directory
       "a c" 'calc
       "a e" 'eshell
 
       "b" '(:ignore t :which-key "buffers")
       "b b" 'switch-to-buffer
       "b i" 'ibuffer
-      "b d" 'evil-delete-buffer
+      ;; "b d" 'evil-delete-buffer
+      "b d" 'kill-current-buffer
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
   

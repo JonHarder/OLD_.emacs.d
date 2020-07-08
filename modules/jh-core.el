@@ -17,6 +17,8 @@
 
   (use-package helpful)
 
+  (save-place-mode 1)
+
   (use-package rg
     :config
     (rg-enable-menu))

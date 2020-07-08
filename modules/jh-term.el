@@ -21,7 +21,6 @@
           (when (buffer-live-p buf)
             (with-current-buffer buf
               (kill-buffer)
-              (ignore-errors (delete-window))
               (message "VTerm closed."))))))
     (add-hook 'vterm-mode-hook
               (lambda ()
