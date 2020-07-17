@@ -25,7 +25,6 @@
         php-template-compatibility nil
         php-mode-coding-style 'psr2)
   (subword-mode 1)
-  ;; (auto-complete-mode t)
   (setq ac-sources '(ac-source-php))
   (yas-global-mode 1)
   (ac-php-core-eldoc-setup)
@@ -44,29 +43,13 @@
   
   
   (use-package phpunit
-    :defer 3))
+    :defer 3)
   
-  ;; (use-package lsp-mode
-  ;;   :config
-  ;;   (setq lsp-prefer-flymake nil)
-  ;;   :hook (php-mode . lsp)
-  ;;   :commands lsp)
+  (use-package lsp-mode
+    :config
+    (setq lsp-prefer-flymake nil)
+    :hook (php-mode . lsp)
+    :commands lsp))
   
-  ;; (use-package lsp-ui
-  ;;   :requires lsp-mode flycheck
-  ;;   :config
-  ;;   (setq lsp-ui-doc-enable t
-  ;;         lsp-ui-doc-use-childframe nil
-  ;;         lsp-ui-doc-position 'bottom
-  ;;         lsp-ui-doc-include-signature t
-  ;;         lsp-ui-flycheck-enable t
-  ;;         lsp-ui-flycheck-list-position 'bottom ;; modified was 'right
-  ;;         lsp-ui-flycheck-live-reporting t
-  ;;         lsp-ui-peek-enable t
-  ;;         lsp-ui-peek-list-width 60
-  ;;         lsp-ui-peek-peek-height 25
-  ;;         lsp-ui-sideline-enable nil)
-  ;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode)))
-
 (provide 'jh-php)
 ;;; jh-php.el ends here

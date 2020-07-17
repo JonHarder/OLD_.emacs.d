@@ -128,6 +128,12 @@
 
   (straight-use-package 'imenu-list)
 
+  (defun jh/split-right-switch-buffer ()
+    (interactive)
+    (evil-window-vsplit)
+    (evil-window-right 1)
+    (call-interactively #'switch-to-buffer))
+
   (use-package general
     :config
     (general-evil-setup t)
@@ -146,6 +152,7 @@
       ";" 'eval-expression
       "1" 'shell-command
       "RET" 'org-capture
+      "ESC" 'evil-ex-nohighlight
       "/" 'jh/occur-other-window
   
       "a" '(:ignore t :which-key "applications")
@@ -158,8 +165,8 @@
       "b" '(:ignore t :which-key "buffers")
       "b b" 'switch-to-buffer
       "b i" 'ibuffer
-      ;; "b d" 'evil-delete-buffer
       "b d" 'kill-current-buffer
+      "b D" 'evil-delete-buffer
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
   
@@ -207,7 +214,6 @@
       "m s" 'jh/standup-today
   
       "n" '(:ignore t :which-key "narrowing")
-      ;; "n r" 'narrow-to-region
       "n d" 'narrow-to-defun
       "n n" 'narrow-to-defun
       "n w" 'widen
@@ -251,6 +257,10 @@
       "w J" 'evil-window-move-far-down
       "w =" 'balance-windows
       "w t f" 'flycheck-list-errors
+
+      ;;; x
+      ;;; y
+      ;;; z
   
   
       "=" 'text-scale-increase
