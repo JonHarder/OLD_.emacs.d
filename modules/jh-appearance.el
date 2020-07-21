@@ -24,7 +24,19 @@
             modus-operandi-theme-bold-constructs t
             modus-vivendi-theme-bold-constructs t
             modus-operandi-theme-proportional-fonts nil
-            modus-vivendi-theme-proportional-fonts nil)))
+            modus-vivendi-theme-proportional-fonts nil
+            modus-operandi-theme-3d-modeline t
+            modus-vivendi-theme-3d-modeline t
+
+            modus-vivendi-theme-section-headings t
+            modus-operandi-theme-section-headings t
+
+            modus-operandi-theme-intense-standard-completions t
+            modus-vivendi-theme-intense-standard-completions t
+
+            modus-operandi-theme-rainbow-headings t
+            modus-vivendi-theme-rainbow-headings t)))
+            
    ;;; doom themes
    ((string-prefix-p "doom-" theme)
     (progn
@@ -39,8 +51,8 @@
                                     (not (string-equal theme other-theme)))
                                   custom-enabled-themes)))
     (mapc 'disable-theme other-themes)
-    (load-theme (intern theme) t)
-    (jh/theme-config theme)))
+    (jh/theme-config theme)
+    (load-theme (intern theme) t)))
 
 
 (defun jh/load-theme (&optional theme theme-package)

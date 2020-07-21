@@ -45,6 +45,7 @@
             modeline
             buffers
             completion
+            erc
             bindings
             code
             git
