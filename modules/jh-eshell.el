@@ -7,6 +7,11 @@
 (require 'dash)
 (require 's)
 
+(use-package eshell-up
+  :config
+  (defalias 'eshell/up #'eshell-up)
+  (defalias 'eshell/pk #'eshell-up-peek))
+
 
 ;;; some programs don't play nice with eshell, for these, we can use ansi-term automatically
 ;;; use
