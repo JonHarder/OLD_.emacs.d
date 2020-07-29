@@ -25,8 +25,9 @@
             modus-vivendi-theme-bold-constructs t
             modus-operandi-theme-proportional-fonts nil
             modus-vivendi-theme-proportional-fonts nil
-            modus-operandi-theme-3d-modeline t
-            modus-vivendi-theme-3d-modeline t
+
+            modus-operandi-theme-3d-modeline nil
+            modus-vivendi-theme-3d-modeline nil
 
             modus-vivendi-theme-section-headings t
             modus-operandi-theme-section-headings t

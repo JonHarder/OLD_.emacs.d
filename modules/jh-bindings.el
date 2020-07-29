@@ -160,7 +160,7 @@
       "a t" 'vterm
       "a d" 'jh/dired-open-in-current-directory
       "a c" 'calc
-      "a e" 'eshell
+      "a e" 'eshell-toggle
       "a i" 'jh/erc
 
       "b" '(:ignore t :which-key "buffers")
@@ -222,6 +222,7 @@
       "o" '(:ignore t :which-key "org")
       "o c" 'org-ctrl-c-ctrl-c
       "o a" 'org-archive-subtree
+      "o b" 'org-insert-structure-template
       "o t" 'org-todo
       "o e" 'org-export-dispatch
       "o o" 'org-open-at-point

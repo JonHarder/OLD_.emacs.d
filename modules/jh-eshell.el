@@ -127,6 +127,9 @@
 (defun modules/eshell--load (config)
   "Load configuration for eshell using CONFIG."
   (straight-use-package 'dash-functional)
+  (use-package eshell-toggle
+    :config
+    (defalias 'eshell/et #'eshell-toggle))
 
   (setq eshell-banner-message "")
 
