@@ -139,7 +139,10 @@
     (general-evil-setup t)
     (general-create-definer space-leader :prefix "SPC")
     (general-define-key
-     "M-o" 'other-window)
+     "M-o" 'other-window
+     "M-1" 'delete-other-windows
+     "M-2" 'split-window-below
+     "M-3" 'split-window-right)
     (general-define-key
      :states 'normal
      ;; "/" 'swiper
