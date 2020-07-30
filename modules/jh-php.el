@@ -43,13 +43,13 @@
   (use-package psysh)
   
   (use-package phpunit
-    :defer 3)
+    :defer 3))
   
-  (use-package lsp-mode
-    :config
-    (setq lsp-prefer-flymake nil)
-    :hook (php-mode . lsp)
-    :commands lsp))
+  ;; (use-package lsp-mode
+  ;;   :config
+  ;;   (setq lsp-prefer-flymake nil)
+  ;;   :hook (php-mode . lsp)
+  ;;   :commands lsp))
   
 (provide 'jh-php)
 ;;; jh-php.el ends here

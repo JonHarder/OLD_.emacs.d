@@ -139,6 +139,8 @@
     (general-evil-setup t)
     (general-create-definer space-leader :prefix "SPC")
     (general-define-key
+     "M-o" 'other-window)
+    (general-define-key
      :states 'normal
      ;; "/" 'swiper
      "M-v" 'jh/paste-from-mac-clipboard
@@ -153,7 +155,7 @@
       "1" 'shell-command
       "RET" 'org-capture
       "ESC" 'evil-ex-nohighlight
-      "TAB" 'eshell-toggle
+      "TAB" 'eshell
       "/" 'jh/occur-other-window
   
       "a" '(:ignore t :which-key "applications")
@@ -161,7 +163,6 @@
       "a t" 'vterm
       "a d" 'jh/dired-open-in-current-directory
       "a c" 'calc
-      "a e" 'eshell
       "a i" 'jh/erc
 
       "b" '(:ignore t :which-key "buffers")

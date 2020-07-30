@@ -134,10 +134,6 @@
   (advice-add 'eshell-life-is-too-much :after 'close-eshell-on-exit)
 
 
-  (use-package eshell-toggle
-    :config
-    (defalias 'eshell/et #'eshell-toggle))
-
   (setq eshell-banner-message "")
 
   (pretty-eshell-section
