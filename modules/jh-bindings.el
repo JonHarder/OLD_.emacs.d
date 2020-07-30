@@ -153,6 +153,7 @@
       "1" 'shell-command
       "RET" 'org-capture
       "ESC" 'evil-ex-nohighlight
+      "TAB" 'eshell-toggle
       "/" 'jh/occur-other-window
   
       "a" '(:ignore t :which-key "applications")
@@ -160,7 +161,7 @@
       "a t" 'vterm
       "a d" 'jh/dired-open-in-current-directory
       "a c" 'calc
-      "a e" 'eshell-toggle
+      "a e" 'eshell
       "a i" 'jh/erc
 
       "b" '(:ignore t :which-key "buffers")
@@ -237,11 +238,20 @@
       "p /" 'rg
       "p c" 'compile
 
+      ;; q
+      ;; r
+
       "s" '(:ignore t :which-key "searching")
       "s g" 'how-do-i-google
       "s s" 'how-do-i
       "s d" 'how-do-i-ddg
       "s o" 'how-do-i-so
+
+      ;; t
+      "t" '(:ignore t :which-key "terraform")
+      "t t" 'jh/terraform-transient-command
+      ;; u
+      ;; v
   
       "w" '(:ignore t :which-key "windows")
       "w /" 'evil-window-vsplit

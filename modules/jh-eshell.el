@@ -127,6 +127,13 @@
 (defun modules/eshell--load (config)
   "Load configuration for eshell using CONFIG."
   (straight-use-package 'dash-functional)
+  ;; close eshell window when the process exits
+  (defun close-eshell-on-exit ()
+    (when (not (one-window-p))
+      (delete-window)))
+  (advice-add 'eshell-life-is-too-much :after 'close-eshell-on-exit)
+
+
   (use-package eshell-toggle
     :config
     (defalias 'eshell/et #'eshell-toggle))
