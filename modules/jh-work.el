@@ -11,7 +11,7 @@
   "Load various helper packages and functions according to CONFIG."
 
 
-  (defvar jh/kipsu-dir "~/Kipsu/ansible-playbooks/vagrant_kipsu/acct")
+  (defvar jh/work-dir "~/Kipsu/ansible-playbooks/vagrant_kipsu/acct/")
 
   (defun jh/jira-link (jira-number)
     "Generate the jira link given a JIRA-NUMBER."
@@ -35,9 +35,14 @@
     (mermaid-mmdc-location "~/bin/mmdc")
     (mermaid-output-format ".svg"))
 
-  (defun jh/kipsu-git ()
+  (defun jh/work-git ()
     (interactive)
-    (magit-status jh/kipsu-dir))
+    (magit-status jh/work-dir))
+
+  (defun jh/work-find-file ()
+    (interactive)
+    (let ((default-directory jh/work-dir))
+      (call-interactively #'find-file)))
 
   (defun jh/standup-today ()
     "Open or create an agenda for a standup."

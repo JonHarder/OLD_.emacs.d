@@ -139,6 +139,10 @@
     (general-evil-setup t)
     (general-create-definer space-leader :prefix "SPC")
     (general-define-key
+     :states 'normal
+     :keymaps 'occur-mode-map
+     "e" 'occur-edit-mode)
+    (general-define-key
      "M-o" 'other-window
      "M-1" 'delete-other-windows
      "M-2" 'split-window-below
@@ -179,6 +183,7 @@
       "c" '(:ignore t :which-key "configuration")
       "c r" 'jh/reload-config
       "c f" 'jh/find-config
+      "c l" 'jh/load-theme
   
       ;;; d
 
@@ -209,12 +214,13 @@
   
       "j" '(:ignore t :which-key "jumping")
       "j d" 'dumb-jump-go-other-window
-      "j c" 'avy-goto-char
+      "j w" 'avy-goto-word-1
       "j l" 'imenu-list-smart-toggle
 
       ;;; k
       "k" '(:ignore t :which-key "kipsu")
-      "k g" 'jh/kipsu-git
+      "k g" 'jh/work-git
+      "k f" 'jh/work-find-file
 
       "m" '(:ignore t :which-key "meetings")
       "m s" 'jh/standup-today
