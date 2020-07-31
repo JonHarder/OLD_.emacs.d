@@ -1,13 +1,13 @@
 ;;; contrib -- generic low level helper functions
 
 ;;; Commentary:
-;; defines misselanious helper functions to operate on (surprise) lists
+;; defines miscellaneous helper functions to operate on (surprise) lists
 
 ;;; Code:
 (defun contrib/map-alist-values (f alist)
   "Map function F over each value in the ALIST.
 
-Perserves order and keys."
+Preserves order and keys."
   (interactive)
   (mapcar (lambda (p) (cons (car p) (funcall f (cdr p))))
           alist))
@@ -29,7 +29,7 @@ Perserves order and keys."
 
 
 (defun contrib/str-join (items glue)
-  "Concat the list of strings, ITEMS together, separated the string GLUE."
+  "Concatenate the list of strings, ITEMS together, separated the string GLUE."
   (mapconcat 'identity items glue))
 
 
