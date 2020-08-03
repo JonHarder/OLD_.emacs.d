@@ -22,6 +22,8 @@
   (use-package rg
     :config
     (rg-enable-menu))
+
+  (use-package scratch)
     
   ;; language server support
   (use-package eglot)

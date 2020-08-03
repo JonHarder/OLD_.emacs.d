@@ -171,6 +171,7 @@
       "a d" 'jh/dired-open-in-current-directory
       "a c" 'calc
       "a i" 'jh/erc
+      "a s" 'scratch
 
       "b" '(:ignore t :which-key "buffers")
       "b b" 'switch-to-buffer
