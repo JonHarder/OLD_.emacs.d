@@ -223,8 +223,10 @@
       "k g" 'jh/work-git
       "k f" 'jh/work-find-file
 
-      "m" '(:ignore t :which-key "meetings")
-      "m s" 'jh/standup-today
+      "m" '(:ignore t :which-key "music")
+      "m p" 'spotify-toggle-play
+      "m s" 'spotify-track-search
+      "m l" 'spotify-my-playlists
   
       "n" '(:ignore t :which-key "narrowing")
       "n d" 'narrow-to-defun

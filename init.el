@@ -71,6 +71,7 @@
             mail
             kubernetes
             personal
+            spotify
             work))
 
 (setq gc-cons-threshold orig-gc-cons-threshold)
