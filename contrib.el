@@ -33,5 +33,11 @@ Preserves order and keys."
   (mapconcat 'identity items glue))
 
 
+(defun contrib/read-file-to-lines (file)
+  "Read FILE into a list of strings."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (split-string (buffer-string) "\n")))
+
 (provide 'contrib)
 ;;; contrib.el ends here

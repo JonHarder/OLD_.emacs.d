@@ -13,7 +13,8 @@
   (require 'org-agenda)
   (require 'ob-python)
   (require 'ob-php (concat user-emacs-directory "ob-php.el"))
-  (setq org-fontify-whole-heading-line t)
+  (setq org-fontify-whole-heading-line t
+        org-confirm-babel-evaluate nil)
   (setq-default
    org-agenda-files '("~/Org" "~/Org/agenda/")
    org-src-fontify-natively t

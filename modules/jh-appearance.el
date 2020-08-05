@@ -43,7 +43,8 @@
     (progn
       (doom-themes-org-config)
       (setq doom-themes-enable-bold t
-            doom-themes-enable-italic t)))))
+            doom-themes-enable-italic t
+            doom-themes-padded-modeline t)))))
 
 
 (defun jh/set-theme (theme)

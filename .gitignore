@@ -27,3 +27,5 @@ transient/
 /elpy/
 /tramp
 /var/
+/.spotify_auth
+/.erc-auth
