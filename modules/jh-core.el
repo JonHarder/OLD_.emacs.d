@@ -26,7 +26,15 @@
   (use-package scratch)
     
   ;; language server support
-  (use-package eglot)
+  (use-package lsp-mode
+    :config
+    (setq lsp-idle-delay 0.500)
+    (setq lsp-enable-file-watchers nil))
+  (use-package lsp-ui
+    :requires lsp-mode flycheck)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
+  (use-package company-lsp)
 
   (straight-use-package 'fireplace)
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)

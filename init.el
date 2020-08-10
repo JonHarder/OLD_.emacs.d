@@ -22,8 +22,10 @@
 
 ;;; Code:
 ;; (package-initialize)
-(defvar orig-gc-cons-threshold gc-cons-threshold)
-(setq gc-cons-threshold 80000000)
+;; (defvar orig-gc-cons-threshold gc-cons-threshold)
+;; (setq gc-cons-threshold 80000000)
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
@@ -74,7 +76,7 @@
             spotify
             work))
 
-(setq gc-cons-threshold orig-gc-cons-threshold)
+;; (setq gc-cons-threshold orig-gc-cons-threshold)
 
 (provide 'init)
 ;;; init.el ends here

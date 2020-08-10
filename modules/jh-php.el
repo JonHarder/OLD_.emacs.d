@@ -20,6 +20,7 @@
 
 (defun my-php-mode-hook ()
   "Configuration for php."
+  (lsp)
   (setq indent-tabs-mode nil
         c-basic-offset 4
         php-template-compatibility nil
@@ -44,12 +45,6 @@
   
   (use-package phpunit
     :defer 3))
-  
-  ;; (use-package lsp-mode
-  ;;   :config
-  ;;   (setq lsp-prefer-flymake nil)
-  ;;   :hook (php-mode . lsp)
-  ;;   :commands lsp))
-  
+
 (provide 'jh-php)
 ;;; jh-php.el ends here

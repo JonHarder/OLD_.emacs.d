@@ -217,6 +217,7 @@
       "j d" 'dumb-jump-go-other-window
       "j w" 'avy-goto-word-1
       "j l" 'imenu-list-smart-toggle
+      "j i" 'imenu
 
       ;;; k
       "k" '(:ignore t :which-key "kipsu")
@@ -227,6 +228,7 @@
       "m p" 'spotify-toggle-play
       "m s" 'spotify-track-search
       "m l" 'spotify-my-playlists
+      "m d" 'spotify-select-device
   
       "n" '(:ignore t :which-key "narrowing")
       "n d" 'narrow-to-defun

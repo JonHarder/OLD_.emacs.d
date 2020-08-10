@@ -44,7 +44,7 @@
       (doom-themes-org-config)
       (setq doom-themes-enable-bold t
             doom-themes-enable-italic t
-            doom-themes-padded-modeline t)))))
+            doom-themes-padded-modeline nil)))))
 
 
 (defun jh/set-theme (theme)
