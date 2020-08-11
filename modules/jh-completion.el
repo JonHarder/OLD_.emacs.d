@@ -14,7 +14,9 @@
 (defun modules/completion--load (config)
   (use-package company
     :config
-    (global-company-mode t))
+    (global-company-mode t)
+    (setq company-minimum-prefix-length 1
+          company-idle-delay 0.0))
 
   (use-package projectile
     :defer 3

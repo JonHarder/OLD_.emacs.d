@@ -17,11 +17,6 @@
 
   (add-hook 'prog-mode-hook #'jh/prog-mode-hook)
 
-  (use-package indent-guide
-    :defer 1
-    :hook ((prog-mode . indent-guide-mode)
-           (hcl-mode . indent-guide-mode)))
-
   (use-package editorconfig
     :defer 6
     :config

@@ -214,7 +214,8 @@
       ;;; i
   
       "j" '(:ignore t :which-key "jumping")
-      "j d" 'dumb-jump-go-other-window
+      ;; "j d" 'dumb-jump-go-other-window
+      "j d" 'lsp-find-definition
       "j w" 'avy-goto-word-1
       "j l" 'imenu-list-smart-toggle
       "j i" 'imenu
@@ -223,6 +224,13 @@
       "k" '(:ignore t :which-key "kipsu")
       "k g" 'jh/work-git
       "k f" 'jh/work-find-file
+
+      "l" '(:ignore t :which-key "lsp")
+      "l r" 'lsp-ui-peek-find-references
+      "l d" 'lsp-ui-peek-find-definitions
+      "l n" 'flycheck-next-error
+      "l p" 'flycheck-previous-error
+      "l l" 'flycheck-list-errors
 
       "m" '(:ignore t :which-key "music")
       "m p" 'spotify-toggle-play
@@ -283,7 +291,6 @@
       "w K" 'evil-window-move-far-up
       "w J" 'evil-window-move-far-down
       "w =" 'balance-windows
-      "w t f" 'flycheck-list-errors
 
       ;;; x
       ;;; y

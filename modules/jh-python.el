@@ -18,6 +18,7 @@
 
   (straight-use-package 'pyvenv)
 
+  (add-hook 'python-mode-hook #'lsp)
   (add-to-list 'auto-mode-alist '("\\Pipfile\\'" . conf-mode)))
 
 
