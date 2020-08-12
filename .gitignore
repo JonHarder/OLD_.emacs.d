@@ -29,3 +29,8 @@ transient/
 /var/
 /.spotify_auth
 /.erc-auth
+/ext_lisp/
+/racket-mode/
+/places
+/projects
+/.org-id-locations

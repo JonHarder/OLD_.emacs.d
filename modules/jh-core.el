@@ -25,32 +25,6 @@
 
   (use-package scratch)
     
-  ;; language server support
-  (use-package lsp-mode
-    :config
-    (setq lsp-idle-delay 0.500
-          lsp-enable-file-watchers nil)
-    :hook
-    ((lsp-mode . lsp-enable-which-key-integration)
-     (lsp-mode . lsp-modeline-code-actions-mode)))
-
-  (use-package lsp-ui
-    :requires lsp-mode flycheck
-    :config
-    (setq lsp-ui-sideline-show-diagnostics t
-          lsp-ui-sideline-show-code-actions t
-          lsp-ui-peek-enable t
-          lsp-ui-peek-show-directory t
-          lsp-ui-doc-include-signature t)
-    :hook
-    ((lsp-mode . lsp-ui-mode)))
-
-  (use-package company-lsp
-    :config
-    (push 'company-lsp company-backends)
-    (setq company-transformers nil
-          company-lsp-async t
-          company-lsp-cache-candidates nil))
 
   (straight-use-package 'fireplace)
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
