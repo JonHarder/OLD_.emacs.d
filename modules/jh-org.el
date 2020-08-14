@@ -9,6 +9,12 @@
 (defun modules/org--load (config)
   "Load configuration related to org using CONFIG."
   (straight-use-package 'org)
+
+  ;; programmatic org workflow triggers and actions
+  (use-package org-edna
+    :config
+    (org-edna-modeo))
+
   (require 'org-habit)
   (require 'org-agenda)
   (require 'ob-python)
