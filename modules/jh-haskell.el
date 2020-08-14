@@ -14,10 +14,17 @@
    '(haskell-process-suggest-remove-import-lines t)
    '(haskell-process-auto-import-loaded-modules t)
    '(haskell-process-log t))
+
   (defun jh/haskell-stack-run ()
     "Compile and run a haskell application using 'stack run'."
     (interactive)
-    (compile "stack run")))
+    (compile "stack run"))
+
+  (use-package lsp-haskell
+    :config
+    (setq lsp-haskell-process-path-hie "/Users/jharder/.local/bin/hie-wrapper")
+    (add-hook 'haskell-mode-hook #'lsp)))
+
   ;; (use-package lsp-haskell
   ;;   :demand
   ;;   :config
