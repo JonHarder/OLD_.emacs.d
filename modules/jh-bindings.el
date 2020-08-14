@@ -116,6 +116,14 @@
   (dired "."))
   
 
+(defun jh/smart-ace-window ()
+  "If only two windows are present, jump to the other one, otherwise use `ace-window'."
+  (interactive)
+  (if (= 2 (count-windows))
+      (other-window 1)
+    (call-interactively #'ace-window)))
+
+
 (defun modules/bindings--load (config)
   "Configure all things key bindings using CONFIG."
   (put 'narrow-to-region 'disabled nil)
@@ -279,7 +287,7 @@
       "w" '(:ignore t :which-key "windows")
       "w /" 'evil-window-vsplit
       "w -" 'evil-window-split
-      "w w" 'ace-window
+      "w w" 'jh/smart-ace-window
       "w m" 'delete-other-windows
       "w c" 'delete-window
       "w l" 'evil-window-right
