@@ -33,6 +33,7 @@
     (setq lsp-ui-sideline-show-diagnostics t
           lsp-ui-sideline-show-code-actions t
           lsp-ui-doc-position 'top
+          lsp-ui-doc-enable t
           lsp-ui-peek-enable t
           lsp-ui-peek-show-directory t
           lsp-ui-doc-include-signature t)

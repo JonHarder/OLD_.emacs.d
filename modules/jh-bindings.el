@@ -180,6 +180,7 @@
       "a c" 'calc
       "a i" 'jh/erc
       "a s" 'scratch
+      "a t" 'treemacs
 
       "b" '(:ignore t :which-key "buffers")
       "b b" 'switch-to-buffer

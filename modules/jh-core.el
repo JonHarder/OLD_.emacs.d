@@ -19,6 +19,12 @@
 
   (save-place-mode 1)
 
+  (use-package treemacs
+    :config
+    (treemacs-git-mode 'extended))
+  (use-package treemacs-evil)
+  (use-package treemacs-projectile)
+
   (use-package rg
     :config
     (rg-enable-menu))
