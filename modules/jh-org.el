@@ -13,7 +13,7 @@
   ;; programmatic org workflow triggers and actions
   (use-package org-edna
     :config
-    (org-edna-modeo))
+    (org-edna-mode))
 
   (require 'org-habit)
   (require 'org-agenda)
