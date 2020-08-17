@@ -86,7 +86,7 @@
     (let* ((module-path (or module-path
                             (concat user-emacs-directory "modules/")))
            (module-name (symbol-name module))
-           (path (concat module-path "jh-" module-name))
+           (path (concat module-path module-name))
            (load-func (module-init-func module-name)))
       (load path)
       (apply load-func (list config)))))

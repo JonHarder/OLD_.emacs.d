@@ -13,7 +13,7 @@
 ;;    define, at a glance, the major settings at play
 ;;
 ;; For each module defined below, there exists a file in the `modules'
-;; folder called 'jh-MODULE_NAME.el'
+;; folder called 'MODULE_NAME.el'
 ;; and among other things, a function called `modules/MODULE_NAME--load'
 ;; which takes a config object.  This config is roughly what you see
 ;; being passed to `defconfig'.  This allows each module to have the
@@ -58,7 +58,6 @@
             lisp
             haskell
             rust
-            elm
             eshell
             term
             terraform

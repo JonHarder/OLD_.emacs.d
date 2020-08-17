@@ -34,3 +34,4 @@ transient/
 /places
 /projects
 /.org-id-locations
+/.cache/
