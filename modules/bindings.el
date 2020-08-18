@@ -118,6 +118,10 @@
       (other-window 1)
     (call-interactively #'ace-window)))
 
+(defun jh/org-src-block ()
+  "Insert an Org src block."
+  (interactive)
+  (org-insert-structure-template "src"))
 
 (defun modules/bindings--load (config)
   "Configure all things key bindings using CONFIG."
@@ -249,7 +253,7 @@
       "o" '(:ignore t :which-key "org")
       "o c" 'org-ctrl-c-ctrl-c
       "o a" 'org-archive-subtree
-      "o b" 'org-insert-structure-template
+      "o b" 'jh/org-src-block
       "o t" 'org-todo
       "o e" 'org-export-dispatch
       "o o" 'org-open-at-point
