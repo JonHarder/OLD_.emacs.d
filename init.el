@@ -43,6 +43,7 @@
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
   :highlight-line       nil
   :modules (core
+            evil
             appearance
             modeline
             buffers
@@ -54,7 +55,6 @@
             org
             icons
             dired
-            evil
             lisp
             haskell
             rust

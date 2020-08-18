@@ -8,6 +8,14 @@
 ;; Bootstrap straight.el
 (require 'contrib "~/.emacs.d/contrib")
 
+;; settings these here because some package is loading something
+;; from evil which means the variables are being read before I
+;; have a chance to set them.  I don't want to dig through
+;; every package I have to figure out which one it is, so I'm
+;; just setting the vars here.
+(setq evil-want-keybinding nil
+      evil-want-integration t)
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))

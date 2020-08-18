@@ -163,9 +163,9 @@
       "SPC" 'execute-extended-command
       ";" 'eval-expression
       "1" 'shell-command
-      "RET" 'treemacs
+      "RET" 'eshell
       "ESC" 'evil-ex-nohighlight
-      "TAB" 'eshell
+      "TAB" 'treemacs
       "/" 'jh/occur-other-window
   
       "a" '(:ignore t :which-key "applications")
