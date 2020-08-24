@@ -141,9 +141,23 @@
     (evil-window-right 1)
     (call-interactively #'switch-to-buffer))
 
+  (defun jh/load-light-theme ()
+    (interactive)
+    (straight-use-package 'modus-operandi-theme)
+    (jh/load-theme "modus-operandi"))
+
+  (defun jh/load-dark-theme ()
+    (interactive)
+    (straight-use-package 'modus-vivendi-theme)
+    (jh/load-theme "modus-vivendi"))
+
   (use-package general
     :config
     (general-evil-setup t)
+    (general-define-key
+     :states 'normal
+     :keymaps 'dired-mode-map
+     "RET" 'dired-find-alternate-file)
     (general-create-definer space-leader :prefix "SPC")
     (general-define-key
      :states 'normal
