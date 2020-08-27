@@ -30,5 +30,5 @@
     (custom-set-variables
      '(mini-frame-show-parameters
        '((top . 100)
-         (width . 0.7)
+         (width . 0.5)
          (left . 0.5))))))

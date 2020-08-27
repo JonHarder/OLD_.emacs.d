@@ -10,7 +10,9 @@
 (defun jh/reload-config ()
   "Evaluate current settings of Emacs configuration."
   (interactive)
-  (load-file "~/.emacs.d/init.el"))
+  (message "reloading config...")
+  (load-file "~/.emacs.d/init.el")
+  (message "reloading config...done!"))
 
 (defun find-init-file ()
   "Open your init file."
@@ -140,16 +142,6 @@
     (evil-window-vsplit)
     (evil-window-right 1)
     (call-interactively #'switch-to-buffer))
-
-  (defun jh/load-light-theme ()
-    (interactive)
-    (straight-use-package 'modus-operandi-theme)
-    (jh/load-theme "modus-operandi"))
-
-  (defun jh/load-dark-theme ()
-    (interactive)
-    (straight-use-package 'modus-vivendi-theme)
-    (jh/load-theme "modus-vivendi"))
 
   (use-package general
     :config

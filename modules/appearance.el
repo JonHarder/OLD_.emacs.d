@@ -74,6 +74,16 @@
   (toggle-scroll-bar -1)
   (tool-bar-mode -1)
 
+  (defun jh/load-light-theme ()
+    (interactive)
+    (straight-use-package 'modus-operandi-theme)
+    (jh/load-theme "modus-operandi"))
+
+  (defun jh/load-dark-theme ()
+    (interactive)
+    (straight-use-package 'modus-vivendi-theme)
+    (jh/load-theme "modus-vivendi"))
+
   (use-package diff-hl
     :config
     (setq diff-hl-draw-borders nil)
@@ -94,10 +104,12 @@
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
   (let* ((color-theme (alist-get :color-theme config))
-         (color-theme-package (alist-get :color-theme-package config))
          (font-name (alist-get :font config))
          (font-size (alist-get :font-size config))
          (font (format "%s %s" font-name font-size)))
-    (jh/load-theme (symbol-name color-theme) color-theme-package)
+    (cond
+     ((eq color-theme 'dark) (jh/load-dark-theme))
+     ((eq color-theme 'light) (jh/load-light-theme)))
+
     (set-frame-font font)
     (add-to-list 'default-frame-alist `(font . ,font))))
