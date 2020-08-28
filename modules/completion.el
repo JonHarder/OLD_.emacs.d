@@ -29,6 +29,6 @@
     (mini-frame-mode)
     (custom-set-variables
      '(mini-frame-show-parameters
-       '((top . 100)
-         (width . 0.5)
+       '((top . 0.4)
+         (width . 0.8)
          (left . 0.5))))))
