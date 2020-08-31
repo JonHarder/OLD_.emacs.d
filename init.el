@@ -37,7 +37,7 @@
 
 
 (defconfig jh/config
-  :color-theme          dark
+  :color-theme          light
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
   :highlight-line       nil
@@ -56,21 +56,21 @@
             dired
             lisp
             haskell
-            rust
+            ;; rust
             eshell
             term
             terraform
             search
             python
             docker
-            rss
-            clojure
+            ;; rss
+            ;; clojure
             php
             web
             ansible
-            mail
+            ;; mail
             kubernetes
-            personal
+            ;; personal
             spotify
             work))
 

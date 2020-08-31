@@ -27,8 +27,11 @@
             modus-vivendi-theme-section-headings t
             modus-operandi-theme-section-headings t
 
-            modus-operandi-theme-intense-standard-completions t
-            modus-vivendi-theme-intense-standard-completions t
+            modus-operandi-theme-completions 'opinionated
+            modus-vivendi-theme-completions 'opinionated
+
+            modus-operandi-theme-intense-paren-match t
+            modus-vivendi-theme-intense-paren-match t
 
             modus-operandi-theme-rainbow-headings t
             modus-vivendi-theme-rainbow-headings t)))
@@ -65,6 +68,9 @@
 (defun modules/appearance--load (config)
   "Load appearance settings based off of CONFIG."
   (require 'whitespace)
+
+  ;; don't let the mouse get in the day
+  (mouse-avoidance-mode 'proteus)
 
   (blink-cursor-mode -1)
   (show-paren-mode 1)

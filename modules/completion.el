@@ -22,13 +22,4 @@
     :config
     (selectrum-mode +1)
     (selectrum-prescient-mode +1)
-    (prescient-persist-mode +1))
-
-  (use-package mini-frame
-    :config
-    (mini-frame-mode)
-    (custom-set-variables
-     '(mini-frame-show-parameters
-       '((top . 0.4)
-         (width . 0.8)
-         (left . 0.5))))))
+    (prescient-persist-mode +1)))
