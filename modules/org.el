@@ -14,7 +14,7 @@
   (setq org-fontify-whole-heading-line t
         org-confirm-babel-evaluate nil)
   (setq-default
-   org-agenda-files '("~/Org" "~/Org/agenda/")
+   org-agenda-files '("~/Org")
    org-src-fontify-natively t
    org-hide-emphasis-markers nil
    org-archive-location "~/Org/archive/%s.archive::"

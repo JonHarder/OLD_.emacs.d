@@ -1,7 +1,8 @@
 (defun modules/dired--load (config)
   "Load configuration for dired, using CONFIG."
-  (straight-use-package 'ranger)
   (straight-use-package 'diredfl)
+
+  (put 'dired-find-alternate-file 'disabled nil)
 
   (use-package dired-narrow
     :config
