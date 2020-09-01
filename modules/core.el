@@ -3,6 +3,16 @@
 (defun modules/core--load (config)
   "Load general core features, configure programming hook using CONFIG."
   
+  (use-package dashboard
+    :config
+    (setq dashboard-startup-banner 'logo
+          dashboard-center-content t
+          dashboard-items '((recents . 5)
+                            (bookmarks . 5)
+                            (projects . 5)
+                            (agenda . 5))
+          show-week-agenda-p t)
+    (dashboard-setup-startup-hook))
 
   (setq epa-pinentry-mode 'loopback)
 
@@ -13,9 +23,6 @@
 
   (save-place-mode 1)
 
-  (use-package treemacs
-    :config
-    (treemacs-git-mode 'extended))
   (use-package treemacs-evil)
   (use-package treemacs-projectile)
 

@@ -2,12 +2,21 @@
   "Load various helper packages and functions according to CONFIG."
 
 
-  (defvar jh/work-dir "~/Kipsu/ansible-playbooks/vagrant_kipsu/acct/")
+  (defvar jh/work-base-dir "~/Kipsu/ansible-playbooks/vagrant_kipsu/")
+  (defvar jh/work-dir (format "%s/acct/" jh/work-base-dir))
 
   (defun jh/jira-link (jira-number)
     "Generate the jira link given a JIRA-NUMBER."
     (interactive "nTicket Number:")
     (insert (format "https://kipsudev.atlassian.net/browse/KIPSU-%i" jira-number)))
+
+  (defun vagrant-up ()
+    (interactive)
+    (async-shell-command (format "cd %s && vagrant up" jh/work-base-dir)))
+
+  (defun vagrant-halt ()
+    (interactive)
+    (async-shell-command (format "cd %s && vagrant halt" jh/work-base-dir)))
   
   (use-package restclient
     :mode ("\\.http\\'" . restclient-mode))

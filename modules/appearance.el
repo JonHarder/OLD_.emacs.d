@@ -69,9 +69,6 @@
   "Load appearance settings based off of CONFIG."
   (require 'whitespace)
 
-  ;; don't let the mouse get in the day
-  (mouse-avoidance-mode 'proteus)
-
   (blink-cursor-mode -1)
   (show-paren-mode 1)
   (electric-pair-mode 1)

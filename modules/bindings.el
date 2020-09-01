@@ -143,6 +143,10 @@
     (evil-window-right 1)
     (call-interactively #'switch-to-buffer))
 
+  (defun switch-to-most-recent-buffer ()
+    (interactive)
+    (switch-to-buffer nil))
+
   (use-package general
     :config
     (general-evil-setup t)
@@ -175,7 +179,7 @@
       "1" 'shell-command
       "RET" 'eshell
       "ESC" 'evil-ex-nohighlight
-      "TAB" 'treemacs
+      "TAB" 'switch-to-most-recent-buffer
       "/" 'jh/occur-other-window
   
       "a" '(:ignore t :which-key "applications")
