@@ -197,6 +197,7 @@
       "b D" 'evil-delete-buffer
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
+      "b p" 'popwin:display-buffer
   
       "c" '(:ignore t :which-key "configuration")
       "c r" 'jh/reload-config
@@ -216,6 +217,7 @@
       "f i" 'find-init-file
       "f t" 'find-todo-file
       "f m" 'jh/find-module
+      "f p" 'popwin:find-file
   
       "g" '(:ignore t :which-key "git")
       "g s" 'magit-status
@@ -229,13 +231,14 @@
       "h a" 'apropos
 
       ;;; i
+      "i" '(:ignore t :which-key "imenu")
+      "i i" 'imenu
+      "i l" 'imenu-list-smart-toggle
   
       "j" '(:ignore t :which-key "jumping")
       ;; "j d" 'dumb-jump-go-other-window
       "j d" 'lsp-find-definition
       "j w" 'avy-goto-word-1
-      "j l" 'imenu-list-smart-toggle
-      "j i" 'imenu
 
       ;;; k
       "k" '(:ignore t :which-key "kipsu")
