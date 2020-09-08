@@ -27,8 +27,9 @@
     :config
     (popwin-mode 1))
 
-  (use-package treemacs-evil)
-  (use-package treemacs-projectile)
+  (use-package zoom
+    :config
+    (zoom-mode 1))
 
   (use-package rg
     :config
