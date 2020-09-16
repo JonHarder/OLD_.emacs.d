@@ -14,7 +14,8 @@
 ;; every package I have to figure out which one it is, so I'm
 ;; just setting the vars here.
 (setq evil-want-keybinding nil
-      evil-want-integration t)
+      evil-want-integration t
+      evil-want-C-u-scroll t)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file

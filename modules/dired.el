@@ -4,13 +4,7 @@
 
   (put 'dired-find-alternate-file 'disabled nil)
 
-  (use-package dired-narrow
-    :config
-    (general-define-key
-     :states 'normal
-     :keymaps 'dired-mode-map
-     "/" 'dired-narrow))
-
+  (use-package ranger)
   (use-package dired-collapse)
   (use-package dired-rainbow)
 

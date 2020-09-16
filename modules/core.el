@@ -27,10 +27,6 @@
     :config
     (popwin-mode 1))
 
-  (use-package zoom
-    :config
-    (zoom-mode 1))
-
   (use-package rg
     :config
     (rg-enable-menu))

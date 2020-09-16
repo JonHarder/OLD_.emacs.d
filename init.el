@@ -72,7 +72,8 @@
             kubernetes
             ;; personal
             spotify
-            work))
+            work
+            zettelkasten))
 
 ;; (setq gc-cons-threshold orig-gc-cons-threshold)
 

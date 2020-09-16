@@ -185,6 +185,8 @@
       "a" '(:ignore t :which-key "applications")
       "a a" 'org-agenda
       "a t" 'vterm
+      "a r" 'ranger
+      ;; "a t" 'eshell
       "a d" 'jh/dired-open-in-current-directory
       "a c" 'calc
       "a i" 'jh/erc
