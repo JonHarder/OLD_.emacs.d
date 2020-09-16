@@ -125,6 +125,13 @@
   (defun jh/eshell-mode-setup ()
     (company-mode nil))
 
+
+  (use-package eshell-syntax-highlighting
+    :after esh-mode
+    :config
+    (eshell-syntax-highlighting-global-mode +1))
+
+
   ;; fish style autocompletion
   (use-package esh-autosuggest
     :hook (eshell-mode . esh-autosuggest-mode)

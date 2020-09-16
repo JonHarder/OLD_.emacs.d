@@ -3,7 +3,7 @@
 
 
   (defvar jh/work-base-dir "~/Kipsu/ansible-playbooks/vagrant_kipsu/")
-  (defvar jh/work-dir (format "%s/acct/" jh/work-base-dir))
+  (defvar jh/work-dir (format "%sacct/" jh/work-base-dir))
 
   (defun jh/jira-link (jira-number)
     "Generate the jira link given a JIRA-NUMBER."
