@@ -120,10 +120,12 @@
       (other-window 1)
     (call-interactively #'ace-window)))
 
-(defun jh/org-src-block ()
-  "Insert an Org src block."
-  (interactive)
-  (org-insert-structure-template "src"))
+(defun jh/org-src-block (mode)
+  "Insert an Org src block of type MODE."
+  (interactive "sMode: ")
+  (org-insert-structure-template "src")
+  (insert mode)
+  (org-edit-special))
 
 (defun modules/bindings--load (config)
   "Configure all things key bindings using CONFIG."
@@ -276,6 +278,7 @@
       "o s d" 'org-deadline
       "o l" 'org-insert-link
       "o p" 'org-priority
+      "o '" 'org-edit-special
 
       "p" '(:ignore t :which-key "project")
       "p p" 'projectile-switch-project

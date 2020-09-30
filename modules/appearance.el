@@ -16,25 +16,22 @@
     (progn
       (setq modus-operandi-theme-scale-headings t
             modus-vivendi-theme-scale-headings t
+
             modus-operandi-theme-bold-constructs t
             modus-vivendi-theme-bold-constructs t
-            modus-operandi-theme-proportional-fonts nil
-            modus-vivendi-theme-proportional-fonts nil
 
-            modus-operandi-theme-3d-modeline nil
-            modus-vivendi-theme-3d-modeline nil
+            modus-vivendi-theme-headings '((t . rainbow-section))
+            modus-operandi-theme-headings '((t . rainbow-section))
 
-            modus-vivendi-theme-section-headings t
-            modus-operandi-theme-section-headings t
+            modus-vivendi-theme-prompts 'intense
+            modus-operandi-theme-prompts 'intense
 
             modus-operandi-theme-completions 'opinionated
             modus-vivendi-theme-completions 'opinionated
 
             modus-operandi-theme-intense-paren-match t
-            modus-vivendi-theme-intense-paren-match t
+            modus-vivendi-theme-intense-paren-match t)))
 
-            modus-operandi-theme-rainbow-headings t
-            modus-vivendi-theme-rainbow-headings t)))
             
    ;;; doom themes
    ((string-prefix-p "doom-" theme)
