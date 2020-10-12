@@ -31,6 +31,8 @@
 
   (add-to-list 'org-modules 'org-habit t)
 
+  (use-package org-tree-slide)
+
   (use-package ob-mermaid
     :defer 5)
 

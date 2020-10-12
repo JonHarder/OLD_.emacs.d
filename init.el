@@ -22,9 +22,7 @@
 
 ;;; Code:
 ;; (package-initialize)
-;; (defvar orig-gc-cons-threshold gc-cons-threshold)
-;; (setq gc-cons-threshold 80000000)
-(setq gc-cons-threshold 100000000)
+(setq gc-cons-threshold (* 50 1000 1000))
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
@@ -37,7 +35,7 @@
 
 
 (defconfig jh/config
-  :color-theme          dark
+  :color-theme          light
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
   :highlight-line       nil

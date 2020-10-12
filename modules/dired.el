@@ -4,7 +4,9 @@
 
   (put 'dired-find-alternate-file 'disabled nil)
 
-  (use-package ranger)
+  (use-package ranger
+    :config
+    (setq ranger-show-literal nil))
   (use-package dired-collapse)
   (use-package dired-rainbow)
 

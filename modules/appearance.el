@@ -23,9 +23,6 @@
             modus-vivendi-theme-headings '((t . rainbow-section))
             modus-operandi-theme-headings '((t . rainbow-section))
 
-            modus-vivendi-theme-prompts 'intense
-            modus-operandi-theme-prompts 'intense
-
             modus-operandi-theme-completions 'opinionated
             modus-vivendi-theme-completions 'opinionated
 
