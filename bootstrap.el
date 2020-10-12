@@ -17,6 +17,13 @@
       evil-want-integration t
       evil-want-C-u-scroll t)
 
+;; stop emacs from slowing to a halt on long lines
+(setq bidi-paragraph-direction 'left-to-right)
+(if (version<= "27.1" emacs-version)
+    (progn
+      (setq bidi-inhibit-bpa t)
+      (global-so-long-mode 1)))
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
