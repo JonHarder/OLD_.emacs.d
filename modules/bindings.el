@@ -101,12 +101,6 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
-(defun jh/occur-other-window ()
-  "Run `occur', then switch to generated pane."
-  (interactive)
-  (call-interactively 'occur)
-  (other-window 1))
-
 (defun jh/dired-open-in-current-directory ()
   "Open `dired' in current directory."
   (interactive)
@@ -170,6 +164,7 @@
      :states 'normal
      ;; "/" 'swiper
      "M-v" 'jh/paste-from-mac-clipboard
+     "C-t" 'transpose-chars
      :states 'insert
      "M-v" 'jh/paste-from-mac-clipboard
      :states 'visual
@@ -182,7 +177,7 @@
       "RET" 'eshell
       "ESC" 'evil-ex-nohighlight
       "TAB" 'switch-to-most-recent-buffer
-      "/" 'jh/occur-other-window
+      "/" 'occur
   
       "a" '(:ignore t :which-key "applications")
       "a a" 'org-agenda
@@ -204,9 +199,9 @@
       "b p" 'popwin:display-buffer
   
       "c" '(:ignore t :which-key "configuration")
-      "c r" 'jh/reload-config
-      "c f" 'jh/find-config
+      "c c" 'jh/find-config
       "c l" 'jh/load-theme
+      "c r" 'jh/reload-config
   
       ;;; d
 
@@ -218,7 +213,6 @@
       "f c" 'find-shell-config
       "f f" 'find-file
       "f s" 'save-buffer
-      "f i" 'find-init-file
       "f t" 'find-todo-file
       "f m" 'jh/find-module
       "f p" 'popwin:find-file
