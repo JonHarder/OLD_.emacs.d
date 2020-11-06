@@ -11,6 +11,9 @@
     (setq company-minimum-prefix-length 1
           company-idle-delay 0.0))
 
+  (setq enable-recursive-minibuffers t)
+  (minibuffer-depth-indicate-mode 1)
+
   (use-package projectile
     :defer 3
     :init
@@ -18,6 +21,7 @@
     :config
     (projectile-mode +1))
 
+  (use-package selectrum)
   (use-package selectrum-prescient
     :config
     (selectrum-mode +1)

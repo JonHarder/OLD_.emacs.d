@@ -16,6 +16,9 @@
 
   (setq epa-pinentry-mode 'loopback)
 
+  (use-package csv-mode)
+  (use-package neon-mode)
+
   (straight-use-package 'dash)
   (straight-use-package 'ag)
 

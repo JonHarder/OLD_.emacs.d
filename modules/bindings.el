@@ -121,6 +121,11 @@
   (insert mode)
   (org-edit-special))
 
+(defun open-diary ()
+  "Open the diary file as determined by `diary-file`''"
+  (interactive)
+  (find-file diary-file))
+
 (defun modules/bindings--load (config)
   "Configure all things key bindings using CONFIG."
   (put 'narrow-to-region 'disabled nil)
@@ -192,8 +197,8 @@
       "b" '(:ignore t :which-key "buffers")
       "b b" 'switch-to-buffer
       "b i" 'ibuffer
-      "b d" 'kill-current-buffer
-      "b D" 'evil-delete-buffer
+      "b d" 'evil-delete-buffer
+      "b D" 'kill-current-buffer
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
       "b p" 'popwin:display-buffer
@@ -211,6 +216,7 @@
   
       "f" '(:ignore t :which-key "files")
       "f c" 'find-shell-config
+      "f d" 'open-diary
       "f f" 'find-file
       "f s" 'save-buffer
       "f t" 'find-todo-file
