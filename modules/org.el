@@ -61,12 +61,16 @@
   
   (setq org-todo-keywords
         '((sequence
-           "TODO(t!)"
-           "BLOCKED(b)"
-           "WORKING(w)"
-           "REVIEW(r)"
-           "TESTING(s)"
+           "TODO(t)"
+           "WAITING(w)"
+           "INPROGRESS(i)"
            "|"
-           "DONE(d!)"
-           "DEFERRED(f!)"
-           "CANCELED(c!)"))))
+           "DONE(d)"
+           "CANCELLED(c)"))
+        org-todo-keyword-faces
+        '(("TODO" :foreground "#dba12a" :weight normal :underline t)
+          ("WAITING" :foreground "#9f7efe" :weight normal :underline t)
+          ("INPROGRESS" :foreground "#0098dd" :weight normal :underline t)
+          ("DONE" :foreground "#50a14f" :weight normal :underline t)
+          ("CANCELLED" :foreground "#ff6480" :weight normal :underline t))
+        org-log-done 'time))
