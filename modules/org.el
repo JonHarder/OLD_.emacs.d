@@ -14,9 +14,9 @@
   (setq org-fontify-whole-heading-line t
         org-confirm-babel-evaluate nil)
   (setq-default
-   org-agenda-files '("~/Org" "~/zettelkasten")
+   org-agenda-files '("~/Org" "~/Org/projects" "~/zettelkasten")
    org-src-fontify-natively t
-   org-hide-emphasis-markers nil
+   org-hide-emphasis-markers t
    org-archive-location "~/Org/archive/%s.archive::"
    org-agenda-include-diary t
    org-agenda-timegrid-use-ampm t
@@ -61,6 +61,7 @@
   
   (setq org-todo-keywords
         '((sequence
+           "SOMEDAY(s)"
            "TODO(t)"
            "WAITING(w)"
            "INPROGRESS(i)"
@@ -68,7 +69,8 @@
            "DONE(d)"
            "CANCELLED(c)"))
         org-todo-keyword-faces
-        '(("TODO" :foreground "#fc9d03" :weight normal :underline t)
+        '(("SOMEDAY" :foreground "#eeeeee" :background "#444444" :weight normal :underline t)
+          ("TODO" :foreground "#fc9d03" :weight normal :underline t)
           ("WAITING" :foreground "#bf3cc6" :weight normal :underline t)
           ("INPROGRESS" :foreground "#0098dd" :weight normal :underline t)
           ("DONE" :foreground "#50a14f" :weight normal :underline t)

@@ -125,7 +125,7 @@
   (defun jh/eshell-mode-setup ()
     (company-mode nil))
 
-  (setq eshell-prefer-lisp-functions t)
+  (setq eshell-prefer-lisp-functions nil)
 
   (use-package eshell-syntax-highlighting
     :after esh-mode
