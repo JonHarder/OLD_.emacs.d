@@ -201,6 +201,7 @@
       "b D" 'kill-current-buffer
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
+      "b R" 'rename-buffer
       "b p" 'popwin:display-buffer
   
       "c" '(:ignore t :which-key "configuration")

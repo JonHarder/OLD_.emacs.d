@@ -138,11 +138,11 @@
     :hook (eshell-mode . esh-autosuggest-mode)
     :hook (eshell-mode . jh/eshell-mode-setup))
 
-  ;; close eshell window when the process exits
-  (defun close-eshell-on-exit ()
-    (when (not (one-window-p))
-      (delete-window)))
-  (advice-add 'eshell-life-is-too-much :after 'close-eshell-on-exit)
+  ;;; close eshell window when the process exits
+  ;; (defun close-eshell-on-exit ()
+  ;;   (when (not (one-window-p))
+  ;;     (delete-window)))
+  ;; (advice-add 'eshell-life-is-too-much :after 'close-eshell-on-exit)
 
 
   (setq eshell-banner-message "")

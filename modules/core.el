@@ -16,6 +16,12 @@
 
   (setq epa-pinentry-mode 'loopback)
 
+  (defun jh/evil-yank-advice (orig-fn beg end &rest args)
+    (pulse-momentary-highlight-region beg end)
+    (apply orig-fn beg end args))
+
+  (advice-add 'evil-yank :around 'jh/evil-yank-advice)
+
   ;;; Let the system default for osx determine which browser to use
   (setq browse-url-browser-function #'browse-url-generic
         browse-url-generic-program "open")
