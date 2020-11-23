@@ -63,6 +63,7 @@
         '((sequence
            "SOMEDAY(s)"
            "TODO(t)"
+           "NEXT(n)"
            "WAITING(w)"
            "INPROGRESS(i)"
            "|"
@@ -71,8 +72,9 @@
         org-todo-keyword-faces
         '(("SOMEDAY" :foreground "#eeeeee" :background "#444444" :weight normal :underline t)
           ("TODO" :foreground "#fc9d03" :weight normal :underline t)
+          ("NEXT" :foreground "#0098dd" :weight normal :underline t)
           ("WAITING" :foreground "#bf3cc6" :weight normal :underline t)
-          ("INPROGRESS" :foreground "#0098dd" :weight normal :underline t)
+          ("INPROGRESS" :foreground "#130af5" :weight normal :underline t)
           ("DONE" :foreground "#50a14f" :weight normal :underline t)
           ("CANCELLED" :foreground "#ff6480" :weight normal :underline t))
         org-log-done 'time))
