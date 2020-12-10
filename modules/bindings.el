@@ -208,8 +208,12 @@
       "c c" 'jh/find-config
       "c l" 'jh/load-theme
       "c r" 'jh/reload-config
-  
+
       ;;; d
+      "d" '(:ignore t :which-key "display")
+      "d c" 'display-fill-column-indicator-mode
+      "d d" 'jh/load-dark-theme
+      "d l" 'jh/load-light-theme
 
       "e" '(:ignore t :which-key "eval")
       "e e" 'eval-last-sexp

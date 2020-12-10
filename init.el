@@ -70,6 +70,7 @@
             kubernetes
             ;; personal
             spotify
+            deft
             work
             zettelkasten))
 

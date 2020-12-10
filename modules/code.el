@@ -11,6 +11,8 @@
     :config
     (setq linum-relative-backend 'display-line-numbers-mode))
 
+  (add-hook 'sh-mode-hook #'flycheck-mode)
+
   ;; language server support
   (use-package lsp-mode
     :config

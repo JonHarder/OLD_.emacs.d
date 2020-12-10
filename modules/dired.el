@@ -4,6 +4,9 @@
 
   (put 'dired-find-alternate-file 'disabled nil)
 
+  (require 'dired)
+  (define-key dired-mode-map (kbd "<backspace>") #'dired-up-directory)
+
   (use-package ranger
     :config
     (setq ranger-show-literal nil))

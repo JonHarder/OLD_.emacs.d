@@ -7,6 +7,21 @@
     :config
     (org-edna-mode))
 
+  ;;; org roam
+  (use-package org-roam
+    :hook
+    (after-init . org-roam-mode)
+    :custom
+    (org-roam-directory "~/zettelkasten")
+    :bind (:map org-roam-mode-map
+                (("C-c n l" . org-roam)
+                 ("C-c n f" . org-roam-find-file)
+                 ("C-c n g" . org-roam-graph))
+           :map org-mode-map
+                (("C-c n i" . org-roam-insert))
+                (("C-c n I" . org-roam-insert-immediate))))
+
+
   (require 'org-habit)
   (require 'org-agenda)
   (require 'ob-python)
@@ -74,7 +89,7 @@
           ("TODO" :foreground "#fc9d03" :weight normal :underline t)
           ("NEXT" :foreground "#0098dd" :weight normal :underline t)
           ("WAITING" :foreground "#bf3cc6" :weight normal :underline t)
-          ("INPROGRESS" :foreground "#130af5" :weight normal :underline t)
+          ("INPROGRESS" :foreground "#fc5603" :weight normal :underline t)
           ("DONE" :foreground "#50a14f" :weight normal :underline t)
-          ("CANCELLED" :foreground "#ff6480" :weight normal :underline t))
+          ("CANCELLED" :foreground "#fc0303" :weight normal :underline t))
         org-log-done 'time))
