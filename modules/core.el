@@ -21,6 +21,7 @@
     (apply orig-fn beg end args))
 
   (advice-add 'evil-yank :around 'jh/evil-yank-advice)
+  (tab-bar-mode 1)
 
   ;;; Let the system default for osx determine which browser to use
   (setq browse-url-browser-function #'browse-url-generic

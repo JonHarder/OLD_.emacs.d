@@ -1,11 +1,8 @@
 (defun modules/dired--load (config)
   "Load configuration for dired, using CONFIG."
   (straight-use-package 'diredfl)
-
   (put 'dired-find-alternate-file 'disabled nil)
-
-  (require 'dired)
-  (define-key dired-mode-map (kbd "<backspace>") #'dired-up-directory)
+  (setq dired-listing-switches "-alhoG")
 
   (use-package ranger
     :config

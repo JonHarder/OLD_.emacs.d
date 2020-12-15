@@ -26,4 +26,19 @@
     :config
     (selectrum-mode +1)
     (selectrum-prescient-mode +1)
-    (prescient-persist-mode +1)))
+    (prescient-persist-mode +1))
+
+  (use-package consult
+    :bind (("C-c h" . consult-history)
+           ("C-c o" . consult-outline)
+           ("C-x b" . consult-buffer)
+           :map flycheck-command-map
+           ("!" . consult-flycheck))
+    :init
+    (fset 'multi-occur #'consult-multi-occur)
+    :config
+    (consult-preview-mode))
+  (use-package marginalia
+    :init
+    (marginalia-mode)
+    (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light))))

@@ -101,12 +101,6 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
-(defun jh/dired-open-in-current-directory ()
-  "Open `dired' in current directory."
-  (interactive)
-  (dired "."))
-  
-
 (defun jh/smart-ace-window ()
   "If only two windows are present, jump to the other one, otherwise use `ace-window'."
   (interactive)
@@ -161,13 +155,18 @@
      :keymaps 'occur-mode-map
      "e" 'occur-edit-mode)
     (general-define-key
+     :states 'normal
+     :keymaps 'dired-mode-map
+     "h" 'dired-up-directory
+     "l" 'dired-find-file)
+    (general-define-key
      "M-o" 'other-window
      "M-1" 'delete-other-windows
      "M-2" 'split-window-below
      "M-3" 'split-window-right)
     (general-define-key
      :states 'normal
-     ;; "/" 'swiper
+     "/" 'consult-line
      "M-v" 'jh/paste-from-mac-clipboard
      "C-t" 'transpose-chars
      :states 'insert
@@ -182,22 +181,22 @@
       "RET" 'eshell
       "ESC" 'evil-ex-nohighlight
       "TAB" 'switch-to-most-recent-buffer
-      "/" 'occur
   
       "a" '(:ignore t :which-key "applications")
       "a a" 'org-agenda
       "a t" 'vterm
       "a r" 'ranger
       ;; "a t" 'eshell
-      "a d" 'jh/dired-open-in-current-directory
+      "a d" 'dired-jump
       "a c" 'calc
       "a i" 'jh/erc
       "a s" 'scratch
 
       "b" '(:ignore t :which-key "buffers")
-      "b b" 'switch-to-buffer
+      "b b" 'consult-buffer
       "b i" 'ibuffer
       "b d" 'evil-delete-buffer
+      "b o" 'consult-outline
       "b D" 'kill-current-buffer
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
@@ -237,11 +236,11 @@
       "h v" 'helpful-variable
       "h m" 'describe-mode
       "h p" 'describe-package
-      "h a" 'apropos
+      "h a" 'consult-apropos
 
       ;;; i
       "i" '(:ignore t :which-key "imenu")
-      "i i" 'imenu
+      "i i" 'consult-imenu
       "i l" 'imenu-list-smart-toggle
   
       "j" '(:ignore t :which-key "jumping")
@@ -301,8 +300,13 @@
       "s o" 'how-do-i-so
 
       ;; t
-      "t" '(:ignore t :which-key "terraform")
-      "t t" 'jh/terraform-transient-command
+      "t" '(:ignore t :which-key "tabs")
+      "t n" 'tab-bar-switch-to-next-tab
+      "t p" 'tab-bar-switch-to-prev-tab
+      "t c" 'tab-bar-close-tab
+      "t o" 'tab-bar-new-tab
+      "t r" 'tab-bar-rename-tab
+      "t s" 'tab-bar-switch-to-tab
       ;; u
       ;; v
   
