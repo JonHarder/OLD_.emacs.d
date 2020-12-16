@@ -196,7 +196,7 @@
       "b b" 'consult-buffer
       "b i" 'ibuffer
       "b d" 'evil-delete-buffer
-      "b o" 'consult-outline
+      "b o" 'consult-imenu
       "b D" 'kill-current-buffer
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right

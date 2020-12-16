@@ -38,6 +38,10 @@
     (fset 'multi-occur #'consult-multi-occur)
     :config
     (consult-preview-mode))
+
+  (straight-use-package 'consult-selectrum)
+  (straight-use-package 'consult-flycheck)
+
   (use-package marginalia
     :init
     (marginalia-mode)

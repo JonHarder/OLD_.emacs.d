@@ -4,6 +4,17 @@
   (put 'dired-find-alternate-file 'disabled nil)
   (setq dired-listing-switches "-alhoG")
 
+  (use-package peep-dired
+    :config
+    (evil-define-key 'normal peep-dired-mode-map
+      (kbd "<SPC>") 'peep-dired-scroll-page-down
+      (kbd "C-<SPC>") 'peep-dired-scroll-page-up
+      (kbd "j") 'peep-dired-next-file
+      (kbd "k") 'peep-dired-prev-file)
+    (add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+
+    (evil-define-key 'normal dired-mode-map (kbd "p") 'peep-dired))
+
   (use-package ranger
     :config
     (setq ranger-show-literal nil))
