@@ -15,9 +15,6 @@
 
     (evil-define-key 'normal dired-mode-map (kbd "p") 'peep-dired))
 
-  (use-package ranger
-    :config
-    (setq ranger-show-literal nil))
   (use-package dired-collapse)
   (use-package dired-rainbow)
 

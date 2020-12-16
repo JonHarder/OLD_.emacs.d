@@ -185,7 +185,6 @@
       "a" '(:ignore t :which-key "applications")
       "a a" 'org-agenda
       "a t" 'vterm
-      "a r" 'ranger
       ;; "a t" 'eshell
       "a d" 'dired-jump
       "a c" 'calc
