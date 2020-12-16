@@ -66,7 +66,7 @@
             php
             web
             ansible
-            ;; mail
+            mail
             kubernetes
             ;; personal
             spotify

@@ -4,6 +4,13 @@
   (put 'dired-find-alternate-file 'disabled nil)
   (setq dired-listing-switches "-alhoG")
 
+  (use-package dired-single
+    :config
+    (evil-define-key 'normal 'dired-mode-map
+      "h" 'dired-single-up-directory
+      "l" 'dired-single-buffer))
+
+
   (use-package peep-dired
     :config
     (evil-define-key 'normal peep-dired-mode-map

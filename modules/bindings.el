@@ -145,20 +145,11 @@
   (use-package general
     :config
     (general-evil-setup t)
-    (general-define-key
-     :states 'normal
-     :keymaps 'dired-mode-map
-     "RET" 'dired-find-alternate-file)
     (general-create-definer space-leader :prefix "SPC")
     (general-define-key
      :states 'normal
      :keymaps 'occur-mode-map
      "e" 'occur-edit-mode)
-    (general-define-key
-     :states 'normal
-     :keymaps 'dired-mode-map
-     "h" 'dired-up-directory
-     "l" 'dired-find-file)
     (general-define-key
      "M-o" 'other-window
      "M-1" 'delete-other-windows
