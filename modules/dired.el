@@ -25,6 +25,12 @@
   (use-package dired-collapse)
   (use-package dired-rainbow)
 
+  (use-package dired-hide-dotfiles
+    :hook (dired-mode . dired-hide-dotfiles-mode)
+    :config
+    (evil-define-key 'normal dired-mode-map
+      "H" 'dired-hide-dotfiles-mode))
+
   (use-package dired-subtree
     :config
     (general-define-key

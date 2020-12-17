@@ -35,7 +35,7 @@
 
 
 (defconfig jh/config
-  :color-theme          dark
+  :color-theme          light
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
   :highlight-line       nil

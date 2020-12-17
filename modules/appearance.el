@@ -93,9 +93,6 @@
   (setq-default indicate-empty-lines nil)
   (setq-default overflow-newlines-into-fringe t)
 
-  (when (alist-get :highlight-line config nil)
-    (add-hook 'prog-mode-hook 'hl-line-mode))
-
   (use-package rainbow-delimiters
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
