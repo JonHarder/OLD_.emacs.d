@@ -6,7 +6,7 @@
 
   (use-package dired-single
     :config
-    (evil-define-key 'normal 'dired-mode-map
+    (evil-define-key 'normal dired-mode-map
       "h" 'dired-single-up-directory
       "l" 'dired-single-buffer))
 
