@@ -151,11 +151,6 @@
      :keymaps 'occur-mode-map
      "e" 'occur-edit-mode)
     (general-define-key
-     "M-o" 'other-window
-     "M-1" 'delete-other-windows
-     "M-2" 'split-window-below
-     "M-3" 'split-window-right)
-    (general-define-key
      :states 'normal
      "/" 'consult-line
      "M-v" 'jh/paste-from-mac-clipboard
@@ -301,20 +296,19 @@
       ;; v
   
       "w" '(:ignore t :which-key "windows")
-      "w /" 'evil-window-vsplit
-      "w -" 'evil-window-split
-      "w w" 'jh/smart-ace-window
-      "w m" 'delete-other-windows
-      "w c" 'delete-window
-      "w l" 'evil-window-right
-      "w h" 'evil-window-left
-      "w k" 'evil-window-up
-      "w j" 'evil-window-down
-      "w H" 'evil-window-move-far-left
-      "w L" 'evil-window-move-far-right
-      "w K" 'evil-window-move-far-up
-      "w J" 'evil-window-move-far-down
-      "w =" 'balance-windows
+      "w r"    'edwina-arrange
+      "w n"    'edwina-select-next-window
+      "w p"    'edwina-select-previous-window
+      "w N"    'edwina-swap-next-window
+      "w P"    'edwina-swap-previous-window
+      "w %"    'edwina-dec-mfact
+      "w ^"    'edwina-inc-mfact
+      "w d"    'edwina-dec-nmaster
+      "w i"    'edwina-inc-nmaster
+      "w k"    'edwina-delete-window
+      "w RET " 'edwina-zoom
+      "w c"    'edwina-clone-window
+      "w o"    'delete-other-windows
 
       ;;; x
       ;;; y

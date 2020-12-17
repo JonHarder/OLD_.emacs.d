@@ -23,6 +23,13 @@
   (advice-add 'evil-yank :around 'jh/evil-yank-advice)
   (tab-bar-mode 1)
 
+  ;;; tiling window management
+  (use-package edwina
+    :config
+    (setq display-buffer-base-action '(display-buffer-below-selected))
+    (edwina-setup-dwm-keys)
+    (edwina-mode 1))
+
   ;;; Let the system default for osx determine which browser to use
   (setq browse-url-browser-function #'browse-url-generic
         browse-url-generic-program "open")
