@@ -286,12 +286,12 @@
 
       ;; t
       "t" '(:ignore t :which-key "tabs")
+      "t t" 'tab-bar-switch-to-tab
       "t n" 'tab-bar-switch-to-next-tab
       "t p" 'tab-bar-switch-to-prev-tab
-      "t c" 'tab-bar-close-tab
-      "t o" 'tab-bar-new-tab
+      "t k" 'tab-bar-close-tab
+      "t c" 'tab-bar-new-tab
       "t r" 'tab-bar-rename-tab
-      "t s" 'tab-bar-switch-to-tab
       ;; u
       ;; v
   

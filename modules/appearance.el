@@ -38,6 +38,19 @@
             doom-themes-enable-italic t
             doom-themes-padded-modeline nil)))))
 
+(defun jh/mac-is-dark-mode-p ()
+  "Predicate function to determine if MacOS dark theme is enabled."
+  (interactive)
+  (string-equal "Dark" (string-trim (shell-command-to-string "defaults read -g AppleInterfaceStyle"))))
+
+
+(defun jh/set-theme-to-system (light-theme dark-theme)
+  "Set the theme to LIGHT-THEME if MacOS is not in dark mode, set to DARK-THEME otherwise."
+  (interactive)
+  (if (jh/mac-is-dark-mode-p)
+      (jh/load-theme dark-theme)
+    (jh/load-theme light-theme)))
+
 
 (defun jh/set-theme (theme)
   "Load THEME, disabling other enabled themes."
@@ -55,8 +68,9 @@
  If theme is not a built in theme, and not present on the machine, it will be installed."
   (interactive)
   (let ((theme (or theme (completing-read "Theme: " (custom-available-themes)))))
-    (jh/pull-theme theme theme-package)
-    (jh/set-theme theme)))
+    (unless (memq (intern theme) custom-enabled-themes)
+      (jh/pull-theme theme theme-package)
+      (jh/set-theme theme))))
 
 
 (defun modules/appearance--load (config)
@@ -70,16 +84,6 @@
   (menu-bar-mode -1)
   (toggle-scroll-bar -1)
   (tool-bar-mode -1)
-
-  (defun jh/load-light-theme ()
-    (interactive)
-    (straight-use-package 'modus-operandi-theme)
-    (jh/load-theme "modus-operandi"))
-
-  (defun jh/load-dark-theme ()
-    (interactive)
-    (straight-use-package 'modus-vivendi-theme)
-    (jh/load-theme "modus-vivendi"))
 
   (use-package diff-hl
     :config
@@ -101,9 +105,8 @@
          (font-name (alist-get :font config))
          (font-size (alist-get :font-size config))
          (font (format "%s %s" font-name font-size)))
-    (cond
-     ((eq color-theme 'dark) (jh/load-dark-theme))
-     ((eq color-theme 'light) (jh/load-light-theme)))
+
+    (jh/set-theme-to-system "modus-operandi" "modus-vivendi")
 
     (set-frame-font font)
     (add-to-list 'default-frame-alist `(font . ,font))))
