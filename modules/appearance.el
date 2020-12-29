@@ -79,7 +79,6 @@
 
   (blink-cursor-mode -1)
   (show-paren-mode 1)
-  (electric-pair-mode -1)
   (global-prettify-symbols-mode +1)
   (menu-bar-mode -1)
   (toggle-scroll-bar -1)

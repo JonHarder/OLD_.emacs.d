@@ -10,10 +10,13 @@
     :init
     (eros-mode 1))
 
+
   (use-package parinfer
     :demand t
     :init
     (progn
+      ;;; turn off electric-pair-mode since parinfer handles it better
+      (add-hook 'lisp-mode-hook (lambda () (electric-pair-mode -1)))
       (setq parinfer-extensions
             '(defaults
                pretty-parens

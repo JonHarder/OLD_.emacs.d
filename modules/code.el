@@ -28,8 +28,9 @@
     "Settings that should be enabled or disabled for all programming modes."
     (setq-default whitespace-style '(face tabs space-before-tab line-tail empty space-after-tab tab-mark))
     (when (alist-get :highlight-line jh/config nil)
-        (hl-line-mode t))
-    (whitespace-mode 1))
+      (hl-line-mode t))
+    (whitespace-mode 1)
+    (electric-pair-mode 1))
 
 
   (add-hook 'prog-mode-hook #'jh/prog-mode-hook config)
