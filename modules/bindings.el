@@ -273,6 +273,7 @@
       "p" '(:ignore t :which-key "project")
       "p p" 'projectile-switch-project
       "p f" 'projectile-find-file
+      "p t" 'parinfer-toggle-mode
       "p /" 'rg
       "p c" 'compile
 
