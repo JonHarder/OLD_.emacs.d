@@ -5,6 +5,11 @@
     (setq inferior-lisp-program "/usr/local/bin/sbcl"
           slime-contribs '(slime-fancy)))
 
+  (use-package eros
+    ;;; display inline overlays for elisp evaluations
+    :init
+    (eros-mode 1))
+
   (use-package parinfer
     :demand t
     :init

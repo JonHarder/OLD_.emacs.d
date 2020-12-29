@@ -73,8 +73,8 @@
 
   (use-package avy)
 
-  
-  (straight-use-package 'yaml-mode)
+  (use-package yaml-mode
+    :hook (yaml-mode . ansible))
   
   (use-package markdown-mode
     :commands (markdown-mode gfm-mode)
