@@ -205,6 +205,7 @@
   
       "f" '(:ignore t :which-key "files")
       "f c" 'find-shell-config
+      "f i" 'jh/find-config
       "f d" 'open-diary
       "f f" 'find-file
       "f s" 'save-buffer

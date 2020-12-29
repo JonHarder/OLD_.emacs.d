@@ -22,33 +22,15 @@
     ((lsp-mode . lsp-enable-which-key-integration)
      (lsp-mode . lsp-modeline-code-actions-mode)))
 
-  (use-package lsp-ui
-    :requires lsp-mode flycheck
-    :config
-    (setq lsp-ui-sideline-show-diagnostics t
-          lsp-ui-sideline-show-code-actions t
-          lsp-ui-doc-enable t
-          lsp-ui-doc-position 'top
-          lsp-ui-peek-enable t
-          lsp-ui-peek-show-directory t
-          lsp-ui-doc-include-signature t)
-    :hook
-    ((lsp-mode . lsp-ui-mode)))
-
-  (use-package company-lsp
-    :config
-    (push 'company-lsp company-backends)
-    (setq company-transformers nil
-          company-lsp-async t
-          company-lsp-cache-candidates nil))
+  (use-package lsp-ui)
 
   (defun jh/prog-mode-hook ()
     "Settings that should be enabled or disabled for all programming modes."
     (setq-default whitespace-style '(face tabs space-before-tab line-tail empty space-after-tab tab-mark))
-    (when (alist-get :highlight-line config nil)
-      (hl-line-mode t))
+    (when (alist-get :highlight-line jh/config nil)
+        (hl-line-mode t))
     (whitespace-mode 1))
-    ;; (linum-relative-mode 1))
 
 
-  (add-hook 'prog-mode-hook #'jh/prog-mode-hook))
+  (add-hook 'prog-mode-hook #'jh/prog-mode-hook config)
+  (add-hook 'prog-mode-hook #'lsp-deferred))

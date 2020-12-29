@@ -14,7 +14,6 @@
 
 (defun my-php-mode-hook ()
   "Configuration for php."
-  (lsp)
   (setq indent-tabs-mode nil
         c-basic-offset 4
         php-template-compatibility nil
@@ -33,7 +32,6 @@
     :defer 3
     :init
     (add-hook 'php-mode-hook #'my-php-mode-hook))
-
 
   (use-package ac-php)
   (use-package psysh)

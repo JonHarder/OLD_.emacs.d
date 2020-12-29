@@ -24,6 +24,7 @@
       (setq bidi-inhibit-bpa t)
       (global-so-long-mode 1)))
 
+;; Start bootstrap straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))

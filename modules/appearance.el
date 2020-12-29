@@ -17,6 +17,9 @@
       (setq modus-operandi-theme-scale-headings t
             modus-vivendi-theme-scale-headings t
 
+            modus-operandi-theme-org-blocks t
+            modus-vivendi-theme-org-blocks t
+
             modus-operandi-theme-bold-constructs t
             modus-vivendi-theme-bold-constructs t
 
@@ -24,10 +27,7 @@
             modus-operandi-theme-headings '((t . rainbow-section))
 
             modus-operandi-theme-completions 'opinionated
-            modus-vivendi-theme-completions 'opinionated
-
-            modus-operandi-theme-intense-paren-match t
-            modus-vivendi-theme-intense-paren-match t)))
+            modus-vivendi-theme-completions 'opinionated)))
 
             
    ;;; doom themes
@@ -99,7 +99,7 @@
 
   (use-package rainbow-delimiters
     :config
-    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode-enable))
 
   (let* ((color-theme (alist-get :color-theme config))
          (font-name (alist-get :font config))

@@ -9,7 +9,9 @@
     :config
     (global-company-mode t)
     (setq company-minimum-prefix-length 1
-          company-idle-delay 0.0))
+          company-idle-delay 0.3))
+  (use-package company-box
+    :hook (company-mode . company-box-mode))
 
   (setq enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode 1)
