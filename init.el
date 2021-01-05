@@ -35,9 +35,11 @@
 
 
 (defconfig jh/config
-  :color-theme          dark
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
+  :theme-package        spacemacs-theme
+  :light-theme          spacemacs-light
+  :dark-theme           spacemacs-dark
   :highlight-line       t
   :modules (core
             evil

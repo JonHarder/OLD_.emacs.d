@@ -44,12 +44,12 @@
   (string-equal "Dark" (string-trim (shell-command-to-string "defaults read -g AppleInterfaceStyle"))))
 
 
-(defun jh/set-theme-to-system (light-theme dark-theme)
-  "Set the theme to LIGHT-THEME if MacOS is not in dark mode, set to DARK-THEME otherwise."
+(defun jh/set-theme-to-system (light-theme dark-theme &optional package)
+  "Set the theme to LIGHT-THEME if MacOS is not in dark mode, set to DARK-THEME otherwise, using PACKAGE to install themes if given."
   (interactive)
   (if (jh/mac-is-dark-mode-p)
-      (jh/load-theme dark-theme)
-    (jh/load-theme light-theme)))
+      (jh/load-theme dark-theme package)
+    (jh/load-theme light-theme package)))
 
 
 (defun jh/set-theme (theme)
@@ -103,9 +103,12 @@
   (let* ((color-theme (alist-get :color-theme config))
          (font-name (alist-get :font config))
          (font-size (alist-get :font-size config))
-         (font (format "%s %s" font-name font-size)))
+         (font (format "%s %s" font-name font-size))
+         (theme-package (symbol-name (alist-get :theme-package config)))
+         (light-theme (symbol-name (alist-get :light-theme config)))
+         (dark-theme (symbol-name (alist-get :dark-theme config))))
 
-    (jh/set-theme-to-system "modus-operandi" "modus-vivendi")
+    (jh/set-theme-to-system light-theme dark-theme theme-package)
 
     (set-frame-font font)
     (add-to-list 'default-frame-alist `(font . ,font))))

@@ -186,7 +186,6 @@
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
       "b R" 'rename-buffer
-      "b p" 'popwin:display-buffer
   
       "c" '(:ignore t :which-key "configuration")
       "c c" 'jh/find-config
@@ -211,7 +210,7 @@
       "f s" 'save-buffer
       "f t" 'find-todo-file
       "f m" 'jh/find-module
-      "f p" 'popwin:find-file
+      "f o" 'other-frame
   
       "g" '(:ignore t :which-key "git")
       "g s" 'magit-status
@@ -276,6 +275,7 @@
       "p t" 'parinfer-toggle-mode
       "p /" 'rg
       "p c" 'compile
+      "p u" 'straight-use-package
 
       ;; q
       ;; r
