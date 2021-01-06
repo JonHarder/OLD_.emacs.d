@@ -37,9 +37,9 @@
 (defconfig jh/config
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
-  :theme-package        spacemacs-theme
-  :light-theme          spacemacs-light
-  :dark-theme           spacemacs-dark
+  :theme-package        doom-themes
+  :light-theme          doom-one-light
+  :dark-theme           doom-one
   :highlight-line       t
   :modules (core
             evil
@@ -63,7 +63,7 @@
             search
             python
             docker
-            ;; rss
+            rss
             ;; clojure
             php
             web

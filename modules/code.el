@@ -32,5 +32,6 @@
     (whitespace-mode 1))
 
 
+  (add-hook 'c-mode-hook (lambda () (electric-pair-mode 1)))
   (add-hook 'prog-mode-hook #'jh/prog-mode-hook config)
   (add-hook 'prog-mode-hook #'lsp-deferred))
