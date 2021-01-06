@@ -19,6 +19,10 @@
         (lambda ()
           (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
     (evil-mode 1))
+
+  (use-package evil-commentary
+    :config
+    (evil-commentary-mode 1))
   
   
   (use-package vi-tilde-fringe
