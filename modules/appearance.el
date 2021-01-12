@@ -104,11 +104,18 @@
          (font-name (alist-get :font config))
          (font-size (alist-get :font-size config))
          (font (format "%s %s" font-name font-size))
-         (theme-package (symbol-name (alist-get :theme-package config)))
+         (theme-package (alist-get :theme-package config))
          (light-theme (symbol-name (alist-get :light-theme config)))
          (dark-theme (symbol-name (alist-get :dark-theme config))))
 
     (jh/set-theme-to-system light-theme dark-theme theme-package)
+
+    (when (boundp 'jh/theme-switch-timer)
+      (cancel-timer jh/theme-switch-timer))
+    (setq jh/theme-switch-timer
+          (run-with-idle-timer 2 2 (lambda (light-theme dark-theme theme-package)
+                                     (jh/set-theme-to-system light-theme dark-theme theme-package))
+                               light-theme dark-theme theme-package))
 
     (set-frame-font font)
     (add-to-list 'default-frame-alist `(font . ,font))))

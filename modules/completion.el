@@ -48,3 +48,23 @@
     :init
     (marginalia-mode)
     (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light))))
+
+  ;; (use-package embark
+  ;;   :bind
+  ;;   ("C-," . embark-act)
+  ;;   :config
+  ;;   (defun current-candidate+category ()
+  ;;     (when selectrum-active-p
+  ;;       (cons (selectrum--get-meta 'category)
+  ;;             (selectrum-get-current-candidate))))
+
+  ;;   (add-hook 'embark-target-finders #'current-candidate+category)
+
+  ;;   (defun current-candidates+category ()
+  ;;     (when selectrum-active-p
+  ;;       (cons (selectrum--get-meta 'category)
+  ;;             (selectrum-get-current-candidates
+  ;;              minibuffer-completing-file-name))))
+  ;;   (add-hook 'embark-candidate-collectors #'current-candidates+category)
+
+  ;;   (add-hook 'embark-setup-hook 'selectrum-set-selected-candidate)))

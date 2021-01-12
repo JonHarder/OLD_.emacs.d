@@ -60,6 +60,7 @@
      (shell . t)
      (sql . t)
      (mermaid . t)
+     (calc . t)
      (restclient . t)
      (haskell t)
      (python . t)
