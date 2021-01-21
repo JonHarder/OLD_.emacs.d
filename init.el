@@ -37,9 +37,9 @@
 (defconfig jh/config
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
-  :theme-package        doom-themes
-  :light-theme          doom-one-light
-  :dark-theme           doom-rouge
+  :theme-package        nil
+  :light-theme          modus-operandi
+  :dark-theme           modus-vivendi
   :highlight-line       t
   :modules (core
             evil
@@ -56,7 +56,8 @@
             dired
             lisp
             haskell
-            ;; rust
+            rust
+            go
             eshell
             term
             terraform

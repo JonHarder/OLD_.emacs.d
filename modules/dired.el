@@ -8,25 +8,17 @@
     :config
     (evil-define-key 'normal dired-mode-map
       "h" 'dired-single-up-directory
-      "l" 'dired-single-buffer))
+      "l" 'dired-single-buffer
+      "s" 'eshell
+      "n" 'edwina-select-next-window
+      "p" 'edwina-select-previous-window
+      (kbd "RET") 'dired-single-buffer))
 
   (straight-use-package
    '(dired-show-readme
      :host gitlab
      :repo "kisaragi-hiu/dired-show-readme"))
   (add-hook 'dired-mode-hook #'dired-show-readme-mode)
-
-
-  (use-package peep-dired
-    :config
-    (evil-define-key 'normal peep-dired-mode-map
-      (kbd "<SPC>") 'peep-dired-scroll-page-down
-      (kbd "C-<SPC>") 'peep-dired-scroll-page-up
-      (kbd "j") 'peep-dired-next-file
-      (kbd "k") 'peep-dired-prev-file)
-    (add-hook 'peep-dired-hook 'evil-normalize-keymaps)
-
-    (evil-define-key 'normal dired-mode-map (kbd "p") 'peep-dired))
 
   (use-package dired-collapse)
   (use-package dired-rainbow)

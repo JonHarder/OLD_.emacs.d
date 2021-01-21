@@ -39,7 +39,7 @@
             doom-themes-padded-modeline nil)))))
 
 (defun jh/mac-is-dark-mode-p ()
-  "Predicate function to determine if MacOS dark theme is enabled."
+  "Determine if MacOS dark theme is enabled."
   (interactive)
   (string-equal "Dark" (string-trim (shell-command-to-string "defaults read -g AppleInterfaceStyle"))))
 
