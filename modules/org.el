@@ -28,13 +28,15 @@
   (require 'ob-php (concat user-emacs-directory "ob-php.el"))
   (setq org-fontify-whole-heading-line t
         org-confirm-babel-evaluate nil)
+  (setq org-agenda-files '("~/Org" "~/Org/projects"))
   (setq-default
-   org-agenda-files '("~/Org" "~/Org/projects" "~/zettelkasten")
    org-src-fontify-natively t
    org-hide-emphasis-markers t
    org-archive-location "~/Org/archive/%s.archive::"
-   org-agenda-include-diary t
+   ;;; FIXME: setting this to `t' breaks the agenda view for some reason
+   org-agenda-include-diary nil
    org-agenda-timegrid-use-ampm t
+   org-agenda-span 'week
    org-babel-python-command "python3"
    org-highest-priority ?A
    org-lowest-priority ?F
@@ -72,7 +74,7 @@
     :demand t
     :custom
     (org-hide-leading-stars t)
-    (org-superstar-special-todo-items nil)
+    (org-superstar-special-todo-items t)
     :hook (org-mode . org-superstar-mode))
   
   (setq org-todo-keywords

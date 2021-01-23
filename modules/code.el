@@ -13,6 +13,9 @@
 
   (add-hook 'sh-mode-hook #'flycheck-mode)
 
+  (use-package conf-mode
+    :mode "\\.env")
+
   ;; language server support
   (use-package lsp-mode
     :config

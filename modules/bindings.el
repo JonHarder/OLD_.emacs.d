@@ -145,20 +145,27 @@
   (use-package general
     :config
     (general-evil-setup t)
-    (general-create-definer space-leader :prefix "SPC")
     (general-define-key
      :states 'normal
-     :keymaps 'occur-mode-map
-     "e" 'occur-edit-mode)
-    (general-define-key
-     :states 'normal
-     "/" 'consult-line
+     "/" 'evil-ex-search-forward
+     "?" 'evil-ex-search-backward
      "M-v" 'jh/paste-from-mac-clipboard
      "C-t" 'transpose-chars
      :states 'insert
      "M-v" 'jh/paste-from-mac-clipboard
      :states 'visual
      "M-c" 'jh/copy-to-mac-clipboard)
+    (general-define-key
+     :states 'normal
+     :keymaps 'calendar-mode-map
+     "i d" 'diary-insert-entry
+     "H" 'calendar-backward-month
+     "L" 'calendar-forward-month)
+    (general-define-key
+     :states 'normal
+     :keymaps 'occur-mode-map
+     "e" 'occur-edit-mode)
+    (general-create-definer space-leader :prefix "SPC")
     (space-leader
       :keymaps 'normal
       "SPC" 'execute-extended-command
@@ -167,15 +174,17 @@
       "RET" 'eshell
       "ESC" 'evil-ex-nohighlight
       "TAB" 'switch-to-most-recent-buffer
+      "/" 'consult-line
   
       "a" '(:ignore t :which-key "applications")
+      "a =" 'calc
       "a a" 'org-agenda
-      "a t" 'vterm
-      ;; "a t" 'eshell
+      "a c" 'calendar
       "a d" 'dired-jump
-      "a c" 'calc
+      "a g" 'gnus
       "a i" 'jh/erc
       "a s" 'scratch
+      "a t" 'vterm
 
       "b" '(:ignore t :which-key "buffers")
       "b b" 'consult-buffer
