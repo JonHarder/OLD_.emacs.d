@@ -176,7 +176,7 @@
       "TAB" 'switch-to-most-recent-buffer
       "/" 'consult-line
   
-      "a" '(:ignore t :which-key "applications")
+      "a" '(:ignore t :which-key "Apps")
       "a =" 'calc
       "a a" 'org-agenda
       "a c" 'calendar
@@ -186,7 +186,7 @@
       "a s" 'scratch
       "a t" 'vterm
 
-      "b" '(:ignore t :which-key "buffers")
+      "b" '(:ignore t :which-key "Buffers")
       "b b" 'consult-buffer
       "b i" 'ibuffer
       "b d" 'evil-delete-buffer
@@ -196,22 +196,22 @@
       "b r" 'jh/switch-buffer-right
       "b R" 'rename-buffer
   
-      "c" '(:ignore t :which-key "configuration")
+      "c" '(:ignore t :which-key "Conf")
       "c c" 'jh/find-config
       "c l" 'jh/load-theme
       "c r" 'jh/reload-config
 
       ;;; d
-      "d" '(:ignore t :which-key "display")
+      "d" '(:ignore t :which-key "Display")
       "d c" 'display-fill-column-indicator-mode
       "d d" 'jh/load-dark-theme
       "d l" 'jh/load-light-theme
 
-      "e" '(:ignore t :which-key "eval")
+      "e" '(:ignore t :which-key "Eval")
       "e e" 'eval-last-sexp
       "e ;" 'eval-expression
   
-      "f" '(:ignore t :which-key "files")
+      "f" '(:ignore t :which-key "Files")
       "f c" 'find-shell-config
       "f i" 'jh/find-config
       "f d" 'open-diary
@@ -221,10 +221,12 @@
       "f m" 'jh/find-module
       "f o" 'other-frame
   
-      "g" '(:ignore t :which-key "git")
+      "g" '(:ignore t :which-key "Git")
       "g s" 'magit-status
+      "g l" 'magit-log
+      "g c" 'magit-commit
   
-      "h" '(:ignore t :which-key "help")
+      "h" '(:ignore t :which-key "Help")
       "h f" 'helpful-callable
       "h k" 'helpful-key
       "h v" 'helpful-variable
@@ -233,39 +235,38 @@
       "h a" 'consult-apropos
 
       ;;; i
-      "i" '(:ignore t :which-key "imenu")
+      "i" '(:ignore t :which-key "Imenu")
       "i i" 'consult-imenu
       "i l" 'imenu-list-smart-toggle
   
-      "j" '(:ignore t :which-key "jumping")
-      ;; "j d" 'dumb-jump-go-other-window
+      "j" '(:ignore t :which-key "Jumping")
       "j d" 'lsp-find-definition
       "j w" 'avy-goto-word-1
 
       ;;; k
-      "k" '(:ignore t :which-key "kipsu")
+      "k" '(:ignore t :which-key "Kipsu")
       "k g" 'jh/work-git
       "k f" 'jh/work-find-file
 
-      "l" '(:ignore t :which-key "lsp")
+      "l" '(:ignore t :which-key "Lsp")
       "l r" 'lsp-ui-peek-find-references
       "l d" 'lsp-ui-peek-find-definitions
       "l n" 'flycheck-next-error
       "l p" 'flycheck-previous-error
       "l l" 'flycheck-list-errors
 
-      "m" '(:ignore t :which-key "music")
-      "m p" 'spotify-toggle-play
-      "m s" 'spotify-track-search
-      "m l" 'spotify-my-playlists
-      "m d" 'spotify-select-device
+      ;; "m" '(:ignore t :which-key "Music")
+      ;; "m p" 'spotify-toggle-play
+      ;; "m s" 'spotify-track-search
+      ;; "m l" 'spotify-my-playlists
+      ;; "m d" 'spotify-select-device
   
-      "n" '(:ignore t :which-key "narrowing")
+      "n" '(:ignore t :which-key "Narrow")
       "n d" 'narrow-to-defun
       "n n" 'narrow-to-defun
       "n w" 'widen
   
-      "o" '(:ignore t :which-key "org")
+      "o" '(:ignore t :which-key "Org")
       "o c" 'org-ctrl-c-ctrl-c
       "o a" 'org-archive-subtree
       "o b" 'jh/org-src-block
@@ -278,7 +279,7 @@
       "o p" 'org-priority
       "o '" 'org-edit-special
 
-      "p" '(:ignore t :which-key "project")
+      "p" '(:ignore t :which-key "Projects")
       "p p" 'projectile-switch-project
       "p f" 'projectile-find-file
       "p t" 'parinfer-toggle-mode
@@ -289,14 +290,14 @@
       ;; q
       ;; r
 
-      "s" '(:ignore t :which-key "searching")
+      "s" '(:ignore t :which-key "Searching")
       "s g" 'how-do-i-google
       "s s" 'how-do-i
       "s d" 'how-do-i-ddg
       "s o" 'how-do-i-so
 
       ;; t
-      "t" '(:ignore t :which-key "tabs")
+      "t" '(:ignore t :which-key "Tabs")
       "t t" 'tab-bar-switch-to-tab
       "t n" 'tab-bar-switch-to-next-tab
       "t p" 'tab-bar-switch-to-prev-tab
@@ -306,7 +307,7 @@
       ;; u
       ;; v
   
-      "w" '(:ignore t :which-key "windows")
+      "w" '(:ignore t :which-key "Windows")
       "w r"    'edwina-arrange
       "w n"    'edwina-select-next-window
       "w p"    'edwina-select-previous-window

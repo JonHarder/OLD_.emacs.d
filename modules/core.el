@@ -31,8 +31,9 @@
     (edwina-mode 1))
 
   ;;; Let the system default for osx determine which browser to use
-  (setq browse-url-browser-function #'browse-url-generic
-        browse-url-generic-program "open")
+  (setq browse-url-browser-function #'eww)
+  ;; (setq browse-url-browser-function #'browse-url-generic
+  ;;      browse-url-generic-program "open")
 
   (use-package csv-mode)
   (use-package neon-mode)
