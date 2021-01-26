@@ -14,20 +14,20 @@
    ;;; modus themes
    ((string-prefix-p "modus-" theme)
     (progn
-      (setq modus-operandi-theme-scale-headings t
-            modus-vivendi-theme-scale-headings t
-
-            modus-operandi-theme-org-blocks t
-            modus-vivendi-theme-org-blocks t
-
+      (setq
             modus-operandi-theme-bold-constructs t
-            modus-vivendi-theme-bold-constructs t
-
-            modus-vivendi-theme-headings '((t . rainbow-section))
-            modus-operandi-theme-headings '((t . rainbow-section))
-
             modus-operandi-theme-completions 'opinionated
-            modus-vivendi-theme-completions 'opinionated)))
+            modus-operandi-theme-intense-paren-match t
+            modus-operandi-theme-prompts 'subtle
+            modus-operandi-theme-rainbow-headings t
+            modus-operandi-theme-scale-headings t
+
+            modus-vivendi-theme-bold-constructs t
+            modus-vivendi-theme-completions 'opinionated
+            modus-vivendi-theme-intense-paren-match t
+            modus-vivendi-theme-prompts 'subtle
+            modus-vivendi-theme-rainbow-headings t
+            modus-vivendi-theme-scale-headings t)))
 
             
    ;;; doom themes
