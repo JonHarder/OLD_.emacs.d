@@ -253,7 +253,7 @@
       "l d" 'lsp-ui-peek-find-definitions
       "l n" 'flycheck-next-error
       "l p" 'flycheck-previous-error
-      "l l" 'flycheck-list-errors
+      "l l" 'consult-flycheck
 
       ;; "m" '(:ignore t :which-key "Music")
       ;; "m p" 'spotify-toggle-play
@@ -283,7 +283,7 @@
       "p p" 'projectile-switch-project
       "p f" 'projectile-find-file
       "p t" 'parinfer-toggle-mode
-      "p /" 'rg
+      "p /" 'consult-git-grep
       "p c" 'compile
       "p u" 'straight-use-package
 

@@ -1,7 +1,6 @@
 (defun modules/evil--load (config)
   "Some stuff with CONFIG."
   (use-package evil
-    :demand t
     :init
     (setq evil-search-module 'evil-search
           evil-ex-complete-emacs-commands t
@@ -13,12 +12,25 @@
           evil-want-integration t
           evil-want-keybinding nil
           evil-want-minibuffer nil)
-  
+
     :config
-    (add-hook 'org-mode-hook
-        (lambda ()
-          (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)))
     (evil-mode 1))
+
+  (use-package evil-collection
+    :after evil
+    :init
+    (setq evil-collection-setup-minibuffer t)
+    :config
+    (evil-collection-init)
+    (evil-collection-define-key 'normal 'minibuffer-local-map (kbd "j") #'selectrum-next-candidate)
+    (evil-collection-define-key 'normal 'minibuffer-local-map (kbd "k") #'selectrum-previous-candidate)
+    (evil-collection-define-key 'normal 'minibuffer-local-map (kbd "G") #'selectrum-goto-end)
+    (evil-collection-define-key 'normal 'minibuffer-local-map (kbd "gg") #'selectrum-goto-beginning))
+
+  (use-package evil-matchit
+    :config
+    (global-evil-matchit-mode 1))
+
 
   (use-package evil-commentary
     :config
@@ -36,10 +48,6 @@
     (global-evil-surround-mode 1))
   
   
-  (use-package evil-magit
-    :demand t)
-  
-  
   (use-package evil-org
     :defer 1
     :after org
@@ -47,11 +55,4 @@
            (evil-org-mode . evil-org-set-key-theme))
     :config
     (require 'evil-org-agenda)
-    (evil-org-agenda-set-keys))
-  
-  
-  (use-package evil-collection
-    :after evil
-    :demand t
-    :config
-    (evil-collection-init)))
+    (evil-org-agenda-set-keys)))

@@ -23,13 +23,6 @@
     :config
     (projectile-mode +1))
 
-  (use-package selectrum)
-  (use-package selectrum-prescient
-    :config
-    (selectrum-mode +1)
-    (selectrum-prescient-mode +1)
-    (prescient-persist-mode +1))
-
   (use-package consult
     :bind (("C-c h" . consult-history)
            ("C-c o" . consult-outline)
@@ -37,34 +30,19 @@
            :map flycheck-command-map
            ("!" . consult-flycheck))
     :init
-    (fset 'multi-occur #'consult-multi-occur)
-    :config
-    (consult-preview-mode))
+    (fset 'multi-occur #'consult-multi-occur))
 
-  (straight-use-package 'consult-selectrum)
-  (straight-use-package 'consult-flycheck)
+  (use-package selectrum)
+  (use-package selectrum-prescient
+    :config
+    (selectrum-mode +1)
+    (selectrum-prescient-mode +1)
+    (prescient-persist-mode +1))
+
+
+  (use-package consult-flycheck)
 
   (use-package marginalia
     :init
     (marginalia-mode)
     (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light))))
-
-  ;; (use-package embark
-  ;;   :bind
-  ;;   ("C-," . embark-act)
-  ;;   :config
-  ;;   (defun current-candidate+category ()
-  ;;     (when selectrum-active-p
-  ;;       (cons (selectrum--get-meta 'category)
-  ;;             (selectrum-get-current-candidate))))
-
-  ;;   (add-hook 'embark-target-finders #'current-candidate+category)
-
-  ;;   (defun current-candidates+category ()
-  ;;     (when selectrum-active-p
-  ;;       (cons (selectrum--get-meta 'category)
-  ;;             (selectrum-get-current-candidates
-  ;;              minibuffer-completing-file-name))))
-  ;;   (add-hook 'embark-candidate-collectors #'current-candidates+category)
-
-  ;;   (add-hook 'embark-setup-hook 'selectrum-set-selected-candidate)))

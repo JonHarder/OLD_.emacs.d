@@ -28,7 +28,7 @@
   (require 'ob-php (concat user-emacs-directory "ob-php.el"))
   (setq org-fontify-whole-heading-line t
         org-confirm-babel-evaluate nil)
-  (setq org-agenda-files '("~/Org" "~/Org/projects"))
+  (setq org-agenda-files '("~/Org"))
   (setq-default
    org-src-fontify-natively t
    org-hide-emphasis-markers t
