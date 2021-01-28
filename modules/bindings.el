@@ -181,6 +181,7 @@
       "a a" 'org-agenda
       "a c" 'calendar
       "a d" 'dired-jump
+      "a e" 'browse-url
       "a g" 'gnus
       "a i" 'jh/erc
       "a s" 'scratch
