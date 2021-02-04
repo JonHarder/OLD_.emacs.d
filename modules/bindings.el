@@ -185,7 +185,7 @@
       "a g" 'gnus
       "a i" 'jh/erc
       "a s" 'scratch
-      "a t" 'vterm
+      "a t" 'vterm-other-window
 
       "b" '(:ignore t :which-key "Buffers")
       "b b" 'consult-buffer
@@ -221,6 +221,7 @@
       "f t" 'find-todo-file
       "f m" 'jh/find-module
       "f o" 'other-frame
+      "f p" 'ffap
   
       "g" '(:ignore t :which-key "Git")
       "g s" 'magit-status
@@ -284,7 +285,7 @@
       "p p" 'projectile-switch-project
       "p f" 'projectile-find-file
       "p t" 'parinfer-toggle-mode
-      "p /" 'consult-git-grep
+      "p /" 'rg
       "p c" 'compile
       "p u" 'straight-use-package
 

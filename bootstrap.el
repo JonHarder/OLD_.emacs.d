@@ -89,7 +89,7 @@
   :config
   (when (memq window-system '(mac ns x))
     (setq-default exec-path-from-shell-variables
-          '("PATH" "MANPATH"))
+          '("PATH" "MANPATH" "GOPATH"))
     (exec-path-from-shell-initialize)))
 
 (defun module-init-func (module-name)
