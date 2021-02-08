@@ -27,9 +27,13 @@
 
   (use-package lsp-ui)
 
+  (setq-default default-tab-width 4
+                c-basic-offset 4
+                tab-width 4)
+
   (defun jh/prog-mode-hook ()
     "Settings that should be enabled or disabled for all programming modes."
-    (setq-default whitespace-style '(face tabs space-before-tab line-tail empty space-after-tab tab-mark))
+    (setq-default whitespace-style '(face space-before-tab line-tail empty space-after-tab))
     (when (alist-get :highlight-line jh/config nil)
       (hl-line-mode t))
     (whitespace-mode 1))
