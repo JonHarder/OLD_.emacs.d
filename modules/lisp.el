@@ -1,9 +1,7 @@
 (defun modules/lisp--load (config)
-  (use-package slime
-    :demand t
+  (use-package sly
     :init
-    (setq inferior-lisp-program "/usr/local/bin/sbcl"
-          slime-contribs '(slime-fancy)))
+    (setq inferior-lisp-program "/usr/local/bin/sbcl"))
 
   (use-package eros
     ;;; display inline overlays for elisp evaluations
