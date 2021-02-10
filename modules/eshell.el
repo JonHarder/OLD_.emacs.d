@@ -32,9 +32,10 @@
   (pcomplete-here* pcmpl-git-commands))
 
 ;;; custom functions
-(defun eshell/e (file)
-  "Shorthand command to open FILE."
-  (find-file file))
+(defun eshell/e (&optional file)
+  "Shorthand command to open FILE, defaults to current directory if not given."
+  (let ((f (or file ".")))
+    (find-file f)))
 
 
 (defun eshell/back (&optional num)
@@ -88,7 +89,11 @@
 
   (setq eshell-banner-message "")
 
+  ;;; ESHELL PROMPT HELPER FUNCTIONS
   (defun jh/--join-paths (paths dir)
+    "Take the list of PATH, and join together with DIR at the end.
+
+Takes into account if path contains the home ~ symbol."
     (message (format "paths: %s" paths))
     (message (format "dir: %s" dir))
     (cond
@@ -106,6 +111,7 @@
 
 
   (defun jh/--split-path (path)
+    "Split the string PATH using the directory seperator, /."
     (delete "" (split-string (abbreviate-file-name path) "/")))
 
 
@@ -129,10 +135,13 @@
 
   (setq eshell-prompt-function
         (lambda ()
-          (concat
-           (propertize "➜ " 'face `(:foreground "#228822"))
-           (propertize (jh/eshell-prompt--compressed-pwd) 'face `(:foreground "#222288" :weight bold))
-           (propertize " $ " 'face `(:foreground "black")))))
+          (let ((status-color (if (= eshell-last-command-status 0)
+                                  "#228822"
+                                "#882222")))
+            (concat
+             (propertize "➜ " 'face `(:foreground ,status-color))
+             (propertize (jh/eshell-prompt--compressed-pwd) 'face `(:foreground "#222288" :weight bold))
+             (propertize " $ " 'face `(:foreground "black"))))))
   
   
   (add-hook 'eshell-mode-hook
