@@ -108,6 +108,7 @@
   (defun jh/--split-path (path)
     (delete "" (split-string (abbreviate-file-name path) "/")))
 
+
   (defun jh/--truncate-paths (paths)
     (mapcar (lambda (s)
               (if (string-equal "." (substring s 0 1))
@@ -115,7 +116,7 @@
                 (substring s 0 1)))
             paths))
 
-  (defun compressed-pwd ()
+  (defun jh/eshell-prompt--compressed-pwd ()
     (interactive)
     (let* ((fragments (jh/--split-path default-directory))
            (first-chars (jh/--truncate-paths (butlast fragments))))
@@ -123,11 +124,15 @@
   
 
   (setq eshell-prompt-regexp ".* \$ "
-        eshell-cmpl-ignore-case t)
-  
+        eshell-cmpl-ignore-case t
+        eshell-highlight-prompt nil)
+
   (setq eshell-prompt-function
         (lambda ()
-          (format "➜ %s $ " (compressed-pwd))))
+          (concat
+           (propertize "➜ " 'face `(:foreground "#228822"))
+           (propertize (jh/eshell-prompt--compressed-pwd) 'face `(:foreground "#222288" :weight bold))
+           (propertize " $ " 'face `(:foreground "black")))))
   
   
   (add-hook 'eshell-mode-hook
