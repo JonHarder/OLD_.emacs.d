@@ -14,68 +14,9 @@
 ;;;  'eshell-visual-subcommands
 ;;; to update which programs will use this shell
 
-(defvar pretty-eshell-funcs nil
-  "List of `pretty-eshell-section' to enable.")
-
-(defvar pretty-eshell-sep " | "
-  "String delimits each `pretty-eshell-section'.")
-
-(defvar pretty-eshell-section-delim " "
-  "String delimits icons and their text.")
-
-(defvar pretty-eshell-header ""
-  "Initial string composing the eshell prompt.")
-
-(defvar pretty-eshell-prompt-string " "
-  "Prompt string, must match builtin `eshell-prompt-regexp'.")
-
-(setq eshell-prompt-regexp " "
-      eshell-cmpl-ignore-case t)
-
-(defvar pretty-eshell-prompt-num 0
-  "Prompt number for current eshell session.")
-
-;;; Core
-
 (defmacro with-face (STR &rest PROPS)
   "Return STR propertized with PROPS."
   `(propertize ,STR 'face (list ,@PROPS)))
-
-(defmacro pretty-eshell-section (name icon form &rest props)
-  "Build eshell section NAME with ICON prepended to evaled FORM with PROPS."
-  ;; Roundabout way to handle case that
-  ;; 1. Form is a variable and
-  ;; 2. That variable might not be defined/initialized
-  ;; Eg. pyvenv-virtualenv-name not loaded until pyvenv-workon
-  `(setq ,name
-         (lambda ()
-           (when (or (and (symbolp (quote ,form))
-                          (bound-and-true-p ,form))
-                     (and (not (symbolp (quote ,form)))
-                          ,form))
-             (-> ,icon
-                (concat pretty-eshell-section-delim ,form)
-                (with-face ,@props))))))
-
-(defun pretty-eshell--acc (acc x)
-  "Used to accumulate shell sections into ACC, using X."
-  (--if-let (funcall x)
-      (if (s-blank? acc)
-          it
-        (s-concat acc pretty-eshell-sep it))
-    acc))
-
-(defun pretty-eshell-prompt-func ()
-  "Value for `eshell-prompt-function'."
-  (concat pretty-eshell-header
-          (-reduce-from 'pretty-eshell--acc "" pretty-eshell-funcs)
-          "\n"
-          pretty-eshell-prompt-string))
-
-;;; define the sections
-
-;; Git Branch
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; custom completion
@@ -147,41 +88,52 @@
 
   (setq eshell-banner-message "")
 
-  (pretty-eshell-section
-   esh-git
-   "\xe907"  ; 
-   (magit-get-current-branch)
-   '(:foreground "#8D6B94"))
-  
-  ;; Python Virtual Environment
-  (pretty-eshell-section
-   esh-python
-   "\xe928"  ; 
-   pyvenv-virtual-env-name)
-  
-  ;; Time
-  (pretty-eshell-section
-   esh-clock
-   "\xf017"  ; 
-   (format-time-string "%I:%M %p" (current-time))
-   '(:foreground "forest green"))
-  
-  (pretty-eshell-section
-   esh-dir
-   "\xf016"  ;
-   (abbreviate-file-name (eshell/pwd))
-   '(:foreground "#268bd2" :bold bold :underline t))
+  (defun jh/--join-paths (paths dir)
+    (message (format "paths: %s" paths))
+    (message (format "dir: %s" dir))
+    (cond
+     ((and (null paths) (null dir))
+      "/")
+     ((and (null paths) (not (string-equal dir "~")))
+      (format "/%s" dir))
+     ((and (null paths) (string-equal dir "~"))
+      "~")
+     (t
+      (let ((fmt (if (string-equal (elt paths 0) "~")
+                     "%s/%s"
+                   "/%s/%s")))
+        (format fmt (string-join paths "/") dir)))))
 
-  (setq pretty-eshell-funcs
-        (list esh-dir esh-git esh-python esh-clock))
+
+  (defun jh/--split-path (path)
+    (delete "" (split-string (abbreviate-file-name path) "/")))
+
+  (defun jh/--truncate-paths (paths)
+    (mapcar (lambda (s)
+              (if (string-equal "." (substring s 0 1))
+                  (substring s 0 2)
+                (substring s 0 1)))
+            paths))
+
+  (defun compressed-pwd ()
+    (interactive)
+    (let* ((fragments (jh/--split-path default-directory))
+           (first-chars (jh/--truncate-paths (butlast fragments))))
+      (jh/--join-paths first-chars (car (last fragments)))))
+  
+
+  (setq eshell-prompt-regexp ".* \$ "
+        eshell-cmpl-ignore-case t)
   
   (setq eshell-prompt-function
-        'pretty-eshell-prompt-func)
-
-  (add-hook 'eshell-mode-hook
-    (lambda ()
-      (define-key eshell-mode-map
-        (kbd "<tab>")
         (lambda ()
-          (interactive)
-          (completion-at-point))))))
+          (format "➜ %s $ " (compressed-pwd))))
+  
+  
+  (add-hook 'eshell-mode-hook
+            (lambda ()
+              (define-key eshell-mode-map
+                (kbd "<tab>")
+                (lambda ()
+                  (interactive)
+                  (completion-at-point))))))

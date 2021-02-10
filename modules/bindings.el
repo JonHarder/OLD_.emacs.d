@@ -185,7 +185,7 @@
       "a g" 'gnus
       "a i" 'jh/erc
       "a s" 'scratch
-      "a t" 'vterm-other-window
+      "a t" 'vterm
 
       "b" '(:ignore t :which-key "Buffers")
       "b b" 'consult-buffer
