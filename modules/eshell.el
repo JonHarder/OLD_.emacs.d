@@ -14,6 +14,7 @@
 ;;;  'eshell-visual-subcommands
 ;;; to update which programs will use this shell
 
+
 (defmacro with-face (STR &rest PROPS)
   "Return STR propertized with PROPS."
   `(propertize ,STR 'face (list ,@PROPS)))
@@ -104,7 +105,7 @@ Takes into account if path contains the home ~ symbol."
      ((and (null paths) (string-equal dir "~"))
       "~")
      (t
-      (let ((fmt (if (string-equal (elt paths 0) "~")
+      (let ((fmt (if (string-equal (first paths) "~")
                      "%s/%s"
                    "/%s/%s")))
         (format fmt (string-join paths "/") dir)))))
@@ -122,9 +123,9 @@ Takes into account if path contains the home ~ symbol."
                 (substring s 0 1)))
             paths))
 
-  (defun jh/eshell-prompt--compressed-pwd ()
+  (defun jh/eshell-prompt--compressed-pwd (dir)
     (interactive)
-    (let* ((fragments (jh/--split-path default-directory))
+    (let* ((fragments (jh/--split-path dir))
            (first-chars (jh/--truncate-paths (butlast fragments))))
       (jh/--join-paths first-chars (car (last fragments)))))
   
@@ -132,17 +133,22 @@ Takes into account if path contains the home ~ symbol."
   (setq eshell-prompt-regexp ".* \$ "
         eshell-cmpl-ignore-case t
         eshell-highlight-prompt nil)
-
-  (setq eshell-prompt-function
-        (lambda ()
-          (let ((status-color (if (= eshell-last-command-status 0)
-                                  "#228822"
-                                "#882222")))
-            (concat
-             (propertize "➜ " 'face `(:foreground ,status-color))
-             (propertize (jh/eshell-prompt--compressed-pwd) 'face `(:foreground "#222288" :weight bold))
-             (propertize " $ " 'face `(:foreground "black"))))))
   
+  (defun jh/eshell-prompt ()
+    (let* ((color-success "#008800")
+           (color-failure "#880000")
+           (color-path "#222288")
+           (color-default "black")
+           (status-color (if (= eshell-last-command-status 0)
+                             color-success
+                           color-failure)))
+      (message (format "%s" (alist-get :font jh/config)))
+      (concat
+       (propertize "➜ " 'face `(:foreground ,status-color))
+       (propertize (jh/eshell-prompt--compressed-pwd default-directory) 'face `(:foreground ,color-path :weight bold))
+       (propertize " $ " 'face `(:foreground ,color-default)))))
+
+  (setq eshell-prompt-function #'jh/eshell-prompt)
   
   (add-hook 'eshell-mode-hook
             (lambda ()

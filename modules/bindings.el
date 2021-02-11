@@ -190,8 +190,8 @@
       "b" '(:ignore t :which-key "Buffers")
       "b b" 'consult-buffer
       "b i" 'ibuffer
-      "b d" 'kill-current-buffer
-      "b D" 'evil-delete-buffer
+      "b d" 'evil-delete-buffer
+      "b D" 'kill-current-buffer
       "b o" 'consult-imenu
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
