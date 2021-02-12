@@ -95,8 +95,6 @@
     "Take the list of PATH, and join together with DIR at the end.
 
 Takes into account if path contains the home ~ symbol."
-    (message (format "paths: %s" paths))
-    (message (format "dir: %s" dir))
     (cond
      ((and (null paths) (null dir))
       "/")
@@ -135,14 +133,13 @@ Takes into account if path contains the home ~ symbol."
         eshell-highlight-prompt nil)
   
   (defun jh/eshell-prompt ()
-    (let* ((color-success "#008800")
-           (color-failure "#880000")
-           (color-path "#222288")
-           (color-default "black")
+    (let* ((color-success (if jh/dark-mode "#00ff00" "#228822"))
+           (color-failure "red")
+           (color-path "cyan")
+           (color-default (if jh/dark-mode "white" "black"))
            (status-color (if (= eshell-last-command-status 0)
                              color-success
                            color-failure)))
-      (message (format "%s" (alist-get :font jh/config)))
       (concat
        (propertize "➜ " 'face `(:foreground ,status-color))
        (propertize (jh/eshell-prompt--compressed-pwd default-directory) 'face `(:foreground ,color-path :weight bold))

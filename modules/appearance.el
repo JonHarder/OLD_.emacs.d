@@ -38,16 +38,19 @@
             doom-themes-enable-italic t
             doom-themes-padded-modeline nil)))))
 
+
 (defun jh/mac-is-dark-mode-p ()
   "Determine if MacOS dark theme is enabled."
   (interactive)
   (string-equal "Dark" (string-trim (shell-command-to-string "defaults read -g AppleInterfaceStyle"))))
 
+(defvar jh/dark-mode (jh/mac-is-dark-mode-p) "Boolean which tracks mac system level dark mode.")
 
 (defun jh/set-theme-to-system (light-theme dark-theme &optional package)
   "Set the theme to LIGHT-THEME if MacOS is not in dark mode, set to DARK-THEME otherwise, using PACKAGE to install themes if given."
   (interactive)
-  (if (jh/mac-is-dark-mode-p)
+  (setq jh/dark-mode (jh/mac-is-dark-mode-p))
+  (if jh/dark-mode
       (jh/load-theme dark-theme package)
     (jh/load-theme light-theme package)))
 
