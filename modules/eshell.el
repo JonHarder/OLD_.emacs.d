@@ -121,6 +121,14 @@ Takes into account if path contains the home ~ symbol."
                 (substring s 0 1)))
             paths))
 
+  (defun jh/eshell-prompt--git-branch ()
+    (let* ((cmd-str "git branch | grep '^*' | awk '{ print $2 }'")
+           (output (string-trim (shell-command-to-string cmd-str)))
+           (in-repo? (not (s-starts-with? "fatal" output))))
+      (if in-repo?
+          output
+        nil)))
+
   (defun jh/eshell-prompt--compressed-pwd (dir)
     (interactive)
     (let* ((fragments (jh/--split-path dir))
@@ -131,18 +139,24 @@ Takes into account if path contains the home ~ symbol."
   (setq eshell-prompt-regexp ".* \$ "
         eshell-cmpl-ignore-case t
         eshell-highlight-prompt nil)
-  
+
   (defun jh/eshell-prompt ()
     (let* ((color-success (if jh/dark-mode "#00ff00" "#228822"))
            (color-failure "red")
            (color-path "cyan")
            (color-default (if jh/dark-mode "white" "black"))
+           (branch (jh/eshell-prompt--git-branch))
            (status-color (if (= eshell-last-command-status 0)
                              color-success
                            color-failure)))
       (concat
        (propertize "➜ " 'face `(:foreground ,status-color))
        (propertize (jh/eshell-prompt--compressed-pwd default-directory) 'face `(:foreground ,color-path :weight bold))
+       (unless (null branch)
+         (concat
+           (propertize " git:(" 'face `(:foreground "#8888ff" :weight bold))
+           (propertize branch 'face `(:foreground "#ff6666" :weight bold))
+           (propertize ")" 'face `(:foreground "#8888ff" :weight bold))))
        (propertize " $ " 'face `(:foreground ,color-default)))))
 
   (setq eshell-prompt-function #'jh/eshell-prompt)
