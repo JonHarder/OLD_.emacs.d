@@ -143,8 +143,10 @@ Takes into account if path contains the home ~ symbol."
   (defun jh/eshell-prompt ()
     (let* ((color-success (if jh/dark-mode "#00ff00" "#228822"))
            (color-failure "red")
-           (color-path "cyan")
+           (color-path (if jh/dark-mode "cyan" "#0088aa"))
            (color-default (if jh/dark-mode "white" "black"))
+           (color-git (if jh/dark-mode "#5577ff" "#0022dd"))
+           (color-git-branch "#ff6666")
            (branch (jh/eshell-prompt--git-branch))
            (status-color (if (= eshell-last-command-status 0)
                              color-success
@@ -154,9 +156,9 @@ Takes into account if path contains the home ~ symbol."
        (propertize (jh/eshell-prompt--compressed-pwd default-directory) 'face `(:foreground ,color-path :weight bold))
        (unless (null branch)
          (concat
-           (propertize " git:(" 'face `(:foreground "#8888ff" :weight bold))
-           (propertize branch 'face `(:foreground "#ff6666" :weight bold))
-           (propertize ")" 'face `(:foreground "#8888ff" :weight bold))))
+           (propertize " git:(" 'face `(:foreground ,color-git :weight bold))
+           (propertize branch 'face `(:foreground ,color-git-branch :weight bold))
+           (propertize ")" 'face `(:foreground ,color-git :weight bold))))
        (propertize " $ " 'face `(:foreground ,color-default)))))
 
   (setq eshell-prompt-function #'jh/eshell-prompt)
