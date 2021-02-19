@@ -127,6 +127,10 @@
     :config
     (which-key-mode))
 
+  (use-package ctrlf
+    :config
+    (ctrlf-mode +1))
+
   (use-package ace-window
     :commands (ace-window))
 
@@ -147,8 +151,8 @@
     (general-evil-setup t)
     (general-define-key
      :states 'normal
-     "/" 'evil-ex-search-forward
-     "?" 'evil-ex-search-backward
+     "/" 'ctrlf-forward-fuzzy
+     "?" 'ctrlf-backward-fuzzy
      "M-v" 'jh/paste-from-mac-clipboard
      "C-t" 'transpose-chars
      :states 'insert
