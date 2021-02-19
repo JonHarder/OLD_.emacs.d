@@ -146,7 +146,7 @@ Takes into account if path contains the home ~ symbol."
            (color-path (if jh/dark-mode "cyan" "#0088aa"))
            (color-default (if jh/dark-mode "white" "black"))
            (color-git (if jh/dark-mode "#5577ff" "#0022dd"))
-           (color-git-branch "#ff6666")
+           (color-git-branch "#cc3333")
            (branch (jh/eshell-prompt--git-branch))
            (status-color (if (= eshell-last-command-status 0)
                              color-success

@@ -2,7 +2,7 @@
   "Load configuration for dired, using CONFIG."
   (straight-use-package 'diredfl)
   (put 'dired-find-alternate-file 'disabled nil)
-  (setq dired-listing-switches "-lhoG")
+  (setq dired-listing-switches "-lahoG")
 
   (use-package dired-single
     :config

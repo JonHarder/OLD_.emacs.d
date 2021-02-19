@@ -71,7 +71,11 @@
   (use-package avy)
 
   (use-package yaml-mode
-    :hook (yaml-mode . ansible))
+    :hook (yaml-mode . ansible)
+    :config
+    (defun jh/yaml-mode-hook ()
+      (hl-line-mode +1))
+    (add-hook 'yaml-mode-hook #'jh/yaml-mode-hook))
   
   (use-package markdown-mode
     :commands (markdown-mode gfm-mode)

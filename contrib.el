@@ -4,6 +4,18 @@
 ;; defines miscellaneous helper functions to operate on (surprise) lists
 
 ;;; Code:
+(defun random-alnum ()
+  "Generate a random alphanumeric character."
+  (let* ((alnum "abcdefghijklmnopqrstuvwxyz01234567890")
+         (i (% (abs (random)) (length alnum))))
+    (substring alnum i (1+ i))))
+
+(defun random-str (n)
+  "Generate a random alphanumeric string of N characters."
+  (interactive (list (read-number "Number of characters: " 24)))
+  (dotimes (i (if (null n) 24 n))
+           (insert (random-alnum))))
+
 (defun contrib/map-alist-values (f alist)
   "Map function F over each value in the ALIST.
 

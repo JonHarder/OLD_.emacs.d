@@ -116,7 +116,7 @@
   (org-edit-special))
 
 (defun open-diary ()
-  "Open the diary file as determined by `diary-file`''"
+  "Open the diary file as determined by `diary-file`."
   (interactive)
   (find-file diary-file))
 
@@ -291,6 +291,8 @@
 
       ;; q
       ;; r
+      "r" '(:ignore t :which-key "Random")
+      "r r" #'random-str
 
       "s" '(:ignore t :which-key "Searching")
       "s g" 'how-do-i-google
@@ -317,6 +319,8 @@
       "w P"    'edwina-swap-previous-window
       "w %"    'edwina-dec-mfact
       "w ^"    'edwina-inc-mfact
+      "w h"    'edwina-dec-mfact
+      "w l"    'edwina-inc-mfact
       "w d"    'edwina-dec-nmaster
       "w i"    'edwina-inc-nmaster
       "w k"    'edwina-delete-window

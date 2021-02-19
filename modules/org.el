@@ -88,11 +88,11 @@
            "DONE(d)"
            "CANCELLED(c)"))
         org-todo-keyword-faces
-        '(("SOMEDAY" :foreground "#eeeeee" :background "#444444" :weight normal :underline t)
-          ("TODO" :foreground "#fc9d03" :weight normal :underline t)
-          ("NEXT" :foreground "#0098dd" :weight normal :underline t)
-          ("WAITING" :foreground "#bf3cc6" :weight normal :underline t)
-          ("INPROGRESS" :foreground "#fc5603" :weight normal :underline t)
-          ("DONE" :foreground "#50a14f" :weight normal :underline t)
-          ("CANCELLED" :foreground "#fc0303" :weight normal :underline t))
+        '(("SOMEDAY" :foreground "#eeeeee" :background "#444444" :weight bold :underline t)
+          ("TODO" :foreground "#fc9d03" :weight bold :underline t)
+          ("NEXT" :foreground "#0098dd" :weight bold :underline t)
+          ("WAITING" :foreground "#bf3cc6" :weight bold :underline t)
+          ("INPROGRESS" :foreground "#fc5603" :weight bold :underline t)
+          ("DONE" :foreground "#50a14f" :weight bold :underline t)
+          ("CANCELLED" :foreground "#fc0303" :weight bold :underline t))
         org-log-done 'time))
