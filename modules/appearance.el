@@ -116,7 +116,7 @@
     (when (boundp 'jh/theme-switch-timer)
       (cancel-timer jh/theme-switch-timer))
     (setq jh/theme-switch-timer
-          (run-with-idle-timer 2 2 (lambda (light-theme dark-theme theme-package)
+          (run-with-idle-timer 2 1 (lambda (light-theme dark-theme theme-package)
                                      (jh/set-theme-to-system light-theme dark-theme theme-package))
                                light-theme dark-theme theme-package))
 
