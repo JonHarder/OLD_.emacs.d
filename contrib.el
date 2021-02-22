@@ -10,11 +10,23 @@
          (i (% (abs (random)) (length alnum))))
     (substring alnum i (1+ i))))
 
-(defun random-str (n)
-  "Generate a random alphanumeric string of N characters."
-  (interactive (list (read-number "Number of characters: " 24)))
-  (dotimes (i (if (null n) 24 n))
-           (insert (random-alnum))))
+(defun random-token ()
+  "Generate a random character."
+  (let* ((chars "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*(){}|[]")
+         (i (% (abs (random)) (length chars))))
+    (substring chars i (1+ i))))
+
+(defun random-tokens (n generator)
+  "Insert N tokens using the function GENERATOR."
+  (interactive (list (read-number "Number of characters: " 24)
+                     #'random-token))
+  (dotimes (i n)
+    (insert (funcall generator))))
+
+(defun random-token-24 ()
+  "Generate 24 random tokens using `random-token'."
+  (interactive)
+  (random-tokens 24 #'random-token))
 
 (defun contrib/map-alist-values (f alist)
   "Map function F over each value in the ALIST.

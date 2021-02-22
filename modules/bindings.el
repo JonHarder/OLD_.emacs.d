@@ -151,6 +151,8 @@
     (general-evil-setup t)
     (general-define-key
      :states 'normal
+     "α" 'evil-append
+     "ι" 'evil-insert
      "/" 'ctrlf-forward-fuzzy
      "?" 'ctrlf-backward-fuzzy
      "M-v" 'jh/paste-from-mac-clipboard
@@ -296,7 +298,7 @@
       ;; q
       ;; r
       "r" '(:ignore t :which-key "Random")
-      "r r" #'random-str
+      "r r" #'random-token-24
 
       "s" '(:ignore t :which-key "Searching")
       "s g" 'how-do-i-google
