@@ -152,7 +152,11 @@
     (general-define-key
      :states 'normal
      "α" 'evil-append
+     "Α" 'evil-append-line
      "ι" 'evil-insert
+     "Ι" 'evil-insert-line
+     "ο" 'evil-open-below
+     "Ο" 'evil-open-above
      "/" 'ctrlf-forward-fuzzy
      "?" 'ctrlf-backward-fuzzy
      "M-v" 'jh/paste-from-mac-clipboard
