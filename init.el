@@ -72,7 +72,7 @@
             ansible
             mail
             kubernetes
-            ;; personal
+            personal
             spotify
             deft
             work

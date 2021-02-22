@@ -166,6 +166,10 @@
      :states 'visual
      "M-c" 'jh/copy-to-mac-clipboard)
     (general-define-key
+     :states '(normal insert)
+     :keymaps 'vterm-mode-map
+     "M-v" 'vterm-yank)
+    (general-define-key
      :states 'normal
      :keymaps 'calendar-mode-map
      "i d" 'diary-insert-entry
