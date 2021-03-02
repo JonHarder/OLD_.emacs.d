@@ -6,6 +6,12 @@
   (use-package web-mode
     :mode "\\.vue\\'")
 
+  (use-package prettier-js
+    :config
+    (add-hook 'js2-mode-hook 'prettier-js-mode)
+    (add-hook 'web-mode-hook 'prettier-js-mode))
+    
+
   (straight-use-package 'rjsx-mode)
   
   (use-package typescript-mode
