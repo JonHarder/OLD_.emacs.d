@@ -25,7 +25,9 @@
     ((lsp-mode . lsp-enable-which-key-integration)
      (lsp-mode . lsp-modeline-code-actions-mode)))
 
-  (use-package lsp-ui)
+  (use-package lsp-ui
+    :config
+    (setq lsp-ui-doc-position 'at-point))
 
   (setq-default default-tab-width 4
                 c-basic-offset 4

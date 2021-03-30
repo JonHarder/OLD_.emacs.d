@@ -14,7 +14,10 @@
           show-week-agenda-p t)
     (dashboard-setup-startup-hook))
 
-  (setq epa-pinentry-mode 'loopback)
+  ;;;; from the variable documentation
+  ;;; This variable is obsolete since 27.1; use epg-pinentry-mode instead.
+  ;; (setq epa-pinentry-mode 'loopback)
+  (setq epg-pinentry-mode 'loopback)
 
   (defun jh/evil-yank-advice (orig-fn beg end &rest args)
     (pulse-momentary-highlight-region beg end)
@@ -30,10 +33,11 @@
     (edwina-setup-dwm-keys)
     (edwina-mode 1))
 
+  ;;; use internal emacs text browser
+  ;; (setq browse-url-browser-function #'eww)
   ;;; Let the system default for osx determine which browser to use
-  (setq browse-url-browser-function #'eww)
-  ;; (setq browse-url-browser-function #'browse-url-generic
-  ;;      browse-url-generic-program "open")
+  (setq browse-url-browser-function #'browse-url-generic
+       browse-url-generic-program "open")
 
   (use-package csv-mode)
   (use-package neon-mode)
