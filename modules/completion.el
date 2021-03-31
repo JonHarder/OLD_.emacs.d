@@ -19,7 +19,7 @@
   (use-package projectile
     :defer 3
     :init
-    (setq-default projectile-completion-system 'selectrum-read)
+    (setq-default projectile-completion-system 'selectrum--read)
     :config
     (projectile-mode +1))
 
