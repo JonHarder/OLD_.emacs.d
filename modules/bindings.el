@@ -189,7 +189,7 @@
       "ESC" 'evil-ex-nohighlight
       "TAB" 'switch-to-most-recent-buffer
       "/" 'consult-line
-  
+
       "a" '(:ignore t :which-key "Apps")
       "a =" 'calc
       "a a" 'org-agenda
@@ -210,7 +210,7 @@
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
       "b R" 'rename-buffer
-  
+
       "c" '(:ignore t :which-key "Conf")
       "c c" 'jh/find-config
       "c l" 'jh/load-theme
@@ -225,23 +225,23 @@
       "e" '(:ignore t :which-key "Eval")
       "e e" 'eval-last-sexp
       "e ;" 'eval-expression
-  
+
       "f" '(:ignore t :which-key "Files")
       "f c" 'find-shell-config
       "f i" 'jh/find-config
-      "f d" 'open-diary
+      "f d" 'delete-file
       "f f" 'find-file
       "f s" 'save-buffer
       "f t" 'find-todo-file
       "f m" 'jh/find-module
       "f o" 'other-frame
       "f p" 'ffap
-  
+
       "g" '(:ignore t :which-key "Git")
       "g s" 'magit-status
       "g l" 'magit-log
       "g c" 'magit-commit
-  
+
       "h" '(:ignore t :which-key "Help")
       "h f" 'helpful-callable
       "h k" 'helpful-key
@@ -254,7 +254,7 @@
       "i" '(:ignore t :which-key "Imenu")
       "i i" 'consult-imenu
       "i l" 'imenu-list-smart-toggle
-  
+
       "j" '(:ignore t :which-key "Jumping")
       "j d" 'lsp-find-definition
       "j w" 'avy-goto-word-1
@@ -276,12 +276,12 @@
       ;; "m s" 'spotify-track-search
       ;; "m l" 'spotify-my-playlists
       ;; "m d" 'spotify-select-device
-  
+
       "n" '(:ignore t :which-key "Narrow")
       "n d" 'narrow-to-defun
       "n n" 'narrow-to-defun
       "n w" 'widen
-  
+
       "o" '(:ignore t :which-key "Org")
       "o c" 'org-ctrl-c-ctrl-c
       "o a" 'org-archive-subtree
@@ -324,7 +324,7 @@
       "t r" 'tab-bar-rename-tab
       ;; u
       ;; v
-  
+
       "w" '(:ignore t :which-key "Windows")
       "w r"    'edwina-arrange
       "w n"    'edwina-select-next-window
@@ -345,7 +345,7 @@
       ;;; x
       ;;; y
       ;;; z
-  
-  
+
+
       "=" 'text-scale-increase
       "-" 'text-scale-decrease)))

@@ -42,5 +42,13 @@
 
 
   (add-hook 'c-mode-hook (lambda () (electric-pair-mode 1)))
-  (add-hook 'prog-mode-hook #'jh/prog-mode-hook config)
-  (add-hook 'prog-mode-hook #'lsp-deferred))
+
+  (mapc (lambda (hook) (add-hook hook #'lsp-deferred))
+        '(c-mode-hook
+          go-mode-hook
+          php-mode-hook
+          python-mode-hook
+          dockerfile-mode-hook
+          json-mode-hook))
+
+  (add-hook 'prog-mode-hook #'jh/prog-mode-hook config))

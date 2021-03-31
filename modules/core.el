@@ -3,16 +3,16 @@
 (defun modules/core--load (config)
   "Load general core features, configure programming hook using CONFIG."
   
-  (use-package dashboard
-    :config
-    (setq dashboard-startup-banner 'logo
-          dashboard-center-content t
-          dashboard-items '((recents . 5)
-                            (bookmarks . 5)
-                            (projects . 5)
-                            (agenda . 5))
-          show-week-agenda-p t)
-    (dashboard-setup-startup-hook))
+  ;; (use-package dashboard
+  ;;   :config
+  ;;   (setq dashboard-startup-banner 'logo
+  ;;         dashboard-center-content t
+  ;;         dashboard-items '((recents . 5)
+  ;;                           (bookmarks . 5)
+  ;;                           (projects . 5)
+  ;;                           (agenda . 5))
+  ;;         show-week-agenda-p t)
+  ;;   (dashboard-setup-startup-hook))
 
   ;;;; from the variable documentation
   ;;; This variable is obsolete since 27.1; use epg-pinentry-mode instead.
@@ -37,7 +37,7 @@
   ;; (setq browse-url-browser-function #'eww)
   ;;; Let the system default for osx determine which browser to use
   (setq browse-url-browser-function #'browse-url-generic
-       browse-url-generic-program "open")
+        browse-url-generic-program "open")
 
   (use-package csv-mode)
   (use-package neon-mode)
@@ -54,7 +54,7 @@
     (rg-enable-menu))
 
   (use-package scratch)
-    
+
 
   (straight-use-package 'fireplace)
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
