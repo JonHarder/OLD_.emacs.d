@@ -161,6 +161,10 @@
      "?" 'ctrlf-backward-fuzzy
      "M-v" 'jh/paste-from-mac-clipboard
      "C-t" 'transpose-chars
+     "g . a" 'evil-mc-make-all-cursors
+     "g . n" 'evil-mc-make-and-goto-next-match
+     "g . p" 'evil-mc-make-and-goto-prev-match
+     "g . q" 'evil-mc-undo-all-cursors
      :states 'insert
      "M-v" 'jh/paste-from-mac-clipboard
      :states 'visual

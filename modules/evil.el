@@ -16,6 +16,10 @@
     :config
     (evil-mode 1))
 
+  (use-package evil-mc
+    :config
+    (global-evil-mc-mode +1))
+
   (use-package evil-collection
     :after evil
     :init
