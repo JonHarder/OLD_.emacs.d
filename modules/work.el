@@ -8,7 +8,9 @@
   (defun jh/jira-link (jira-number)
     "Generate the jira link given a JIRA-NUMBER."
     (interactive "nTicket Number:")
-    (insert (format "https://kipsudev.atlassian.net/browse/KIPSU-%i" jira-number)))
+    (insert (format "[[https://kipsudev.atlassian.net/browse/KIPSU-%i][KIPSU-%i]]"
+                    jira-number
+                    jira-number)))
 
   (defun vagrant-up ()
     (interactive)

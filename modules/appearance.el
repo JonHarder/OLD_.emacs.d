@@ -15,21 +15,14 @@
    ((string-prefix-p "modus-" theme)
     (progn
       (setq
-            modus-operandi-theme-bold-constructs t
-            modus-operandi-theme-completions 'opinionated
-            modus-operandi-theme-intense-paren-match t
-            modus-operandi-theme-prompts 'subtle
-            modus-operandi-theme-rainbow-headings t
-            modus-operandi-theme-scale-headings t
+       modus-themes-completions 'opinionated
+       modus-themes-org-blocks 'rainbow
+       modus-themes-bold-constructs t
+       modus-themes-headings '((t . rainbow-section))
+       modus-themes-completions 'opinionated
+       modus-themes-scale-headings t
+       modus-themes-paren-match 'intense)))
 
-            modus-vivendi-theme-bold-constructs t
-            modus-vivendi-theme-completions 'opinionated
-            modus-vivendi-theme-intense-paren-match t
-            modus-vivendi-theme-prompts 'subtle
-            modus-vivendi-theme-rainbow-headings t
-            modus-vivendi-theme-scale-headings t)))
-
-            
    ;;; doom themes
    ((string-prefix-p "doom-" theme)
     (progn

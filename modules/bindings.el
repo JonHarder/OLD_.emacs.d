@@ -267,6 +267,7 @@
       "k" '(:ignore t :which-key "Kipsu")
       "k g" 'jh/work-git
       "k f" 'jh/work-find-file
+      "k l" 'jh/jira-link
 
       "l" '(:ignore t :which-key "Lsp")
       "l r" 'lsp-ui-peek-find-references
