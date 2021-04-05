@@ -14,12 +14,6 @@
       "p" 'edwina-select-previous-window
       (kbd "RET") 'dired-single-buffer))
 
-  (straight-use-package
-   '(dired-show-readme
-     :host gitlab
-     :repo "kisaragi-hiu/dired-show-readme"))
-  (add-hook 'dired-mode-hook #'dired-show-readme-mode)
-
   (use-package dired-collapse)
   (use-package dired-rainbow)
 
