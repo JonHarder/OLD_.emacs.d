@@ -27,6 +27,11 @@
   (setq message-auto-save-directory "~/mail/drafts")
   (setq message-kill-buffer-on-exit t)
   (setq message-directory "~/mail/")
-       
+  
   (add-hook 'message-mode-hook 'turn-on-auto-fill)
-  (add-hook 'message-mode-hook 'mail-abbrevs-setup))
+  (add-hook 'message-mode-hook 'mail-abbrevs-setup)
+
+  (defun check-mail ()
+    (interactive)
+    (shell-command "check-mail")
+    (notmuch)))

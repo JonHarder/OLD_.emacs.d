@@ -39,6 +39,8 @@
   (setq browse-url-browser-function #'browse-url-generic
         browse-url-generic-program "open")
 
+  (setq confirm-kill-processes nil)
+
   (use-package csv-mode)
   (use-package neon-mode)
   (use-package crontab-mode)
