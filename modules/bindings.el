@@ -170,6 +170,10 @@
      :states 'visual
      "M-c" 'jh/copy-to-mac-clipboard)
     (general-define-key
+     :states '(normal)
+     :keymaps 'magit-refs-mode-map
+     "x" 'magit-delete-thing)
+    (general-define-key
      :states '(normal insert)
      :keymaps 'vterm-mode-map
      "M-v" 'vterm-yank)
@@ -245,6 +249,8 @@
       "g s" 'magit-status
       "g l" 'magit-log
       "g c" 'magit-commit
+      "g f" 'magit-file-dispatch
+      "g d" 'magit-dispatch
 
       "h" '(:ignore t :which-key "Help")
       "h f" 'helpful-callable
