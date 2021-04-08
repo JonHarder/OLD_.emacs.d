@@ -33,6 +33,9 @@
     (edwina-setup-dwm-keys)
     (edwina-mode 1))
 
+  ;;; minibuffer config
+  (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
+
   ;;; use internal emacs text browser
   ;; (setq browse-url-browser-function #'eww)
   ;;; Let the system default for osx determine which browser to use

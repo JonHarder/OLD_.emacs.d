@@ -43,6 +43,16 @@
 
   (add-hook 'c-mode-hook (lambda () (electric-pair-mode 1)))
 
+  (use-package aggressive-indent
+    :config
+    (add-hook 'c-mode-hook #'aggressive-indent-mode)
+    (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+    (add-to-list
+     'aggressive-indent-dont-indent-if
+     '(and (derived-mode-p 'c++-mode)
+           (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
+                               (thing-at-point 'line))))))
+
   (mapc (lambda (hook) (add-hook hook #'lsp-deferred))
         '(c-mode-hook
           go-mode-hook
