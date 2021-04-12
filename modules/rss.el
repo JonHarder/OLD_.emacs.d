@@ -5,5 +5,5 @@
     :config
     (setq-default
      elfeed-feeds '("https://martinfowler.com/feed.atom"
-                    "https://devops.com/feed"
-                    "http://reddit.com/r/emacs/.rss"))))
+                    "http://reddit.com/r/emacs/.rss"
+                    "https://emacsredux.com/atom.xml"))))

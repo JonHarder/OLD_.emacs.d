@@ -193,6 +193,7 @@
       "SPC" 'execute-extended-command
       ";" 'eval-expression
       "1" 'shell-command
+      "!" 'async-shell-command
       "RET" 'eshell
       "ESC" 'evil-ex-nohighlight
       "TAB" 'switch-to-most-recent-buffer
