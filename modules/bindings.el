@@ -209,6 +209,8 @@
       "a i" 'jh/erc
       "a s" 'scratch
       "a t" 'vterm
+      "a m" 'check-mail
+      "a M" 'notmuch
 
       "b" '(:ignore t :which-key "Buffers")
       "b b" 'consult-buffer
@@ -269,6 +271,7 @@
       "j" '(:ignore t :which-key "Jumping")
       "j d" 'lsp-find-definition
       "j w" 'avy-goto-word-1
+      "j c" 'avy-goto-char
 
       ;;; k
       "k" '(:ignore t :which-key "Kipsu")
