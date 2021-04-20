@@ -14,7 +14,9 @@
    ;;; modus themes
    ((string-prefix-p "modus-" theme)
     (progn
+      (modus-themes-load-themes)
       (setq
+       modus-themes-mode-line '3d
        modus-themes-completions 'opinionated
        modus-themes-org-blocks 'rainbow
        modus-themes-bold-constructs t

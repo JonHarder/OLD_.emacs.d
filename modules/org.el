@@ -17,7 +17,7 @@
                 (("C-c n l" . org-roam)
                  ("C-c n f" . org-roam-find-file)
                  ("C-c n g" . org-roam-graph))
-           :map org-mode-map
+                :map org-mode-map
                 (("C-c n i" . org-roam-insert))
                 (("C-c n I" . org-roam-insert-immediate))))
 
@@ -28,14 +28,29 @@
   (require 'ob-php (concat user-emacs-directory "ob-php.el"))
   (setq org-fontify-whole-heading-line t
         org-confirm-babel-evaluate nil)
-  (setq org-agenda-files '("~/Org"))
+  (setq org-agenda-files '("~/Org" "~/Org/calendars"))
+  (setq calendar-date-style 'iso
+        calendar-mark-diary-entries-flag t
+        calendar-mode-line-format nil
+        calendar-date-display-form calendar-iso-date-display-form
+        diary-date-forms diary-iso-date-forms
+        diary-comment-start ";;"
+        diary-comment-end ""
+        diary-header-line-format nil
+        diary-list-include-blanks nil
+        diary-display-function #'diary-fancy-display)
+
+  (add-hook 'diary-list-entries-hook 'diary-sort-entries t)
+
+  (add-to-list 'auto-mode-alist '("diary\\'" . diary-mode))
+
   (setq-default
    org-src-fontify-natively t
    org-hide-emphasis-markers t
    org-archive-location "~/Org/archive/%s.archive::"
    ;;; FIXME: setting this to `t' breaks the agenda view for some reason
    org-agenda-include-diary nil
-   org-agenda-timegrid-use-ampm t
+   org-agenda-timegrid-use-ampm nil
    org-agenda-span 'week
    org-babel-python-command "python3"
    org-highest-priority ?A
@@ -84,6 +99,7 @@
            "NEXT(n)"
            "WAITING(w)"
            "INPROGRESS(i)"
+           "REVIEW(r)"
            "|"
            "DONE(d)"
            "CANCELLED(c)"))
@@ -93,6 +109,7 @@
           ("NEXT" :foreground "#0098dd" :weight bold :underline t)
           ("WAITING" :foreground "#bf3cc6" :weight bold :underline t)
           ("INPROGRESS" :foreground "#fc5603" :weight bold :underline t)
+          ("REVIEW" :foreground "#964B00" :weight bold :underline t)
           ("DONE" :foreground "#50a14f" :weight bold :underline t)
           ("CANCELLED" :foreground "#fc0303" :weight bold :underline t))
         org-log-done 'time))

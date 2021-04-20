@@ -61,4 +61,7 @@
            (evil-org-mode . evil-org-set-key-theme))
     :config
     (require 'evil-org-agenda)
-    (evil-org-agenda-set-keys)))
+    (evil-org-agenda-set-keys)
+    (evil-collection-define-key 'motion 'org-agenda-mode-map (kbd "l") #'org-agenda-later)
+    (evil-collection-define-key 'motion 'org-agenda-mode-map (kbd "h") #'org-agenda-earlier)))
+

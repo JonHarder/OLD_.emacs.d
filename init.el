@@ -37,17 +37,17 @@
 (defconfig jh/config
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
-  :theme-package        doom-themes
+  :theme-package        modus-themes
   :light-theme          modus-operandi
-  :dark-theme           doom-oceanic-next
+  :dark-theme           modus-vivendi
   :highlight-line       t
   :modules (core
             evil
-            appearance
             modeline
+            appearance
             buffers
             completion
-            erc
+            ;; erc
             bindings
             code
             git
@@ -55,9 +55,9 @@
             icons
             dired
             lisp
-            racket
-            haskell
-            rust
+            ;; racket
+            ;; haskell
+            ;; rust
             go
             eshell
             term
@@ -69,14 +69,14 @@
             ;; clojure
             php
             web
-            ansible
+            ;; ansible
             mail
-            kubernetes
+            ;; kubernetes
             personal
             spotify
-            deft
-            work
-            zettelkasten))
+            ;; deft
+            work))
+            ;; zettelkasten))
 
 ;; (setq gc-cons-threshold orig-gc-cons-threshold)
 

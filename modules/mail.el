@@ -1,6 +1,20 @@
 (defun modules/mail--load (config)
   "Load some general ansible packages and ignore CONFIG."
-  (use-package notmuch)
+  (use-package notmuch
+    :config
+    (setq notmuch-saved-searches
+          '((:name "inbox"    :query "tag:inbox" :key "i")
+            (:name "unread"   :query "tag:unread" :key "u")
+            (:name "flagged"  :query "tag:flagged" :key "f")
+            (:name "sent"     :query "tag:sent" :key "t")
+            (:name "drafts"   :query "tag:draft" :key "d")
+            (:name "all mail" :query "*")
+            (:name "today"    :query "date:today" :key "t")
+            (:name "archived" :query "tag:archived" :key "a")
+            (:name "china"    :query "tag:china" :key "c")
+            (:name "todo"     :query "tag:todo" :key "o")
+            (:name "security" :query "tag:security" :key "s")
+            (:name "smeagles" :query "tag:smeagle" :key "m"))))
   (require 'smtpmail)
 
   (setq auth-source-debug 'trivia)

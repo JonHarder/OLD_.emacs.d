@@ -9,10 +9,14 @@
     (evil-define-key 'normal dired-mode-map
       "h" 'dired-single-up-directory
       "l" 'dired-single-buffer
-      "s" 'eshell
-      "n" 'edwina-select-next-window
-      "p" 'edwina-select-previous-window
       (kbd "RET") 'dired-single-buffer))
+
+  (evil-define-key 'normal dired-mode-map
+    "s" 'eshell
+    "n" 'edwina-select-next-window
+    "p" 'edwina-select-previous-window
+    "f" 'find-file)
+  
 
   (use-package dired-collapse)
   (use-package dired-rainbow)
