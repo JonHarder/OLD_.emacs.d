@@ -1,7 +1,5 @@
 (defun modules/org--load (config)
   "Load configuration related to org using CONFIG."
-  (straight-use-package 'org)
-
   ;; programmatic org workflow triggers and actions
   (use-package org-edna
     :config
@@ -14,12 +12,12 @@
     :custom
     (org-roam-directory "~/zettelkasten")
     :bind (:map org-roam-mode-map
-           (("C-c n l" . org-roam)
-            ("C-c n f" . org-roam-find-file)
-            ("C-c n g" . org-roam-graph))
-           :map org-mode-map
-           (("C-c n i" . org-roam-insert))
-           (("C-c n I" . org-roam-insert-immediate))))
+                (("C-c n l" . org-roam)
+                 ("C-c n f" . org-roam-find-file)
+                 ("C-c n g" . org-roam-graph))
+                :map org-mode-map
+                (("C-c n i" . org-roam-insert))
+                (("C-c n I" . org-roam-insert-immediate))))
 
 
   (require 'org-habit)
@@ -28,21 +26,14 @@
   (require 'ob-php (concat user-emacs-directory "ob-php.el"))
   (setq org-fontify-whole-heading-line t
         org-confirm-babel-evaluate nil)
-  (setq org-agenda-files '("~/Org" "~/Org/calendars"))
+  (setq org-agenda-files '("~/Org/calendars" "~/Org/today.org"))
   (setq calendar-date-style 'iso
-        calendar-mark-diary-entries-flag t
+        ;; calendar-mark-diary-entries-flag nil
         calendar-mode-line-format nil
-        calendar-date-display-form calendar-iso-date-display-form
-        diary-date-forms diary-iso-date-forms
-        diary-comment-start ";;"
-        diary-comment-end ""
-        diary-header-line-format nil
-        diary-list-include-blanks nil
-        diary-display-function #'diary-fancy-display)
+        calendar-date-display-form calendar-iso-date-display-form)
 
-  (add-hook 'diary-list-entries-hook 'diary-sort-entries t)
-
-  (add-to-list 'auto-mode-alist '("diary\\'" . diary-mode))
+  ;; (add-hook 'diary-list-entries-hook 'diary-sort-entries t)
+  ;; (add-to-list 'auto-mode-alist '("diary\\'" . diary-mode))
 
   (setq-default
    org-src-fontify-natively t
