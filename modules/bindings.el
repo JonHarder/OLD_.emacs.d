@@ -226,6 +226,8 @@
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
       "b R" 'rename-buffer
+      "b s" 'buffer-move-out-of-side-window
+      "b t" 'window-toggle-side-windows
 
       "c" '(:ignore t :which-key "Conf")
       "c c" 'jh/find-config

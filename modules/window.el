@@ -1,5 +1,15 @@
 (defun modules/window--load (config)
-  "Rules for window placement."
+  "Rules for window placement using CONFIG."
+
+  (defun buffer-move-out-of-side-window ()
+    (interactive)
+    (let ((buffer (current-buffer)))
+      (with-current-buffer buffer
+        (delete-window)
+        (display-buffer-at-bottom
+         buffer `((window-parameters . ((mode-line-format . (" " "%b")))))))
+      (select-window (get-buffer-window buffer))))
+
   (setq display-buffer-alist
         '(("\\*\\(e?shell\\|vterm\\)\\*"
            (display-buffer-in-side-window)
