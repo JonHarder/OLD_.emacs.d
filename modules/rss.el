@@ -5,4 +5,5 @@
     :config
     (setq-default
      elfeed-feeds '("https://martinfowler.com/feed.atom"
-                    "https://emacsredux.com/atom.xml"))))
+                    "https://emacsredux.com/atom.xml"
+                    "https://protesilaos.com/codelog.xml"))))

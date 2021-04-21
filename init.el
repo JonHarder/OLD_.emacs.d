@@ -75,11 +75,13 @@
             personal
             spotify
             ;; deft
+            ;; zettelkasten
             work
             bindings))
-            ;; zettelkasten))
 
 ;; (setq gc-cons-threshold orig-gc-cons-threshold)
+
+(org-agenda-list)
 
 (provide 'init)
 ;;; init.el ends here
