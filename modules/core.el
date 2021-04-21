@@ -40,6 +40,7 @@
   (use-package csv-mode)
   (use-package neon-mode)
   (use-package crontab-mode)
+  (use-package nginx-mode)
 
   (straight-use-package 'dash)
   (straight-use-package 'ag)
