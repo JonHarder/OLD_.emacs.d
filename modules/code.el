@@ -47,7 +47,6 @@
         '(c-mode-hook
           go-mode-hook
           php-mode-hook
-          python-mode-hook
           dockerfile-mode-hook
           json-mode-hook))
 

@@ -13,9 +13,33 @@
 
   (evil-define-key 'normal dired-mode-map
     "s" 'eshell
-    "n" 'edwina-select-next-window
-    "p" 'edwina-select-previous-window
-    "f" 'find-file)
+    "n" 'other-window
+    "p" 'previous-window
+    "f" 'find-file
+    "q" (lambda () (interactive) (quit-window t)))
+
+  (defun dired-side ()
+    (interactive)
+    (let ((dir (if (eq (vc-root-dir) nil)
+                   (dired-noselect default-directory)
+                 (dired-noselect (vc-root-dir)))))
+      (display-buffer-in-side-window
+       dir
+       `((side . left)
+         (slot . 0)
+         (window-width . 0.2)
+         (window-parameters . ((no-delete-other-windows . t)
+                               (mode-line-format . (" " "%b"))))))
+      (with-current-buffer dir
+        (rename-buffer "*Dired-Side*"))))
+
+  (defun dired-side-toggle ()
+    (interactive)
+    (let ((buf (get-buffer "*Dired-Side*")))
+      (if buf
+          (with-current-buffer "*Dired-Side*"
+            (kill-buffer-and-window))
+        (dired-side))))
   
 
   (use-package dired-collapse)

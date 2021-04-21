@@ -35,6 +35,22 @@
   ;; (add-hook 'diary-list-entries-hook 'diary-sort-entries t)
   ;; (add-to-list 'auto-mode-alist '("diary\\'" . diary-mode))
 
+  (defun color-org-header (tag col &optional bg-col)
+    "Color the associated TAG with the color COL."
+    (interactive)
+    (goto-char (point-min))
+    (while (re-search-forward tag nil t)
+      (add-text-properties (match-beginning 0) (point-at-eol)
+                           `(face (:foreground ,col ,@(if bg-col `(:background ,bg-col) nil))))))
+
+  (defun color-org-agenda ()
+    (save-excursion
+      (color-org-header "Work:" "#0099cc")
+      (color-org-header "Bread:" "#66CD00")
+      (color-org-header "Events:" "#faebd7" "#8B4513")))
+  
+  (add-hook 'org-agenda-finalize-hook #'color-org-agenda)
+
   (setq-default
    org-src-fontify-natively t
    org-hide-emphasis-markers t

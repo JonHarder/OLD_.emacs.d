@@ -21,6 +21,7 @@
        modus-themes-org-blocks 'rainbow
        modus-themes-bold-constructs t
        modus-themes-headings '((t . rainbow-section))
+       modus-themes-syntax 'yellow-comments-green-strings
        modus-themes-completions 'opinionated
        modus-themes-scale-headings t
        modus-themes-paren-match 'intense)))

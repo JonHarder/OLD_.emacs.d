@@ -192,18 +192,23 @@
       :keymaps 'normal
       "SPC" 'execute-extended-command
       ";" 'eval-expression
-      "1" 'shell-command
+      "`" 'shell-command
       "!" 'async-shell-command
       "RET" 'eshell
       "ESC" 'evil-ex-nohighlight
       "TAB" 'switch-to-most-recent-buffer
       "/" 'consult-line
 
+      "1" #'delete-other-windows
+      "2" #'split-window-below
+      "3" #'split-window-right
+      "0" #'delete-window
+
       "a" '(:ignore t :which-key "Apps")
       "a =" 'calc
       "a a" 'org-agenda
       "a c" 'calendar
-      "a d" 'dired-jump
+      "a d" 'dired-side-toggle
       "a e" 'browse-url
       "a g" 'gnus
       "a i" 'jh/erc
@@ -340,27 +345,14 @@
       ;; u
       ;; v
 
-      "w" '(:ignore t :which-key "Windows")
-      "w r"    'edwina-arrange
-      "w n"    'edwina-select-next-window
-      "w p"    'edwina-select-previous-window
-      "w N"    'edwina-swap-next-window
-      "w P"    'edwina-swap-previous-window
-      "w %"    'edwina-dec-mfact
-      "w ^"    'edwina-inc-mfact
-      "w h"    'edwina-dec-mfact
-      "w l"    'edwina-inc-mfact
-      "w d"    'edwina-dec-nmaster
-      "w i"    'edwina-inc-nmaster
-      "w k"    'edwina-delete-window
-      "w RET " 'edwina-zoom
-      "w c"    'edwina-clone-window
-      "w o"    'delete-other-windows
+      ;;; w
+      "w" '(:ignore t :which-key "windows")
+      "w n" #'other-window
+      "w p" #'previous-window
 
       ;;; x
       ;;; y
       ;;; z
-
 
       "=" 'text-scale-increase
       "-" 'text-scale-decrease)))

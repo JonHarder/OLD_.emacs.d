@@ -45,10 +45,10 @@
             evil
             modeline
             appearance
+            window
             buffers
             completion
             ;; erc
-            bindings
             code
             git
             org
@@ -75,7 +75,8 @@
             personal
             spotify
             ;; deft
-            work))
+            work
+            bindings))
             ;; zettelkasten))
 
 ;; (setq gc-cons-threshold orig-gc-cons-threshold)
