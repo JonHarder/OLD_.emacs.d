@@ -13,9 +13,9 @@
 
   (evil-define-key 'normal dired-mode-map
     "s" 'eshell
-    "n" 'other-window
-    "p" 'previous-window
     "f" 'find-file
+    "o" 'other-window
+    (kbd "RET") 'dired-find-file-other-window
     "q" (lambda () (interactive) (quit-window t)))
 
   (defun dired-side ()
@@ -31,7 +31,8 @@
          (window-parameters . ((no-delete-other-windows . t)
                                (mode-line-format . (" " "%b"))))))
       (with-current-buffer dir
-        (rename-buffer "*Dired-Side*"))))
+        (rename-buffer "*Dired-Side*"))
+      (select-window (get-buffer-window "*Dired-Side*") nil)))
 
   (defun dired-side-toggle ()
     (interactive)
@@ -53,8 +54,6 @@
 
   (use-package dired-subtree
     :config
-    (general-define-key
-     :states 'normal
-     :keymaps 'dired-mode-map
-     "TAB" 'dired-subtree-toggle
-     [?\C-\t] 'dired-subtree-cycle)))
+    (evil-define-key 'normal dired-mode-map
+      "TAB" 'dired-subtree-toggle
+      [?\C-\t] 'dired-subtree-cycle)))
