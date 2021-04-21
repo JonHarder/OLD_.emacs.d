@@ -27,7 +27,7 @@
        dir
        `((side . left)
          (slot . 0)
-         (window-width . 0.2)
+         (window-width . 0.18)
          (window-parameters . ((no-delete-other-windows . t)
                                (mode-line-format . (" " "%b"))))))
       (with-current-buffer dir

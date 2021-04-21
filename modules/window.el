@@ -16,8 +16,12 @@
            (window-height . 0.25)
            (side . bottom)
            (slot . -1))
-          ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|helpful .*: .*\\|Help\\|Messages\\)\\*"
+          ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|compilation\\|Messages\\)\\*"
            (display-buffer-in-side-window)
-           (window-height . 0.25)
+           (window-height . 0.3)
            (side . bottom)
-           (slot . 0)))))
+           (slot . 0))
+          ("\\*\\(helpful .*: .*\\|Help\\)\\*"
+           (display-buffer-in-side-window)
+           (side . right)
+           (window-width . 0.4)))))
