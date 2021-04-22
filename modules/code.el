@@ -40,6 +40,14 @@
       (hl-line-mode t))
     (whitespace-mode 1))
 
+  (defun jh/smart-insert-brace ()
+    (interactive)
+    (insert "{\n\n}")
+    (indent-for-tab-command)
+    (forward-line -1)
+    (indent-for-tab-command))
+
+  (evil-define-key 'insert 'c-mode-map "{" #'jh/smart-insert-brace)
 
   (add-hook 'c-mode-hook (lambda () (electric-pair-mode 1)))
 

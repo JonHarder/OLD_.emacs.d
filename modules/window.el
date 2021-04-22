@@ -13,7 +13,7 @@
   (setq display-buffer-alist
         '(("\\*\\(e?shell\\|vterm\\)\\*"
            (display-buffer-in-side-window)
-           (window-height . 0.25)
+           (window-height . 0.3)
            (side . bottom)
            (slot . -1)
            (window-parameters . ((no-other-window . t))))
