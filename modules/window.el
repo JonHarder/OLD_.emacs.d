@@ -15,7 +15,8 @@
            (display-buffer-in-side-window)
            (window-height . 0.25)
            (side . bottom)
-           (slot . -1))
+           (slot . -1)
+           (window-parameters . ((no-other-window . t))))
           ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|compilation\\|Messages\\)\\*"
            (display-buffer-in-side-window)
            (window-height . 0.3)

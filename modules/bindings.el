@@ -350,7 +350,7 @@
       ;;; w
       "w" '(:ignore t :which-key "windows")
       "w n" #'other-window
-      "w p" #'previous-window
+      "w p" (lambda () (interactive) (other-window -1))
 
       ;;; x
       ;;; y

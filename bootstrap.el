@@ -43,6 +43,8 @@
 
 
 ;; some performance hacks
+;; don't modify packages in place.
+(setq straight-check-for-modifications nil)
 (setq apropos-do-all t)
 (setq frame-inhibit-implied-resize t)
 (setq fast-but-imprecise-scrolling t)

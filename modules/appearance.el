@@ -30,9 +30,14 @@
    ((string-prefix-p "doom-" theme)
     (progn
       (doom-themes-org-config)
+      (doom-themes-enable-org-fontification)
       (setq doom-themes-enable-bold t
             doom-themes-enable-italic t
-            doom-themes-padded-modeline nil)))))
+            doom-themes-padded-modeline nil
+            doom-solarized-light-brighter-comments t
+            doom-solarized-dark-brighter-text t
+            doom-solarized-dark-brighter-modeline t
+            doom-solarized-dark-brighter-comments t)))))
 
 
 (defun jh/mac-is-dark-mode-p ()
