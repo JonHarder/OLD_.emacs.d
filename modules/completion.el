@@ -1,10 +1,11 @@
 (defun swiper--nohighlight (orig-func &rest args)
-  "Get rid of the highlighting after exiting swiper."
+  "Get rid of the highlighting after exiting ORIG-FUNC called with ARGS."
   (apply orig-func args)
   (evil-ex-nohighlight))
 
 
 (defun modules/completion--load (config)
+  "Set up completion, respecting any CONFIG provided."
   (use-package company
     :config
     (global-company-mode t)
@@ -32,12 +33,19 @@
     :init
     (fset 'multi-occur #'consult-multi-occur))
 
+
   (use-package selectrum)
   (use-package selectrum-prescient
     :config
     (selectrum-mode +1)
     (selectrum-prescient-mode +1)
     (prescient-persist-mode +1))
+
+  (use-package orderless
+    :custom (completion-styles '(orderless))
+    :config
+    (setq selectrum-refine-candidates-function #'orderless-filter
+          selectrum-highlight-candidates-function #'orderless-highlight-matches))
 
 
   (use-package consult-flycheck)
