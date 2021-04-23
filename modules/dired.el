@@ -55,5 +55,5 @@
   (use-package dired-subtree
     :config
     (evil-define-key 'normal dired-mode-map
-      "TAB" 'dired-subtree-toggle
+      (kbd "TAB") 'dired-subtree-toggle
       [?\C-\t] 'dired-subtree-cycle)))

@@ -1,3 +1,13 @@
+;;; ansible --- Basic ansible file support plus additional highly experimental transient.
+
+;;; Commentary:
+
+;;; Code:
+(require 'use-package)
+(require 'transient)
+(require 'bootstrap "~/.emacs.d/bootstrap.el")
+
+
 (defvar ansible/ansible-executible "~/bin/ans")
 (defvar ansible/playbooks-directory (getenv "ANSIBLE_PLAYBOOK_DIR"))
 (defvar ansible/playbook-process nil)
@@ -71,3 +81,6 @@
   ;; (use-package ansible-doc
   ;;   :hook (yaml-mode . ansible-doc-mode))
   (add-to-list 'auto-mode-alist '("hosts" . conf-mode)))
+
+(provide 'ansible)
+;;; ansible.el ends here

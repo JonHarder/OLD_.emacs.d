@@ -1,3 +1,6 @@
+;;; bindings -- Sets most of all configured keybindings.
+
+;;; Commentary:
 ;; This sets up general which handles setting key bindings.
 ;; As a general design philosopy, the bindings follow a scheme
 ;; introduced by spacemacs.  SPACE will start a command, the next
@@ -6,6 +9,11 @@
 ;; and the next (final?) letter performs the operation.
 ;; which-key is used to provide feedback in the minibufer as to
 ;; which keys will perform which actions in mid chord.
+
+;;; Code:
+(require 'use-package)
+(require 'diary-lib)
+(require 'contrib "~/.emacs.d/contrib.el")
 
 (defun jh/reload-config ()
   "Evaluate current settings of Emacs configuration."
@@ -42,7 +50,7 @@
 
 
 (defun jh/switch-buffer-right (buf)
-  "Split window to the right, and switch to buffer."
+  "Split window to the right, and switch to buffer BUF."
   (interactive "bBuffer: ")
   (evil-window-vsplit)
   (evil-window-right 1)
@@ -50,7 +58,7 @@
 
 
 (defun jh/switch-buffer-left (buf)
-  "Split window to the left, and switch to buffer."
+  "Split window to the left, and switch to buffer BUF."
   (interactive "bBuffer: ")
   (evil-window-vsplit)
   (switch-to-buffer buf))
@@ -62,18 +70,10 @@
   (ansi-term (getenv "SHELL")))
 
 
-(defun jh/expand-directory (dir)
-  "Expand the given DIR to the list of all of its files."
-  (interactive)
-  (directory-files (expand-file-name dir)
-    nil
-    "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)"))
-
-
 (defun jh/find-module (module)
   "Open the MODULE, using completion from availble modules."
   (interactive (list (completing-read "Module: "
-                        (jh/expand-directory "~/.emacs.d/modules/"))))
+                                      (jh/expand-directory "~/.emacs.d/modules/"))))
   (find-file (format "~/.emacs.d/modules/%s" module)))
 
 
@@ -358,3 +358,5 @@
 
       "=" 'text-scale-increase
       "-" 'text-scale-decrease)))
+(provide 'bindings)
+;;; bindings.el ends here

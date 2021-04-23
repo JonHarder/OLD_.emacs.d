@@ -1,3 +1,10 @@
+;;; package --- Summary
+
+;;; Commentary:
+
+;;; Code:
+(require 'bootstrap "~/.emacs.d/bootstrap.el")
+
 (defun modules/modeline--load (config)
   "Load configuration for the modeline using CONFIG."
   (setq display-time-day-and-date t)
@@ -28,3 +35,5 @@
              simple-modeline-segment-vc
              simple-modeline-segment-misc-info
              simple-modeline-segment-major-mode)))))
+(provide 'modeline)
+;;; modeline.el ends here

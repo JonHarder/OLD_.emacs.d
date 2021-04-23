@@ -4,6 +4,14 @@
 ;; defines miscellaneous helper functions to operate on (surprise) lists
 
 ;;; Code:
+
+(defun jh/expand-directory (dir)
+  "Expand the given DIR to the list of all of its files."
+  (interactive)
+  (directory-files (expand-file-name dir)
+                   nil
+                   "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)"))
+
 (defun random-alnum ()
   "Generate a random alphanumeric character."
   (let* ((alnum "abcdefghijklmnopqrstuvwxyz01234567890")

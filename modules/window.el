@@ -11,7 +11,7 @@
       (select-window (get-buffer-window buffer))))
 
   (setq display-buffer-alist
-        '(("\\*\\(e?shell\\|vterm\\)\\*"
+        '(("\\*\\(e?shell\\)\\*"
            (display-buffer-at-bottom)
            (window-height . 0.3)
            (side . bottom)

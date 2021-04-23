@@ -37,6 +37,7 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
 (straight-use-package 'use-package)
 (setq-default straight-use-package-by-default t)
 ;; End bootstrap straight.el
@@ -44,15 +45,15 @@
 
 ;; some performance hacks
 ;; don't modify packages in place.
-(setq straight-check-for-modifications nil)
-(setq apropos-do-all t)
+(defvar straight-check-for-modifications nil)
+(defvar apropos-do-all t)
 (setq frame-inhibit-implied-resize t)
 (setq fast-but-imprecise-scrolling t)
 (setq-default cursor-in-non-selected-windows nil)
 (setq highlight-nonselected-windows nil)
 (setq-default bidi-display-reordering 'left-to-right)
 (setq idle-update-delay 1)
-(add-hook 'focus-out-hook #'garbage-collect)
+(setq after-focus-change-function #'garbage-collect)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -91,7 +92,7 @@
   :config
   (when (memq window-system '(mac ns x))
     (setq-default exec-path-from-shell-variables
-          '("PATH" "MANPATH" "GOPATH"))
+                  '("PATH" "MANPATH" "GOPATH"))
     (exec-path-from-shell-initialize)))
 
 (defun module-init-func (module-name)

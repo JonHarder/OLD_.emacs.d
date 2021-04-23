@@ -1,5 +1,12 @@
-(require 'seq)
+;;; appearance -- Configured the visual appearance of emacs
 
+;;; Commentary:
+
+;;; Code:
+(require 'seq)
+(require 'use-package)
+(require 'straight)
+(require 'rainbow-delimiters)
 
 (defun jh/pull-theme (theme &optional theme-package)
   "Download THEME-PACKAGE if THEME is not a built in theme."
@@ -11,33 +18,36 @@
 (defun jh/theme-config (theme)
   "Perform any theme specific configuration for a given THEME."
   (cond
-   ;;; modus themes
    ((string-prefix-p "modus-" theme)
-    (progn
+    (use-package modus-themes
+      :config
       (modus-themes-load-themes)
-      (setq
-       modus-themes-mode-line '3d
-       modus-themes-completions 'opinionated
-       modus-themes-org-blocks 'rainbow
-       modus-themes-bold-constructs t
-       modus-themes-headings '((t . rainbow-section))
-       modus-themes-syntax 'yellow-comments-green-strings
-       modus-themes-completions 'opinionated
-       modus-themes-scale-headings t
-       modus-themes-paren-match 'intense)))
+      :custom
+      (modus-themes-slanted-constructs t)
+      (modus-themes-mode-line '3d)
+      (modus-themes-completion 'opinionated)
+      (modus-themes-org-blocks 'rainbow)
+      (modus-themes-bold-constructs t)
+      (modus-themes-headings '((t . rainbow-section)))
+      (modus-themes-syntax 'yellow-comments-green-strings)
+      (modus-themes-completions 'opinionated)
+      (modus-themes-scale-headings t)
+      (modus-themes-paren-match 'intense)))
 
    ;;; doom themes
    ((string-prefix-p "doom-" theme)
-    (progn
+    (use-package doom-themes
+      :config
       (doom-themes-org-config)
       (doom-themes-enable-org-fontification)
-      (setq doom-themes-enable-bold t
-            doom-themes-enable-italic t
-            doom-themes-padded-modeline nil
-            doom-solarized-light-brighter-comments t
-            doom-solarized-dark-brighter-text t
-            doom-solarized-dark-brighter-modeline t
-            doom-solarized-dark-brighter-comments t)))))
+      :custom
+      (doom-themes-enable-bold t)
+      (doom-themes-enable-italic t)
+      (doom-themes-padded-modeline nil)
+      (doom-solarized-light-brighter-comments t)
+      (doom-solarized-dark-brighter-text t)
+      (doom-solarized-dark-brighter-modeline t)
+      (doom-solarized-dark-brighter-comments t)))))
 
 
 (defun jh/mac-is-dark-mode-p ()
@@ -76,6 +86,7 @@
       (jh/pull-theme theme theme-package)
       (jh/set-theme theme))))
 
+(defvar jh/theme-switch-timer nil "Timer used to schedule querying OSX system color preference.")
 
 (defun modules/appearance--load (config)
   "Load appearance settings based off of CONFIG."
@@ -114,7 +125,7 @@
 
     (jh/set-theme-to-system light-theme dark-theme theme-package)
 
-    (when (boundp 'jh/theme-switch-timer)
+    (when (not (null jh/theme-switch-timer))
       (cancel-timer jh/theme-switch-timer))
     (setq jh/theme-switch-timer
           (run-with-idle-timer 2 1 (lambda (light-theme dark-theme theme-package)
@@ -123,3 +134,5 @@
 
     (set-frame-font font)
     (add-to-list 'default-frame-alist `(font . ,font))))
+(provide 'appearance)
+;;; appearance.el ends here
