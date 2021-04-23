@@ -7,16 +7,15 @@
       (with-current-buffer buffer
         (delete-window)
         (display-buffer-at-bottom
-         buffer `((window-parameters . ((mode-line-format . (" " "%b")))))))
+         buffer nil))
       (select-window (get-buffer-window buffer))))
 
   (setq display-buffer-alist
         '(("\\*\\(e?shell\\|vterm\\)\\*"
-           (display-buffer-in-side-window)
+           (display-buffer-at-bottom)
            (window-height . 0.3)
            (side . bottom)
-           (slot . -1)
-           (window-parameters . ((no-other-window . t))))
+           (slot . -1))
           ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|compilation\\|Messages\\)\\*"
            (display-buffer-in-side-window)
            (window-height . 0.3)
