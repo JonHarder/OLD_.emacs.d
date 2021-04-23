@@ -11,8 +11,11 @@
 ;; which keys will perform which actions in mid chord.
 
 ;;; Code:
-(require 'use-package)
+(require 'evil)
 (require 'diary-lib)
+(require 'org)
+(require 'use-package)
+(require 'which-key)
 (require 'contrib "~/.emacs.d/contrib.el")
 
 (defun jh/reload-config ()

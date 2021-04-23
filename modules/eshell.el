@@ -1,11 +1,17 @@
+;;; eshell --- Summary
+
+;;; Commentary:
+
+
+;;; Code:
 (require 'dash)
 (require 's)
-
-(use-package eshell-up
-  :config
-  (defalias 'eshell/up #'eshell-up)
-  (defalias 'eshell/pk #'eshell-up-peek))
-
+(require 'use-package)
+(require 'magit)
+(require 'contrib "~/.emacs.d/contrib.el")
+(require 'eshell)
+(require 'straight)
+(require 'company)
 
 ;;; some programs don't play nice with eshell, for these, we can use ansi-term automatically
 ;;; use
@@ -13,6 +19,11 @@
 ;;; or
 ;;;  'eshell-visual-subcommands
 ;;; to update which programs will use this shell
+
+(use-package eshell-up
+  :config
+  (defalias 'eshell/up #'eshell-up)
+  (defalias 'eshell/pk #'eshell-up-peek))
 
 
 (defmacro with-face (STR &rest PROPS)
@@ -152,14 +163,14 @@ Takes into account if path contains the home ~ symbol."
                              color-success
                            color-failure)))
       (concat
-       (propertize "➜ " 'face `(:foreground ,status-color))
-       (propertize (jh/eshell-prompt--compressed-pwd default-directory) 'face `(:foreground ,color-path :weight bold))
+       (with-face "➜ " `(:foreground ,status-color))
+       (with-face (jh/eshell-prompt--compressed-pwd default-directory) `(:foreground ,color-path :weight bold))
        (unless (null branch)
          (concat
-           (propertize " git:(" 'face `(:foreground ,color-git :weight bold))
-           (propertize branch 'face `(:foreground ,color-git-branch :weight bold))
-           (propertize ")" 'face `(:foreground ,color-git :weight bold))))
-       (propertize " $ " 'face `(:foreground ,color-default)))))
+          (with-face " git:(" `(:foreground ,color-git :weight bold))
+          (with-face branch `(:foreground ,color-git-branch :weight bold))
+          (with-face ")" `(:foreground ,color-git :weight bold))))
+       (with-face " $ " `(:foreground ,color-default)))))
 
   (setq eshell-prompt-function #'jh/eshell-prompt)
   
@@ -170,3 +181,5 @@ Takes into account if path contains the home ~ symbol."
                 (lambda ()
                   (interactive)
                   (completion-at-point))))))
+(provide 'eshell)
+;;; eshell.el ends here

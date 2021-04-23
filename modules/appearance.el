@@ -6,7 +6,6 @@
 (require 'seq)
 (require 'use-package)
 (require 'straight)
-(require 'rainbow-delimiters)
 
 (defun jh/pull-theme (theme &optional theme-package)
   "Download THEME-PACKAGE if THEME is not a built in theme."
