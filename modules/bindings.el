@@ -199,7 +199,7 @@
       ";" 'eval-expression
       "`" 'shell-command
       "!" 'async-shell-command
-      "RET" 'eshell
+      "RET" 'other-window
       "ESC" 'evil-ex-nohighlight
       "TAB" 'switch-to-most-recent-buffer
       "/" 'consult-line
@@ -211,10 +211,11 @@
 
       "a" '(:ignore t :which-key "Apps")
       "a =" 'calc
-      "a a" 'org-agenda
+      "a a" 'org-agenda-list
+      "a A" 'org-agenda
       "a c" 'calendar
       "a d" 'dired-side-toggle
-      "a e" 'browse-url
+      "a e" 'eshell
       "a g" 'gnus
       "a i" 'jh/erc
       "a s" 'scratch
@@ -350,14 +351,11 @@
       "t c" 'tab-bar-new-tab
       "t r" 'tab-bar-rename-tab
       ;; u
+      "u" #'winner-undo
       ;; v
 
       ;;; w
-      "w" '(:ignore t :which-key "windows")
-      "w n" #'other-window
-      "w p" (lambda () (interactive) (other-window -1))
-      "w u" #'winner-undo
-      "w w" #'ace-window
+      "w" #'ace-window
 
       ;;; x
       ;;; y

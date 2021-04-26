@@ -1,19 +1,19 @@
-;; This sets up the basics of the configuration and basic settings
-;; (or things that I can't find a better place to put them into)
+;;; core --- Basic editing experience configuration
+
+;;; Commentary:
+;;; This sets up the basics of the configuration and basic settings
+;;; (or things that I can't find a better place to put them into)
+
+
+;;; Code:
+(require 'use-package)
+(require 'ediff)
+(require 'epg-config)
+(require 'straight)
+
 (defun modules/core--load (config)
   "Load general core features, configure programming hook using CONFIG."
   
-  ;; (use-package dashboard
-  ;;   :config
-  ;;   (setq dashboard-startup-banner 'logo
-  ;;         dashboard-center-content t
-  ;;         dashboard-items '((recents . 5)
-  ;;                           (bookmarks . 5)
-  ;;                           (projects . 5)
-  ;;                           (agenda . 5))
-  ;;         show-week-agenda-p t)
-  ;;   (dashboard-setup-startup-hook))
-
   ;;;; from the variable documentation
   ;;; This variable is obsolete since 27.1; use epg-pinentry-mode instead.
   ;; (setq epa-pinentry-mode 'loopback)
@@ -73,13 +73,6 @@
     (add-hook 'after-init-hook #'global-flycheck-mode))
 
   (use-package avy)
-
-  (use-package yaml-mode
-    :hook (yaml-mode . ansible)
-    :config
-    (defun jh/yaml-mode-hook ()
-      (hl-line-mode +1))
-    (add-hook 'yaml-mode-hook #'jh/yaml-mode-hook))
   
   (use-package markdown-mode
     :commands (markdown-mode gfm-mode)
@@ -88,3 +81,5 @@
            ("\\.markdown\\'" . markdown-mode))
     :custom
     (markdown-command "pandoc")))
+(provide 'core)
+;;; core.el ends here

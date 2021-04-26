@@ -23,7 +23,7 @@
       (modus-themes-load-themes)
       :custom
       (modus-themes-slanted-constructs t)
-      (modus-themes-mode-line '3d)
+      (modus-themes-mode-line 'accented)
       (modus-themes-completion 'opinionated)
       (modus-themes-org-blocks 'rainbow)
       (modus-themes-bold-constructs t)

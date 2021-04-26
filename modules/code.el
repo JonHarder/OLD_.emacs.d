@@ -46,8 +46,15 @@
     (indent-for-tab-command)
     (forward-line -1)
     (indent-for-tab-command))
+  (evil-define-key 'insert 'php-mode-map "{" #'jh/smart-insert-brace)
+  (evil-define-key 'insert 'hcl-mode-map "{" #'jh/smart-insert-brace)
+  (evil-define-key 'insert 'go-mode-map "{" #'jh/smart-insert-brace)
 
-  (evil-define-key 'insert 'c-mode-map "{" #'jh/smart-insert-brace)
+  (use-package yaml-mode
+    :config
+    (defun jh/yaml-mode-hook ()
+      (hl-line-mode +1))
+    (add-hook 'yaml-mode-hook #'jh/yaml-mode-hook))
 
   (add-hook 'c-mode-hook (lambda () (electric-pair-mode 1)))
 
