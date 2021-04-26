@@ -180,6 +180,12 @@ Takes into account if path contains the home ~ symbol."
                 (kbd "<tab>")
                 (lambda ()
                   (interactive)
-                  (completion-at-point))))))
+                  (completion-at-point)))))
+
+  (defun kill-eshell-window-on-close ()
+    (when (not (one-window-p))
+      (delete-window)))
+  (advice-add 'eshell-life-is-too-much :after 'kill-eshell-window-on-close))
+
 (provide 'eshell)
 ;;; eshell.el ends here
