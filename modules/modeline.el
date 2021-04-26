@@ -7,17 +7,19 @@
 
 (defun modules/modeline--load (config)
   "Load configuration for the modeline using CONFIG."
+  (require 'subr-x)
+
   (setq display-time-day-and-date t)
   (display-time-mode)
 
   (defun jh/simple-modeline-segment-tab-name ()
-    (let ((tab-name (cdadr (tab-bar--current-tab))))
-      (concat
-       " "
-       (propertize
-        (concat " " tab-name " ")
-        'face
-        `(:foreground "#1892f0" :background "white" :weight bold)))))
+    (let* ((tab-name (string-trim (cdadr (tab-bar--current-tab))))
+           (tab-string
+            (propertize
+             (concat " " tab-name " ")
+             'face
+             `(:foreground "#1892f0" :background "white" :weight bold))))
+      (concat " " tab-string)))
 
 
   (use-package simple-modeline
