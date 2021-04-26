@@ -1,3 +1,11 @@
+;;; dired --- Configuration for the built in dired file manager
+
+;;; Commentary:
+
+
+;;; Code:
+(require 'contrib "~/.emacs.d/contrib.el")
+
 (defun modules/dired--load (config)
   "Load configuration for dired, using CONFIG."
   (straight-use-package 'diredfl)
@@ -36,10 +44,12 @@
 
   (defun dired-side-toggle ()
     (interactive)
-    (let ((buf (get-buffer "*Dired-Side*")))
-      (if buf
-          (with-current-buffer "*Dired-Side*"
-            (kill-buffer-and-window))
+    (let ((windows (find-windows-with-mode 'dired-mode)))
+      (if windows
+          (mapc (lambda (window)
+                  (with-current-buffer (window-buffer window)
+                    (kill-buffer-and-window)))
+                windows)
         (dired-side))))
   
 
@@ -57,3 +67,6 @@
     (evil-define-key 'normal dired-mode-map
       (kbd "TAB") 'dired-subtree-toggle
       [?\C-\t] 'dired-subtree-cycle)))
+
+(provide 'dired)
+;;; dired.el ends here

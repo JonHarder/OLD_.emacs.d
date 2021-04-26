@@ -40,16 +40,6 @@
       (hl-line-mode t))
     (whitespace-mode 1))
 
-  (defun jh/smart-insert-brace ()
-    (interactive)
-    (insert "{\n\n}")
-    (indent-for-tab-command)
-    (forward-line -1)
-    (indent-for-tab-command))
-  (evil-define-key 'insert 'php-mode-map "{" #'jh/smart-insert-brace)
-  (evil-define-key 'insert 'hcl-mode-map "{" #'jh/smart-insert-brace)
-  (evil-define-key 'insert 'go-mode-map "{" #'jh/smart-insert-brace)
-
   (use-package yaml-mode
     :config
     (defun jh/yaml-mode-hook ()

@@ -4,6 +4,21 @@
 ;; defines miscellaneous helper functions to operate on (surprise) lists
 
 ;;; Code:
+(defun find-windows-with-mode (mode)
+  "Given the symbol MODE, return a list of windows where MODE is the major mode."
+  (seq-filter (lambda (window)
+                (with-current-buffer (window-buffer window)
+                  (eq major-mode mode)))
+              (window-list)))
+
+
+(defun jh/smart-insert-brace ()
+  "Insert an opening and closing brace, indenting properly according to the mode."
+  (interactive)
+  (insert "{\n\n}")
+  (indent-for-tab-command)
+  (forward-line -1)
+  (indent-for-tab-command))
 
 (defun jh/expand-directory (dir)
   "Expand the given DIR to the list of all of its files."

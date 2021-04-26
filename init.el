@@ -55,7 +55,7 @@
             icons
             dired
             lisp
-            ;; racket
+            racket
             ;; haskell
             ;; rust
             go

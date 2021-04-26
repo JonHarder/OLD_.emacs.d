@@ -192,6 +192,10 @@
      :states 'normal
      :keymaps 'occur-mode-map
      "e" 'occur-edit-mode)
+    (general-define-key
+     :states 'insert
+     :keymaps 'c-mode-map
+     "{" #'jh/smart-insert-brace)
     (general-create-definer space-leader :prefix "SPC")
     (space-leader
       :keymaps 'normal
@@ -199,7 +203,7 @@
       ";" 'eval-expression
       "`" 'shell-command
       "!" 'async-shell-command
-      "RET" 'other-window
+      "RET" 'eshell
       "ESC" 'evil-ex-nohighlight
       "TAB" 'switch-to-most-recent-buffer
       "/" 'consult-line
