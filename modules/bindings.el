@@ -337,8 +337,7 @@
 
       ;; q
       ;; r
-      "r" '(:ignore t :which-key "Random")
-      "r r" #'random-token-24
+      "r" #'winner-redo
 
       "s" '(:ignore t :which-key "Searching")
       "s g" 'how-do-i-google
