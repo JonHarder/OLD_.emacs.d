@@ -1,21 +1,37 @@
+;;; mail --- Settings to configure email in emacs
+
+;;; Commentary:
+;;; this configuration makes use of mbsync for mail sychronization
+;;; and notmuch for viewing and writing mail.
+
+;;; Code:
+(require 'use-package)
+(require 'smtpmail)
+
 (defun modules/mail--load (config)
   "Load some general ansible packages and ignore CONFIG."
   (use-package notmuch
+    :custom
+    (notmuch-saved-searches
+     '((:name "inbox"    :query "tag:inbox" :key "i")
+       (:name "unread"   :query "tag:unread" :key "u")
+       (:name "flagged"  :query "tag:flagged" :key "f")
+       (:name "sent"     :query "tag:sent" :key "t")
+       (:name "drafts"   :query "tag:draft" :key "d")
+       (:name "all mail" :query "*")
+       (:name "today"    :query "date:today" :key "t")
+       (:name "archived" :query "tag:archived" :key "a")
+       (:name "china"    :query "tag:china" :key "c")
+       (:name "todo"     :query "tag:todo" :key "o")
+       (:name "security" :query "tag:security" :key "s")
+       (:name "smeagles" :query "tag:smeagle" :key "m")))
+
     :config
-    (setq notmuch-saved-searches
-          '((:name "inbox"    :query "tag:inbox" :key "i")
-            (:name "unread"   :query "tag:unread" :key "u")
-            (:name "flagged"  :query "tag:flagged" :key "f")
-            (:name "sent"     :query "tag:sent" :key "t")
-            (:name "drafts"   :query "tag:draft" :key "d")
-            (:name "all mail" :query "*")
-            (:name "today"    :query "date:today" :key "t")
-            (:name "archived" :query "tag:archived" :key "a")
-            (:name "china"    :query "tag:china" :key "c")
-            (:name "todo"     :query "tag:todo" :key "o")
-            (:name "security" :query "tag:security" :key "s")
-            (:name "smeagles" :query "tag:smeagle" :key "m"))))
-  (require 'smtpmail)
+    (defun check-mail ()
+      "Execute the system check-mail command, then open email client."
+      (interactive)
+      (shell-command "check-mail")
+      (notmuch)))
 
   (setq auth-source-debug 'trivia)
 
@@ -43,9 +59,6 @@
   (setq message-directory "~/mail/")
   
   (add-hook 'message-mode-hook 'turn-on-auto-fill)
-  (add-hook 'message-mode-hook 'mail-abbrevs-setup)
-
-  (defun check-mail ()
-    (interactive)
-    (shell-command "check-mail")
-    (notmuch)))
+  (add-hook 'message-mode-hook 'mail-abbrevs-setup))
+(provide 'mail)
+;;; mail.el ends here
