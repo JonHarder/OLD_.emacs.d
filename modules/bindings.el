@@ -15,7 +15,7 @@
 (require 'diary-lib)
 (require 'org)
 (require 'use-package)
-(require 'which-key)
+(require 'winner)
 (require 'contrib "~/.emacs.d/contrib.el")
 
 (defun jh/reload-config ()
@@ -148,6 +148,8 @@
   (defun switch-to-most-recent-buffer ()
     (interactive)
     (switch-to-buffer nil))
+
+  (setq aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
 
   (use-package general
     :config
@@ -354,6 +356,8 @@
       "w" '(:ignore t :which-key "windows")
       "w n" #'other-window
       "w p" (lambda () (interactive) (other-window -1))
+      "w u" #'winner-undo
+      "w w" #'ace-window
 
       ;;; x
       ;;; y
