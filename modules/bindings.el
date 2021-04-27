@@ -146,7 +146,8 @@
     :custom
     (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
     (aw-background nil)
-    (aw-scope 'frame))
+    (aw-scope 'frame)
+    (aw-ignore-current t))
 
   (straight-use-package 'imenu-list)
 
