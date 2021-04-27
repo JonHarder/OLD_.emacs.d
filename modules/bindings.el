@@ -11,12 +11,13 @@
 ;; which keys will perform which actions in mid chord.
 
 ;;; Code:
+(require 'contrib "~/.emacs.d/contrib.el")
 (require 'evil)
 (require 'diary-lib)
 (require 'org)
+(require 'straight)
 (require 'use-package)
 (require 'winner)
-(require 'contrib "~/.emacs.d/contrib.el")
 
 (defun jh/reload-config ()
   "Evaluate current settings of Emacs configuration."
@@ -40,6 +41,12 @@
   "Open shell configuration file."
   (interactive)
   (find-file "~/.config/fish/config.fish"))
+
+(defun find-calendar (calendar)
+  "Find the calendar file called CALENDAR from available calendars."
+  (interactive (list (completing-read "Calendar: "
+                                      (jh/expand-directory "~/Org/calendars/"))))
+  (find-file (format "~/Org/calendars/%s" calendar)))
 
 
 (defun new-buffer (&optional name)
@@ -135,7 +142,10 @@
     (ctrlf-mode +1))
 
   (use-package ace-window
-    :commands (ace-window))
+    :commands (ace-window)
+    :custom
+    (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
+    (aw-background nil))
 
   (straight-use-package 'imenu-list)
 
@@ -148,8 +158,6 @@
   (defun switch-to-most-recent-buffer ()
     (interactive)
     (switch-to-buffer nil))
-
-  (setq aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
 
   (use-package general
     :config
@@ -255,7 +263,8 @@
       "e ;" 'eval-expression
 
       "f" '(:ignore t :which-key "Files")
-      "f c" 'find-shell-config
+      "f c" 'find-calendar
+      "f s" 'find-shell-config
       "f i" 'jh/find-config
       "f d" 'delete-file
       "f f" 'find-file

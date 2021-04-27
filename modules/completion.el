@@ -16,6 +16,7 @@
 
   (setq enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode 1)
+  ;;; TODO: set up minibuffer '~' command to wipe current input and insert '~/'
 
   (use-package projectile
     :defer 3
