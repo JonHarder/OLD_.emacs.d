@@ -1,3 +1,11 @@
+;;; completion --- Configures completion framework, currently, selectrum
+
+;;; Commentary:
+
+
+;;; Code:
+(require 'evil)
+
 (defun swiper--nohighlight (orig-func &rest args)
   "Get rid of the highlighting after exiting ORIG-FUNC called with ARGS."
   (apply orig-func args)
@@ -16,7 +24,6 @@
 
   (setq enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode 1)
-  ;;; TODO: set up minibuffer '~' command to wipe current input and insert '~/'
 
   (use-package projectile
     :defer 3
@@ -55,3 +62,5 @@
     :init
     (marginalia-mode)
     (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light))))
+(provide 'completion)
+;;; completion.el ends here

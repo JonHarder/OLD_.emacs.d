@@ -92,6 +92,10 @@
   (interactive)
   (insert (shell-command-to-string "pbpaste")))
 
+  (defun minibuffer-replace-with-home ()
+    (interactive)
+    (delete-minibuffer-contents)
+    (insert "~/"))
 
 (defun jh/copy-to-mac-clipboard (from to)
   "Copy the selected region starting at FROM and ending at TO to the clipboard."
@@ -189,6 +193,10 @@
      :keymaps 'magit-refs-mode-map
      "x" 'magit-delete-thing)
     (general-define-key
+     :states 'insert
+     :keymaps 'minibuffer-local-map
+     "~" #'minibuffer-replace-with-home)
+    (general-define-key
      :states '(normal insert)
      :keymaps 'vterm-mode-map
      "M-v" 'vterm-yank)
@@ -205,6 +213,10 @@
     (general-define-key
      :states 'insert
      :keymaps 'c-mode-map
+     "{" #'jh/smart-insert-brace)
+    (general-define-key
+     :states 'insert
+     :keymaps 'nginx-mode-map
      "{" #'jh/smart-insert-brace)
     (general-create-definer space-leader :prefix "SPC")
     (space-leader
