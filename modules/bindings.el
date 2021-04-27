@@ -145,7 +145,8 @@
     :commands (ace-window)
     :custom
     (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
-    (aw-background nil))
+    (aw-background nil)
+    (aw-scope 'frame))
 
   (straight-use-package 'imenu-list)
 
