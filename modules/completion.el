@@ -55,12 +55,11 @@
     (setq selectrum-refine-candidates-function #'orderless-filter
           selectrum-highlight-candidates-function #'orderless-highlight-matches))
 
-
-  (use-package consult-flycheck)
-
   (use-package marginalia
     :init
     (marginalia-mode)
-    (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light))))
+    (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light)))
+
+  (use-package consult-flycheck))
 (provide 'completion)
 ;;; completion.el ends here

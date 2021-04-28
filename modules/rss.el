@@ -6,4 +6,5 @@
     (setq-default
      elfeed-feeds '("https://martinfowler.com/feed.atom"
                     "https://emacsredux.com/atom.xml"
-                    "https://protesilaos.com/codelog.xml"))))
+                    "https://protesilaos.com/codelog.xml"
+                    "https://desiringgod.org/blog.rss"))))

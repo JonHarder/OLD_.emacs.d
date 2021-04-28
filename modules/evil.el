@@ -6,6 +6,7 @@
           evil-ex-complete-emacs-commands t
           evil-vsplit-window-right nil
           evil-split-window-below nil
+          evil-echo-state nil
           evil-shift-round nil
           evil-want-Y-yank-to-eol t
           evil-want-C-u-scroll t

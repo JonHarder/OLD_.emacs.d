@@ -39,6 +39,10 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
+
+(require 'straight)
+(require 'use-package)
+
 (setq-default straight-use-package-by-default t)
 ;; End bootstrap straight.el
 

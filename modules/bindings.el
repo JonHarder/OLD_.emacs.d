@@ -252,8 +252,6 @@
       "b" '(:ignore t :which-key "Buffers")
       "b b" 'consult-buffer
       "b i" 'ibuffer
-      "b d" 'evil-delete-buffer
-      "b D" 'kill-current-buffer
       "b o" 'consult-imenu
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
@@ -266,11 +264,7 @@
       "c l" 'jh/load-theme
       "c r" 'jh/reload-config
 
-      ;;; d
-      "d" '(:ignore t :which-key "Display")
-      "d c" 'display-fill-column-indicator-mode
-      "d d" 'jh/load-dark-theme
-      "d l" 'jh/load-light-theme
+      "d" #'evil-delete-buffer
 
       "e" '(:ignore t :which-key "Eval")
       "e e" 'eval-last-sexp
