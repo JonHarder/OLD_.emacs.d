@@ -210,14 +210,14 @@
      :states 'normal
      :keymaps 'occur-mode-map
      "e" 'occur-edit-mode)
-    (general-define-key
-     :states 'insert
-     :keymaps 'c-mode-map
-     "{" #'jh/smart-insert-brace)
-    (general-define-key
-     :states 'insert
-     :keymaps 'nginx-mode-map
-     "{" #'jh/smart-insert-brace)
+    (mapc (lambda (mode-map)
+            (general-define-key
+             :states 'insert
+             :keymaps mode-map
+             "{" #'jh/smart-insert-brace))
+          '(c-mode-map
+            hcl-mode-map
+            nginx-mode-map))
     (general-create-definer space-leader :prefix "SPC")
     (space-leader
       :keymaps 'normal
