@@ -15,7 +15,7 @@
 ;; just setting the vars here.
 (setq evil-want-keybinding nil
       evil-want-integration t
-      evil-want-C-u-scroll t)
+      evil-want-C-u-scroll nil)
 
 ;; stop emacs from slowing to a halt on long lines
 (setq bidi-paragraph-direction 'left-to-right)

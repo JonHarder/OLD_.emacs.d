@@ -54,10 +54,6 @@
    '(("p" "Pull Request" entry (file+headline "~/Org/pull-requests.org" "Pull Requests")
       "* TODO %?\n  SCHEDULED: %t\n  - %^L")))
 
-  (add-to-list 'org-modules 'org-habit t)
-  (add-to-list 'org-modules 'org-tempo t)
-  (add-to-list 'org-modules 'org-notmuch)
-
   (use-package org-tree-slide)
 
   (use-package ob-mermaid

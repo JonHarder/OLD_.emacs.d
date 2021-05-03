@@ -80,8 +80,7 @@
             bindings))
 
 ;; (setq gc-cons-threshold orig-gc-cons-threshold)
-
-(org-agenda-list)
+(find-file "~/.hyperb/HYPB")
 
 (provide 'init)
 ;;; init.el ends here
