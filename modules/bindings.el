@@ -149,7 +149,7 @@
     :commands (ace-window)
     :custom
     (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
-    (aw-background nil)
+    (aw-background t)
     (aw-scope 'frame)
     (aw-ignore-current t))
 
@@ -181,6 +181,7 @@
      "M-v" 'jh/paste-from-mac-clipboard
      "C-t" 'transpose-chars
      "=" 'balance-windows
+     "M-o" 'org-open-at-point-global
      :states 'insert
      "M-v" 'jh/paste-from-mac-clipboard
      :states 'visual

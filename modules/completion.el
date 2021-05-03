@@ -42,12 +42,16 @@
     (fset 'multi-occur #'consult-multi-occur))
 
 
-  (use-package selectrum)
+  (use-package selectrum
+    :config
+    (selectrum-mode +1))
+
   (use-package selectrum-prescient
     :config
-    (selectrum-mode +1)
     (selectrum-prescient-mode +1)
-    (prescient-persist-mode +1))
+    (prescient-persist-mode +1)
+    :custom
+    (selectrum-prescient-enable-filtering nil))
 
   (use-package orderless
     :custom (completion-styles '(orderless))
