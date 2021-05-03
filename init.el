@@ -80,6 +80,7 @@
             bindings))
 
 ;; (setq gc-cons-threshold orig-gc-cons-threshold)
+;;; find hyperbole button file
 (find-file "~/.hyperb/HYPB")
 
 (provide 'init)
