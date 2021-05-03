@@ -73,6 +73,11 @@
     (add-hook 'after-init-hook #'global-flycheck-mode))
 
   (use-package avy)
+
+  ;;; EXPERIMENTAL
+  (straight-use-package 'hyperbole)
+  (require 'hyperbole)
+  ;;; END EXPERIMENTAL
   
   (use-package markdown-mode
     :commands (markdown-mode gfm-mode)

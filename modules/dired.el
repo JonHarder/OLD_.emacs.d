@@ -22,7 +22,7 @@
   (evil-define-key 'normal dired-mode-map
     "s" 'eshell
     "f" 'find-file
-    "o" 'other-window
+    "o" 'ace-window
     (kbd "RET") 'dired-find-file-other-window
     "q" (lambda () (interactive) (quit-window t)))
 

@@ -180,10 +180,7 @@
      "?" 'ctrlf-backward-fuzzy
      "M-v" 'jh/paste-from-mac-clipboard
      "C-t" 'transpose-chars
-     "g . a" 'evil-mc-make-all-cursors
-     "g . n" 'evil-mc-make-and-goto-next-match
-     "g . p" 'evil-mc-make-and-goto-prev-match
-     "g . q" 'evil-mc-undo-all-cursors
+     "=" 'balance-windows
      :states 'insert
      "M-v" 'jh/paste-from-mac-clipboard
      :states 'visual
@@ -240,7 +237,7 @@
       "a a" 'org-agenda-list
       "a A" 'org-agenda
       "a c" 'calendar
-      "a d" 'dired-side-toggle
+      "a d" 'dired-jump
       "a e" 'eshell
       "a g" 'gnus
       "a i" 'jh/erc

@@ -1,3 +1,9 @@
+;;; window --- Window display settings
+
+;;; Commentary:
+;;; This is mostly a wrapper around configuring `display-buffer-alist'
+
+;;; Code:
 (defun modules/window--load (config)
   "Rules for window placement using CONFIG."
 
@@ -22,6 +28,9 @@
            (side . bottom)
            (slot . 0))
           ("\\*\\(helpful .*: .*\\|Help\\)\\*"
-           (display-buffer-in-side-window)
+           (display-buffer-below-selected)
            (side . right)
            (window-width . 0.4)))))
+
+(provide 'window)
+;;; window.el ends here

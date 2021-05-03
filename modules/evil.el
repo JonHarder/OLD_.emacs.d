@@ -9,17 +9,15 @@
           evil-echo-state nil
           evil-shift-round nil
           evil-want-Y-yank-to-eol t
-          evil-want-C-u-scroll t
+          evil-want-C-u-scroll nil
           evil-want-integration t
           evil-want-keybinding nil
           evil-want-minibuffer nil)
 
     :config
-    (evil-mode 1))
-
-  (use-package evil-mc
-    :config
-    (global-evil-mc-mode +1))
+    (evil-mode 1)
+    (add-to-list 'evil-emacs-state-modes 'zpresent-mode)
+    (add-to-list 'evil-emacs-state-modes 'hyrolo-mode))
 
   (use-package evil-collection
     :after evil
