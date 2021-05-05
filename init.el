@@ -80,6 +80,14 @@
             bindings))
 
 ;; (setq gc-cons-threshold orig-gc-cons-threshold)
+(progn
+  (with-current-buffer "*scratch*"
+    (insert ";;; arrange windows and buffers for work, {SPC e e} to evaluate
+(progn
+  (find-file \"~/Org/today.org\")
+  (split-window-right)
+  (find-file \"~/Kipsu/terraform/terraform-configuration/nginx-proxies/sandbox-proxy/main.tf\")
+  (eshell))")))
 
 (provide 'init)
 ;;; init.el ends here

@@ -1,3 +1,26 @@
+;;; code --- Configuration for coding systems.
+
+;;; Commentary:
+;;; Configuration for programming environments apart from any
+;;; language specific configuration, which can be found in
+;;; dedicated modules, e.g. "modules/php.el" for php configuration.
+
+;;; Code:
+(require 'flycheck)
+(require 'use-package)
+(require 'straight)
+
+(defun jh/yaml-mode-hook ()
+  "Configuration to be enabled an yaml buffers."
+  (hl-line-mode +1))
+
+(defun jh/prog-mode-hook ()
+  "Settings that should be enabled or disabled for all programming modes."
+  (setq-default whitespace-style '(face space-before-tab line-tail empty space-after-tab))
+  (when (alist-get :highlight-line jh/config nil)
+    (hl-line-mode t))
+  (whitespace-mode 1))
+
 (defun modules/code--load (config)
   "Module definition for generic programming, configured by CONFIG."
   (straight-use-package 'dumb-jump)
@@ -13,6 +36,11 @@
 
   (add-hook 'sh-mode-hook #'flycheck-mode)
 
+  (use-package plantuml-mode
+    :config
+    (unless (file-exists-p "~/plantuml.jar")
+      (plantuml-download-jar)))
+
   (use-package conf-mode
     :mode "\\.env")
 
@@ -21,6 +49,13 @@
     :config
     (setq lsp-idle-delay 0.500
           lsp-enable-file-watchers nil)
+
+    (mapc (lambda (hook) (add-hook hook #'lsp-deferred))
+          '(c-mode-hook
+            go-mode-hook
+            php-mode-hook
+            dockerfile-mode-hook
+            json-mode-hook))
     :hook
     ((lsp-mode . lsp-enable-which-key-integration)
      (lsp-mode . lsp-modeline-code-actions-mode)))
@@ -33,26 +68,12 @@
                 c-basic-offset 4
                 tab-width 4)
 
-  (defun jh/prog-mode-hook ()
-    "Settings that should be enabled or disabled for all programming modes."
-    (setq-default whitespace-style '(face space-before-tab line-tail empty space-after-tab))
-    (when (alist-get :highlight-line jh/config nil)
-      (hl-line-mode t))
-    (whitespace-mode 1))
-
   (use-package yaml-mode
     :config
-    (defun jh/yaml-mode-hook ()
-      (hl-line-mode +1))
     (add-hook 'yaml-mode-hook #'jh/yaml-mode-hook))
 
   (add-hook 'c-mode-hook (lambda () (electric-pair-mode 1)))
-
-  (mapc (lambda (hook) (add-hook hook #'lsp-deferred))
-        '(c-mode-hook
-          go-mode-hook
-          php-mode-hook
-          dockerfile-mode-hook
-          json-mode-hook))
-
   (add-hook 'prog-mode-hook #'jh/prog-mode-hook config))
+
+(provide 'code)
+;;; code.el ends here
