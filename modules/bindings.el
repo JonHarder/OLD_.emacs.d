@@ -245,7 +245,7 @@
       "a g" 'gnus
       "a i" 'jh/erc
       "a s" 'scratch
-      "a t" 'vterm
+      "a t" 'multi-vterm
       "a m" 'check-mail
       "a M" 'notmuch
 

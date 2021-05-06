@@ -17,6 +17,7 @@
               (lambda ()
                 (set-process-sentinel (get-buffer-process (buffer-name)) #'vterm--kill-vterm-buffer-and-window))))
 
+  (use-package multi-vterm)
 
 
   (defadvice term-handle-exit

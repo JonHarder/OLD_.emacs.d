@@ -76,6 +76,10 @@
 
   (global-auto-revert-mode 1)
 
+  (use-package mini-frame
+    :config
+    (mini-frame-mode))
+
   ;;; EXPERIMENTAL
   (straight-use-package 'hyperbole)
   (require 'hyperbole)
