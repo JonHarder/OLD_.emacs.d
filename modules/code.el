@@ -37,7 +37,12 @@
   (add-hook 'sh-mode-hook #'flycheck-mode)
 
   (use-package plantuml-mode
+    :custom
+    (plantuml-default-exec-mode 'jar)
+    (org-plantuml-jar-path "~/plantuml.jar")
     :config
+    (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
     (unless (file-exists-p "~/plantuml.jar")
       (plantuml-download-jar)))
 

@@ -151,7 +151,9 @@
     (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
     (aw-background t)
     (aw-scope 'frame)
-    (aw-ignore-current t))
+    (aw-ignore-current t)
+    :bind
+    ("C-x o" . 'ace-window))
 
   (straight-use-package 'imenu-list)
 

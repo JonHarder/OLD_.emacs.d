@@ -22,13 +22,20 @@
            (window-height . 0.3)
            (side . bottom)
            (slot . -1))
+          ("\\*info\\*"
+           (display-buffer-reuse-window display-buffer-in-side-window)
+           (side . right)
+           (window-width . 0.4)
+           (slot . 0))
+          ("\\*vterm\\*"
+           (display-buffer-reuse-window display-buffer-below-selected))
           ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|compilation\\|Messages\\)\\*"
            (display-buffer-in-side-window)
            (window-height . 0.3)
            (side . bottom)
-           (slot . 0))
+           (slot . 1))
           ("\\*\\(helpful .*: .*\\|Help\\)\\*"
-           (display-buffer-below-selected)
+           (display-buffer-in-side-window display-buffer-below-selected)
            (side . right)
            (window-width . 0.4)))))
 

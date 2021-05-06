@@ -66,6 +66,7 @@
    'org-babel-load-languages
    '((emacs-lisp . t)
      (shell . t)
+     (plantuml . t)
      (sql . t)
      (mermaid . t)
      (calc . t)

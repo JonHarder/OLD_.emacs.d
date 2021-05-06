@@ -74,6 +74,8 @@
 
   (use-package avy)
 
+  (global-auto-revert-mode 1)
+
   ;;; EXPERIMENTAL
   (straight-use-package 'hyperbole)
   (require 'hyperbole)
