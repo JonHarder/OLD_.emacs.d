@@ -339,6 +339,7 @@
       "o l" 'org-insert-link
       "o p" 'org-priority
       "o '" 'org-edit-special
+      "o ." 'org-time-stamp
 
       "p" '(:ignore t :which-key "Projects")
       "p p" 'projectile-switch-project
