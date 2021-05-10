@@ -83,6 +83,8 @@
   ;;; EXPERIMENTAL
   (straight-use-package 'hyperbole)
   (require 'hyperbole)
+  (require 'hyrolo)
+  (setq hyrolo-file-list (cons "~/.rolo.otl" (cddr (directory-files "~/Org" t))))
   ;;; END EXPERIMENTAL
   
   (use-package markdown-mode
