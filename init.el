@@ -84,10 +84,12 @@
   (with-current-buffer "*scratch*"
     (insert ";;; arrange windows and buffers for work, {SPC e e} to evaluate
 (progn
-  (find-file \"~/Org/today.org\")
+  (require 'multi-vterm)
+  (find-file \"~/notes/proxy.kotl\")
   (split-window-right)
-  (find-file \"~/Kipsu/terraform/terraform-configuration/nginx-proxies/sandbox-proxy/main.tf\")
-  (eshell))")))
+  (find-file \"~/Kipsu/terraform/terraform-configuration/nginx-proxies/china-proxy/main.tf\")
+  (split-window-below)
+  (multi-vterm))")))
 
 (provide 'init)
 ;;; init.el ends here

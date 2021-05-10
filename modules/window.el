@@ -27,17 +27,19 @@
            (side . right)
            (window-width . 0.4)
            (slot . 0))
-          ("\\*vterminal<\d>\\*"
+          ("\\*ielm\\*"
            (display-buffer-below-selected))
-        ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|compilation\\|Messages\\)\\*"
-         (display-buffer-in-side-window)
-         (window-height . 0.3)
-         (side . bottom)
-         (slot . 1))
-        ("\\*\\(helpful .*: .*\\|Help\\)\\*"
-         (display-buffer-in-side-window display-buffer-below-selected)
-         (side . right)
-         (window-width . 0.4))))
+          ("\\*vterminal*\\*"
+           (display-buffer-below-selected))
+          ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|compilation\\|Messages\\)\\*"
+           (display-buffer-in-side-window)
+           (window-height . 0.3)
+           (side . bottom)
+           (slot . 1))
+          ("\\*\\(helpful .*: .*\\|Help\\)\\*"
+           (display-buffer-in-side-window display-buffer-below-selected)
+           (side . right)
+           (window-width . 0.4)))))
 
 (provide 'window)
 ;;; window.el ends here

@@ -92,16 +92,21 @@
   (interactive)
   (insert (shell-command-to-string "pbpaste")))
 
-  (defun minibuffer-replace-with-home ()
-    (interactive)
-    (delete-minibuffer-contents)
-    (insert "~/"))
+(defun minibuffer-replace-with-home ()
+  (interactive)
+  (delete-minibuffer-contents)
+  (insert "~/"))
+
+(defun jh/kill-this-buffer ()
+  "Delete current buffer."
+  (interactive)
+  (kill-buffer (current-buffer)))
 
 (defun jh/copy-to-mac-clipboard (from to)
   "Copy the selected region starting at FROM and ending at TO to the clipboard."
   (interactive
    (if (use-region-p)
-     (list (region-beginning) (region-end))
+       (list (region-beginning) (region-end))
      (error "Region not selected!")))
   (shell-command-on-region from to "pbcopy")
   (evil-exit-visual-state)
@@ -167,6 +172,10 @@
     (interactive)
     (switch-to-buffer nil))
 
+  (use-package beacon
+    :config
+    (beacon-mode 1))
+
   (use-package general
     :config
     (general-evil-setup t)
@@ -210,14 +219,6 @@
      :states 'normal
      :keymaps 'occur-mode-map
      "e" 'occur-edit-mode)
-    (mapc (lambda (mode-map)
-            (general-define-key
-             :states 'insert
-             :keymaps mode-map
-             "{" #'jh/smart-insert-brace))
-          '(c-mode-map
-            hcl-mode-map
-            nginx-mode-map))
     (general-create-definer space-leader :prefix "SPC")
     (space-leader
       :keymaps 'normal
@@ -265,6 +266,7 @@
       "c r" 'jh/reload-config
 
       "d" #'evil-delete-buffer
+      "D" #'jh/kill-this-buffer
 
       "e" '(:ignore t :which-key "Eval")
       "e e" 'eval-last-sexp
@@ -320,12 +322,6 @@
       "l p" 'flycheck-previous-error
       "l l" 'consult-flycheck
 
-      ;; "m" '(:ignore t :which-key "Music")
-      ;; "m p" 'spotify-toggle-play
-      ;; "m s" 'spotify-track-search
-      ;; "m l" 'spotify-my-playlists
-      ;; "m d" 'spotify-select-device
-
       "n" '(:ignore t :which-key "Narrow")
       "n d" 'narrow-to-defun
       "n n" 'narrow-to-defun
@@ -352,7 +348,8 @@
       "p c" 'compile
       "p u" 'straight-use-package
 
-      ;; q
+      "q" #'kill-emacs
+
       ;; r
       "r" #'winner-redo
 
@@ -372,14 +369,14 @@
       "t r" 'tab-bar-rename-tab
       ;; u
       "u" #'winner-undo
-      ;; v
+      ;;; v
 
       ;;; w
       "w" #'ace-window
 
       ;;; x
       ;;; y
-      ;;; z
+      "z" #'beacon-blink
 
       "=" 'text-scale-increase
       "-" 'text-scale-decrease)))

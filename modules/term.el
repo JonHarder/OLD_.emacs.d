@@ -1,3 +1,12 @@
+;;; term --- Terminal configuration
+
+;;; Commentary:
+
+
+;;; Code:
+(require 'evil)
+(require 'straight)
+
 (defun modules/term--load (config)
   "Load term stuff using CONFIG."
   (straight-use-package 'fish-mode)
@@ -18,8 +27,14 @@
                 (set-process-sentinel (get-buffer-process (buffer-name)) #'vterm--kill-vterm-buffer-and-window))))
 
   (use-package multi-vterm)
+  (add-hook 'vterm-mode-hook
+            (lambda ()
+              (setq-local evil-insert-state-cursor 'box)
+              (evil-insert-state)))
 
 
   (defadvice term-handle-exit
       (after term-kill-buffer-on-exit activate)
     (kill-buffer)))
+(provide 'term)
+;;; term.el ends here

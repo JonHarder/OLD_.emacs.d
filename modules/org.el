@@ -4,7 +4,6 @@
   (use-package org-edna
     :config
     (org-edna-mode))
-
   (require 'org-agenda)
   (require 'org-habit)
   (require 'org-tempo)
