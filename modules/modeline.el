@@ -23,10 +23,18 @@
                                    (insert . "#ff55ff")
                                    (visual . "#88aaff")))
          (state-color (alist-get evil-state state-properties-alist "white")))
-    (concat " "
-            (propertize
-             (capitalize (symbol-name evil-state))
-             'face `(:background ,state-color :foreground "black" :weight bold)))))
+    (concat
+     " "
+     (propertize
+      (capitalize (symbol-name evil-state))
+      'face `(:background ,state-color :foreground "black" :weight bold)))))
+
+(defun jh/simple-modeline-segment-file-pct ()
+  "Compute the percentage of the file the point is."
+  (number-to-string
+   (round
+    (* 100 (/ (float (point))
+              (point-max))))))
 
 (defun modules/modeline--load (config)
   "Load configuration for the modeline using CONFIG."
@@ -44,7 +52,8 @@
              jh/simple-modeline-segment-tab-name
              simple-modeline-segment-modified
              simple-modeline-segment-buffer-name
-             simple-modeline-segment-position)
+             simple-modeline-segment-position
+             jh/simple-modeline-segment-file-pct)
 
             ;; right aligned segments
             (simple-modeline-segment-input-method

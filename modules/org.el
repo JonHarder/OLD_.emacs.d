@@ -11,7 +11,8 @@
   (require 'ob-php (concat user-emacs-directory "ob-php.el"))
   (setq org-fontify-whole-heading-line t
         org-confirm-babel-evaluate nil)
-  (setq org-agenda-files '("~/Org/calendars" "~/Org/today.org"))
+  (setq org-agenda-files '("~/Org/calendars" "~/Org/today.org")
+        org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done))
   (setq calendar-date-style 'iso
         ;; calendar-mark-diary-entries-flag nil
         calendar-mode-line-format nil

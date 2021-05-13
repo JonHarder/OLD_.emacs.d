@@ -16,10 +16,9 @@
 
     :config
     (evil-mode 1)
-    (evil-set-initial-state 'kotl-mode 'emacs)
-    (evil-set-initial-state 'zpresent-mode 'emacs)
-    (evil-set-initial-state 'kotl-mode 'emacs)
-    (evil-set-initial-state 'hyrolo-mode 'emacs))
+    (add-hook 'kotl-mode-hook #'evil-emacs-state)
+    (add-hook 'zpresent-mode-hook #'evil-emacs-state)
+    (add-hook 'hyrolo-mode-hook #'evil-emacs-state))
 
   (use-package evil-collection
     :after evil

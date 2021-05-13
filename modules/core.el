@@ -85,7 +85,11 @@
   (require 'hyperbole)
   (require 'hyrolo)
   (setq hyrolo-file-list (cons "~/.rolo.otl" (cddr (directory-files "~/Org" t))))
+  (with-eval-after-load 'evil
+    (add-hook 'kotl-mode-hook (lambda () (evil-emacs-state))))
   ;;; END EXPERIMENTAL
+
+  (use-package writeroom-mode)
   
   (use-package markdown-mode
     :commands (markdown-mode gfm-mode)

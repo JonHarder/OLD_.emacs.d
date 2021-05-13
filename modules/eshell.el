@@ -67,7 +67,7 @@
   (let ((sub-command (car command)))
     (cond
      ((string-equal sub-command "status")
-      (magit-status))
+      (magit-status-setup-buffer))
      (t (shell-command-to-string (string-join (cons "git" command) " "))))))
 
 (defalias 'eshell/gs (lambda () (eshell/git "status")))
