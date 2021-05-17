@@ -31,10 +31,13 @@
 
 (defun jh/simple-modeline-segment-file-pct ()
   "Compute the percentage of the file the point is."
-  (number-to-string
-   (round
-    (* 100 (/ (float (point))
-              (point-max))))))
+  (let ((pct (round
+              (* 100 (/ (float (point))
+                        (point-max))))))
+    (concat
+     " "
+     (propertize (format "%d pct" pct) 'face '(:inverse-video t)))))
+
 
 (defun modules/modeline--load (config)
   "Load configuration for the modeline using CONFIG."
@@ -52,7 +55,7 @@
              jh/simple-modeline-segment-tab-name
              simple-modeline-segment-modified
              simple-modeline-segment-buffer-name
-             simple-modeline-segment-position
+             ;; simple-modeline-segment-position
              jh/simple-modeline-segment-file-pct)
 
             ;; right aligned segments

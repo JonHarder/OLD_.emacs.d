@@ -80,16 +80,7 @@
             bindings))
 
 ;; (setq gc-cons-threshold orig-gc-cons-threshold)
-(progn
-  (with-current-buffer "*scratch*"
-    (insert ";;; arrange windows and buffers for work, {SPC e e} to evaluate
-(progn
-  (require 'multi-vterm)
-  (find-file \"~/notes/proxy.kotl\")
-  (split-window-right)
-  (find-file \"~/Kipsu/terraform/terraform-configuration/nginx-proxies/china-proxy/main.tf\")
-  (split-window-below)
-  (multi-vterm))")))
+(find-file (format-time-string "~/notes/%Y-%m-%d.kotl"))
 
 (provide 'init)
 ;;; init.el ends here

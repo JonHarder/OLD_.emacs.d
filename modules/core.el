@@ -76,15 +76,15 @@
 
   (global-auto-revert-mode 1)
 
-  (use-package mini-frame
-    :config
-    (mini-frame-mode))
-
   ;;; EXPERIMENTAL
   (straight-use-package 'hyperbole)
   (require 'hyperbole)
   (require 'hyrolo)
-  (setq hyrolo-file-list (cons "~/.rolo.otl" (cddr (directory-files "~/Org" t))))
+  (setq hyrolo-file-list (cons "~/.rolo.otl" (append
+                                              (cddr (directory-files "~/Org" t "[^.]"))
+                                              (cddr (directory-files "~/notes" t)))))
+  ;;; (define-key kotl-mode-map (kbd "C-,") #'kotl-mode:beginning-of-buffer)
+  ;;; (define-key kotl-mode-map (kbd "C-.") #'kotl-mode:end-of-buffer)
   (with-eval-after-load 'evil
     (add-hook 'kotl-mode-hook (lambda () (evil-emacs-state))))
   ;;; END EXPERIMENTAL
