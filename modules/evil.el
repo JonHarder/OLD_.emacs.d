@@ -25,12 +25,18 @@
     (setq evil-collection-setup-minibuffer t)
     :config
     (evil-collection-init)
-    (evil-collection-define-key 'normal 'minibuffer-local-map (kbd "j") #'selectrum-next-candidate)
-    (evil-collection-define-key 'normal 'minibuffer-local-map (kbd "k") #'selectrum-previous-candidate)
-    (evil-collection-define-key 'normal 'minibuffer-local-map (kbd "G") #'selectrum-goto-end)
-    (evil-collection-define-key 'normal 'minibuffer-local-map (kbd "gg") #'selectrum-goto-beginning)
-    (evil-collection-define-key 'insert 'minibuffer-local-map (kbd "C-n") #'selectrum-next-candidate)
-    (evil-collection-define-key 'insert 'minibuffer-local-map (kbd "C-p") #'selectrum-previous-candidate))
+    (evil-collection-define-key 'normal 'minibuffer-local-map
+      (kbd "j") #'selectrum-next-candidate)
+    (evil-collection-define-key 'normal 'minibuffer-local-map
+      (kbd "k") #'selectrum-previous-candidate)
+    (evil-collection-define-key 'normal 'minibuffer-local-map
+      (kbd "G") #'selectrum-goto-end)
+    (evil-collection-define-key 'normal 'minibuffer-local-map
+      (kbd "gg") #'selectrum-goto-beginning)
+    (evil-collection-define-key 'insert 'minibuffer-local-map
+      (kbd "C-n") #'selectrum-next-candidate)
+    (evil-collection-define-key 'insert 'minibuffer-local-map
+      (kbd "C-p") #'selectrum-previous-candidate))
 
   (use-package evil-matchit
     :config
