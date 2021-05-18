@@ -6,17 +6,28 @@
 ;;; dedicated modules, e.g. "modules/php.el" for php configuration.
 
 ;;; Code:
+;;;; Requirements
 (require 'flycheck)
 (require 'use-package)
 (require 'straight)
 
+
+;;;; mode hook functions
 (defun jh/yaml-mode-hook ()
   "Configuration to be enabled an yaml buffers."
   (hl-line-mode +1))
 
+(require 'outline)
+
+(use-package bicycle
+  :after outline
+  :bind (:map outline-minor-mode-map
+              ("TAB" . bicycle-cycle)))
+
 (defun jh/prog-mode-hook ()
   "Settings that should be enabled or disabled for all programming modes."
   (setq-default whitespace-style '(face space-before-tab line-tail empty space-after-tab))
+  (outline-minor-mode)
   (when (alist-get :highlight-line jh/config nil)
     (hl-line-mode t))
   (whitespace-mode 1))

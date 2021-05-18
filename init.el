@@ -43,6 +43,7 @@
   :highlight-line       t
   :modules (core
             evil
+            hyperbole
             modeline
             appearance
             window
