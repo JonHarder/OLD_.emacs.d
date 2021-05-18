@@ -74,6 +74,7 @@
      (php . t)
      (js . t)))
 
+  ;;; Install external packages
   (use-package org-tree-slide)
 
   (use-package ob-mermaid
@@ -93,6 +94,7 @@
       (org-superstar-special-todo-items t)
       :hook (org-mode . org-superstar-mode))
 
+  ;;; org TODO keyword configuration
   (setq org-todo-keywords
         '((sequence
            "SOMEDAY(s)"
