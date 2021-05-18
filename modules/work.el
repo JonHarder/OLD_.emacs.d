@@ -28,15 +28,6 @@
   (straight-use-package 'wsd-mode)
   (straight-use-package 'notmuch)
 
-  (use-package mermaid-mode
-    :mode ("\\.mermaid\\'" . mermaid-mode))
-
-  (use-package ob-mermaid
-    :custom
-    (ob-mermaid-cli-path "~/bin/mmdc")
-    (mermaid-mmdc-location "~/bin/mmdc")
-    (mermaid-output-format ".svg"))
-
   (defun jh/work-git ()
     (interactive)
     (magit-status jh/work-dir))

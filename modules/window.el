@@ -38,8 +38,8 @@
            (slot . 1))
           ("\\*\\(helpful .*: .*\\|Help\\)\\*"
            (display-buffer-in-side-window display-buffer-below-selected)
-           (side . right)
-           (window-width . 0.4)))))
+           (side . bottom)
+           (window-height 0.2)))))
 
 (provide 'window)
 ;;; window.el ends here

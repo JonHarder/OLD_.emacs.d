@@ -19,7 +19,7 @@
   (setq org-fontify-whole-heading-line t
         org-confirm-babel-evaluate nil
         org-edit-src-content-indentation 0
-        org-agenda-files '("~/Org/calendars" "~/Org/today.org")
+        org-agenda-files '("~/Org/calendars" "~/Org/todo.org")
         org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)
         calendar-date-style 'iso
         ;; calendar-mark-diary-entries-flag nil
@@ -79,25 +79,8 @@
   
   (add-hook 'org-agenda-finalize-hook #'color-org-agenda)
 
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (shell . t)
-     (plantuml . t)
-     (sql . t)
-     (mermaid . t)
-     (calc . t)
-     (restclient . t)
-     (haskell t)
-     (python . t)
-     (php . t)
-     (js . t)))
-
   ;;; Install external packages
   (use-package org-tree-slide)
-
-  (use-package ob-mermaid
-    :defer 5)
 
   (use-package ob-restclient
     :defer 5)
@@ -111,7 +94,18 @@
       :custom
       (org-hide-leading-stars t)
       (org-superstar-special-todo-items t)
-      :hook (org-mode . org-superstar-mode)))
+      :hook (org-mode . org-superstar-mode))
 
-(provide 'org)
-;;; org.el ends here
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell . t)
+     (plantuml . t)
+     (sql . t)
+     (calc . t)
+     (restclient . t)
+     (haskell t)
+     (python . t)
+     (php . t)
+     (js . t))))
+
