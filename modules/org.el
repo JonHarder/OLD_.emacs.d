@@ -1,41 +1,30 @@
+;;; org --- Configuration for magical org mode
+;;; Commentary:
+;;; Here lies my configuration for org mode, including
+;;; the addition of other packages which make bullets prettier, and
+;;; introduce additional languages that org src blocks can evaluate.
+
+;;; Code:
 (defun modules/org--load (config)
   "Load configuration related to org using CONFIG."
-  ;; programmatic org workflow triggers and actions
-  (use-package org-edna
-    :config
-    (org-edna-mode))
+
+  ;;; additional org libraries
   (require 'org-agenda)
   (require 'org-habit)
   (require 'org-tempo)
   (require 'ob-python)
   (require 'ob-php (concat user-emacs-directory "ob-php.el"))
+
+  ;;; SETTINGS
   (setq org-fontify-whole-heading-line t
-        org-confirm-babel-evaluate nil)
-  (setq org-agenda-files '("~/Org/calendars" "~/Org/today.org")
-        org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done))
-  (setq calendar-date-style 'iso
+        org-confirm-babel-evaluate nil
+        org-edit-src-content-indentation 0
+        org-agenda-files '("~/Org/calendars" "~/Org/today.org")
+        org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)
+        calendar-date-style 'iso
         ;; calendar-mark-diary-entries-flag nil
         calendar-mode-line-format nil
         calendar-date-display-form calendar-iso-date-display-form)
-
-  ;; (add-hook 'diary-list-entries-hook 'diary-sort-entries t)
-  ;; (add-to-list 'auto-mode-alist '("diary\\'" . diary-mode))
-
-  (defun color-org-header (tag col &optional bg-col)
-    "Color the associated TAG with the color COL."
-    (interactive)
-    (goto-char (point-min))
-    (while (re-search-forward tag nil t)
-      (add-text-properties (match-beginning 0) (point-at-eol)
-                           `(face (:foreground ,col ,@(if bg-col `(:background ,bg-col) nil))))))
-
-  (defun color-org-agenda ()
-    (save-excursion
-      (color-org-header "Work:" "#0099cc")
-      (color-org-header "Bread:" "#66CD00")
-      (color-org-header "Events:" "#faebd7" "#8B4513")))
-  
-  (add-hook 'org-agenda-finalize-hook #'color-org-agenda)
 
   (setq-default
    org-src-fontify-natively t
@@ -54,13 +43,22 @@
    '(("p" "Pull Request" entry (file+headline "~/Org/pull-requests.org" "Pull Requests")
       "* TODO %?\n  SCHEDULED: %t\n  - %^L")))
 
-  (use-package org-tree-slide)
+  ;;; Addition functionality/functions
+  (defun color-org-header (tag col &optional bg-col)
+     "Color the associated TAG with the color COL."
+     (interactive)
+     (goto-char (point-min))
+     (while (re-search-forward tag nil t)
+       (add-text-properties (match-beginning 0) (point-at-eol)
+                            `(face (:foreground ,col ,@(if bg-col `(:background ,bg-col) nil))))))
 
-  (use-package ob-mermaid
-    :defer 5)
-
-  (use-package ob-restclient
-    :defer 5)
+  (defun color-org-agenda ()
+    (save-excursion
+      (color-org-header "Work:" "#0099cc")
+      (color-org-header "Bread:" "#66CD00")
+      (color-org-header "Events:" "#faebd7" "#8B4513")))
+  
+  (add-hook 'org-agenda-finalize-hook #'color-org-agenda)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -76,14 +74,25 @@
      (php . t)
      (js . t)))
 
-  
+  (use-package org-tree-slide)
+
+  (use-package ob-mermaid
+    :defer 5)
+
+  (use-package ob-restclient
+    :defer 5)
+
+  (use-package org-edna
+    :config
+    (org-edna-mode))
+
   (use-package org-superstar
-    :demand t
-    :custom
-    (org-hide-leading-stars t)
-    (org-superstar-special-todo-items t)
-    :hook (org-mode . org-superstar-mode))
-  
+      :demand t
+      :custom
+      (org-hide-leading-stars t)
+      (org-superstar-special-todo-items t)
+      :hook (org-mode . org-superstar-mode))
+
   (setq org-todo-keywords
         '((sequence
            "SOMEDAY(s)"
@@ -105,3 +114,6 @@
           ("DONE" :foreground "#50a14f" :weight bold :underline t)
           ("CANCELLED" :foreground "#fc0303" :weight bold :underline t))
         org-log-done 'time))
+
+(provide 'org)
+;;; org.el ends here

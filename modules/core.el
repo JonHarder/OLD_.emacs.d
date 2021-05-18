@@ -75,6 +75,11 @@
   (use-package avy)
 
   (global-auto-revert-mode 1)
+  ;;; abbreviations
+  (setq abbrev-file-name "~/.emacs.d/abbrev_defs")
+  (setq save-abbrevs 'silent)
+  (setq-default abbrev-mode t)
+  (read-abbrev-file)
 
   ;;; EXPERIMENTAL
   (straight-use-package 'hyperbole)

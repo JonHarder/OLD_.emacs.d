@@ -80,7 +80,10 @@
             bindings))
 
 ;; (setq gc-cons-threshold orig-gc-cons-threshold)
-(find-file (format-time-string "~/notes/%Y-%m-%d.kotl"))
+(defun open-notes-file ()
+  "Open a kotl note file for today."
+  (interactive)
+  (find-file (format-time-string "~/notes/%Y-%m-%d.kotl")))
 
 (provide 'init)
 ;;; init.el ends here

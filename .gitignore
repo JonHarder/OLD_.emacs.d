@@ -37,3 +37,4 @@ transient/
 /.cache/
 /org-roam.db
 /projectile.cache
+/parinfer-rust/
