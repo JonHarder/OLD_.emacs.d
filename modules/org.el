@@ -24,7 +24,26 @@
         calendar-date-style 'iso
         ;; calendar-mark-diary-entries-flag nil
         calendar-mode-line-format nil
-        calendar-date-display-form calendar-iso-date-display-form)
+        calendar-date-display-form calendar-iso-date-display-form
+        org-todo-keywords '((sequence
+                             "SOMEDAY(s)"
+                             "TODO(t)"
+                             "NEXT(n)"
+                             "WAITING(w)"
+                             "INPROGRESS(i)"
+                             "REVIEW(r)"
+                             "|"
+                             "DONE(d)"
+                             "CANCELLED(c)"))
+        org-todo-keyword-faces '(("SOMEDAY" :foreground "#eeeeee" :background "#444444" :weight bold :underline t)
+                                 ("TODO" :foreground "#fc9d03" :weight bold :underline t)
+                                 ("NEXT" :foreground "#0098dd" :weight bold :underline t)
+                                 ("WAITING" :foreground "#bf3cc6" :weight bold :underline t)
+                                 ("INPROGRESS" :foreground "#fc5603" :weight bold :underline t)
+                                 ("REVIEW" :foreground "#964B00" :weight bold :underline t)
+                                 ("DONE" :foreground "#50a14f" :weight bold :underline t)
+                                 ("CANCELLED" :foreground "#fc0303" :weight bold :underline t))
+        org-log-done 'time)
 
   (setq-default
    org-src-fontify-natively t
@@ -92,30 +111,7 @@
       :custom
       (org-hide-leading-stars t)
       (org-superstar-special-todo-items t)
-      :hook (org-mode . org-superstar-mode))
-
-  ;;; org TODO keyword configuration
-  (setq org-todo-keywords
-        '((sequence
-           "SOMEDAY(s)"
-           "TODO(t)"
-           "NEXT(n)"
-           "WAITING(w)"
-           "INPROGRESS(i)"
-           "REVIEW(r)"
-           "|"
-           "DONE(d)"
-           "CANCELLED(c)"))
-        org-todo-keyword-faces
-        '(("SOMEDAY" :foreground "#eeeeee" :background "#444444" :weight bold :underline t)
-          ("TODO" :foreground "#fc9d03" :weight bold :underline t)
-          ("NEXT" :foreground "#0098dd" :weight bold :underline t)
-          ("WAITING" :foreground "#bf3cc6" :weight bold :underline t)
-          ("INPROGRESS" :foreground "#fc5603" :weight bold :underline t)
-          ("REVIEW" :foreground "#964B00" :weight bold :underline t)
-          ("DONE" :foreground "#50a14f" :weight bold :underline t)
-          ("CANCELLED" :foreground "#fc0303" :weight bold :underline t))
-        org-log-done 'time))
+      :hook (org-mode . org-superstar-mode)))
 
 (provide 'org)
 ;;; org.el ends here
