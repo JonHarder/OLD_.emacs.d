@@ -86,5 +86,7 @@
   (interactive)
   (find-file (format-time-string "~/notes/%Y-%m-%d.kotl")))
 
+(find-file "~/notes/sprint.kotl")
+
 (provide 'init)
 ;;; init.el ends here

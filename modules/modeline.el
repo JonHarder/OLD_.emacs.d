@@ -22,12 +22,16 @@
   (let* ((state-properties-alist '((normal . "#55ff55")
                                    (insert . "#ff55ff")
                                    (visual . "#88aaff")))
-         (state-color (alist-get evil-state state-properties-alist "white")))
+         (state-color (alist-get evil-state state-properties-alist "white"))
+         (state-str (cond
+                     ((eq 'visual evil-state)
+                      (string-trim (evil-visual-message) "[ -]+" "[ -]+"))
+                     (t (symbol-name evil-state)))))
     (concat
      " "
      (propertize
-      (capitalize (symbol-name evil-state))
-      'face `(:background ,state-color :foreground "black" :weight bold)))))
+       (capitalize state-str)
+       'face `(:background ,state-color :foreground "black" :weight bold)))))
 
 (defun jh/simple-modeline-segment-file-pct ()
   "Compute the percentage of the file the point is."
@@ -45,6 +49,7 @@
 
   (setq display-time-day-and-date t)
   (display-time-mode)
+
 
   (use-package simple-modeline
     :hook (after-init . simple-modeline-mode)

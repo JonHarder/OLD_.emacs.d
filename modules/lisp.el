@@ -21,7 +21,9 @@
   (use-package parinfer-rust-mode
     :hook emacs-lisp-mode
     :init
-    (setq parinfer-rust-auto-download t)))
+    (setq parinfer-rust-auto-download t)
+    :config
+    (add-to-list 'parinfer-rust-treat-command-as '(evil-open-below . "paren"))))
 
 (provide 'lisp)
 ;;; lisp.el ends here
