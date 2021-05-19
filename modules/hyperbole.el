@@ -28,6 +28,41 @@
     (kotl-mode:previous-cell 2)
     (evil-insert-state))
 
+  (defun jh/kotl-append-line ()
+    (interactive)
+    (kotl-mode:move-end-of-line)
+    (evil-insert-state))
+
+  (defun jh/kotl-insert-line ()
+    (interactive)
+    (kotl-mode:move-beginning-of-line)
+    (evil-insert-state))
+
+  (defun jh/kotl-delete-contents ()
+    (interactive)
+    (kotl-mode:kill-contents 1))
+
+  (defun jh/kotl-change-contents ()
+    (interactive)
+    (kotl-mode:kill-contents 1)
+    (evil-insert-state))
+
+  (defun jh/kotl-change-whole-line ()
+    (interactive)
+    (kotl-mode:beginning-of-line)
+    (kotl-mode:kill-line)
+    (evil-insert-state))
+
+  (defun jh/kotl-change-end-of-line ()
+    (interactive)
+    (kotl-mode:kill-line)
+    (evil-insert-state))
+
+  (defun jh/kotl-delete-whole-line ()
+    (interactive)
+    (kotl-mode:beginning-of-line)
+    (kotl-mode:kill-line))
+
   (with-eval-after-load 'evil
     (evil-define-key 'normal kotl-mode-map
         "gg" #'kotl-mode:beginning-of-buffer
@@ -35,26 +70,11 @@
         ">>" #'kotl-mode:demote-tree
         "<<" #'kotl-mode:promote-tree
         "dat" #'kotl-mode:kill-tree
-        "dd" (lambda ()
-               (interactive)
-               (kotl-mode:beginning-of-line)
-               (kotl-mode:kill-line))
-        "dac" (lambda ()
-                (interactive)
-                (kotl-mode:kill-contents 1))
-        "cat" (lambda ()
-                (interactive)
-                (kotl-mode:kill-contents 1)
-                (evil-insert-state))
-        "cc" (lambda ()
-               (interactive)
-               (kotl-mode:beginning-of-line)
-               (kotl-mode:kill-line)
-               (evil-insert-state))
-        "C" (lambda ()
-              (interactive)
-              (kotl-mode:kill-line)
-              (evil-insert-state))
+        "dd" #'jh/kotl-delete-whole-line
+        "dac" #'jh/kotl-delete-contents
+        "cac" #'jh/kotl-change-contents
+        "cc" #'jh/kotl-change-whole-line
+        "C" #'jh/kotl-change-end-of-line
         "D" #'kotl-mode:kill-line
         "G" #'kotl-mode:end-of-buffer
         "0" #'kotl-mode:move-beginning-of-line
@@ -69,15 +89,10 @@
         "e" #'kotl-mode:forward-word
         "w" #'kotl-mode:forward-word
         "b" #'kotl-mode:backward-word
-        "A" (lambda ()
-                (interactive)
-                (kotl-mode:move-end-of-line)
-                (evil-insert-state))
-        "I" (lambda ()
-                (interactive)
-                (kotl-mode:move-beginning-of-line)
-                (evil-insert-state)))
+        "A" #'jh/kotl-append-line
+        "I" #'jh/kotl-insert-line)
     (evil-define-key 'insert kotl-mode-map
-        (kbd "DEL") #'kotl-mode:delete-backward-char)
+        (kbd "DEL") #'kotl-mode:delete-backward-char
+        (kbd "M-o") #'jh/kotl-insert-cell-below)
     (evil-define-key 'visual kotl-mode-map
         "d" #'kotl-mode:kill-region)))
