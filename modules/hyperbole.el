@@ -27,14 +27,35 @@
     (call-interactively #'kotl-mode:transpose-cells)
     (kotl-mode:previous-cell 2)
     (evil-insert-state))
-  
+
   (with-eval-after-load 'evil
     (evil-define-key 'normal kotl-mode-map
-        (kbd "g g") #'kotl-mode:beginning-of-buffer
-        (kbd "g c") #'kotl-mode:goto-cell
-        (kbd "> >") #'kotl-mode:demote-tree
-        (kbd "< <") #'kotl-mode:promote-tree
-        (kbd "d d") #'kotl-mode:kill-tree
+        "gg" #'kotl-mode:beginning-of-buffer
+        "gc" #'kotl-mode:goto-cell
+        ">>" #'kotl-mode:demote-tree
+        "<<" #'kotl-mode:promote-tree
+        "dat" #'kotl-mode:kill-tree
+        "dd" (lambda ()
+               (interactive)
+               (kotl-mode:beginning-of-line)
+               (kotl-mode:kill-line))
+        "dac" (lambda ()
+                (interactive)
+                (kotl-mode:kill-contents 1))
+        "cat" (lambda ()
+                (interactive)
+                (kotl-mode:kill-contents 1)
+                (evil-insert-state))
+        "cc" (lambda ()
+               (interactive)
+               (kotl-mode:beginning-of-line)
+               (kotl-mode:kill-line)
+               (evil-insert-state))
+        "C" (lambda ()
+              (interactive)
+              (kotl-mode:kill-line)
+              (evil-insert-state))
+        "D" #'kotl-mode:kill-line
         "G" #'kotl-mode:end-of-buffer
         "0" #'kotl-mode:move-beginning-of-line
         "^" #'kotl-mode:move-beginning-of-line
