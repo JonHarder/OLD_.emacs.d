@@ -19,6 +19,8 @@
   ;; (setq epa-pinentry-mode 'loopback)
   (setq epg-pinentry-mode 'loopback)
 
+  (winner-mode 1)
+
   (defun jh/evil-yank-advice (orig-fn beg end &rest args)
     (pulse-momentary-highlight-region beg end)
     (apply orig-fn beg end args))
