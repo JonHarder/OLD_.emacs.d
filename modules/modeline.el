@@ -60,7 +60,7 @@
              jh/simple-modeline-segment-tab-name
              simple-modeline-segment-modified
              simple-modeline-segment-buffer-name
-             ;; simple-modeline-segment-position
+             simple-modeline-segment-position
              jh/simple-modeline-segment-file-pct)
 
             ;; right aligned segments

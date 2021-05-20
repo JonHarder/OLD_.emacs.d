@@ -23,7 +23,8 @@
     :init
     (setq parinfer-rust-auto-download t)
     :config
-    (add-to-list 'parinfer-rust-treat-command-as '(evil-open-below . "paren"))))
+    (add-to-list 'parinfer-rust-treat-command-as '(evil-open-below . "paren"))
+    (add-to-list 'parinfer-rust-treat-command-as '(evil-open-above . "paren"))))
 
 (provide 'lisp)
 ;;; lisp.el ends here
