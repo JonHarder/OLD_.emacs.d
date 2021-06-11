@@ -15,7 +15,8 @@
      (list
       (completing-read "Enigne: " (contrib/alist-keys search-engines))
       (read-string "Search: ")))
-    (let ((url (cdr (assoc (intern engine) search-engines))))
+    (let ((browse-url-browser-function 'eww)
+          (url (cdr (assoc (intern engine) search-engines))))
       (browse-url (concat url search-term))))
   
   (defun how-do-i-google (search-term)

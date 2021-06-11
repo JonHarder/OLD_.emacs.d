@@ -229,7 +229,8 @@
       "RET" 'eshell
       "ESC" 'evil-ex-nohighlight
       "TAB" 'switch-to-most-recent-buffer
-      "/" 'consult-line
+      ;; "/" 'consult-line
+      "/" #'projectile-find-file
 
       "1" #'delete-other-windows
       "2" #'split-window-below

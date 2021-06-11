@@ -33,6 +33,9 @@
     :init
     (add-hook 'php-mode-hook #'my-php-mode-hook))
 
+  (setq lsp-intelephense-server-command
+        '("intelephense" "--stdio" "--maxMemory=3072"))
+
   (use-package ac-php)
   (use-package psysh)
   

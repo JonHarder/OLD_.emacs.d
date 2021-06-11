@@ -73,37 +73,39 @@
     (defun jh/kotl-delete-whole-line ()
       (interactive)
       (kotl-mode:beginning-of-line)
-      (kotl-mode:kill-line))
+      (kotl-mode:kill-line))))
 
-    (evil-define-key 'normal kotl-mode-map
-        "gg" #'kotl-mode:beginning-of-buffer
-        "gc" #'kotl-mode:goto-cell
-        ">>" #'kotl-mode:demote-tree
-        "<<" #'kotl-mode:promote-tree
-        "dat" #'kotl-mode:kill-tree
-        "dd" #'jh/kotl-delete-whole-line
-        "dac" #'jh/kotl-delete-contents
-        "cac" #'jh/kotl-change-contents
-        "cc" #'jh/kotl-change-whole-line
-        "C" #'jh/kotl-change-end-of-line
-        "D" #'kotl-mode:kill-line
-        "G" #'kotl-mode:end-of-buffer
-        "0" #'kotl-mode:move-beginning-of-line
-        "^" #'kotl-mode:move-beginning-of-line
-        "$" #'kotl-mode:move-end-of-line
-        "l" #'kotl-mode:forward-char
-        "h" #'kotl-mode:backward-char
-        "j" #'kotl-mode:next-line
-        "k" #'kotl-mode:previous-line
-        "o" #'jh/kotl-insert-cell-below
-        "O" #'jh/kotl-insert-cell-above
-        "e" #'kotl-mode:forward-word
-        "w" #'kotl-mode:forward-word
-        "b" #'kotl-mode:backward-word
-        "A" #'jh/kotl-append-line
-        "I" #'jh/kotl-insert-line)
-    (evil-define-key 'insert kotl-mode-map
-        (kbd "DEL") #'kotl-mode:delete-backward-char
-        (kbd "M-o") #'jh/kotl-insert-cell-below)
-    (evil-define-key 'visual kotl-mode-map
-        "d" #'kotl-mode:kill-region)))
+    ;; (evil-define-key 'normal kotl-mode-map
+    ;;     (kbd "C-<return>") #'kotl-mode:add-cell
+    ;;     (kbd "M-")
+    ;;     (kbd "g g") #'kotl-mode:beginning-of-buffer
+    ;;     (kbd "g c") #'kotl-mode:goto-cell
+    ;;     (kbd "> >") #'kotl-mode:demote-tree
+    ;;     "<<" #'kotl-mode:promote-tree
+    ;;     "dat" #'kotl-mode:kill-tree
+    ;;     "dd" #'jh/kotl-delete-whole-line
+    ;;     "dac" #'jh/kotl-delete-contents
+    ;;     "cac" #'jh/kotl-change-contents
+    ;;     "cc" #'jh/kotl-change-whole-line
+    ;;     "C" #'jh/kotl-change-end-of-line
+    ;;     "D" #'kotl-mode:kill-line
+    ;;     "G" #'kotl-mode:end-of-buffer
+    ;;     "0" #'kotl-mode:move-beginning-of-line
+    ;;     "^" #'kotl-mode:move-beginning-of-line
+    ;;     "$" #'kotl-mode:move-end-of-line
+    ;;     "l" #'kotl-mode:forward-char
+    ;;     "h" #'kotl-mode:backward-char
+    ;;     "j" #'kotl-mode:next-line
+    ;;     "k" #'kotl-mode:previous-line
+    ;;     "o" #'jh/kotl-insert-cell-below
+    ;;     "O" #'jh/kotl-insert-cell-above
+    ;;     "e" #'kotl-mode:forward-word
+    ;;     "w" #'kotl-mode:forward-word
+    ;;     "b" #'kotl-mode:backward-word
+    ;;     "A" #'jh/kotl-append-line
+    ;;     "I" #'jh/kotl-insert-line))
+    ;; (evil-define-key 'insert kotl-mode-map
+    ;;     (kbd "DEL") #'kotl-mode:delete-backward-char
+    ;;     (kbd "M-o") #'jh/kotl-insert-cell-below))
+    ;; (evil-define-key 'visual kotl-mode-map
+    ;;     "d" #'kotl-mode:kill-region))))

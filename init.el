@@ -22,6 +22,30 @@
 
 ;;; Code:
 ;; (package-initialize)
+
+;;;; as of emacs 28.0.50 emacs-lisp/byte-run.el macro `define-obsolete-function-alias has
+;;; changed signature and broken among other things, `eshell'
+;;;; overwriting it here (hopefully) to revert to the original version
+;; patch to emacs@28.0.50
+;; https://www.reddit.com/r/emacs/comments/kqd9wi/changes_in_emacshead2828050_break_many_packages/
+;; (defmacro define-obsolete-function-alias ( obsolete-name current-name
+;;                                            &optional when docstring)
+;;   "Set OBSOLETE-NAME's function definition to CURRENT-NAME and mark it obsolete.
+;; \(define-obsolete-function-alias \\='old-fun \\='new-fun \"22.1\" \"old-fun's doc.\")
+;; is equivalent to the following two lines of code:
+;; \(defalias \\='old-fun \\='new-fun \"old-fun's doc.\")
+;; \(make-obsolete \\='old-fun \\='new-fun \"22.1\")
+;; WHEN should be a string indicating when the function was first
+;; made obsolete, for example a date or a release number.
+;; See the docstrings of `defalias' and `make-obsolete' for more details."
+;;   (declare (doc-string 4)
+;;            (advertised-calling-convention)
+;;            ;; New code should always provide the `when' argument
+;;            (obsolete-name current-name when &optional docstring) "23.1")
+;;   `(progn
+;;      (defalias ,obsolete-name ,current-name ,docstring)
+;;      (make-obsolete ,obsolete-name ,current-name ,when)))
+
 (setq gc-cons-threshold (* 50 1000 1000))
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
@@ -33,7 +57,7 @@
 
 (defvar jh/config nil)
 
-
+;;; Note, humanoid themes are nice
 (defconfig jh/config
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
@@ -81,12 +105,6 @@
             bindings))
 
 ;; (setq gc-cons-threshold orig-gc-cons-threshold)
-(defun open-notes-file ()
-  "Open a kotl note file for today."
-  (interactive)
-  (find-file (format-time-string "~/notes/%Y-%m-%d.kotl")))
-
-(add-hook 'emacs-startup-hook (lambda () (find-file "~/notes/sprint.kotl")))
 
 (provide 'init)
 ;;; init.el ends here

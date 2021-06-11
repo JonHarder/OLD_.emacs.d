@@ -11,6 +11,11 @@
                   (eq major-mode mode)))
               (window-list)))
 
+(defun open-notes-file ()
+  "Open a kotl note file for today."
+  (interactive)
+  (find-file (format-time-string "~/notes/%Y-%m-%d.kotl")))
+
 (defun jh/expand-directory (dir)
   "Expand the given DIR to the list of all of its files."
   (interactive)

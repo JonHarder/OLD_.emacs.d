@@ -20,6 +20,7 @@
   (setq epg-pinentry-mode 'loopback)
 
   (winner-mode 1)
+  (desktop-save-mode 1)
 
   (defun jh/evil-yank-advice (orig-fn beg end &rest args)
     (pulse-momentary-highlight-region beg end)

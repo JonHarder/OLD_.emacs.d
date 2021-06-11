@@ -62,15 +62,19 @@
           '(c-mode-hook
             go-mode-hook
             php-mode-hook
+            typescript-mode
             dockerfile-mode-hook
             json-mode-hook))
     :hook
     ((lsp-mode . lsp-enable-which-key-integration)
      (lsp-mode . lsp-modeline-code-actions-mode)))
 
-  (use-package lsp-ui
-    :config
-    (setq lsp-ui-doc-position 'at-point))
+  ;;; This has been reported as the source of massive slowdowns
+  ;;; in lsp mode enabled files, disabling for now until more
+  ;;; thourough tests can be done.
+  ;; (use-package lsp-ui
+  ;;   :config
+  ;;   (setq lsp-ui-doc-enable nil))
 
   (setq-default default-tab-width 4
                 c-basic-offset 4
@@ -81,6 +85,7 @@
     (add-hook 'yaml-mode-hook #'jh/yaml-mode-hook))
 
   (add-hook 'c-mode-hook (lambda () (electric-pair-mode 1)))
+  (add-hook 'php-mode-hook (lambda () (electric-pair-mode 1)))
   (add-hook 'prog-mode-hook #'jh/prog-mode-hook config))
 
 (provide 'code)

@@ -38,3 +38,5 @@ transient/
 /org-roam.db
 /projectile.cache
 /parinfer-rust/
+/.emacs.desktop
+/.emacs.desktop.lock
