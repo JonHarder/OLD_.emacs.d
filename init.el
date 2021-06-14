@@ -73,7 +73,7 @@
             window
             buffers
             completion
-            ;; erc
+            irc
             code
             git
             org
