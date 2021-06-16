@@ -73,13 +73,13 @@
     (defun jh/kotl-delete-whole-line ()
       (interactive)
       (kotl-mode:beginning-of-line)
-      (kotl-mode:kill-line))
+      (kotl-mode:kill-line 1))
 
     (evil-define-key 'normal kotl-mode-map
-        (kbd "C-<return>") #'kotl-mode:add-cell
-        (kbd "g g") #'kotl-mode:beginning-of-buffer
-        (kbd "g c") #'kotl-mode:goto-cell
-        (kbd "> >") #'kotl-mode:demote-tree
+        [C-return] #'kotl-mode:add-cell
+        "gg" #'kotl-mode:beginning-of-buffer
+        "gc" #'kotl-mode:goto-cell
+        ">>" #'kotl-mode:demote-tree
         "<<" #'kotl-mode:promote-tree
         "dat" #'kotl-mode:kill-tree
         "dd" #'jh/kotl-delete-whole-line
