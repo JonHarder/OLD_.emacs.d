@@ -61,9 +61,7 @@
 (defconfig jh/config
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
-  :theme-package        modus-themes
-  :light-theme          modus-operandi
-  :dark-theme           modus-vivendi
+  :theme "humanoid"
   :highlight-line       t
   :modules (core
             evil

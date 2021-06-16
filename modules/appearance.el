@@ -6,18 +6,40 @@
 (require 'seq)
 (require 'use-package)
 (require 'straight)
+(require 'contrib "~/.emacs.d/contrib.el")
+
+
+(defvar jh/themes
+  '(("humanoid" . (:package humanoid-themes
+                   :dark humanoid-dark
+                   :light humanoid-light))
+    ("modus" . (:package modus-themes
+                :dark modus-vivendi
+                :light modus-operandi))
+    ("spacemacs" . (:package spacemacs-theme
+                    :dark spacemacs-dark
+                    :light spacemacs-light))
+    ("solarized" . (:package doom-themes
+                             :dark doom-solarized-dark
+                             :light doom-solarized-light))
+    ("gruvbox" . (:package doom-themes
+                           :dark doom-gruvbox
+                           :light doom-gruvbox-light))))
+
+(defvar jh/current-theme
+  (alist-get :theme jh/config))
 
 (defun jh/pull-theme (theme &optional theme-package)
   "Download THEME-PACKAGE if THEME is not a built in theme."
   (let ((theme-package (if theme-package theme-package (intern (format "%s-theme" theme)))))
-    (when (not (memq (intern theme) (custom-available-themes)))
+    (when (not (memq theme (custom-available-themes)))
       (straight-use-package theme-package))))
 
 
-(defun jh/theme-config (theme)
+(defun jh/theme-customizations (theme)
   "Perform any theme specific configuration for a given THEME."
   (cond
-   ((string-prefix-p "modus-" theme)
+   ((string-prefix-p "modus-" (symbol-name theme))
     (use-package modus-themes
       :config
       (modus-themes-load-themes)
@@ -34,7 +56,7 @@
       (modus-themes-paren-match 'intense)))
 
    ;;; doom themes
-   ((string-prefix-p "doom-" theme)
+   ((string-prefix-p "doom-" (symbol-name theme))
     (use-package doom-themes
       :config
       (doom-themes-org-config)
@@ -57,8 +79,9 @@
 (defvar jh/dark-mode (jh/mac-is-dark-mode-p) "Boolean which tracks mac system level dark mode.")
 
 (defun jh/set-theme-to-system (light-theme dark-theme &optional package)
-  "Set the theme to LIGHT-THEME if MacOS is not in dark mode, set to DARK-THEME otherwise, using PACKAGE to install themes if given."
-  (interactive)
+  "Set the theme to LIGHT-THEME if MacOS is not in dark mode, set to DARK-THEME otherwise, using PACKAGE to install themes if given.
+
+Utilizes `jh/load-theme' under the hood."
   (setq jh/dark-mode (jh/mac-is-dark-mode-p))
   (if jh/dark-mode
       (jh/load-theme dark-theme package)
@@ -66,13 +89,16 @@
 
 
 (defun jh/set-theme (theme)
-  "Load THEME, disabling other enabled themes."
+  "Load THEME, disabling other enabled themes.
+
+Low level theme manipulation.  Use `jh/load-theme' for higher level
+function to load a particular theme."
   (let ((other-themes (seq-filter (lambda (other-theme)
                                     (not (string-equal theme other-theme)))
                                   custom-enabled-themes)))
     (mapc 'disable-theme other-themes)
-    (jh/theme-config theme)
-    (load-theme (intern theme) t)))
+    (jh/theme-customizations theme)
+    (load-theme theme t)))
 
 
 (defun jh/load-theme (&optional theme theme-package)
@@ -81,9 +107,48 @@
  If theme is not a built in theme, and not present on the machine, it will be installed."
   (interactive)
   (let ((theme (or theme (completing-read "Theme: " (custom-available-themes)))))
-    (unless (memq (intern theme) custom-enabled-themes)
+    (unless (memq theme custom-enabled-themes)
       (jh/pull-theme theme theme-package)
       (jh/set-theme theme))))
+
+(defun jh/theme-config ()
+  "Get the configuration for the chosen theme."
+  (alist-get jh/current-theme jh/themes nil nil #'string-equal))
+
+(defun jh/theme-property (prop)
+  "Get a keyword PROP from the theme configuration."
+  (let ((theme-config (jh/theme-config)))
+    (plist-get theme-config prop)))
+
+(defun jh/theme-dark ()
+  "Get the dark theme from theme config."
+  (jh/theme-property :dark))
+
+(defun jh/theme-light ()
+  "Get the light theme from theme config."
+  (jh/theme-property :light))
+
+(defun jh/theme-package ()
+  "Get the package name from the theme config."
+  (jh/theme-property :package))
+
+(defun select-theme (name)
+  "Select the given theme, indexed by NAME.
+
+Uses the dark or light variant depending on system setting."
+  (interactive (list (completing-read
+                      "Theme: "
+                      (contrib/alist-keys jh/themes))))
+  (setq jh/current-theme name)
+  (jh/set-theme-to-system
+   (jh/theme-light)
+   (jh/theme-dark)
+   (jh/theme-package)))
+
+(defun reload-theme ()
+  (interactive)
+  (select-theme jh/current-theme))
+  
 
 (defvar jh/theme-switch-timer nil "Timer used to schedule querying OSX system color preference.")
 
@@ -114,22 +179,17 @@
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode-enable))
 
-  (let* ((color-theme (alist-get :color-theme config))
-         (font-name (alist-get :font config))
+  (let* ((font-name (alist-get :font config))
          (font-size (alist-get :font-size config))
          (font (format "%s %s" font-name font-size))
-         (theme-package (alist-get :theme-package config))
-         (light-theme (symbol-name (alist-get :light-theme config)))
-         (dark-theme (symbol-name (alist-get :dark-theme config))))
+         (theme-name (alist-get :theme config)))
 
-    (jh/set-theme-to-system light-theme dark-theme theme-package)
+    (select-theme theme-name)
 
     (when jh/theme-switch-timer
       (cancel-timer jh/theme-switch-timer))
     (setq jh/theme-switch-timer
-          (run-with-idle-timer 2 1 (lambda (light-theme dark-theme theme-package)
-                                     (jh/set-theme-to-system light-theme dark-theme theme-package))
-                               light-theme dark-theme theme-package))
+          (run-with-idle-timer 2 1 #'reload-theme))
 
     (set-frame-font font)
     (add-to-list 'default-frame-alist `(font . ,font))))

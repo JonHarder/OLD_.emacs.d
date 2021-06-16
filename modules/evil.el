@@ -16,7 +16,7 @@
 
     :config
     (evil-mode 1)
-    (add-hook 'kotl-mode-hook #'evil-emacs-state)
+    ;; (add-hook 'kotl-mode-hook #'evil-emacs-state)
     (add-hook 'zpresent-mode-hook #'evil-emacs-state)
     (add-hook 'hyrolo-mode-hook #'evil-emacs-state))
 

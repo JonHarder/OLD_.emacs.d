@@ -6,11 +6,13 @@
 ;;; Code:
 (require 'erc)
 
-(defun modules/erc--load (config)
+(defun modules/irc--load (config)
   "Load configuration related to erc using CONFIG."
   ;; (load "~/.emacs.d/.erc-auth")
   (setq erc-server "irc.libera.chat"
-        erc-nick "dazed_and_amused"))
+        erc-hide-list '("JOIN" "PART" "QUIT")
+        erc-lurker-hide-list '("JOIN" "PART" "QUIT")
+        erc-prompt-for-password nil))
 
 (provide 'irc)
 ;;; irc.el ends here

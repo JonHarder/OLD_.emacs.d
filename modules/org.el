@@ -62,6 +62,11 @@
    '(("p" "Pull Request" entry (file+headline "~/Org/pull-requests.org" "Pull Requests")
       "* TODO %?\n  SCHEDULED: %t\n  - %^L")))
 
+  (use-package org-journal
+    :custom
+    (org-journal-dir "~/Org/journal/")
+    (org-journal-file-type 'daily))
+
   ;;; Addition functionality/functions
   (defun color-org-header (tag col &optional bg-col)
      "Color the associated TAG with the color COL."

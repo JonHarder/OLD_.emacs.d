@@ -220,9 +220,16 @@
      :keymaps 'occur-mode-map
      "e" 'occur-edit-mode)
     (general-create-definer space-leader :prefix "SPC")
+    ;;; NOTE: this does not work for now since the prefix: SPC j collides with jumping bindings
+    ;; (space-leader
+    ;;   :states 'normal
+    ;;   :keymaps 'calendar-mode-map
+    ;;   "j n" #'org-journal-new-entry
+    ;;   "j d" #'org-journal-display-entry)
     (space-leader
       :keymaps 'normal
-      "SPC" 'execute-extended-command
+      "SPC" 'avy-goto-word-1
+      "x" 'execute-extended-command
       ";" 'eval-expression
       "`" 'shell-command
       "!" 'async-shell-command
@@ -263,7 +270,7 @@
 
       "c" '(:ignore t :which-key "Conf")
       "c c" 'jh/find-config
-      "c l" 'jh/load-theme
+      "c l" 'select-theme
       "c r" 'jh/reload-config
 
       "d" #'evil-delete-buffer
@@ -304,11 +311,6 @@
       "i" '(:ignore t :which-key "Imenu")
       "i i" 'consult-imenu
       "i l" 'imenu-list-smart-toggle
-
-      "j" '(:ignore t :which-key "Jumping")
-      "j d" 'lsp-find-definition
-      "j w" 'avy-goto-word-1
-      "j c" 'avy-goto-char
 
       ;;; k
       "k" '(:ignore t :which-key "Kipsu")
