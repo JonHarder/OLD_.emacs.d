@@ -233,7 +233,7 @@
       ";" 'eval-expression
       "`" 'shell-command
       "!" 'async-shell-command
-      "RET" 'eshell
+      "RET" 'org-capture
       "ESC" 'evil-ex-nohighlight
       "TAB" 'switch-to-most-recent-buffer
       ;; "/" 'consult-line
@@ -336,6 +336,7 @@
       "o b" 'jh/org-src-block
       "o t" 'org-todo
       "o e" 'org-export-dispatch
+      "o j" 'org-journal-new-entry
       "o o" 'org-open-at-point
       "o s s" 'org-schedule
       "o s d" 'org-deadline

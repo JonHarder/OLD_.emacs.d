@@ -75,6 +75,16 @@
       (kotl-mode:beginning-of-line)
       (kotl-mode:kill-line 1))
 
+    (defun jh/kotl-change-region ()
+      (interactive)
+      (call-interactively #'kotl-mode:kill-region)
+      (evil-insert-state))
+
+    (defun jh/kotl-change-word ()
+      (interactive)
+      (call-interactively #'kotl-mode:kill-word)
+      (evil-insert-state))
+
     (evil-define-key 'normal kotl-mode-map
         [C-return] #'kotl-mode:add-cell
         "gg" #'kotl-mode:beginning-of-buffer
@@ -86,6 +96,8 @@
         "dac" #'jh/kotl-delete-contents
         "cac" #'jh/kotl-change-contents
         "cc" #'jh/kotl-change-whole-line
+        "cw" #'jh/kotl-change-word
+        "dw" #'kotl-mode:kill-word
         "C" #'jh/kotl-change-end-of-line
         "D" #'kotl-mode:kill-line
         "G" #'kotl-mode:end-of-buffer
@@ -107,4 +119,5 @@
         (kbd "DEL") #'kotl-mode:delete-backward-char
         (kbd "M-o") #'jh/kotl-insert-cell-below)
     (evil-define-key 'visual kotl-mode-map
-        "d" #'kotl-mode:kill-region)))
+        "d" #'kotl-mode:kill-region
+        "c" #'jh/kotl-change-region)))

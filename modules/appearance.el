@@ -29,7 +29,11 @@
     ("gruvbox" .
      (:package doom-themes
       :light doom-gruvbox-light
-      :dark doom-gruvbox))))
+      :dark doom-gruvbox))
+    ("doom" .
+     (:package doom-themes
+      :light doom-one-light
+      :dark doom-one))))
 
 (defvar jh/current-theme
   (alist-get :theme jh/config))

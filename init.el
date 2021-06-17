@@ -57,7 +57,6 @@
 
 (defvar jh/config nil)
 
-;;; Note, humanoid themes are nice
 (defconfig jh/config
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")

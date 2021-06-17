@@ -60,9 +60,7 @@
    org-log-into-drawer t)
 
   (setq org-capture-templates
-   '(("p" "Pull Request" entry (file+headline "~/Org/pull-requests.org" "Pull Requests")
-      "* TODO %?\n  SCHEDULED: %t\n  - %^L")
-     ("t" "Todo" entry (file+headline "~/Org/todo.org" "Tasks")
+   '(("t" "Todo" entry (file+headline "~/Org/todo.org" "Tasks")
       "* TODO %?\n %i\n %a")))
 
   (use-package org-journal
