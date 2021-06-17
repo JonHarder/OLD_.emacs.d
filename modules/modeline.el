@@ -40,7 +40,13 @@
                         (point-max))))))
     (concat
      " "
-     (propertize (format "%d pct" pct) 'face '(:inverse-video t)))))
+     (propertize (format "%dpct" pct) 'face '(:inverse-video t)))))
+
+(defun jh/simple-modeline-segment-word-count ()
+  (concat " "
+          (propertize (format "%i words" (count-words (point-min) (point-max)))
+            'face `(:underline t))
+          " "))
 
 
 (defun modules/modeline--load (config)
@@ -61,7 +67,8 @@
              simple-modeline-segment-modified
              simple-modeline-segment-buffer-name
              simple-modeline-segment-position
-             jh/simple-modeline-segment-file-pct)
+             jh/simple-modeline-segment-file-pct
+             jh/simple-modeline-segment-word-count)
 
             ;; right aligned segments
             (simple-modeline-segment-input-method

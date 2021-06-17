@@ -10,30 +10,29 @@
 
 
 (defvar jh/themes
-  '(("humanoid" . (:package humanoid-themes
-                   :dark humanoid-dark
-                   :light humanoid-light))
-    ("modus" . (:package modus-themes
-                :dark modus-vivendi
-                :light modus-operandi))
-    ("spacemacs" . (:package spacemacs-theme
-                    :dark spacemacs-dark
-                    :light spacemacs-light))
-    ("solarized" . (:package doom-themes
-                             :dark doom-solarized-dark
-                             :light doom-solarized-light))
-    ("gruvbox" . (:package doom-themes
-                           :dark doom-gruvbox
-                           :light doom-gruvbox-light))))
+  '(("humanoid" .
+     (:package humanoid-themes
+      :light humanoid-light
+      :dark humanoid-dark))
+    ("modus" .
+     (:package modus-themes
+      :light modus-operandi
+      :dark modus-vivendi))
+    ("spacemacs" .
+     (:package spacemacs-theme
+      :light spacemacs-light
+      :dark spacemacs-dark))
+    ("solarized" .
+     (:package doom-themes
+      :light doom-solarized-light
+      :dark doom-solarized-dark))
+    ("gruvbox" .
+     (:package doom-themes
+      :light doom-gruvbox-light
+      :dark doom-gruvbox))))
 
 (defvar jh/current-theme
   (alist-get :theme jh/config))
-
-(defun jh/pull-theme (theme &optional theme-package)
-  "Download THEME-PACKAGE if THEME is not a built in theme."
-  (let ((theme-package (if theme-package theme-package (intern (format "%s-theme" theme)))))
-    (when (not (memq theme (custom-available-themes)))
-      (straight-use-package theme-package))))
 
 
 (defun jh/theme-customizations (theme)
@@ -91,7 +90,7 @@ Utilizes `jh/load-theme' under the hood."
 (defun jh/set-theme (theme)
   "Load THEME, disabling other enabled themes.
 
-Low level theme manipulation.  Use `jh/load-theme' for higher level
+Low level theme manipulation.  Use `select-theme' for higher level
 function to load a particular theme."
   (let ((other-themes (seq-filter (lambda (other-theme)
                                     (not (string-equal theme other-theme)))
@@ -101,15 +100,13 @@ function to load a particular theme."
     (load-theme theme t)))
 
 
-(defun jh/load-theme (&optional theme theme-package)
+(defun jh/load-theme (theme &optional theme-package)
   "Enable THEME, optionally found in THEME-PACKAGE.
 
  If theme is not a built in theme, and not present on the machine, it will be installed."
-  (interactive)
-  (let ((theme (or theme (completing-read "Theme: " (custom-available-themes)))))
-    (unless (memq theme custom-enabled-themes)
-      (jh/pull-theme theme theme-package)
-      (jh/set-theme theme))))
+  (unless (memq theme custom-enabled-themes)
+    (straight-use-package theme-package)
+    (jh/set-theme theme)))
 
 (defun jh/theme-config ()
   "Get the configuration for the chosen theme."

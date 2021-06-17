@@ -75,6 +75,9 @@
     (setq-default flycheck-emacs-lisp-load-path 'inherit)
     (add-hook 'after-init-hook #'global-flycheck-mode))
 
+  ;;; Fix all my spelling mistakes
+  (add-hook 'text-mode-hook #'flyspell-mode)
+
   (use-package avy)
 
   (global-auto-revert-mode 1)
