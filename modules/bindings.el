@@ -343,6 +343,7 @@
       "o l" 'org-insert-link
       "o p" 'org-priority
       "o '" 'org-edit-special
+      "o g" 'org-goto
       "o ." 'org-time-stamp
 
       "p" '(:ignore t :which-key "Projects")

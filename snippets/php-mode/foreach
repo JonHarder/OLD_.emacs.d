@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: foraech
+# key: foreach
+# --
+
+foreach (${1:expression} as \$${2:value}) {
+    $0
+}

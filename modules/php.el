@@ -20,7 +20,6 @@
         php-mode-coding-style 'psr2)
   (subword-mode 1)
   (setq ac-sources '(ac-source-php))
-  (yas-global-mode 1)
   (ac-php-core-eldoc-setup)
   (c-set-offset 'arglist-intro 'ywb-php-lineup-arglist-intro)
   (c-set-offset 'arglist-close 'ywb-php-lineup-arglist-close))

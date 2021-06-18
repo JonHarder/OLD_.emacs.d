@@ -78,6 +78,15 @@
   ;;; Fix all my spelling mistakes
   (add-hook 'text-mode-hook #'flyspell-mode)
 
+  (use-package yasnippet
+    :custom
+    (yas-snippet-dirs '("~/.emacs.d/snippets/"))
+    :config
+    (yas-global-mode 1)
+    (defun yas-php-get-class-name-by-file-name ()
+      (let ((fname (buffer-file-name)))
+        (file-name-base fname))))
+
   (use-package avy)
 
   (global-auto-revert-mode 1)
