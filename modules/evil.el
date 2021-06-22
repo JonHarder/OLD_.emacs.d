@@ -50,18 +50,15 @@
   
   
   (use-package vi-tilde-fringe
-    :defer 3
     :hook (prog-mode . vi-tilde-fringe-mode))
   
   
   (use-package evil-surround
-    :defer 1
     :config
     (global-evil-surround-mode 1))
   
   
   (use-package evil-org
-    :defer 1
     :after org
     :hook ((org-mode . evil-org-mode)
            (evil-org-mode . evil-org-set-key-theme))

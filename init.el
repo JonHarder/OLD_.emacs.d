@@ -60,8 +60,8 @@
 (defconfig jh/config
   :font                 (:env "EMACS_FONT"                :default "mono")
   :font-size            (:env "EMACS_FONT_SIZE"           :default "12")
-  :theme "humanoid"
-  :highlight-line       t
+  :theme "modus"
+  :highlight-line       nil
   :modules (core
             evil
             hyperbole

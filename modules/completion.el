@@ -26,7 +26,6 @@
   (minibuffer-depth-indicate-mode 1)
 
   (use-package projectile
-    :defer 3
     :init
     (setq-default projectile-completion-system 'selectrum--read)
     :config

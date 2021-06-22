@@ -7,7 +7,6 @@
   (use-package docker-compose-mode)
 
   (use-package docker
-    :defer 2
     :config
     (dolist (mode '(docker-image-mode
                     docker-container-mode

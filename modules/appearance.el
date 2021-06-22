@@ -44,8 +44,6 @@
   (cond
    ((string-prefix-p "modus-" (symbol-name theme))
     (use-package modus-themes
-      :config
-      (modus-themes-load-themes)
       :custom
       (modus-themes-slanted-constructs t)
       (modus-themes-mode-line 'accented)
@@ -53,7 +51,7 @@
       (modus-themes-org-blocks 'rainbow)
       (modus-themes-bold-constructs t)
       (modus-themes-headings '((t . rainbow-section)))
-      (modus-themes-syntax 'yellow-comments-green-strings)
+      (modus-themes-syntax 'alt-syntax)
       (modus-themes-completions 'opinionated)
       (modus-themes-scale-headings t)
       (modus-themes-paren-match 'intense)))

@@ -20,8 +20,9 @@
 (defun jh/prog-mode-hook ()
   "Settings that should be enabled or disabled for all programming modes."
   (setq-default whitespace-style '(face space-before-tab line-tail empty space-after-tab))
-  (when (alist-get :highlight-line jh/config nil)
-    (hl-line-mode t))
+  (if (alist-get :highlight-line jh/config nil)
+      (hl-line-mode t)
+    (hl-line-mode -1))
   (whitespace-mode 1))
 
 (defun modules/code--load (config)
@@ -29,7 +30,6 @@
   (straight-use-package 'dumb-jump)
 
   (use-package editorconfig
-    :defer 6
     :config
     (editorconfig-mode 1))
 

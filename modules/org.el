@@ -88,8 +88,7 @@
   ;;; Install external packages
   (use-package org-tree-slide)
 
-  (use-package ob-restclient
-    :defer 5)
+  (use-package ob-restclient)
 
   (use-package org-edna
     :config

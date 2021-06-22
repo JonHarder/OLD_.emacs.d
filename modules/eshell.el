@@ -4,6 +4,7 @@
 
 
 ;;; Code:
+(require 'eshell)
 (require 'dash)
 (require 's)
 (require 'use-package)

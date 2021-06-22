@@ -28,7 +28,6 @@
 (defun modules/php--load (config)
   "Load configuration for php uising CONFIG."
   (use-package php-mode
-    :defer 3
     :init
     (add-hook 'php-mode-hook #'my-php-mode-hook))
 
@@ -38,5 +37,4 @@
   (use-package ac-php)
   (use-package psysh)
   
-  (use-package phpunit
-    :defer 3))
+  (use-package phpunit))

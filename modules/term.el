@@ -12,7 +12,6 @@
   (straight-use-package 'fish-mode)
 
   (use-package vterm
-    :defer 1
     :config
     (defun vterm--kill-vterm-buffer-and-window (process event)
       "Kill buffer and window on vterm process termination."

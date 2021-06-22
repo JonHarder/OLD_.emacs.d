@@ -8,28 +8,28 @@
       (ddg . "https://ddg.gg/?q=")
       (stack-overflow . "https://stackoverflow.com/search?q=")))
   
-  (defun how-do-i (engine search-term)
+  (defun how-do-i (engine)
     "Use a specified search ENGINE to query your SEARCH-TERM."
     ;; use region if active for search-term
     (interactive
      (list
-      (completing-read "Enigne: " (contrib/alist-keys search-engines))
-      (read-string "Search: ")))
-    (let ((browse-url-browser-function 'eww)
+      (completing-read "Enigne: " (contrib/alist-keys search-engines))))
+    (let ((search-term (read-string "Search: " (word-at-point)))
+          (browse-url-browser-function 'eww)
           (url (cdr (assoc (intern engine) search-engines))))
       (browse-url (concat url search-term))))
   
-  (defun how-do-i-google (search-term)
-    "Google search for SEARCH-TERM."
-    (interactive "sSearch: ")
-    (how-do-i "google" search-term))
+  (defun how-do-i-google ()
+    "Google search."
+    (interactive)
+    (how-do-i "google"))
   
-  (defun how-do-i-ddg (search-term)
-    "DuckDuckGo search for SEARCH-TERM."
-    (interactive "sSearch: ")
-    (how-do-i "ddg" search-term))
+  (defun how-do-i-ddg ()
+    "DuckDuckGo search."
+    (interactive)
+    (how-do-i "ddg"))
   
-  (defun how-do-i-so (search-term)
-    "Stack Overflow search for SEARCH-TERM."
-    (interactive "sSearch: ")
-    (how-do-i "stack-overflow" search-term)))
+  (defun how-do-i-so ()
+    "Stack Overflow search."
+    (interactive)
+    (how-do-i "stack-overflow")))
