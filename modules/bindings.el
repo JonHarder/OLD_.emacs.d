@@ -176,6 +176,23 @@
     :config
     (beacon-mode 1))
 
+  (defun rename-current-buffer-file ()
+    "Renames current buffer and file it is visiting."
+    (interactive)
+    (let ((name (buffer-name))
+          (filename (buffer-file-name)))
+        (if (not (and filename (file-exists-p filename)))
+           (error "Buffer '%s' is not visiting a file!" name)
+          (let ((new-name (read-file-name "New name: " filename)))
+              (when (get-buffer new-name)
+                (error "A buffer named '%s' already exists!" new-name))
+              (rename-file filename new-name 1)
+              (rename-buffer new-name)
+              (set-visited-file-name new-name)
+              (set-buffer-modified-p nil)
+              (message "File '%s' successfully renamed to '%s'"
+                         name (file-name-nondirectory new-name))))))
+
   (use-package general
     :config
     (general-evil-setup t)
@@ -250,11 +267,11 @@
       "a A" 'org-agenda
       "a c" 'calendar
       "a d" 'dired-jump
-      "a e" 'eshell
+      ;; "a e" 'eshell
       "a g" 'gnus
       "a i" 'jh/erc
       "a s" 'scratch
-      "a t" 'multi-vterm
+      "a t" 'eshell
       "a m" 'check-mail
       "a M" 'notmuch
 
@@ -291,6 +308,7 @@
       "f m" 'jh/find-module
       "f o" 'other-frame
       "f p" 'ffap
+      "f r" '(rename-current-buffer-file :wk "Rename File")
 
       "g" '(:ignore t :which-key "Git")
       "g s" 'magit-status
@@ -367,12 +385,12 @@
 
       ;; t
       "t" '(:ignore t :which-key "Tabs")
-      "t t" 'tab-bar-switch-to-tab
-      "t n" 'tab-bar-switch-to-next-tab
-      "t p" 'tab-bar-switch-to-prev-tab
-      "t k" 'tab-bar-close-tab
-      "t c" 'tab-bar-new-tab
-      "t r" 'tab-bar-rename-tab
+      "t t" '(tab-bar-switch-to-tab :wk "Switch")
+      "t n" '(tab-bar-switch-to-next-tab :wk "Next")
+      "t p" '(tab-bar-switch-to-prev-tab :wk "Prev")
+      "t k" '(tab-bar-close-tab :wk "Klose")
+      "t c" '(tab-bar-new-tab :wk "Create")
+      "t r" '(tab-bar-rename-tab :wk "Rename")
       ;; u
       "u" #'winner-undo
       ;;; v

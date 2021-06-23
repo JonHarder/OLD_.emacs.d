@@ -19,6 +19,7 @@
   (setq org-fontify-whole-heading-line t
         org-confirm-babel-evaluate nil
         org-edit-src-content-indentation 0
+        org-startup-indented 1
         org-agenda-files '("~/Org/calendars" "~/Org/todo.org")
         org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)
         calendar-date-style 'iso

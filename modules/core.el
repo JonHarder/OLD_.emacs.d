@@ -87,23 +87,25 @@
       (let ((fname (buffer-file-name)))
         (file-name-base fname))))
 
-  (defun autoinsert-yas-expand ()
-      "Replace text in yasnippet template."
-      (yas-expand-snippet (buffer-string) (point-min) (point-max)))
-
-  (use-package autoinsert
-    :custom
-    (auto-insert-query nil)
-    (auto-insert-directory (locate-user-emacs-file "templates"))
-    :config
-    (add-hook 'find-file-hook 'auto-insert)
-    (auto-insert-mode 1)
-    ;;; automatically insert php class snippet when opening a new EMPTY php file
-    (define-auto-insert "\\.php$" ["default-php.php" autoinsert-yas-expand]))
+  ;; (defun autoinsert-yas-expand ()
+  ;;     "Replace text in yasnippet template."
+  ;;     (yas-expand-snippet (buffer-string) (point-min) (point-max)))
+  ;;
+  ;; (use-package autoinsert
+  ;;   :custom
+  ;;   (auto-insert-query nil)
+  ;;   (auto-insert-directory (locate-user-emacs-file "templates"))
+  ;;   :config
+  ;;   (add-hook 'find-file-hook 'auto-insert)
+  ;;   (auto-insert-mode 1)
+  ;;   ;;; automatically insert php class snippet when opening a new EMPTY php file
+  ;;   (define-auto-insert "\\.php$" ["default-php.php" autoinsert-yas-expand]))
 
   (use-package avy)
 
   (global-auto-revert-mode 1)
+  (setq global-auto-revert-non-file-buffers t)
+  (setq auto-revert-verbose nil)
    ;;; abbreviations
   (setq abbrev-file-name "~/.emacs.d/abbrev_defs")
   (setq save-abbrevs 'silent)

@@ -14,6 +14,8 @@
 (require 'straight)
 (require 'company)
 
+(defvar term-term-name nil)
+
 ;;; some programs don't play nice with eshell, for these, we can use ansi-term automatically
 ;;; use
 ;;;  'eshell-visual-commands
@@ -81,6 +83,20 @@
     (company-mode nil))
 
   (setq eshell-prefer-lisp-functions nil)
+
+  (setq eshell-cmpl-cycle-completions t
+        eshell-cmpl-ignore-case t
+        eshell-save-history-on-exit t
+        eshell-cmpl-dir-ignore "\\`\\(\\.?\\|CVS\\|\\.svn\\|\\.git\\)/\\'")
+
+  (eval-after-load 'esh-opt
+    '(progn
+       (require 'em-prompt)
+       (require 'em-term)
+       (require 'em-cmpl)
+       (setenv "PAGER" "cat")
+       (add-hook 'eshell-mode-hook
+                 '(lambda () (eshell/export "TERM" "dumb")))))
 
   (use-package eshell-syntax-highlighting
     :after esh-mode

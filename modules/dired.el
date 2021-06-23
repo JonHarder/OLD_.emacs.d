@@ -8,7 +8,9 @@
 
 (defun modules/dired--load (config)
   "Load configuration for dired, using CONFIG."
-  (straight-use-package 'diredfl)
+  (use-package diredfl
+    :config
+    (diredfl-global-mode 1))
   (put 'dired-find-alternate-file 'disabled nil)
   (setq dired-listing-switches "-lahoG")
 
@@ -53,7 +55,7 @@
         (dired-side))))
   
 
-  (use-package dired-collapse)
+  ;; (use-package dired-collapse)
   (use-package dired-rainbow)
 
   (use-package dired-hide-dotfiles
