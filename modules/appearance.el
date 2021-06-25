@@ -66,6 +66,7 @@
       (doom-themes-enable-bold t)
       (doom-themes-enable-italic t)
       (doom-themes-padded-modeline nil)
+      (doom-one-light-brighter-comments t)
       (doom-solarized-light-brighter-comments t)
       (doom-solarized-dark-brighter-text t)
       (doom-solarized-dark-brighter-modeline t)
@@ -175,7 +176,7 @@ Uses the dark or light variant depending on system setting."
   (setq-default overflow-newlines-into-fringe t)
 
   (use-package rainbow-delimiters
-    :functions '(rainbow-delimiters-mode-enable)
+    :functions 'rainbow-delimiters-mode-enable
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode-enable))
 

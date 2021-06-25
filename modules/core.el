@@ -20,7 +20,9 @@
   (setq epg-pinentry-mode 'loopback)
 
   (winner-mode 1)
-  (desktop-save-mode 1)
+  ;;; this seems to be freezing everything?
+  ;;; plus why would you ever quit emacs?
+  ;; (desktop-save-mode 1)
 
   (defun jh/evil-yank-advice (orig-fn beg end &rest args)
     (pulse-momentary-highlight-region beg end)
@@ -123,7 +125,9 @@
   (setq-default abbrev-mode t)
   (read-abbrev-file)
 
-  (use-package writeroom-mode)
+  (use-package writeroom-mode
+    :custom
+    (writeroom-width 0.6))
   
   (use-package markdown-mode
     :commands (markdown-mode gfm-mode)

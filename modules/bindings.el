@@ -158,7 +158,9 @@
     (aw-scope 'frame)
     (aw-ignore-current t)
     :bind
-    ("C-x o" . 'ace-window))
+    ("C-x o" . 'ace-window)
+    :config
+    (face-spec-set 'aw-leading-char-face '((t (:foreground "red" :height 3.0)))))
 
   (straight-use-package 'imenu-list)
 
