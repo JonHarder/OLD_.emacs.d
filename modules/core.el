@@ -87,6 +87,17 @@
       (let ((fname (buffer-file-name)))
         (file-name-base fname))))
 
+  (use-package page-break-lines
+    :config
+    (global-page-break-lines-mode 1))
+
+  (setq org-publish-project-alist
+        '(("Bethlehem Application" .
+           (:base-directory "~/Documents/Bethlehem/application"
+            :publishing-function org-html-publish-to-html
+            :publishing-directory "~/Documents/Bethlehem/application_published"
+            :exclude "outline.org"))))
+
   ;; (defun autoinsert-yas-expand ()
   ;;     "Replace text in yasnippet template."
   ;;     (yas-expand-snippet (buffer-string) (point-min) (point-max)))

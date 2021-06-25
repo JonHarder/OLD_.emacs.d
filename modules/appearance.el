@@ -175,6 +175,7 @@ Uses the dark or light variant depending on system setting."
   (setq-default overflow-newlines-into-fringe t)
 
   (use-package rainbow-delimiters
+    :functions '(rainbow-delimiters-mode-enable)
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode-enable))
 
