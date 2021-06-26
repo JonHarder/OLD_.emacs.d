@@ -276,6 +276,7 @@
       "a t" 'eshell
       "a m" 'check-mail
       "a M" 'notmuch
+      "a w" 'writeroom-mode
 
       "b" '(:ignore t :which-key "Buffers")
       "b b" 'consult-buffer
