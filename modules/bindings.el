@@ -381,10 +381,10 @@
       "r" #'winner-redo
 
       "s" '(:ignore t :which-key "Searching")
-      "s g" 'how-do-i-google
-      "s s" 'how-do-i
-      "s d" 'how-do-i-ddg
-      "s o" 'how-do-i-so
+      "s g" '(how-do-i-google :wk "Google")
+      "s d" '(how-do-i-ddg :wk "DuckDuckGo")
+      "s o" '(how-do-i-so :wk "StackOverflow")
+      "s b" '(how-do-i-bible :wk "Bible Gateway")
 
       ;; t
       "t" '(:ignore t :which-key "Tabs")

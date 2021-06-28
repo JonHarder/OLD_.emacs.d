@@ -22,7 +22,7 @@
   (setq-default whitespace-style '(face space-before-tab line-tail empty space-after-tab))
   (if (alist-get :highlight-line jh/config nil)
       (hl-line-mode t)
-    (hl-line-mode -1))
+    (hl-line-mode 0))
   (whitespace-mode 1))
 
 (defun modules/code--load (config)

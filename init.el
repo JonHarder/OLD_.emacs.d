@@ -38,7 +38,8 @@
   :font                (:env "EMACS_FONT"      :default "mono")
   :font-size           (:env "EMACS_FONT_SIZE" :default "12")
   :theme "doom"
-  :highlight-line       t
+  :highlight-line       nil
+  :scale-org-headings   t
   :modules ( core
             evil
             hyperbole

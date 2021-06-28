@@ -67,6 +67,7 @@
       (doom-themes-enable-italic t)
       (doom-themes-padded-modeline nil)
       (doom-one-light-brighter-comments t)
+      (doom-one-brighter-comments t)
       (doom-solarized-light-brighter-comments t)
       (doom-solarized-dark-brighter-text t)
       (doom-solarized-dark-brighter-modeline t)

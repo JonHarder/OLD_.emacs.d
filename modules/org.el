@@ -15,6 +15,25 @@
   (require 'ob-python)
   (require 'ob-php (concat user-emacs-directory "ob-php.el"))
 
+  ;;; override these bindings to handle long lines which were nicely wrapped
+  ;;; in `visual-line-mode', but were difficult to navigate.
+  (evil-define-key 'normal 'org-mode-map
+    (kbd "j") #'evil-next-visual-line
+    (kbd "k") #'evil-previous-visual-line)
+
+  ;;; org heading specific fontification
+  (if (alist-get :scale-org-headings config)
+      (progn
+        (face-spec-set 'org-level-1 `((t (:height 1.5))))
+        (face-spec-set 'org-level-2 `((t (:height 1.3))))
+        (face-spec-set 'org-level-3 `((t (:height 1.2))))
+        (face-spec-set 'org-level-4 `((t (:height 1.1)))))
+    (progn
+      (face-spec-set 'org-level-1 `((t (:height unspecified))))
+      (face-spec-set 'org-level-2 `((t (:height unspecified))))
+      (face-spec-set 'org-level-3 `((t (:height unspecified))))
+      (face-spec-set 'org-level-4 `((t (:height unspecified))))))
+
   ;;; SETTINGS
   (setq org-fontify-whole-heading-line t
         org-confirm-babel-evaluate nil
@@ -85,6 +104,12 @@
       (color-org-header "Events:" "#faebd7" "#8B4513")))
   
   (add-hook 'org-agenda-finalize-hook #'color-org-agenda)
+
+  (defun jh/org-mode-hook ()
+    (setq fill-column 80)
+    (auto-fill-mode 1))
+
+  (add-hook 'org-mode-hook #'jh/org-mode-hook)
 
   ;;; Install external packages
   (use-package org-tree-slide)

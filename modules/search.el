@@ -6,7 +6,8 @@
   (defvar search-engines
     '((google . "https://google.com/search?q=")
       (ddg . "https://ddg.gg/?q=")
-      (stack-overflow . "https://stackoverflow.com/search?q=")))
+      (stack-overflow . "https://stackoverflow.com/search?q=")
+      (bible-gateway . "https://www.biblegateway.com/passage/?version=ESV&search=")))
   
   (defun how-do-i (engine)
     "Use a specified search ENGINE to query your SEARCH-TERM."
@@ -32,4 +33,9 @@
   (defun how-do-i-so ()
     "Stack Overflow search."
     (interactive)
-    (how-do-i "stack-overflow")))
+    (how-do-i "stack-overflow"))
+
+  (defun how-do-bible ()
+    "Bible Gateway search."
+    (interactive)
+    (how-do-i "bible-gateway")))
