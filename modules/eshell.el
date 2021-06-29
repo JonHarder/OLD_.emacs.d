@@ -11,8 +11,7 @@
 (require 'magit)
 (require 'contrib "~/.emacs.d/contrib.el")
 (require 'eshell)
-(require 'straight)
-(require 'company)
+;; (require 'company)
 
 (defvar term-term-name nil)
 
@@ -77,10 +76,7 @@
 
 (defun modules/eshell--load (config)
   "Load configuration for eshell using CONFIG."
-  (straight-use-package 'dash-functional)
-
-  (defun jh/eshell-mode-setup ()
-    (company-mode nil))
+  (use-package dash-functional)
 
   (setq eshell-prefer-lisp-functions nil)
 
@@ -106,8 +102,7 @@
 
   ;; fish style autocompletion
   (use-package esh-autosuggest
-    :hook (eshell-mode . esh-autosuggest-mode)
-    :hook (eshell-mode . jh/eshell-mode-setup))
+    :hook (eshell-mode . esh-autosuggest-mode))
 
   ;;; close eshell window when the process exits
   ;; (defun close-eshell-on-exit ()

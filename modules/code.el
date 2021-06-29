@@ -9,7 +9,6 @@
 ;;;; Requirements
 (require 'flycheck)
 (require 'use-package)
-(require 'straight)
 
 
 ;;;; mode hook functions
@@ -27,7 +26,7 @@
 
 (defun modules/code--load (config)
   "Module definition for generic programming, configured by CONFIG."
-  (straight-use-package 'dumb-jump)
+  (use-package dumb-jump)
 
   (use-package editorconfig
     :config

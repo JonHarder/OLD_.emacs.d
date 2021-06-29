@@ -23,10 +23,10 @@
   (use-package restclient
     :mode ("\\.http\\'" . restclient-mode))
 
-  (straight-use-package 'zpresent)
-  (straight-use-package 'coffee-mode)
-  (straight-use-package 'wsd-mode)
-  (straight-use-package 'notmuch)
+  (use-package zpresent)
+  (use-package coffee-mode)
+  (use-package wsd-mode)
+  (use-package notmuch)
 
   (defun jh/work-git ()
     (interactive)

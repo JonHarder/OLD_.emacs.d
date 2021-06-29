@@ -5,7 +5,6 @@
 ;;; Code:
 (require 'seq)
 (require 'use-package)
-(require 'straight)
 (require 'contrib "~/.emacs.d/contrib.el")
 
 
@@ -33,7 +32,11 @@
     ("doom" .
      (:package doom-themes
       :light doom-one-light
-      :dark doom-one))))
+      :dark doom-one))
+    ("dracula" .
+     (:package doom-themes
+      :dark doom-dracula
+      :light doom-dracula))))
 
 (defvar jh/current-theme
   (alist-get :theme jh/config))
@@ -109,7 +112,7 @@ function to load a particular theme."
 
  If theme is not a built in theme, and not present on the machine, it will be installed."
   (unless (memq theme custom-enabled-themes)
-    (straight-use-package theme-package)
+    (package-install theme-package)
     (jh/set-theme theme)))
 
 (defun jh/theme-config ()

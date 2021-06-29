@@ -8,6 +8,7 @@
 
 (defun modules/git--load (config)
   "Load configuration for working with git using CONFIG."
+  (use-package magit-section)
   (use-package magit
     :config
     (defadvice magit-status (around magit-fullscreen activate)

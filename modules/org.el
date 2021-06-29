@@ -109,7 +109,7 @@
     (setq fill-column 80)
     (auto-fill-mode 1))
 
-  (add-hook 'org-mode-hook #'jh/org-mode-hook)
+  ;; (add-hook 'org-mode-hook #'jh/org-mode-hook)
 
   ;;; Install external packages
   (use-package org-tree-slide)

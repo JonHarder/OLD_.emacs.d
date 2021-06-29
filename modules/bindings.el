@@ -15,7 +15,6 @@
 (require 'evil)
 (require 'diary-lib)
 (require 'org)
-(require 'straight)
 (require 'use-package)
 (require 'winner)
 
@@ -162,7 +161,7 @@
     :config
     (face-spec-set 'aw-leading-char-face '((t (:foreground "red" :height 3.0)))))
 
-  (straight-use-package 'imenu-list)
+  (use-package imenu-list)
 
   (defun jh/split-right-switch-buffer ()
     (interactive)
@@ -373,7 +372,7 @@
       "p t" 'parinfer-toggle-mode
       "p /" 'rg
       "p c" 'compile
-      "p u" 'straight-use-package
+      "p u" 'package-install
 
       "q" #'kill-emacs
 

@@ -21,11 +21,8 @@
 ;; some hardcoded global config.
 
 ;;; Code:
-;; (package-initialize)
-
 (setq gc-cons-threshold (* 50 1000 1000))
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
-
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
 ;;; TODO: figure out better model between centralized bindings module
@@ -37,7 +34,7 @@
 (defconfig jh/config
   :font                (:env "EMACS_FONT"      :default "mono")
   :font-size           (:env "EMACS_FONT_SIZE" :default "12")
-  :theme "doom"
+  :theme               (:env "EMACS_THEME"     :default "modus")
   :highlight-line       nil
   :scale-org-headings   t
   :modules ( core

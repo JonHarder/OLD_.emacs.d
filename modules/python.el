@@ -3,7 +3,6 @@
 ;;; Commentary:
 
 ;;; Code:
-(require 'straight)
 (require 'use-package)
 (require 'lsp)
 
@@ -13,7 +12,7 @@
   ;;   :config
   ;;   (with-eval-after-load 'flycheck
   ;;     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))
-  (straight-use-package 'pyvenv)
+  (use-package pyvenv)
   (add-hook 'python-mode-hook #'lsp))
 (provide 'python.el)
 ;;; python.el ends here

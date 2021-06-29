@@ -42,7 +42,19 @@
      " "
      (propertize (format "%dpct" pct) 'face '(:inverse-video t)))))
 
+(require 'battery)
+
+(defun jh/simple-modeline-segment-battery ()
+  "Modeline segment responsible for batter information.
+
+Makes use of `battery-status-function' for retrieving information, and
+`battery-mode-line-format' to format."
+  (let ((jh/battery-format " [bat: %B %p, t-%t] "))
+    ;; (battery-format battery-mode-line-format (funcall battery-status-function))
+    (battery-format jh/battery-format (funcall battery-status-function))))
+
 (defun jh/simple-modeline-segment-word-count ()
+  "Display the number of words in the buffer."
   (concat " "
           (propertize (format "%i words" (count-words (point-min) (point-max)))
             'face `(:underline t))
@@ -73,6 +85,7 @@
             ;; right aligned segments
             (simple-modeline-segment-input-method
              simple-modeline-segment-vc
+             jh/simple-modeline-segment-battery
              simple-modeline-segment-misc-info
              simple-modeline-segment-major-mode)))))
 (provide 'modeline)

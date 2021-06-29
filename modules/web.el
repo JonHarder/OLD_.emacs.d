@@ -12,7 +12,7 @@
     (add-hook 'web-mode-hook 'prettier-js-mode))
     
 
-  (straight-use-package 'rjsx-mode)
+  (use-package rjsx-mode)
   
   (use-package typescript-mode
     :mode "\\.tsx\\'")

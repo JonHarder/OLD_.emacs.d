@@ -9,7 +9,6 @@
 (require 'use-package)
 (require 'ediff)
 (require 'epg-config)
-(require 'straight)
 
 (defun modules/core--load (config)
   "Load general core features, configure programming hook using CONFIG."
@@ -47,8 +46,8 @@
   (use-package crontab-mode)
   (use-package nginx-mode)
 
-  (straight-use-package 'dash)
-  (straight-use-package 'ag)
+  (use-package dash)
+  (use-package ag)
 
   (use-package helpful)
 
@@ -64,7 +63,7 @@
     :config
     (global-undo-tree-mode 1))
 
-  (straight-use-package 'fireplace)
+  (use-package fireplace)
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 

@@ -1,6 +1,6 @@
 (defun modules/haskell--load (config)
   "Load configuration for Haskell using CONFIG."
-  (straight-use-package 'haskell-mode)
+  (use-package haskell-mode)
   (require 'haskell-interactive-mode)
   (require 'haskell-process)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)

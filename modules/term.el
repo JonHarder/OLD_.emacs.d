@@ -5,11 +5,10 @@
 
 ;;; Code:
 (require 'evil)
-(require 'straight)
 
 (defun modules/term--load (config)
   "Load term stuff using CONFIG."
-  (straight-use-package 'fish-mode)
+  (use-package fish-mode)
 
   (use-package vterm
     :config

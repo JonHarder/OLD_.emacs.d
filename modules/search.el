@@ -8,13 +8,13 @@
     (stack-overflow . "https://stackoverflow.com/search?q=")
     (bible-gateway . "https://www.biblegateway.com/passage/?version=ESV&search=")))
 
-(defun how-do-i (engine)
-  "Use a specified search ENGINE to query your SEARCH-TERM."
+(defun how-do-i (engine &optional prompt)
+  "Use a specified search ENGINE to query, optionally using PROMPT."
   ;; use region if active for search-term
   (interactive
    (list
     (completing-read "Enigne: " (contrib/alist-keys search-engines))))
-  (let ((search-term (read-string "Search: " (word-at-point)))
+  (let ((search-term (read-string (or prompt "Search: ") (word-at-point)))
         (browse-url-browser-function 'eww)
         (url (cdr (assoc (intern engine) search-engines))))
     (browse-url (concat url search-term))))
@@ -40,7 +40,7 @@
   (defun how-do-i-bible ()
     "Bible Gateway search."
     (interactive)
-    (how-do-i "bible-gateway")))
+    (how-do-i "bible-gateway" "Bible Reference: ")))
 
 (provide 'search)
 ;;; search.el ends here

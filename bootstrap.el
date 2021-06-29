@@ -24,32 +24,23 @@
       (setq bidi-inhibit-bpa t)
       (global-so-long-mode 1)))
 
-;; Start bootstrap straight.el
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (boostrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+(require 'package)
+(setq package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
 
-(straight-use-package 'use-package)
-
-(require 'straight)
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 (require 'use-package)
-
-(setq-default straight-use-package-by-default t)
-;; End bootstrap straight.el
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
 
 
 ;; some performance hacks
 ;; don't modify packages in place.
-(defvar straight-check-for-modifications nil)
+;; (defvar straight-check-for-modifications nil)
 (defvar apropos-do-all t)
 (setq frame-inhibit-implied-resize t)
 (setq fast-but-imprecise-scrolling t)
@@ -124,8 +115,9 @@
 
 (defun jh/getenv (name)
   "OS aware version of `getenv' to retrieve environment variable NAME."
+  (require 'exec-path-from-shell)
   (if (memq window-system '(mac ns x))
-      (exec-path-from-shell-getenv name)
+     (exec-path-from-shell-getenv name)
     (getenv name)))
 
 (defun config/get-env (s)

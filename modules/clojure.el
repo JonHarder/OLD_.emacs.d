@@ -1,6 +1,5 @@
 (defun modules/clojure--load (config)
   (use-package cider
-    :straight t
     :init
     (setq cider-repl-display-help-banner nil)
     :config
