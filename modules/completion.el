@@ -17,37 +17,35 @@
     (corfu-cycle t)
     (corfu-auto t)
     (corfu-quit-at-boundary t)
-    (corfu-quit-no-match t))
+    (corfu-quit-no-match t)
+    :bind (:map corfu-map
+                ("TAB" . corfu-next)
+                ([tab] . corfu-next)
+                ("S-TAB" . corfu-previous)
+                ([backtab] . corfu-previous)))
 
-  ;; (straight-use-package
-  ;;  '(corfu :type git :host github :repo "minad/corfu"))
-  ;; (require 'corfu)
-  ;; (setq corfu-cycle t
-  ;;       corfu-auto t
-  ;;       corfu-quit-at-boundary t
-  ;;       corfu-quit-no-match t)
-  ;; (corfu-global-mode 1)
+  (use-package emacs
+    :init
+    (setq completion-cycle-threshold 3)
+    (setq tab-always-indent 'complete)
+    (setq resize-mini-windows t)
+    (setq minibuffer-prompt-properties
+          '(read-only t cursor-intangible t face minibuffer-prompt))
+    (setq enable-recursive-minibuffers t)
+    (minibuffer-depth-indicate-mode 1)
+    (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 
   (use-package vertico
     :init
     (vertico-mode)
     :custom
-    (vertico-cycle t))
-  
-  ;; (straight-use-package
-  ;;  '(vertico :type git :host github :repo "minad/vertico"))
-  ;; (require 'vertico)
-  ;; (vertico-mode 1)
-  ;; (setq vertico-cycle t)
-  ;; (define-key vertico-map (kbd "C-n") #'vertico-next)
-  ;; (define-key vertico-map (kbd "C-p") #'vertico-previous)
-
-  (setq resize-mini-windows t)
-  (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-
-
+    (vertico-cycle t)
+    :bind (:map vertico-map
+                ("C-n" . vertico-next)
+                ("C-p" . vertico-previous))
+    :config
+    (face-spec-set 'vertico-current '((t :inherit info-header-xref :background))))
+    
   (use-package orderless
     :custom
     (completion-styles '(orderless))
@@ -57,12 +55,6 @@
   (use-package savehist
     :init
     (savehist-mode))
-    
-
-  (setq tab-always-indent 'complete)
-
-  (setq enable-recursive-minibuffers t)
-  (minibuffer-depth-indicate-mode 1)
 
   (use-package projectile
     ;; :init

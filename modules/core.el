@@ -95,10 +95,10 @@
     :config
     (global-page-break-lines-mode 1))
 
-  (setq org-publish-project-alist
+  (defvar org-publish-project-alist
         '(("Bethlehem Application" .
            (:base-directory "~/Documents/Bethlehem/application"
-            :publishing-function org-html-publish-to-html
+            :publishing-function org-latex-publish-to-pdf
             :publishing-directory "~/Documents/Bethlehem/application_published"
             :exclude "outline.org"))))
 

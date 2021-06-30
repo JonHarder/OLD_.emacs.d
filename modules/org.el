@@ -86,7 +86,7 @@
   (use-package org-journal
     :custom
     (org-journal-dir "~/Org/journal/")
-    (org-journal-file-type 'daily))
+    (org-journal-file-type 'weekly))
 
   ;;; Addition functionality/functions
   (defun color-org-header (tag col &optional bg-col)
