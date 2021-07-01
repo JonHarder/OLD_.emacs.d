@@ -45,6 +45,7 @@
     :config
     (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
     (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+    (add-to-list 'auto-mode-alist '("Pipfile" . conf-toml-mode))
     (unless (file-exists-p "~/plantuml.jar")
       (plantuml-download-jar)))
 

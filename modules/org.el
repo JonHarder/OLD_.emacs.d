@@ -107,7 +107,8 @@
 
   (defun jh/org-mode-hook ()
     (setq fill-column 80)
-    (auto-fill-mode 1))
+    (auto-fill-mode 1)
+    (org-toggle-pretty-entities))
 
   ;; (add-hook 'org-mode-hook #'jh/org-mode-hook)
 

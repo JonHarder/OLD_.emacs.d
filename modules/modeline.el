@@ -76,6 +76,7 @@ Makes use of `battery-status-function' for retrieving information, and
           '(;; left aligned segments
             (jh/simple-modeline-segment-evil-state
              jh/simple-modeline-segment-tab-name
+             simple-modeline-segment-major-mode
              simple-modeline-segment-modified
              simple-modeline-segment-buffer-name
              simple-modeline-segment-position
@@ -86,7 +87,7 @@ Makes use of `battery-status-function' for retrieving information, and
             (simple-modeline-segment-input-method
              simple-modeline-segment-vc
              jh/simple-modeline-segment-battery
-             simple-modeline-segment-misc-info
-             simple-modeline-segment-major-mode)))))
+             simple-modeline-segment-misc-info)))))
+
 (provide 'modeline)
 ;;; modeline.el ends here
