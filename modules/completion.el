@@ -1,4 +1,4 @@
-;;; completion --- Configures completion framework, currently, corfu, vertico
+;;; completion --- Configures completion framework, currently, corfu, vertico -*- lexical-binding: t -*-
 
 ;;; Commentary:
 

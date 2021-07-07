@@ -1,4 +1,4 @@
-;;; ansible --- Basic ansible file support plus additional highly experimental transient.
+;;; ansible --- Basic ansible file support plus additional highly experimental transient. -*- lexical-binding: t -*-
 
 ;;; Commentary:
 

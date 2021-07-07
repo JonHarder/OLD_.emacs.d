@@ -1,4 +1,4 @@
-;;; bootstrap -- Pre-configuration initialization
+;;; bootstrap -- Pre-configuration initialization -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;; initializes straight.el, loads use-package, defines the module concept.

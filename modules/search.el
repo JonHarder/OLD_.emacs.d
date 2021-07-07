@@ -1,3 +1,7 @@
+;;; search --- Custom searching framework -*- lexical-binding: t -*-
+
+;;; Commentary:
+
 ;;; Code:
 (require 'thingatpt)
 (require 'contrib "~/.emacs.d/contrib")

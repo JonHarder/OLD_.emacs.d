@@ -1,4 +1,4 @@
-;;; dired --- Configuration for the built in dired file manager
+;;; dired --- Configuration for the built in dired file manager -*- lexical-binding: t -*-
 
 ;;; Commentary:
 

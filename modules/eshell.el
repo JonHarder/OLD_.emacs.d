@@ -1,4 +1,4 @@
-;;; eshell --- Summary
+;;; eshell --- Summary -*- lexical-binding: t -*-
 
 ;;; Commentary:
 

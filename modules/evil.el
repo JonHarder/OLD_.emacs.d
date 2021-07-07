@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 (defun modules/evil--load (config)
   "Some stuff with CONFIG."
   (use-package evil

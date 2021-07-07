@@ -1,4 +1,4 @@
-;;; contrib -- generic low level helper functions
+;;; contrib -- generic low level helper functions -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;; defines miscellaneous helper functions to operate on (surprise) lists

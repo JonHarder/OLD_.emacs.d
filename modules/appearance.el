@@ -1,4 +1,4 @@
-;;; appearance -- Configured the visual appearance of emacs
+;;; appearance -- Configured the visual appearance of emacs -*- lexical-binding: t -*-
 
 ;;; Commentary:
 

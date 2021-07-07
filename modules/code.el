@@ -1,4 +1,4 @@
-;;; code --- Configuration for coding systems.
+;;; code --- Configuration for coding systems. -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;; Configuration for programming environments apart from any

@@ -1,4 +1,4 @@
-;;; git --- Git (But really just magit) configuration
+;;; git --- Git (But really just magit) configuration -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;; magit is amazing.  That is all.

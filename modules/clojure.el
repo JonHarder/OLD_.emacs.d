@@ -1,7 +1,8 @@
+;;; -*- lexical-binding: t -*-
 (defun modules/clojure--load (config)
   (use-package cider
-    :init
-    (setq cider-repl-display-help-banner nil)
+    :custom
+    (cider-repl-display-help-banner nil)
     :config
     (define-clojure-indent
       (defroutes 'defun)

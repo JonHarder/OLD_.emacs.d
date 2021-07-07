@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 (defun modules/docker--load (config)
   "Use CONFIG to load Dockerfile syntax and an interactive docker UI."
 

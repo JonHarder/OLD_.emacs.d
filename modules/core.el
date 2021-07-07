@@ -1,4 +1,4 @@
-;;; core --- Basic editing experience configuration
+;;; core --- Basic editing experience configuration -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;; This sets up the basics of the configuration and basic settings

@@ -1,3 +1,9 @@
+;;; buffers.el --- configuration for ibuffer mostly -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+
+;;; Code:
 (defun modules/buffers--load (config)
   "Load configuration for general buffer related settings, using CONFIG."
   (use-package ibuffer
@@ -20,3 +26,6 @@
               (lambda ()
                 (ibuffer-switch-to-saved-filter-groups "home")
                 (ibuffer-auto-mode 1)))))
+
+(provide 'buffers)
+;;; buffers.el ends here

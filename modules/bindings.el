@@ -1,4 +1,4 @@
-;;; bindings -- Sets most of all configured keybindings.
+;;; bindings -- Sets most of all configured keybindings. -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;; This sets up general which handles setting key bindings.

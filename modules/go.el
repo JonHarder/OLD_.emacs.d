@@ -1,4 +1,4 @@
-;;; package --- Go config
+;;; package --- Go config -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;; Configure the environment for Go programming.

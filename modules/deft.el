@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 (defun modules/deft--load (config)
   (use-package deft
     :config
