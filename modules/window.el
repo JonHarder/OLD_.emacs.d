@@ -19,7 +19,7 @@
   (setq display-buffer-alist
         '(("\\*\\(e?shell\\)\\*"
            (display-buffer-at-bottom)
-           (window-height . 0.3)
+           (window-height . 0.4)
            (side . bottom)
            (slot . -1))
           ("\\*info\\*"

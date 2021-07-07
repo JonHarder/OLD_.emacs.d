@@ -38,16 +38,16 @@
 
   (add-hook 'sh-mode-hook #'flycheck-mode)
 
-  (use-package plantuml-mode
-    :custom
-    (plantuml-default-exec-mode 'jar)
-    (org-plantuml-jar-path "~/plantuml.jar")
-    :config
-    (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
-    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-    (add-to-list 'auto-mode-alist '("Pipfile" . conf-toml-mode))
-    (unless (file-exists-p "~/plantuml.jar")
-      (plantuml-download-jar)))
+  ;; (use-package plantuml-mode
+  ;;   :custom
+  ;;   (plantuml-default-exec-mode 'jar)
+  ;;   (org-plantuml-jar-path "~/plantuml.jar")
+  ;;   :config
+  ;;   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+  ;;   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  ;;   (add-to-list 'auto-mode-alist '("Pipfile" . conf-toml-mode))
+  ;;   (unless (file-exists-p "~/plantuml.jar")
+  ;;     (plantuml-download-jar)))
 
   (use-package conf-mode
     :mode "\\.env")

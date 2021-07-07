@@ -32,7 +32,7 @@
     ("doom" .
      (:package doom-themes
       :light doom-one-light
-      :dark doom-one))
+      :dark doom-vibrant))
     ("dracula" .
      (:package doom-themes
       :dark doom-dracula
@@ -55,8 +55,10 @@
       (modus-themes-bold-constructs t)
       (modus-themes-headings '((t . rainbow-section)))
       (modus-themes-syntax 'alt-syntax)
+      (modus-themes-completions nil)
       (modus-themes-completions 'opinionated)
-      (modus-themes-scale-headings t)
+      ;; (modus-themes-completions 'moderate)
+      ;; (modus-themes-scale-headings nil)
       (modus-themes-paren-match 'intense)))
 
    ;;; doom themes

@@ -5,6 +5,28 @@
 ;;; introduce additional languages that org src blocks can evaluate.
 
 ;;; Code:
+(require 'org-agenda)
+(require 'org-capture)
+(require 'evil)
+
+
+(defun color-org-header (tag col &optional bg-col)
+   "Color the associated TAG with the color COL, using BG-COL if provided for the background."
+   (interactive)
+   (goto-char (point-min))
+   (while (re-search-forward tag nil t)
+     (add-text-properties (match-beginning 0) (point-at-eol)
+                          `(face (:foreground ,col ,@(if bg-col `(:background ,bg-col) nil))))))
+
+
+(defun color-org-agenda ()
+  "Color specific org agenda events."
+  (save-excursion
+    (color-org-header "Work:" "#0099cc")
+    (color-org-header "Bread:" "#66CD00")
+    (color-org-header "Events:" "#faebd7" "#8B4513")))
+  
+
 (defun modules/org--load (config)
   "Load configuration related to org using CONFIG."
 
@@ -81,7 +103,11 @@
 
   (setq org-capture-templates
    '(("t" "Todo" entry (file+headline "~/Org/todo.org" "Tasks")
-      "* TODO %?\n %i\n %a")))
+      "* TODO %?\n %i\n %a")
+     ("s" "Standup" entry (file+headline "~/Org/standup.org" "Announcements")
+      "* TODO %?")
+     ("d" "DevOps Note" entry (file+headline "~/Org/working_groups/devops/notes.org" "Agenda")
+      "* TODO %?")))
 
   (use-package org-journal
     :custom
@@ -89,20 +115,6 @@
     (org-journal-file-type 'weekly))
 
   ;;; Addition functionality/functions
-  (defun color-org-header (tag col &optional bg-col)
-     "Color the associated TAG with the color COL."
-     (interactive)
-     (goto-char (point-min))
-     (while (re-search-forward tag nil t)
-       (add-text-properties (match-beginning 0) (point-at-eol)
-                            `(face (:foreground ,col ,@(if bg-col `(:background ,bg-col) nil))))))
-
-  (defun color-org-agenda ()
-    (save-excursion
-      (color-org-header "Work:" "#0099cc")
-      (color-org-header "Bread:" "#66CD00")
-      (color-org-header "Events:" "#faebd7" "#8B4513")))
-  
   (add-hook 'org-agenda-finalize-hook #'color-org-agenda)
 
   (defun jh/org-mode-hook ()
@@ -132,7 +144,7 @@
    'org-babel-load-languages
    '((emacs-lisp . t)
      (shell . t)
-     (plantuml . t)
+     ;; (plantuml . t)
      (sql . t)
      (calc . t)
      (restclient . t)
@@ -140,4 +152,3 @@
      (python . t)
      (php . t)
      (js . t))))
-

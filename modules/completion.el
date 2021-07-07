@@ -25,13 +25,14 @@
                 ([backtab] . corfu-previous)))
 
   (use-package emacs
-    :init
-    (setq completion-cycle-threshold 3)
-    (setq tab-always-indent 'complete)
-    (setq resize-mini-windows t)
-    (setq minibuffer-prompt-properties
+    :custom
+    (completion-cycle-threshold 3)
+    (tab-always-indent 'complete)
+    (resize-mini-windows 'grow-only)
+    (minibuffer-prompt-properties
           '(read-only t cursor-intangible t face minibuffer-prompt))
-    (setq enable-recursive-minibuffers t)
+    (enable-recursive-minibuffers t)
+    :config
     (minibuffer-depth-indicate-mode 1)
     (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 
@@ -43,8 +44,8 @@
     :bind (:map vertico-map
                 ("C-n" . vertico-next)
                 ("C-p" . vertico-previous))
-    :config
-    (face-spec-set 'vertico-current '((t :inherit info-header-xref :background))))
+    :config)
+    ;; (face-spec-set 'vertico-current '((t :inherit info-header-xref :background))))
     
   (use-package orderless
     :custom

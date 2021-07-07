@@ -166,11 +166,28 @@ e.x.
   (contrib/map-alist-values #'config/eval-var config))
 
 
+(defmacro with-time (&rest body)
+  "Measure and return the time it takes evaluating BODY."
+  `(let ((time (current-time)))
+     ,@body
+     (float-time (time-since time))))
+
 (defun config/init-with-config (config)
   "Initialize configuration using settings found in CONFIG."
-  (let ((modules (alist-get :modules config)))
-    (mapc (lambda (module) (config/load-module module config)) modules)
-    config))
+  (let ((modules (alist-get :modules config))
+        (module-profile '())
+        (prof-buf (generate-new-buffer "*profiler*")))
+      (mapc (lambda (module)
+                (let ((time (with-time (config/load-module module config))))
+                   (setq module-profile (cons (cons module time) module-profile))))
+            modules)
+      (when (alist-get :profile config)
+        (with-current-buffer prof-buf
+          (goto-char (point-max))
+          (mapc (lambda (d)
+                  (insert (format "Module %s\ttook %.2f seconds\n" (car d) (cdr d))))
+                (sort module-profile (lambda (x y) (> (cdr x) (cdr y)))))))
+      (display-buffer prof-buf)))
 
 
 (defmacro defconfig (config-name &rest params)

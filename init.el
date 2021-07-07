@@ -21,8 +21,6 @@
 ;; some hardcoded global config.
 
 ;;; Code:
-(setq gc-cons-threshold (* 50 1000 1000))
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
 (require 'bootstrap "~/.emacs.d/bootstrap.el")
 
 ;;; TODO: figure out better model between centralized bindings module
@@ -32,14 +30,15 @@
 (defvar jh/config nil)
 
 (defconfig jh/config
-  :font                (:env "EMACS_FONT"      :default "mono")
-  :font-size           (:env "EMACS_FONT_SIZE" :default "12")
-  :theme               (:env "EMACS_THEME"     :default "modus")
+  :font                 (:env "EMACS_FONT"      :default "mono")
+  :font-size            (:env "EMACS_FONT_SIZE" :default "12")
+  :theme                (:env "EMACS_THEME"     :default "modus")
+  :profile              t
   :highlight-line       nil
   :scale-org-headings   t
   :modules ( core
             evil
-            hyperbole
+            ;; hyperbole
             modeline
             appearance
             window
@@ -74,9 +73,9 @@
             ;; deft
             ;; zettelkasten
             work
-            bindings))
-
-;; (setq gc-cons-threshold orig-gc-cons-threshold)
+            bindings
+            ;;; TESTING MODULE
+            prose))
 
 (provide 'init)
 ;;; init.el ends here
