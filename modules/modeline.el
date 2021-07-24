@@ -57,8 +57,7 @@ Makes use of `battery-status-function' for retrieving information, and
   "Display the number of words in the buffer."
   (concat " "
           (propertize (format "%i words" (count-words (point-min) (point-max)))
-            'face `(:underline t))
-          " "))
+            'face `(:underline t))))
 
 
 (defun modules/modeline--load (config)
@@ -68,15 +67,14 @@ Makes use of `battery-status-function' for retrieving information, and
   (setq display-time-day-and-date t)
   (display-time-mode)
 
-
   (use-package simple-modeline
+    :ensure t
     :hook (after-init . simple-modeline-mode)
     :config
     (setq simple-modeline-segments
           '(;; left aligned segments
             (jh/simple-modeline-segment-evil-state
              jh/simple-modeline-segment-tab-name
-             simple-modeline-segment-major-mode
              simple-modeline-segment-modified
              simple-modeline-segment-buffer-name
              simple-modeline-segment-position
@@ -85,6 +83,7 @@ Makes use of `battery-status-function' for retrieving information, and
 
             ;; right aligned segments
             (simple-modeline-segment-input-method
+             simple-modeline-segment-major-mode
              simple-modeline-segment-vc
              jh/simple-modeline-segment-battery
              simple-modeline-segment-misc-info)))))

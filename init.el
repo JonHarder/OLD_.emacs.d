@@ -30,15 +30,14 @@
 (defvar jh/config nil)
 
 (defconfig jh/config
-  :font                 (:env "EMACS_FONT"      :default "mono")
-  :font-size            (:env "EMACS_FONT_SIZE" :default "12")
-  :theme                (:env "EMACS_THEME"     :default "modus")
-  :profile              t
+  :font                 "Source Code Pro"
+  :font-size            "14"
+  :theme                "modus"
   :highlight-line       nil
   :scale-org-headings   t
   :modules ( core
             evil
-            ;; hyperbole
+            hyperbole
             modeline
             appearance
             window
@@ -52,26 +51,22 @@
             dired
             lisp
             racket
-            ;; haskell
-            ;; rust
+            haskell
             go
             eshell
             term
             terraform
-            search
             python
             docker
             rss
-            ;; clojure
+            clojure
             php
             web
-            ;; ansible
+            ansible
             mail
-            ;; kubernetes
+            kubernetes
             personal
             spotify
-            ;; deft
-            ;; zettelkasten
             work
             bindings
             ;;; TESTING MODULE

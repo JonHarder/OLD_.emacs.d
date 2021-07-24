@@ -16,7 +16,53 @@
 (require 'diary-lib)
 (require 'org)
 (require 'use-package)
-(require 'winner)
+
+(use-package winner
+  :general
+  (:states 'normal
+   :prefix "SPC"
+   "u" #'winner-undo))
+
+(use-package how-do-i
+  :general
+  (:states 'normal
+   :prefix "SPC"
+   "s" '(:ignore t :wk "Search")
+   "s g" '(how-do-i-google :wk "Google")
+   "s d" '(how-do-i-ddg :wk "DuckDuckGo")
+   "s o" '(how-do-i-so :wk "StackOverflow")
+   "s b" '(how-do-i-bible :wk "Bible Gateway")))
+                       
+(use-package projectile
+  :ensure t
+  :custom
+  (projectile-create-missing-test-files t)
+  :config
+  (projectile-mode 1)
+  :general
+  (:states 'normal
+   :prefix "SPC"
+   "p" '(:ignore t :wk "Project")
+   "p d" 'projectile-dired
+   "p s" 'projectile-run-eshell
+   "p p" '(projectile-switch-project :wk "Switch Project")
+   "p f" '(projectile-find-file :wk "Find File in Project")
+   "p b" 'projectile-ibuffer
+   "p /" '(rg :wk "RipGrep")
+   "p t" '(projectile-toggle-between-implementation-and-test :wk "Toggle With Test")))
+
+(use-package tab-bar
+  :general
+  (:states 'normal
+   :prefix "SPC"
+   "t" '(:ignore t :which-key "Tabs")
+   "t t" '(tab-bar-switch-to-tab :wk "Switch")
+   "t n" '(tab-bar-switch-to-next-tab :wk "Next")
+   "t p" '(tab-bar-switch-to-prev-tab :wk "Prev")
+   "t k" '(tab-bar-close-tab :wk "Close")
+   "t c" '(tab-bar-new-tab :wk "New")
+   "t r" '(tab-bar-rename-tab :wk "Rename")))
+                
 
 (defun jh/reload-config ()
   "Evaluate current settings of Emacs configuration."
@@ -35,11 +81,21 @@
   (interactive)
   (find-file "~/Org/todo.org"))
 
+(defun infer-shell-config-file ()
+  "Determine the shell configuration file according to environment variable `SHELL'."
+  (let ((shell (getenv "SHELL")))
+    (cond
+     ((string-equal "/usr/local/bin/fish" shell)
+      "~/.config/fish/config.fish")
+     ((string-equal "/bin/bash" shell)
+      (if (string-equal window-system "ns")
+          "~/.bash_profile"
+        "~/.bashrc")))))
 
 (defun find-shell-config ()
   "Open shell configuration file."
   (interactive)
-  (find-file "~/.config/fish/config.fish"))
+  (find-file (infer-shell-config-file)))
 
 (defun find-calendar (calendar)
   "Find the calendar file called CALENDAR from available calendars."
@@ -92,6 +148,7 @@
   (insert (shell-command-to-string "pbpaste")))
 
 (defun minibuffer-replace-with-home ()
+  "Take any occurence of `~' and replace whole line with that char."
   (interactive)
   (delete-minibuffer-contents)
   (insert "~/"))
@@ -126,13 +183,6 @@
       (other-window 1)
     (call-interactively #'ace-window)))
 
-(defun jh/org-src-block (mode)
-  "Insert an Org src block of type MODE."
-  (interactive "sMode: ")
-  (org-insert-structure-template "src")
-  (insert mode)
-  (org-edit-special))
-
 (defun open-diary ()
   "Open the diary file as determined by `diary-file`."
   (interactive)
@@ -142,14 +192,22 @@
   "Configure all things key bindings using CONFIG."
   (put 'narrow-to-region 'disabled nil)
   (use-package which-key
+    :ensure t
     :config
     (which-key-mode))
 
   (use-package ctrlf
+    :ensure t
+    :commands (ctrlf-forward-fuzzy ctrlf-backward-fuzzy)
     :config
-    (ctrlf-mode +1))
+    (ctrlf-mode +1)
+    :general
+    (:states 'normal
+     "/" #'ctrlf-forward-fuzzy
+     "?" #'ctrlf-backward-fuzzy))
 
   (use-package ace-window
+    :ensure t
     :commands (ace-window)
     :custom
     (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
@@ -158,10 +216,15 @@
     (aw-ignore-current t)
     :bind
     ("C-x o" . 'ace-window)
+    :general
+    (:states 'normal
+     "SPC w" #'ace-window)
     :config
     (face-spec-set 'aw-leading-char-face '((t (:foreground "red" :height 3.0)))))
 
-  (use-package imenu-list)
+  (use-package imenu-list
+    :ensure t
+    :commands (imenu-list))
 
   (defun jh/split-right-switch-buffer ()
     (interactive)
@@ -174,8 +237,13 @@
     (switch-to-buffer nil))
 
   (use-package beacon
+    :ensure t
     :config
-    (beacon-mode 1))
+    (beacon-mode 1)
+    :general
+    (:states 'normal
+     :prefix "SPC"
+     "z" #'beacon-blink))
 
   (defun rename-current-buffer-file ()
     "Renames current buffer and file it is visiting."
@@ -195,38 +263,27 @@
                          name (file-name-nondirectory new-name))))))
 
   (use-package general
+    :ensure t
     :config
     (general-evil-setup t)
     (general-define-key
      :states 'normal
-     "α" 'evil-append
-     "Α" 'evil-append-line
-     "ι" 'evil-insert
-     "Ι" 'evil-insert-line
-     "ο" 'evil-open-below
-     "Ο" 'evil-open-above
-     "/" 'ctrlf-forward-fuzzy
-     "?" 'ctrlf-backward-fuzzy
+     "M-." 'xref-find-definitions
+     "M-," 'xref-pop-marker-stack
      "M-v" 'jh/paste-from-mac-clipboard
      "C-t" 'transpose-chars
      "=" 'balance-windows
-     "M-o" 'org-open-at-point-global
+     "M-o" 'org-open-at-point-global)
+    (general-define-key
      :states 'insert
-     "M-v" 'jh/paste-from-mac-clipboard
+     "M-v" 'jh/paste-from-mac-clipboard)
+    (general-define-key
      :states 'visual
      "M-c" 'jh/copy-to-mac-clipboard)
     (general-define-key
-     :states '(normal)
-     :keymaps 'magit-refs-mode-map
-     "x" 'magit-delete-thing)
-    (general-define-key
+     :keymaps 'prog-mode-map
      :states 'insert
-     :keymaps 'minibuffer-local-map
-     "~" #'minibuffer-replace-with-home)
-    (general-define-key
-     :states '(normal insert)
-     :keymaps 'vterm-mode-map
-     "M-v" 'vterm-yank)
+     "RET" 'newline-and-indent)
     (general-define-key
      :states 'normal
      :keymaps 'calendar-mode-map
@@ -238,12 +295,6 @@
      :keymaps 'occur-mode-map
      "e" 'occur-edit-mode)
     (general-create-definer space-leader :prefix "SPC")
-    ;;; NOTE: this does not work for now since the prefix: SPC j collides with jumping bindings
-    ;; (space-leader
-    ;;   :states 'normal
-    ;;   :keymaps 'calendar-mode-map
-    ;;   "j n" #'org-journal-new-entry
-    ;;   "j d" #'org-journal-display-entry)
     (space-leader
       :keymaps 'normal
       "SPC" 'avy-goto-word-1
@@ -264,24 +315,13 @@
 
       "a" '(:ignore t :which-key "Apps")
       "a =" 'calc
-      "a a" 'org-agenda-list
-      "a A" 'org-agenda
       "a c" 'calendar
-      "a d" 'dired-jump
       ;; "a e" 'eshell
-      "a g" 'gnus
-      "a i" 'jh/erc
-      "a s" 'scratch
+      "a i" 'ielm
       "a t" 'eshell
-      "a m" 'check-mail
-      "a M" 'notmuch
-      "a v" '(multi-vterm :wk "VTerm")
-      "a w" 'writeroom-mode
 
       "b" '(:ignore t :which-key "Buffers")
-      "b b" 'consult-buffer
       "b i" 'ibuffer
-      "b o" 'consult-imenu
       "b l" 'jh/switch-buffer-left
       "b r" 'jh/switch-buffer-right
       "b R" 'rename-buffer
@@ -302,23 +342,19 @@
 
       "f" '(:ignore t :which-key "Files")
       "f c" 'find-calendar
-      "f s" 'find-shell-config
-      "f i" 'jh/find-config
+      "f i" '(find-shell-config :wk "Find Shell Init File")
+      "f ." 'jh/find-config
       "f d" 'delete-file
-      "f f" 'find-file
-      "f s" 'save-buffer
+      "f f" '(find-file :wk "Find File")
+      "f s" '(save-buffer :wk "Save File")
       "f t" 'find-todo-file
-      "f m" 'jh/find-module
-      "f o" 'other-frame
-      "f p" 'ffap
+      "f m" '(jh/find-module :wk "Find Module")
+      "f p" '(ffap :wk "Find File at Point")
       "f r" '(rename-current-buffer-file :wk "Rename File")
 
-      "g" '(:ignore t :which-key "Git")
-      "g s" 'magit-status
-      "g l" 'magit-log
-      "g c" 'magit-commit
-      "g f" 'magit-file-dispatch
-      "g d" 'magit-dispatch
+      ;; frame based commands
+      "f o" 'other-frame
+      "f 2" 'make-frame
 
       "h" '(:ignore t :which-key "Help")
       "h f" 'helpful-callable
@@ -326,12 +362,10 @@
       "h v" 'helpful-variable
       "h m" 'describe-mode
       "h p" 'describe-package
-      "h a" 'consult-apropos
       "h i" 'info
 
       ;;; i
       "i" '(:ignore t :which-key "Imenu")
-      "i i" 'consult-imenu
       "i l" 'imenu-list-smart-toggle
 
       ;;; k
@@ -345,34 +379,12 @@
       "l d" 'lsp-ui-peek-find-definitions
       "l n" 'flycheck-next-error
       "l p" 'flycheck-previous-error
-      "l l" 'consult-flycheck
 
       "n" '(:ignore t :which-key "Narrow")
       "n d" 'narrow-to-defun
       "n n" 'narrow-to-defun
       "n w" 'widen
 
-      "o" '(:ignore t :which-key "Org")
-      "o c" 'org-ctrl-c-ctrl-c
-      "o a" 'org-archive-subtree
-      "o b" 'jh/org-src-block
-      "o t" 'org-todo
-      "o e" 'org-export-dispatch
-      "o j" 'org-journal-new-entry
-      "o o" 'org-open-at-point
-      "o s s" 'org-schedule
-      "o s d" 'org-deadline
-      "o l" 'org-insert-link
-      "o p" 'org-priority
-      "o '" 'org-edit-special
-      "o g" 'org-goto
-      "o ." 'org-time-stamp
-
-      "p" '(:ignore t :which-key "Projects")
-      "p p" 'projectile-switch-project
-      "p f" 'projectile-find-file
-      "p t" 'parinfer-toggle-mode
-      "p /" 'rg
       "p c" 'compile
       "p u" 'package-install
 
@@ -381,31 +393,7 @@
       ;; r
       "r" #'winner-redo
 
-      "s" '(:ignore t :which-key "Searching")
-      "s g" '(how-do-i-google :wk "Google")
-      "s d" '(how-do-i-ddg :wk "DuckDuckGo")
-      "s o" '(how-do-i-so :wk "StackOverflow")
-      "s b" '(how-do-i-bible :wk "Bible Gateway")
-
-      ;; t
-      "t" '(:ignore t :which-key "Tabs")
-      "t t" '(tab-bar-switch-to-tab :wk "Switch")
-      "t n" '(tab-bar-switch-to-next-tab :wk "Next")
-      "t p" '(tab-bar-switch-to-prev-tab :wk "Prev")
-      "t k" '(tab-bar-close-tab :wk "Klose")
-      "t c" '(tab-bar-new-tab :wk "Create")
-      "t r" '(tab-bar-rename-tab :wk "Rename")
-      ;; u
-      "u" #'winner-undo
       ;;; v
-
-      ;;; w
-      "w" #'ace-window
-
-      ;;; x
-      ;;; y
-      "z" #'beacon-blink
-
       "=" 'text-scale-increase
       "-" 'text-scale-decrease)))
 (provide 'bindings)

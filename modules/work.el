@@ -21,12 +21,17 @@
     (async-shell-command (format "cd %s && vagrant halt" jh/work-base-dir)))
   
   (use-package restclient
+    :ensure t
+    :commands restclient-mode
     :mode ("\\.http\\'" . restclient-mode))
 
-  (use-package zpresent)
-  (use-package coffee-mode)
-  (use-package wsd-mode)
-  (use-package notmuch)
+  (use-package zpresent
+    :ensure t
+    :commands zpresent)
+
+  (use-package coffee-mode
+    :ensure t
+    :mode "\\.coffee\\'")
 
   (defun jh/work-git ()
     (interactive)

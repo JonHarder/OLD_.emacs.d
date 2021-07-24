@@ -6,11 +6,13 @@
 ;;; Code:
 (require 'use-package)
 (require 'evil)
+(require 'general)
 
 (defun modules/completion--load (config)
   "Set up completion, respecting any CONFIG provided."
 
   (use-package corfu
+    :ensure t
     :init
     (corfu-global-mode 1)
     :custom
@@ -18,11 +20,13 @@
     (corfu-auto t)
     (corfu-quit-at-boundary t)
     (corfu-quit-no-match t)
-    :bind (:map corfu-map
-                ("TAB" . corfu-next)
-                ([tab] . corfu-next)
-                ("S-TAB" . corfu-previous)
-                ([backtab] . corfu-previous)))
+    :general
+    (:keymaps 'corfu-map
+     :states '(normal insert)
+     "TAB" 'corfu-next
+     [tab] 'corfu-next
+     "S-TAB" 'corfu-previous
+     [backtab] 'corfu-previous))
 
   (use-package emacs
     :custom
@@ -37,58 +41,56 @@
     (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 
   (use-package vertico
+    :ensure t
     :init
     (vertico-mode)
     :custom
     (vertico-cycle t)
-    :bind (:map vertico-map
-                ("C-n" . vertico-next)
-                ("C-p" . vertico-previous))
-    :config)
-    ;; (face-spec-set 'vertico-current '((t :inherit info-header-xref :background))))
+    :general
+    (:keymaps 'vertico-map
+     :states '(insert normal)
+     "C-n" 'vertico-next
+     "C-p" 'vertico-previous))
     
   (use-package orderless
+    :ensure t
     :custom
     (completion-styles '(orderless))
     (completion-category-defaults nil)
     (completion-category-overrides '((file (styles . (partial-completion))))))
 
   (use-package savehist
+    :ensure t
     :init
     (savehist-mode))
 
-  (use-package projectile
-    ;; :init
-    ;; (setq-default projectile-completion-system 'selectrum--read)
-    :config
-    (projectile-mode +1))
-
   (use-package consult
-    :bind (("C-c h" . consult-history)
-           ("C-c o" . consult-outline)
-           ("C-x b" . consult-buffer)
-           :map flycheck-command-map
-           ("!" . consult-flycheck))
+    :ensure t
     :init
-    (fset 'multi-occur #'consult-multi-occur))
-
-
-  ;; (use-package selectrum
-  ;;   :config
-  ;;   (selectrum-mode +1))
-
-  ;; (use-package selectrum-prescient
-  ;;   :config
-  ;;   (selectrum-prescient-mode +1)
-  ;;   (prescient-persist-mode +1)
-  ;;   :custom
-  ;;   (selectrum-prescient-enable-filtering nil))
+    (fset 'multi-occur #'consult-multi-occur)
+    :general
+    ("C-c h" #'consult-history
+     "C-c o" #'consult-outline
+     "C-x b" #'consult-buffer)
+    (:keymaps 'flycheck-command-map
+     :states 'normal
+     "!" #'consult-flycheck)
+    (:prefix "SPC"
+     :states 'normal
+     "b b" 'consult-buffer
+     "i i" 'consult-imenu
+     "h a" 'consult-apropos
+     "l l" 'consult-flycheck))
 
   (use-package marginalia
+    :ensure t
+    :after vertico
     :init
     (marginalia-mode)
     (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light)))
 
-  (use-package consult-flycheck))
+  (use-package consult-flycheck
+    :ensure t
+    :after consult))
 (provide 'completion)
 ;;; completion.el ends here

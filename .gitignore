@@ -29,7 +29,7 @@ transient/
 /var/
 /.spotify_auth
 /.erc-auth
-/ext_lisp/
+/ext_lisp/spotify.el
 /racket-mode/
 /places
 /projects
@@ -40,3 +40,5 @@ transient/
 /parinfer-rust/
 /.emacs.desktop
 /.emacs.desktop.lock
+/history
+/quelpa/

@@ -26,48 +26,28 @@
 
 (defun modules/code--load (config)
   "Module definition for generic programming, configured by CONFIG."
-  (use-package dumb-jump)
-
-  (use-package editorconfig
-    :config
-    (editorconfig-mode 1))
-
-  (use-package linum-relative
-    :config
-    (setq linum-relative-backend 'display-line-numbers-mode))
+  (use-package dumb-jump
+    :ensure t
+    :commands dumb-jump-go)
 
   (add-hook 'sh-mode-hook #'flycheck-mode)
 
-  ;; (use-package plantuml-mode
-  ;;   :custom
-  ;;   (plantuml-default-exec-mode 'jar)
-  ;;   (org-plantuml-jar-path "~/plantuml.jar")
-  ;;   :config
-  ;;   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
-  ;;   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-  ;;   (add-to-list 'auto-mode-alist '("Pipfile" . conf-toml-mode))
-  ;;   (unless (file-exists-p "~/plantuml.jar")
-  ;;     (plantuml-download-jar)))
+  (use-package elixir-mode
+    :ensure t
+    :mode "\\.exs")
 
   (use-package conf-mode
+    :ensure t
     :mode "\\.env")
 
   ;; language server support
   (use-package lsp-mode
+    :ensure t
     :config
     (setq lsp-idle-delay 0.500
           lsp-enable-file-watchers nil)
 
-    (mapc (lambda (hook) (add-hook hook #'lsp-deferred))
-          '(c-mode-hook
-            go-mode-hook
-            php-mode-hook
-            typescript-mode
-            dockerfile-mode-hook
-            json-mode-hook))
-    :hook
-    ((lsp-mode . lsp-enable-which-key-integration)
-     (lsp-mode . lsp-modeline-code-actions-mode)))
+    :hook ((c-mode go-mode php-mode dockerfile-mode) . lsp-deferred))
 
   ;;; This has been reported as the source of massive slowdowns
   ;;; in lsp mode enabled files, disabling for now until more
@@ -81,6 +61,8 @@
                 tab-width 4)
 
   (use-package yaml-mode
+    :ensure t
+    :mode "\\ya?ml\'"
     :config
     (add-hook 'yaml-mode-hook #'jh/yaml-mode-hook))
 

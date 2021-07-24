@@ -1,4 +1,5 @@
 (require 'transient)
+(require 'lsp)
 
 ;;; TODO: write function to recognize if modules in file aren't downloaded
 
@@ -53,12 +54,24 @@
 
 (defun modules/terraform--load (config)
   "Install terraform mode and ignore CONFIG."
-  (use-package terraform-mode)
-  (use-package terraform-doc)
-  (use-package company-terraform)
+  (use-package terraform-mode
+    :ensure t
+    :mode "\\.tf\\'"
+    :config
+    (use-package terraform-doc
+      :ensure t)
+    ;; (use-package company-terraform
+    ;;   :ensure t)
 
-  (defun jh/terraform-mode-hook ()
-    (company-terraform-init)
-    (terraform-format-on-save-mode t))
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-stdio-connection '("/usr/local/bin/terraform-ls" "serve"))
+                      :major-modes '(terraform-mode)
+                      :server-id 'terraform-ls))
+    (add-hook 'terraform-mode-hook #'lsp)
+    (add-hook 'terraform-mode-hook (lambda () (corfu-mode -1)))
 
-  (add-hook 'terraform-mode-hook #'jh/terraform-mode-hook))
+    (defun jh/terraform-mode-hook ()
+      (company-terraform-init)
+      (terraform-format-on-save-mode t))
+
+    (add-hook 'terraform-mode-hook #'jh/terraform-mode-hook)))

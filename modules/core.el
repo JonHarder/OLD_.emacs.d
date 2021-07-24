@@ -6,9 +6,9 @@
 
 
 ;;; Code:
-(require 'use-package)
 (require 'ediff)
 (require 'epg-config)
+(require 'general)
 
 (defun modules/core--load (config)
   "Load general core features, configure programming hook using CONFIG."
@@ -22,6 +22,13 @@
   ;;; this seems to be freezing everything?
   ;;; plus why would you ever quit emacs?
   ;; (desktop-save-mode 1)
+
+  (use-package emacs
+    :custom
+    (ns-pop-up-frames nil))
+
+  (use-package quelpa
+    :ensure t)
 
   (defun jh/evil-yank-advice (orig-fn beg end &rest args)
     (pulse-momentary-highlight-region beg end)
@@ -41,40 +48,57 @@
 
   (setq confirm-kill-processes nil)
 
-  (use-package csv-mode)
-  (use-package neon-mode)
-  (use-package crontab-mode)
-  (use-package nginx-mode)
+  (use-package csv-mode
+    :ensure t
+    :mode "\\.csv\\'")
 
-  (use-package dash)
-  (use-package ag)
+  (use-package nginx-mode
+    :commands nginx-mode
+    :ensure t)
 
-  (use-package helpful)
+  (use-package dash
+    :ensure t)
+
+  (use-package ag
+    :commands ag
+    :ensure t)
+
+  (use-package helpful
+    :ensure t)
 
   (save-place-mode 1)
 
   (use-package rg
+    :ensure t
+    :commands rg
     :config
     (rg-enable-menu))
 
-  (use-package scratch)
+  (use-package scratch
+    :ensure t
+    :commands scratch
+    :general
+    (:states 'normal
+     :prefix "SPC"
+     "a s" 'scratch))
 
   (use-package undo-tree
+    :ensure t
     :config
     (global-undo-tree-mode 1))
 
-  (use-package fireplace)
+  (use-package fireplace
+    :ensure t
+    :commands fireplace)
+
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
-
   (require 'uniquify)
+
   (setq uniquify-buffer-name-style 'forward)
 
-  (use-package origami
-    :config
-    (global-origami-mode))
-
   (use-package flycheck
+    :ensure t
     :config
     (setq-default flycheck-emacs-lisp-load-path 'inherit)
     (add-hook 'after-init-hook #'global-flycheck-mode))
@@ -83,6 +107,7 @@
   (add-hook 'text-mode-hook #'flyspell-mode)
 
   (use-package yasnippet
+    :ensure t
     :custom
     (yas-snippet-dirs '("~/.emacs.d/snippets/"))
     :config
@@ -92,6 +117,7 @@
         (file-name-base fname))))
 
   (use-package page-break-lines
+    :ensure t
     :config
     (global-page-break-lines-mode 1))
 
@@ -102,21 +128,9 @@
             :publishing-directory "~/Documents/Bethlehem/application_published"
             :exclude "outline.org"))))
 
-  ;; (defun autoinsert-yas-expand ()
-  ;;     "Replace text in yasnippet template."
-  ;;     (yas-expand-snippet (buffer-string) (point-min) (point-max)))
-  ;;
-  ;; (use-package autoinsert
-  ;;   :custom
-  ;;   (auto-insert-query nil)
-  ;;   (auto-insert-directory (locate-user-emacs-file "templates"))
-  ;;   :config
-  ;;   (add-hook 'find-file-hook 'auto-insert)
-  ;;   (auto-insert-mode 1)
-  ;;   ;;; automatically insert php class snippet when opening a new EMPTY php file
-  ;;   (define-auto-insert "\\.php$" ["default-php.php" autoinsert-yas-expand]))
-
-  (use-package avy)
+  (use-package avy
+    :ensure t
+    :commands avy-goto-word-1)
 
   (global-auto-revert-mode 1)
   (setq global-auto-revert-non-file-buffers t)
@@ -128,10 +142,17 @@
   (read-abbrev-file)
 
   (use-package writeroom-mode
+    :ensure t
+    :commands writeroom-mode
     :custom
-    (writeroom-width 0.6))
-  
+    (writeroom-width 0.6)
+    :general
+    (:states 'normal
+     :prefix "SPC"
+     "a w" '(writeroom-mode :wk "Writing Mode")))
+
   (use-package markdown-mode
+    :ensure t
     :commands (markdown-mode gfm-mode)
     :mode (("README\\.md\\'" . gfm-mode)
            ("\\.md\\'" . markdown-mode)

@@ -13,6 +13,8 @@
     (add-hook 'before-save-hook 'lsp-format-buffer t t)
     (add-hook 'before-save-hook 'lsp-organize-imports t t))
   (use-package go-mode
+    :ensure t
+    :mode "\\.go\\'"
     :config
     (add-hook 'go-mode-hook 'jh/go-mode-hook)))
 

@@ -32,7 +32,7 @@
     ("doom" .
      (:package doom-themes
       :light doom-one-light
-      :dark doom-vibrant))
+      :dark doom-one))
     ("dracula" .
      (:package doom-themes
       :dark doom-dracula
@@ -47,6 +47,7 @@
   (cond
    ((string-prefix-p "modus-" (symbol-name theme))
     (use-package modus-themes
+      :ensure t
       :custom
       (modus-themes-slanted-constructs t)
       (modus-themes-mode-line 'accented)
@@ -64,9 +65,10 @@
    ;;; doom themes
    ((string-prefix-p "doom-" (symbol-name theme))
     (use-package doom-themes
+      :ensure t
       :config
       (doom-themes-org-config)
-      (doom-themes-enable-org-fontification)
+      ;; (doom-themes-enable-org-fontification)
       :custom
       (doom-themes-enable-bold t)
       (doom-themes-enable-italic t)
@@ -86,8 +88,8 @@
 
 (defvar jh/dark-mode (jh/mac-is-dark-mode-p) "Boolean which tracks mac system level dark mode.")
 
-(defun jh/set-theme-to-system (light-theme dark-theme &optional package)
-  "Set the theme to LIGHT-THEME if MacOS is not in dark mode, set to DARK-THEME otherwise, using PACKAGE to install themes if given.
+(defun jh/set-theme-to-system (light-theme dark-theme package)
+  "Set the theme to LIGHT-THEME if MacOS is not in dark mode, set to DARK-THEME otherwise.
 
 Utilizes `jh/load-theme' under the hood."
   (setq jh/dark-mode (jh/mac-is-dark-mode-p))
@@ -109,12 +111,13 @@ function to load a particular theme."
     (load-theme theme t)))
 
 
-(defun jh/load-theme (theme &optional theme-package)
-  "Enable THEME, optionally found in THEME-PACKAGE.
+(defun jh/load-theme (theme package)
+  "Enable THEME, installing it's associated PACKAGE if not installed.
 
  If theme is not a built in theme, and not present on the machine, it will be installed."
   (unless (memq theme custom-enabled-themes)
-    (package-install theme-package)
+    (unless (package-installed-p package)
+      (package-install package))
     (jh/set-theme theme)))
 
 (defun jh/theme-config ()
@@ -152,6 +155,7 @@ Uses the dark or light variant depending on system setting."
    (jh/theme-package)))
 
 (defun reload-theme ()
+  "Load configuration given the current values of jh/config."
   (interactive)
   (select-theme jh/current-theme))
   
@@ -165,15 +169,14 @@ Uses the dark or light variant depending on system setting."
   (blink-cursor-mode -1)
   (show-paren-mode 1)
   (global-prettify-symbols-mode +1)
-  (menu-bar-mode -1)
-  (toggle-scroll-bar -1)
-  (tool-bar-mode -1)
 
   (use-package diff-hl
-    :config
-    (setq diff-hl-draw-borders nil)
-    (setq diff-hl-side 'left)
-    :hook ((after-init . global-diff-hl-mode)))
+    :ensure t
+    :custom
+    (diff-hl-draw-boarders t)
+    (diff-hl-side 'left)
+    :hook ((after-init . global-diff-hl-mode)
+           (fundamental-mode . diff-hl-margin-mode)))
 
   (fringe-mode '(8 . 8))
   (setq-default fringes-outside-margins nil)
@@ -182,6 +185,7 @@ Uses the dark or light variant depending on system setting."
   (setq-default overflow-newlines-into-fringe t)
 
   (use-package rainbow-delimiters
+    :ensure t
     :functions 'rainbow-delimiters-mode-enable
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode-enable))

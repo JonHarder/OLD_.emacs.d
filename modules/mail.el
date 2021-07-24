@@ -11,6 +11,8 @@
 (defun modules/mail--load (config)
   "Load some general ansible packages and ignore CONFIG."
   (use-package notmuch
+    :ensure t
+    :commands notmuch
     :custom
     (notmuch-saved-searches
      '((:name "inbox"    :query "tag:inbox" :key "i")
@@ -31,7 +33,12 @@
       "Execute the system check-mail command, then open email client."
       (interactive)
       (shell-command "check-mail")
-      (notmuch)))
+      (notmuch))
+    :general
+    (:states 'normal
+     :prefix "SPC"
+     "a M" '(notmuch :wk "Mail")
+     "a m" '(check-mail :wk "Retrieve and View Mail")))
 
   (setq auth-source-debug 'trivia)
 

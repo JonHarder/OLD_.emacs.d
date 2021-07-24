@@ -10,16 +10,18 @@
 (defun modules/lisp--load (config)
   "Configure Lisp modes, as determined by `CONFIG'."
   (use-package sly
+    :ensure t
+    :commands sly
     :init
     (setq inferior-lisp-program "/usr/local/bin/sbcl"))
 
   (use-package eros
-    ;;; display inline overlays for elisp evaluations
-    :init
-    (eros-mode 1))
+    :ensure t
+    :hook (lisp-data-mode . eros-mode))
 
   (use-package parinfer-rust-mode
-    :hook emacs-lisp-mode
+    :ensure t
+    :hook lisp-data-mode
     :init
     (setq parinfer-rust-auto-download t)
     :config

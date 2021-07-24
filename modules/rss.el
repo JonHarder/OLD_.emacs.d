@@ -9,18 +9,14 @@
 (defun modules/rss--load (config)
   "Configure any rss settings using CONFIG."
   (use-package elfeed
+    :ensure t
+    :commands elfeed
     :config
     (setq-default
      elfeed-feeds '("https://martinfowler.com/feed.atom"
                     "https://emacsredux.com/atom.xml"
                     "https://protesilaos.com/codelog.xml"
-                    "https://desiringgod.org/blog.rss"))
-
-    (defun jh/elfeed-load-and-update ()
-      "Brings up elfeed UI and then grabs latest posts."
-      (interactive)
-      (elfeed)
-      (elfeed-update))))
+                    "https://desiringgod.org/blog.rss"))))
 
 (provide 'rss)
 ;;; rss.el ends here

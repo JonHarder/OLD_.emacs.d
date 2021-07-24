@@ -7,6 +7,8 @@
 (defun modules/buffers--load (config)
   "Load configuration for general buffer related settings, using CONFIG."
   (use-package ibuffer
+    :ensure t
+    :commands ibuffer
     :custom
     (ibuffer-expert t)
     (ibuffer-show-empty-filter-groups nil)

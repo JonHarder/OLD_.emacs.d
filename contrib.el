@@ -3,6 +3,14 @@
 ;;; Commentary:
 ;; defines miscellaneous helper functions to operate on (surprise) lists
 
+
+(defun killport (port)
+  "Kill all processes using the port number PORT."
+  (interactive "nPort: ")
+  (let* ((command (concat "lsof -n -i4TCP:" (number-to-string port) " | grep LISTEN | awk '{ print $2 }'"))
+         (used-ports (shell-command-to-string command)))
+    (shell-command (concat "kill -9 " used-ports))))
+
 ;;; Code:
 (defun find-windows-with-mode (mode)
   "Given the symbol MODE, return a list of windows where MODE is the major mode."
@@ -81,6 +89,13 @@ Preserves order and keys."
   (with-temp-buffer
     (insert-file-contents file)
     (split-string (buffer-string) "\n")))
+
+
+(defmacro with-time (&rest body)
+  "Measure and return the time it takes evaluating BODY."
+  `(let ((time (current-time)))
+     ,@body
+     (float-time (time-since time))))
 
 (provide 'contrib)
 ;;; contrib.el ends here

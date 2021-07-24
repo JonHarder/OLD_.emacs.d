@@ -12,6 +12,7 @@
 (defun modules/hyperbole--load (config)
   "Configuration for my hyperbole module, as determined by CONFIG."
   (use-package hyperbole
+    :ensure t
     :after evil
     :functions (kotl-mode:add-cell
                 kotl-mode:transpose-cells
