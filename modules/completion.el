@@ -65,6 +65,15 @@
     (completion-category-defaults nil)
     (completion-category-overrides '((file (styles . (partial-completion))))))
 
+  (use-package embark
+    :ensure t
+    :after (vertico marginalia)
+    :general
+    (:keymaps 'vertico-map
+     :states '(insert normal)
+     "M-." 'embark-dwim
+     "C-." 'embark-act))
+
   (use-package savehist
     :ensure t
     :init
