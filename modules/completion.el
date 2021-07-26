@@ -8,6 +8,7 @@
 (require 'evil)
 (require 'general)
 
+
 (defun modules/completion--load (config)
   "Set up completion, respecting any CONFIG provided."
 
@@ -46,16 +47,21 @@
     (vertico-mode)
     :custom
     (vertico-cycle t)
+    :config
+    (require 'vertico-directory) ;; ~/.emacs.d/ext_lisp/vertico-directory.el
     :general
     (:keymaps 'vertico-map
      :states '(insert normal)
      "C-n" 'vertico-next
-     "C-p" 'vertico-previous))
-    
+     "C-p" 'vertico-previous
+     "DEL" 'vertico-directory-delete-char
+     "M-DEL" 'vertico-directory-delete-word
+     "RET" 'vertico-directory-enter))
+
   (use-package orderless
     :ensure t
     :custom
-    (completion-styles '(orderless))
+    (completion-styles '(substring initials flex partial-completion orderless))
     (completion-category-defaults nil)
     (completion-category-overrides '((file (styles . (partial-completion))))))
 
