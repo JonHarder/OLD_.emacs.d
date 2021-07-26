@@ -42,3 +42,4 @@ transient/
 /.emacs.desktop.lock
 /history
 /quelpa/
+/package-quickstart.e*
