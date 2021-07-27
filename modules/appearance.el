@@ -40,7 +40,7 @@
     ("oceanic" .
      (:package doom-themes
       :dark doom-oceanic-next
-      :light doom-one-light))))
+      :light doom-tomorrow-day))))
 
 (defvar jh/current-theme
   (alist-get :theme jh/config))

@@ -333,8 +333,8 @@
       "c l" 'select-theme
       "c r" 'jh/reload-config
 
-      "d" #'evil-delete-buffer
-      "D" #'jh/kill-this-buffer
+      "d" #'jh/kill-this-buffer
+      "D" #'evil-delete-buffer
 
       "e" '(:ignore t :which-key "Eval")
       "e e" 'eval-last-sexp

@@ -140,7 +140,9 @@
      "o s" '(:ignore t :wk "Scheduling")
      "o s s" '(org-schedule :wk "Schedule at")
      "o s d" '(org-deadline :wk "Deadline at")
-     "a c" '(calendar :wk "Calendar")))
+     "a c" '(calendar :wk "Calendar"))
+    (:states 'normal
+     "M-c" 'org-store-link))
      
 
 

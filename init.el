@@ -32,7 +32,7 @@
 (defconfig jh/config
   :font                 "Source Code Pro"
   :font-size            "14"
-  :theme                "oceanic"
+  :theme                "modus"
   :highlight-line       nil
   :scale-org-headings   t
   :modules ( core

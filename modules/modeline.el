@@ -10,7 +10,9 @@
     :config
     (doom-modeline-mode 1)
     :custom
-    (doom-modeline-hud t)))
+    (doom-modeline-hud t)
+    (doom-modeline-buffer-file-name 'relative-from-project)
+    (doom-modeline-enable-word-count t)))
 
 (provide 'modeline)
 ;;; modeline.el ends here
