@@ -69,6 +69,7 @@
             spotify
             work
             bindings
+            projects
             ;;; TESTING MODULE
             prose))
 

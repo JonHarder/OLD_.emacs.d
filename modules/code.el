@@ -66,9 +66,16 @@
     :config
     (add-hook 'yaml-mode-hook #'jh/yaml-mode-hook))
 
-  (add-hook 'c-mode-hook (lambda () (electric-pair-mode 1)))
   (add-hook 'php-mode-hook (lambda () (electric-pair-mode 1)))
-  (add-hook 'prog-mode-hook #'jh/prog-mode-hook config))
+  (add-hook 'prog-mode-hook #'jh/prog-mode-hook config)
+
+  (use-package c-mode
+    :init
+    (add-hook 'c-mode-hook 'electric-pair-mode)
+    :general
+    (:keymaps 'c-mode-map
+     :states 'insert
+     "DEL" 'c-hungry-delete-backwards)))
 
 (provide 'code)
 ;;; code.el ends here

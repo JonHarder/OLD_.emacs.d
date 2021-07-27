@@ -32,24 +32,6 @@
    "s d" '(how-do-i-ddg :wk "DuckDuckGo")
    "s o" '(how-do-i-so :wk "StackOverflow")
    "s b" '(how-do-i-bible :wk "Bible Gateway")))
-                       
-(use-package projectile
-  :ensure t
-  :custom
-  (projectile-create-missing-test-files t)
-  :config
-  (projectile-mode 1)
-  :general
-  (:states 'normal
-   :prefix "SPC"
-   "p" '(:ignore t :wk "Project")
-   "p d" 'projectile-dired
-   "p s" 'projectile-run-eshell
-   "p p" '(projectile-switch-project :wk "Switch Project")
-   "p f" '(projectile-find-file :wk "Find File in Project")
-   "p b" 'projectile-ibuffer
-   "p /" '(rg :wk "RipGrep")
-   "p t" '(projectile-toggle-between-implementation-and-test :wk "Toggle With Test")))
 
 (use-package tab-bar
   :general
@@ -62,7 +44,6 @@
    "t k" '(tab-bar-close-tab :wk "Close")
    "t c" '(tab-bar-new-tab :wk "New")
    "t r" '(tab-bar-rename-tab :wk "Rename")))
-                
 
 (defun jh/reload-config ()
   "Evaluate current settings of Emacs configuration."
@@ -283,7 +264,7 @@
     (general-define-key
      :keymaps 'prog-mode-map
      :states 'insert
-     "RET" 'newline-and-indent)
+     "RET" 'newline)
     (general-define-key
      :states 'normal
      :keymaps 'calendar-mode-map
