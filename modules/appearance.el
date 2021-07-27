@@ -36,7 +36,11 @@
     ("dracula" .
      (:package doom-themes
       :dark doom-dracula
-      :light doom-dracula))))
+      :light doom-dracula))
+    ("oceanic" .
+     (:package doom-themes
+      :dark doom-oceanic-next
+      :light doom-one-light))))
 
 (defvar jh/current-theme
   (alist-get :theme jh/config))

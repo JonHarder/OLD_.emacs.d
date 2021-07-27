@@ -275,7 +275,7 @@
      "=" 'balance-windows
      "M-o" 'org-open-at-point-global)
     (general-define-key
-     :states 'insert
+     :states '(normal insert)
      "M-v" 'jh/paste-from-mac-clipboard)
     (general-define-key
      :states 'visual
