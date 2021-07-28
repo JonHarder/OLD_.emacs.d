@@ -44,7 +44,9 @@
   ;; (setq browse-url-browser-function #'eww)
   ;;; Let the system default for osx determine which browser to use
   (setq browse-url-browser-function #'browse-url-generic
-        browse-url-generic-program "open")
+        browse-url-generic-program "open"
+        url-cookie-trusted-urls '()
+        url-cookie-untrusted-urls '(".*"))
 
   (setq confirm-kill-processes nil)
 

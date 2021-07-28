@@ -193,5 +193,12 @@ Takes into account if path contains the home ~ symbol."
   :after eshell
   :hook (eshell-mode . esh-autosuggest-mode))
 
+(defun jh/eshell ()
+  "Open or close eshell window."
+  (interactive)
+  (if-let ((win (get-buffer-window "*eshell*")))
+      (delete-window win)
+    (eshell)))
+
 (provide 'eshell)
 ;;; eshell.el ends here

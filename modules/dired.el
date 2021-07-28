@@ -9,12 +9,14 @@
 
 (defun modules/dired--load (config)
   "Load configuration for dired, using CONFIG."
+  (eval-after-load "dired"
+    '(require 'dired-x))
+
   (use-package diredfl
     :ensure t
     :config
     (diredfl-global-mode 1))
   (put 'dired-find-alternate-file 'disabled nil)
-  (setq dired-listing-switches "-lahoG")
 
   ;; (use-package sunrise
   ;;  :quelpa sunrise-commander)
@@ -22,6 +24,12 @@
   (use-package dired
     :commands (dired dired-jump)
     :after general
+    :custom
+    (dired-recursive-deletes 'always)
+    (dired-recursive-copies 'always)
+    (dired-deletion-confirmer 'y-or-n-p)
+    (dired-dwim-target t)
+    (dired-listing-switches "-lvahoG")
     :general
     (:keymaps 'dired-mode-map
      :states 'normal

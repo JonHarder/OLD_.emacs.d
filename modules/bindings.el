@@ -248,6 +248,8 @@
     :config
     (general-evil-setup t)
     (general-define-key
+     "C-c e" 'jh/eshell)
+    (general-define-key
      :states 'normal
      "M-." 'xref-find-definitions
      "M-," 'xref-pop-marker-stack
@@ -277,7 +279,10 @@
      "e" 'occur-edit-mode)
     (general-create-definer space-leader :prefix "SPC")
     (space-leader
-      :keymaps 'normal
+      :states 'visual
+      "n" 'narrow-to-region)
+    (space-leader
+      :states 'normal
       "SPC" 'avy-goto-word-1
       "x" 'execute-extended-command
       ";" 'eval-expression
