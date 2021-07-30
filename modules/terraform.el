@@ -1,6 +1,3 @@
-(require 'transient)
-(require 'lsp)
-
 ;;; TODO: write function to recognize if modules in file aren't downloaded
 
 (defun jh/terraform-run-async-command (action &rest args)
@@ -52,26 +49,24 @@
    ("i" "Init" jh/terraform-init)])
 
 
-(defun modules/terraform--load (config)
-  "Install terraform mode and ignore CONFIG."
-  (use-package terraform-mode
-    :ensure t
-    :mode "\\.tf\\'"
-    :config
-    (use-package terraform-doc
-      :ensure t)
-    ;; (use-package company-terraform
-    ;;   :ensure t)
+(use-package terraform-mode
+  :ensure t
+  :mode "\\.tf\\'"
+  :config
+  (use-package terraform-doc
+    :ensure t)
+  ;; (use-package company-terraform
+  ;;   :ensure t)
 
-    (lsp-register-client
-     (make-lsp-client :new-connection (lsp-stdio-connection '("/usr/local/bin/terraform-ls" "serve"))
-                      :major-modes '(terraform-mode)
-                      :server-id 'terraform-ls))
-    (add-hook 'terraform-mode-hook #'lsp)
-    (add-hook 'terraform-mode-hook (lambda () (corfu-mode -1)))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("/usr/local/bin/terraform-ls" "serve"))
+                    :major-modes '(terraform-mode)
+                    :server-id 'terraform-ls))
+  (add-hook 'terraform-mode-hook #'lsp)
+  (add-hook 'terraform-mode-hook (lambda () (corfu-mode -1)))
 
-    (defun jh/terraform-mode-hook ()
-      (company-terraform-init)
-      (terraform-format-on-save-mode t))
+  (defun jh/terraform-mode-hook ()
+    (company-terraform-init)
+    (terraform-format-on-save-mode t))
 
-    (add-hook 'terraform-mode-hook #'jh/terraform-mode-hook)))
+  (add-hook 'terraform-mode-hook #'jh/terraform-mode-hook))

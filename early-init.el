@@ -4,12 +4,15 @@
 
 
 ;;; Code:
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6)
+
 (defvar byte-compile-warnings nil)
 
-(setq package-enable-at-startup t)
-(defvar package-quickstart)
-
-(setq package-quickstart t)
+;; (setq package-enable-at-startup t)
+;; (defvar package-quickstart)
+;; (setq package-quickstart t)
+(setq package--init-file-ensured t)
 
 (menu-bar-mode -1)
 (set-scroll-bar-mode nil)
@@ -33,9 +36,14 @@
 
 (defvar old-file-name-handler file-name-handler-alist)
 (setq file-name-handler-alist nil)
-(setq gc-cons-threshold most-positive-fixnum
-      gc-cons-percentage 0.6)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
+
+(when (eq system-type 'darwin)
+  (setq-default
+   mac-option-modifier nil
+   mac-command-modifier 'meta
+   mac-redisplay-dont-reset-vscroll t
+   mac-mouse-wheel-smooth-scroll nil))
 
 (defun jh/post-init-hook ()
   "Post initialization function."

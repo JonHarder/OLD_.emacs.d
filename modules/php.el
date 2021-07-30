@@ -25,21 +25,19 @@
   (c-set-offset 'arglist-close 'ywb-php-lineup-arglist-close))
 
 
-(defun modules/php--load (config)
-  "Load configuration for php uising CONFIG."
-  (use-package php-mode
-    :ensure t
-    :mode "\\.php\\'"
-    :init
-    (add-hook 'php-mode-hook #'my-php-mode-hook))
+(use-package php-mode
+  :ensure t
+  :mode "\\.php\\'"
+  :init
+  (add-hook 'php-mode-hook #'my-php-mode-hook))
 
-  (setq lsp-intelephense-server-command
-        '("intelephense" "--stdio" "--maxMemory=3072"))
+(setq lsp-intelephense-server-command
+      '("intelephense" "--stdio" "--maxMemory=3072"))
 
-  (use-package ac-php
-    :ensure t
-    :after php)
+(use-package ac-php
+  :ensure t
+  :after php)
 
-  (use-package psysh
-    :ensure t
-    :commands psysh))
+(use-package psysh
+  :ensure t
+  :commands psysh)

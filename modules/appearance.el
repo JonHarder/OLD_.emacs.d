@@ -3,9 +3,9 @@
 ;;; Commentary:
 
 ;;; Code:
-(require 'seq)
-(require 'use-package)
-(require 'contrib "~/.emacs.d/contrib.el")
+;; (require 'seq)
+;; (require 'use-package)
+;; (require 'contrib "~/.emacs.d/contrib.el")
 
 
 (defvar jh/themes
@@ -41,10 +41,6 @@
      (:package doom-themes
       :dark doom-oceanic-next
       :light doom-tomorrow-day))))
-
-(defvar jh/current-theme
-  (alist-get :theme jh/config))
-
 
 (defun jh/theme-customizations (theme)
   "Perform any theme specific configuration for a given THEME."
@@ -126,7 +122,7 @@ function to load a particular theme."
 
 (defun jh/theme-config ()
   "Get the configuration for the chosen theme."
-  (alist-get jh/current-theme jh/themes nil nil #'string-equal))
+  (alist-get jh/theme jh/themes nil nil #'string-equal))
 
 (defun jh/theme-property (prop)
   "Get a keyword PROP from the theme configuration."
@@ -152,7 +148,7 @@ Uses the dark or light variant depending on system setting."
   (interactive (list (completing-read
                       "Theme: "
                       (contrib/alist-keys jh/themes))))
-  (setq jh/current-theme name)
+  (setq jh/theme name)
   (jh/set-theme-to-system
    (jh/theme-light)
    (jh/theme-dark)
@@ -161,52 +157,46 @@ Uses the dark or light variant depending on system setting."
 (defun reload-theme ()
   "Load configuration given the current values of jh/config."
   (interactive)
-  (select-theme jh/current-theme))
+  (select-theme jh/theme))
   
 
 (defvar jh/theme-switch-timer nil "Timer used to schedule querying OSX system color preference.")
 
-(defun modules/appearance--load (config)
-  "Load appearance settings based off of CONFIG."
-  (require 'whitespace)
+(require 'whitespace)
 
-  (blink-cursor-mode -1)
-  (show-paren-mode 1)
-  (global-prettify-symbols-mode +1)
+(blink-cursor-mode -1)
+show-paren-mode 1
+(global-prettify-symbols-mode +1)
 
-  (use-package diff-hl
-    :ensure t
-    :custom
-    (diff-hl-draw-boarders t)
-    (diff-hl-side 'left)
-    :hook ((after-init . global-diff-hl-mode)
-           (fundamental-mode . diff-hl-margin-mode)))
+(use-package diff-hl
+  :ensure t
+  :custom
+  (diff-hl-draw-boarders t)
+  (diff-hl-side 'left)
+  :hook ((after-init . global-diff-hl-mode)
+         (fundamental-mode . diff-hl-margin-mode)))
 
-  (fringe-mode '(8 . 8))
-  (setq-default fringes-outside-margins nil)
-  (setq-default indicate-buffer-boundaries nil)
-  (setq-default indicate-empty-lines nil)
-  (setq-default overflow-newlines-into-fringe t)
+(fringe-mode '(8 . 8))
+(setq-default fringes-outside-margins nil)
+(setq-default indicate-buffer-boundaries nil)
+(setq-default indicate-empty-lines nil)
+(setq-default overflow-newlines-into-fringe t)
 
-  (use-package rainbow-delimiters
-    :ensure t
-    :functions 'rainbow-delimiters-mode-enable
-    :config
-    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode-enable))
+(use-package rainbow-delimiters
+  :ensure t
+  :functions 'rainbow-delimiters-mode-enable
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode-enable))
 
-  (let* ((font-name (alist-get :font config))
-         (font-size (alist-get :font-size config))
-         (font (format "%s %s" font-name font-size))
-         (theme-name (alist-get :theme config)))
+(let ((font (format "%s %s" jh/font jh/font-size)))
+  (select-theme jh/theme)
 
-    (select-theme theme-name)
+  (when jh/theme-switch-timer
+    (cancel-timer jh/theme-switch-timer))
+  (setq jh/theme-switch-timer
+        (run-with-idle-timer 2 1 #'reload-theme))
 
-    (when jh/theme-switch-timer
-      (cancel-timer jh/theme-switch-timer))
-    (setq jh/theme-switch-timer
-          (run-with-idle-timer 2 1 #'reload-theme))
-
-    (set-frame-font font)
-    (add-to-list 'default-frame-alist `(font . ,font))))
+  (set-frame-font font)
+  (add-to-list 'default-frame-alist `(font . ,font)))
 (provide 'appearance)
 ;;; appearance.el ends here

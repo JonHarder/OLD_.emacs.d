@@ -122,9 +122,6 @@ Takes into account if path contains the home ~ symbol."
 
 (defalias 'eshell/gs (lambda () (eshell/git "status")))
 
-(defun modules/eshell--load (config)
-  "Load configuration for eshell using CONFIG.")
-
 (use-package eshell-up
   :ensure t
   :after eshell

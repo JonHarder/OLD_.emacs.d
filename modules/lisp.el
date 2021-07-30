@@ -6,27 +6,24 @@
 
 
 ;;; Code:
-(require 'use-package)
-(defun modules/lisp--load (config)
-  "Configure Lisp modes, as determined by `CONFIG'."
-  (use-package sly
-    :ensure t
-    :commands sly
-    :init
-    (setq inferior-lisp-program "/usr/local/bin/sbcl"))
+(use-package sly
+  :ensure t
+  :commands sly
+  :init
+  (setq inferior-lisp-program "/usr/local/bin/sbcl"))
 
-  (use-package eros
-    :ensure t
-    :hook (lisp-data-mode . eros-mode))
+(use-package eros
+  :ensure t
+  :hook (lisp-data-mode . eros-mode))
 
-  (use-package parinfer-rust-mode
-    :ensure t
-    :hook lisp-data-mode
-    :init
-    (setq parinfer-rust-auto-download t)
-    :config
-    (add-to-list 'parinfer-rust-treat-command-as '(evil-open-below . "paren"))
-    (add-to-list 'parinfer-rust-treat-command-as '(evil-open-above . "paren"))))
+(use-package parinfer-rust-mode
+  :ensure t
+  :hook lisp-data-mode
+  :init
+  (setq parinfer-rust-auto-download t)
+  :config
+  (add-to-list 'parinfer-rust-treat-command-as '(evil-open-below . "paren"))
+  (add-to-list 'parinfer-rust-treat-command-as '(evil-open-above . "paren")))
 
 (provide 'lisp)
 ;;; lisp.el ends here

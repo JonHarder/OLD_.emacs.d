@@ -43,3 +43,5 @@ transient/
 /history
 /quelpa/
 /package-quickstart.e*
+/modules-computed.el*
+/bootstrap.elc

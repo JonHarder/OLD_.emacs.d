@@ -11,39 +11,167 @@
 ;; which keys will perform which actions in mid chord.
 
 ;;; Code:
-(require 'contrib "~/.emacs.d/contrib.el")
-(require 'evil)
-(require 'diary-lib)
-(require 'org)
-(require 'use-package)
+(use-package general
+  :ensure t
+  :config
+  (general-evil-setup t)
+  (general-define-key
+   "C-c e" 'jh/eshell)
+  (general-define-key
+   :states 'normal
+   "M-." 'xref-find-definitions
+   "M-," 'xref-pop-marker-stack
+   "M-v" 'jh/paste-from-mac-clipboard
+   "C-t" 'transpose-chars
+   "=" 'balance-windows
+   "M-o" 'org-open-at-point-global)
+  (general-define-key
+   :states '(normal insert)
+   "M-v" 'jh/paste-from-mac-clipboard)
+  (general-define-key
+   :states 'visual
+   "M-c" 'jh/copy-to-mac-clipboard)
+  (general-define-key
+   :keymaps 'prog-mode-map
+   :states 'insert
+   "RET" 'newline)
+  (general-define-key
+   :states 'normal
+   :keymaps 'calendar-mode-map
+   "i d" 'diary-insert-entry
+   "H" 'calendar-backward-month
+   "L" 'calendar-forward-month)
+  (general-define-key
+   :states 'normal
+   :keymaps 'occur-mode-map
+   "e" 'occur-edit-mode)
+  (general-define-key
+   :prefix "SPC"
+   :states 'visual
+   "n" 'narrow-to-region)
+  (general-define-key
+   :prefix "SPC"
+   :states 'normal
+   "x" 'execute-extended-command
+   ";" 'eval-expression
+   "`" 'shell-command
+   "!" 'async-shell-command
+   "RET" 'org-capture
+   "ESC" 'evil-ex-nohighlight
+   "TAB" 'switch-to-most-recent-buffer
+   ;; "/" 'consult-line
+   "/" #'projectile-find-file
+
+   "1" #'delete-other-windows
+   "2" #'split-window-below
+   "3" #'split-window-right
+   "0" #'delete-window
+
+   "a =" 'calc
+   "a c" 'calendar
+   "a i" 'ielm
+   "a t" 'eshell
+
+   "b i" 'ibuffer
+   "b l" 'jh/switch-buffer-left
+   "b r" 'jh/switch-buffer-right
+   "b R" 'rename-buffer
+   "b s" 'buffer-move-out-of-side-window
+   "b t" 'window-toggle-side-windows
+
+   "c c" 'jh/find-config
+   "c l" 'select-theme
+   "c r" 'jh/reload-config
+
+   "d" #'jh/kill-this-buffer
+   "D" #'evil-delete-buffer
+
+   "e e" 'eval-last-sexp
+   "e ;" 'eval-expression
+
+   "f c" 'find-calendar
+   "f i" 'find-shell-config
+   "f ." 'jh/find-config
+   "f d" 'delete-file
+   "f f" 'find-file
+   "f s" 'save-buffer
+   "f t" 'find-todo-file
+   "f m" 'jh/find-module
+   "f p" 'ffap
+   "f r" 'rename-current-buffer-file
+
+   ;; frame based commands
+   "f o" 'other-frame
+   "f 2" 'make-frame
+
+   "h f" 'helpful-callable
+   "h k" 'helpful-key
+   "h v" 'helpful-variable
+   "h m" 'describe-mode
+   "h p" 'describe-package
+   "h i" 'info
+
+   ;;; i
+   "i l" 'imenu-list-smart-toggle
+
+   ;;; k
+   "k g" 'jh/work-git
+   "k f" 'jh/work-find-file
+   "k l" 'jh/jira-link
+
+   "l r" 'lsp-ui-peek-find-references
+   "l d" 'lsp-ui-peek-find-definitions
+   "l n" 'flycheck-next-error
+   "l p" 'flycheck-previous-error
+
+   "n d" 'narrow-to-defun
+   "n n" 'narrow-to-defun
+   "n w" 'widen
+
+   "p c" 'compile
+   "p u" 'package-install
+
+   "q" #'kill-emacs
+
+   ;; r
+   "r" #'winner-redo
+
+   ;;; v
+   "=" 'text-scale-increase
+   "-" 'text-scale-decrease))
 
 (use-package winner
+  :ensure t
+  :after general
   :general
   (:states 'normal
    :prefix "SPC"
    "u" #'winner-undo))
 
 (use-package how-do-i
+  :after general
   :general
   (:states 'normal
    :prefix "SPC"
-   "s" '(:ignore t :wk "Search")
-   "s g" '(how-do-i-google :wk "Google")
-   "s d" '(how-do-i-ddg :wk "DuckDuckGo")
-   "s o" '(how-do-i-so :wk "StackOverflow")
-   "s b" '(how-do-i-bible :wk "Bible Gateway")))
+   ;; "s" '(:ignore t :wk "Search")
+   "s g" 'how-do-i-google
+   "s d" 'how-do-i-ddg
+   "s o" 'how-do-i-so
+   "s b" 'how-do-i-bible))
 
 (use-package tab-bar
+  :after general
+  :config
+  (tab-bar-mode 1)
   :general
   (:states 'normal
    :prefix "SPC"
-   "t" '(:ignore t :which-key "Tabs")
-   "t t" '(tab-bar-switch-to-tab :wk "Switch")
-   "t n" '(tab-bar-switch-to-next-tab :wk "Next")
-   "t p" '(tab-bar-switch-to-prev-tab :wk "Prev")
-   "t k" '(tab-bar-close-tab :wk "Close")
-   "t c" '(tab-bar-new-tab :wk "New")
-   "t r" '(tab-bar-rename-tab :wk "Rename")))
+   "t t" 'tab-bar-switch-to-tab
+   "t n" 'tab-bar-switch-to-next-tab
+   "t p" 'tab-bar-switch-to-prev-tab
+   "t k" 'tab-bar-close-tab
+   "t c" 'tab-bar-new-tab
+   "t r" 'tab-bar-rename-tab))
 
 (defun jh/reload-config ()
   "Evaluate current settings of Emacs configuration."
@@ -169,218 +297,67 @@
   (interactive)
   (find-file diary-file))
 
-(defun modules/bindings--load (config)
-  "Configure all things key bindings using CONFIG."
-  (put 'narrow-to-region 'disabled nil)
-  (use-package which-key
-    :ensure t
-    :config
-    (which-key-mode))
+(put 'narrow-to-region 'disabled nil)
 
-  (use-package ctrlf
-    :ensure t
-    :commands (ctrlf-forward-fuzzy ctrlf-backward-fuzzy)
-    :config
-    (ctrlf-mode +1)
-    :general
-    (:states 'normal
-     "/" #'ctrlf-forward-fuzzy
-     "?" #'ctrlf-backward-fuzzy))
+(use-package ace-window
+  :ensure t
+  :commands (ace-window)
+  :after general
+  :custom
+  (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
+  (aw-background t)
+  (aw-scope 'frame)
+  (aw-ignore-current t)
+  :bind
+  ("C-x o" . 'ace-window)
+  :general
+  (:states 'normal
+   "SPC w" #'ace-window)
+  :config
+  (face-spec-set 'aw-leading-char-face '((t (:foreground "red" :height 3.0)))))
 
-  (use-package ace-window
-    :ensure t
-    :commands (ace-window)
-    :custom
-    (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
-    (aw-background t)
-    (aw-scope 'frame)
-    (aw-ignore-current t)
-    :bind
-    ("C-x o" . 'ace-window)
-    :general
-    (:states 'normal
-     "SPC w" #'ace-window)
-    :config
-    (face-spec-set 'aw-leading-char-face '((t (:foreground "red" :height 3.0)))))
+(use-package imenu-list
+  :ensure t
+  :commands (imenu-list))
 
-  (use-package imenu-list
-    :ensure t
-    :commands (imenu-list))
+(defun jh/split-right-switch-buffer ()
+  "Make a vertical split, then prompt for a buffer to display in the new split."
+  (interactive)
+  (evil-window-vsplit)
+  (evil-window-right 1)
+  (call-interactively #'switch-to-buffer))
 
-  (defun jh/split-right-switch-buffer ()
-    (interactive)
-    (evil-window-vsplit)
-    (evil-window-right 1)
-    (call-interactively #'switch-to-buffer))
+(defun switch-to-most-recent-buffer ()
+  "Switch to the most recently access buffer."
+  (interactive)
+  (switch-to-buffer nil))
 
-  (defun switch-to-most-recent-buffer ()
-    (interactive)
-    (switch-to-buffer nil))
+(use-package beacon
+  :ensure t
+  :after general
+  :config
+  (beacon-mode 1)
+  :general
+  (:states 'normal
+   :prefix "SPC"
+   "z" #'beacon-blink))
 
-  (use-package beacon
-    :ensure t
-    :config
-    (beacon-mode 1)
-    :general
-    (:states 'normal
-     :prefix "SPC"
-     "z" #'beacon-blink))
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+      (if (not (and filename (file-exists-p filename)))
+         (error "Buffer '%s' is not visiting a file!" name)
+        (let ((new-name (read-file-name "New name: " filename)))
+            (when (get-buffer new-name)
+              (error "A buffer named '%s' already exists!" new-name))
+            (rename-file filename new-name 1)
+            (rename-buffer new-name)
+            (set-visited-file-name new-name)
+            (set-buffer-modified-p nil)
+            (message "File '%s' successfully renamed to '%s'"
+                       name (file-name-nondirectory new-name))))))
 
-  (defun rename-current-buffer-file ()
-    "Renames current buffer and file it is visiting."
-    (interactive)
-    (let ((name (buffer-name))
-          (filename (buffer-file-name)))
-        (if (not (and filename (file-exists-p filename)))
-           (error "Buffer '%s' is not visiting a file!" name)
-          (let ((new-name (read-file-name "New name: " filename)))
-              (when (get-buffer new-name)
-                (error "A buffer named '%s' already exists!" new-name))
-              (rename-file filename new-name 1)
-              (rename-buffer new-name)
-              (set-visited-file-name new-name)
-              (set-buffer-modified-p nil)
-              (message "File '%s' successfully renamed to '%s'"
-                         name (file-name-nondirectory new-name))))))
-
-  (use-package general
-    :ensure t
-    :config
-    (general-evil-setup t)
-    (general-define-key
-     "C-c e" 'jh/eshell)
-    (general-define-key
-     :states 'normal
-     "M-." 'xref-find-definitions
-     "M-," 'xref-pop-marker-stack
-     "M-v" 'jh/paste-from-mac-clipboard
-     "C-t" 'transpose-chars
-     "=" 'balance-windows
-     "M-o" 'org-open-at-point-global)
-    (general-define-key
-     :states '(normal insert)
-     "M-v" 'jh/paste-from-mac-clipboard)
-    (general-define-key
-     :states 'visual
-     "M-c" 'jh/copy-to-mac-clipboard)
-    (general-define-key
-     :keymaps 'prog-mode-map
-     :states 'insert
-     "RET" 'newline)
-    (general-define-key
-     :states 'normal
-     :keymaps 'calendar-mode-map
-     "i d" 'diary-insert-entry
-     "H" 'calendar-backward-month
-     "L" 'calendar-forward-month)
-    (general-define-key
-     :states 'normal
-     :keymaps 'occur-mode-map
-     "e" 'occur-edit-mode)
-    (general-create-definer space-leader :prefix "SPC")
-    (space-leader
-      :states 'visual
-      "n" 'narrow-to-region)
-    (space-leader
-      :states 'normal
-      "SPC" 'avy-goto-word-1
-      "x" 'execute-extended-command
-      ";" 'eval-expression
-      "`" 'shell-command
-      "!" 'async-shell-command
-      "RET" 'org-capture
-      "ESC" 'evil-ex-nohighlight
-      "TAB" 'switch-to-most-recent-buffer
-      ;; "/" 'consult-line
-      "/" #'projectile-find-file
-
-      "1" #'delete-other-windows
-      "2" #'split-window-below
-      "3" #'split-window-right
-      "0" #'delete-window
-
-      "a" '(:ignore t :which-key "Apps")
-      "a =" 'calc
-      "a c" 'calendar
-      ;; "a e" 'eshell
-      "a i" 'ielm
-      "a t" 'eshell
-
-      "b" '(:ignore t :which-key "Buffers")
-      "b i" 'ibuffer
-      "b l" 'jh/switch-buffer-left
-      "b r" 'jh/switch-buffer-right
-      "b R" 'rename-buffer
-      "b s" 'buffer-move-out-of-side-window
-      "b t" 'window-toggle-side-windows
-
-      "c" '(:ignore t :which-key "Conf")
-      "c c" 'jh/find-config
-      "c l" 'select-theme
-      "c r" 'jh/reload-config
-
-      "d" #'jh/kill-this-buffer
-      "D" #'evil-delete-buffer
-
-      "e" '(:ignore t :which-key "Eval")
-      "e e" 'eval-last-sexp
-      "e ;" 'eval-expression
-
-      "f" '(:ignore t :which-key "Files")
-      "f c" 'find-calendar
-      "f i" '(find-shell-config :wk "Find Shell Init File")
-      "f ." 'jh/find-config
-      "f d" 'delete-file
-      "f f" '(find-file :wk "Find File")
-      "f s" '(save-buffer :wk "Save File")
-      "f t" 'find-todo-file
-      "f m" '(jh/find-module :wk "Find Module")
-      "f p" '(ffap :wk "Find File at Point")
-      "f r" '(rename-current-buffer-file :wk "Rename File")
-
-      ;; frame based commands
-      "f o" 'other-frame
-      "f 2" 'make-frame
-
-      "h" '(:ignore t :which-key "Help")
-      "h f" 'helpful-callable
-      "h k" 'helpful-key
-      "h v" 'helpful-variable
-      "h m" 'describe-mode
-      "h p" 'describe-package
-      "h i" 'info
-
-      ;;; i
-      "i" '(:ignore t :which-key "Imenu")
-      "i l" 'imenu-list-smart-toggle
-
-      ;;; k
-      "k" '(:ignore t :which-key "Kipsu")
-      "k g" 'jh/work-git
-      "k f" 'jh/work-find-file
-      "k l" 'jh/jira-link
-
-      "l" '(:ignore t :which-key "Lsp")
-      "l r" 'lsp-ui-peek-find-references
-      "l d" 'lsp-ui-peek-find-definitions
-      "l n" 'flycheck-next-error
-      "l p" 'flycheck-previous-error
-
-      "n" '(:ignore t :which-key "Narrow")
-      "n d" 'narrow-to-defun
-      "n n" 'narrow-to-defun
-      "n w" 'widen
-
-      "p c" 'compile
-      "p u" 'package-install
-
-      "q" #'kill-emacs
-
-      ;; r
-      "r" #'winner-redo
-
-      ;;; v
-      "=" 'text-scale-increase
-      "-" 'text-scale-decrease)))
 (provide 'bindings)
 ;;; bindings.el ends here

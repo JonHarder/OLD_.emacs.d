@@ -3,10 +3,9 @@
 ;;; Commentary:
 
 ;;; Code:
-(require 'prose-mode "~/.emacs.d/ext_lisp/prose-mode.el")
 
-(defun modules/prose--load (config)
-  "Set up `prose-mode' using argument CONFIG.")
+(use-package prose-mode
+  :mode "\\.prose\\'")
 
 (provide 'prose)
 ;;; prose.el ends here

@@ -72,13 +72,10 @@
  ["Actions"
   ("r" "Run playbook" ansible/run-playbook)])
 
-
-(defun modules/ansible--load (config)
-  "Load some general ansible packages and ignore CONFIG."
-  (use-package jinja2-mode
-    :ensure t
-    :mode "\\.j2\\'")
-  (add-to-list 'auto-mode-alist '("hosts" . conf-mode)))
+(use-package jinja2-mode
+  :ensure t
+  :mode "\\.j2\\'")
+(add-to-list 'auto-mode-alist '("hosts" . conf-mode))
 
 (provide 'ansible)
 ;;; ansible.el ends here
