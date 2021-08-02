@@ -36,6 +36,7 @@
    "l" 'dired-find-file
    "w" 'ace-window
    "h" 'dired-up-directory
+   "v" 'dired-view-file
    "RET" 'dired-find-file-other-window
    "q" (lambda () (interactive) (quit-window t)))
   (:states 'normal
