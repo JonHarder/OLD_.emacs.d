@@ -11,11 +11,12 @@
   :mode "\\.fish\\'")
 
 (defun jh/vterm-init-hook ()
+  "Personal hook when starting a `vterm' process."
   (setq-local evil-insert-state-cursor 'box)
   (evil-insert-state))
 
 (defun vterm--kill-vterm-buffer-and-window (process event)
-  "Kill buffer and window on vterm process termination."
+  "Kill buffer and window on vterm PROCESS termination, ignore EVENT."
   (when (not (process-live-p process))
     (let ((buf (process-buffer process)))
       (when (buffer-live-p buf)

@@ -67,6 +67,7 @@
   
 (use-package evil-org
   :ensure t
+  :commands (org-agenda-list)
   :after org
   :hook ((org-mode . evil-org-mode)
          (evil-org-mode . evil-org-set-key-theme))

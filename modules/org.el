@@ -98,6 +98,8 @@
         "* TODO %?\n %i\n %a")
        ("s" "Standup" entry (file+headline "~/Org/standup.org" "Announcements")
         "* TODO %?")
+       ("l" "Leads Meeting" entry (file+headline "~/Org/leads.org" "Notes")
+        "* %?")
        ("d" "DevOps Note" entry (file+headline "~/Org/working_groups/devops/notes.org" "Agenda")
         "* TODO %?")
        ("o" "One on One" entry (file+headline "~/Org/one_on_one.org" "Agenda")
