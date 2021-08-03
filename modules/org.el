@@ -77,6 +77,7 @@
         '((sequence
            "SOMEDAY(s)"
            "TODO(t)"
+           "BLOCKED(b)"
            "NEXT(n)"
            "WAITING(w)"
            "INPROGRESS(i)"
@@ -87,6 +88,7 @@
   (setq org-todo-keyword-faces
         '(("SOMEDAY" :foreground "#eeeeee" :background "#444444" :weight bold :underline t)
           ("TODO" :foreground "#fc9d03" :weight bold :underline t)
+          ("BLOCKED" :foreground "#eee" :background "#ff0000" :weight bold :underline t)
           ("NEXT" :foreground "#0098dd" :weight bold :underline t)
           ("WAITING" :foreground "#bf3cc6" :weight bold :underline t)
           ("INPROGRESS" :foreground "#fc5603" :weight bold :underline t)
@@ -171,7 +173,7 @@
   (auto-fill-mode 1)
   (org-toggle-pretty-entities))
 
- ;; (add-hook 'org-mode-hook #'jh/org-mode-hook)
+(add-hook 'org-mode-hook #'jh/org-mode-hook)
 
  ;;; Install external packages
 (use-package org-tree-slide

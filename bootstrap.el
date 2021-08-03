@@ -51,5 +51,12 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
+(defmacro defer! (time &rest forms)
+  "Execute FORMS after Emacs has been idle for TIME secs."
+  `(run-with-idle-timer ,time
+                        nil
+                        (lambda ()
+                           ,@forms)))
+
 (provide 'bootstrap)
 ;;; bootstrap.el ends here

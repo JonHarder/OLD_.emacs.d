@@ -87,6 +87,7 @@
    "D" #'evil-delete-buffer
 
    "e e" 'eval-last-sexp
+   "e d" 'eval-defun
    "e ;" 'eval-expression
 
    "f c" 'find-calendar

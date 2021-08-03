@@ -48,6 +48,9 @@
 (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 (setq custom-file (expand-file-name "custom.el" temporary-file-directory))
 
+(setq kill-buffer-query-functions
+      (remq 'process-kill-buffer-query-function kill-buffer-query-functions))
+
 (defvar apropos-do-all t)
 (setq after-focus-change-function #'garbage-collect)
 
