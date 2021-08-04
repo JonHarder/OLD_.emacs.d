@@ -11,6 +11,14 @@
 ;; which keys will perform which actions in mid chord.
 
 ;;; Code:
+(defun text-scale-reset ()
+  "Reset the text scale back to configuration default.
+
+This is determined by `jh/font-size'"
+  (interactive)
+  (text-scale-adjust 0))
+
+
 (use-package general
   :ensure t
   :config

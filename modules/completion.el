@@ -35,7 +35,6 @@
 
 (use-package vertico
   :ensure t
-  :commands (completing-read-default completing-read-multiple)
   :init
   (vertico-mode)
   :custom

@@ -1,19 +1,35 @@
 ;;; init --- Summary
-;; my emacs configuration
+
+;;; Commentary:
+;; my Emacs configuration
 
 ;;; Code:
 (load (concat user-emacs-directory "bootstrap"))
 
 
-(defvar jh/font "Source Code Pro")
-(defvar jh/font-size 14)
-(defvar jh/theme "modus")
-(defvar jh/highlight-line nil)
-(defvar jh/scale-org-headings t)
+(defcustom jh/font-size 14
+  "Default font size all buffers will display as."
+  :type 'integer)
 
+(defcustom jh/font "Source Code Pro"
+  "Default font to use for text."
+  :type 'string)
 
-(defvar config-modules-directory
-  (concat user-emacs-directory "modules"))
+(defcustom jh/theme "modus"
+  "Theme to use, must be a key memeber of `jh/themes'."
+  :type 'string)
+
+(defcustom jh/highlight-line nil
+  "Whether or not to highlight the line the point is on."
+  :type 'boolean)
+
+(defcustom jh/scale-org-headings t
+  "Whether or not to scale org headings."
+  :type 'boolean)
+
+(defcustom config-modules-directory (concat user-emacs-directory "modules")
+  "Directory containing configuration modules."
+  :type 'directory)
 
 (defconst config-module-generated-file
   (concat user-emacs-directory "modules-computed"))
