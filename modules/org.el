@@ -111,7 +111,10 @@
   (org-confirm-babel-evaluate nil)
   (org-edit-src-content-indentation 0)
   (org-startup-indented 1)
-  (org-agenda-files '("~/Org/calendars" "~/Org/todo.org"))
+  (org-agenda-files `("~/Org/calendars"
+                      "~/Org/todo.org"
+                      "~/Org/journal"
+                      ,@(jh/dir-files "~/Documents/Bethlehem/classes" "org")))
   (org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done))
   (calendar-date-style 'iso)
   (calendar-mode-line-format nil)
@@ -125,7 +128,6 @@
   (:states 'normal
    :keymaps 'org-mode-map
    :prefix "SPC"
-   "o" '(:ignore t :wk "Org")
    "o a" 'org-archive-subtree
    "o b" 'jh/org-src-block
    "o c" 'org-ctrl-c-ctrl-c
@@ -137,13 +139,11 @@
    "o g" 'org-goto
    "o ." 'org-time-stamp
    "o '" 'org-edit-special
-   "o s" '(:ignore t :wk "Scheduling")
-   "o s s" '(org-schedule :wk "Schedule at")
-   "o s d" '(org-deadline :wk "Deadline at")
-   "a c" '(calendar :wk "Calendar"))
+   "o s s" 'org-schedule
+   "o s d" 'org-deadline
+   "a c" 'calendar)
   (:states 'normal
    "M-c" 'org-store-link))
-     
 
 
 (use-package org-agenda

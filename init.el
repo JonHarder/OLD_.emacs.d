@@ -6,30 +6,39 @@
 ;;; Code:
 (load (concat user-emacs-directory "bootstrap"))
 
+(defgroup configuration nil
+  "Group for personal configuration."
+  :group 'emacs)
 
 (defcustom jh/font-size 14
   "Default font size all buffers will display as."
-  :type 'integer)
+  :type 'integer
+  :group 'configuration)
 
 (defcustom jh/font "Source Code Pro"
   "Default font to use for text."
-  :type 'string)
+  :type 'string
+  :group 'configuration)
 
-(defcustom jh/theme "modus"
+(defcustom jh/theme "oceanic"
   "Theme to use, must be a key memeber of `jh/themes'."
-  :type 'string)
+  :type 'string
+  :group 'configuration)
 
 (defcustom jh/highlight-line nil
   "Whether or not to highlight the line the point is on."
-  :type 'boolean)
+  :type 'boolean
+  :group 'configuration)
 
 (defcustom jh/scale-org-headings t
   "Whether or not to scale org headings."
-  :type 'boolean)
+  :type 'boolean
+  :group 'configuration)
 
 (defcustom config-modules-directory (concat user-emacs-directory "modules")
   "Directory containing configuration modules."
-  :type 'directory)
+  :type 'directory
+  :group 'configuration)
 
 (defconst config-module-generated-file
   (concat user-emacs-directory "modules-computed"))
@@ -71,7 +80,6 @@
                     "\n"))
           (seq-drop (directory-files config-modules-directory t) 2)))
   (byte-compile-file (concat config-module-generated-file ".el")))
-
 
 (when (regenerate-config-p)
   (regenerate-config))

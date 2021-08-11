@@ -10,7 +10,7 @@
   (corfu-global-mode 1)
   :custom
   (corfu-cycle t)
-  (corfu-auto t)
+  (corfu-auto nil)
   (corfu-quit-at-boundary t)
   (corfu-quit-no-match t)
   :general
@@ -35,6 +35,7 @@
 
 (use-package vertico
   :ensure t
+  :demand t
   :init
   (vertico-mode)
   :custom
@@ -69,8 +70,14 @@
    "C-." 'embark-dwim
    "C-;" 'embark-act))
 
+(use-package recentf
+  :hook pre-command
+  :config
+  (recentf-mode 1))
+
 (use-package savehist
   :ensure t
+  :hook pre-command
   :init
   (savehist-mode))
 

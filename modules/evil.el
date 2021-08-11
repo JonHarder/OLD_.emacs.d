@@ -11,7 +11,7 @@
 ;;;; code
 (use-package evil
   :ensure t
-  :demand t
+  :hook pre-command
   :init
   (setq evil-search-module 'evil-search
         evil-ex-complete-emacs-commands t
@@ -46,6 +46,7 @@
 
 (use-package evil-commentary
   :ensure t
+  :after evil
   :config
   (evil-commentary-mode 1)
   :general

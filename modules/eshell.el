@@ -133,25 +133,20 @@ Takes into account if path contains the home ~ symbol."
 
 (defun jh/eshell-prompt ()
   "Prompt for eshell."
-  (let* ((color-success (if jh/dark-mode "#00ff00" "#228822"))
-         (color-failure "red")
-         (color-path (if jh/dark-mode "cyan" "#0088aa"))
-         (color-default (if jh/dark-mode "white" "black"))
-         (color-git (if jh/dark-mode "#5577ff" "#0022dd"))
-         (color-git-branch "#cc3333")
-         (branch (jh/eshell-prompt--git-branch))
-         (status-color (if (= eshell-last-command-status 0)
-                           color-success
-                         color-failure)))
+  (let* ((branch (jh/eshell-prompt--git-branch))
+         (success (= eshell-last-command-status 0))
+         (status (propertize "➜ " 'face (if success
+                                            'font-lock-type-face
+                                          'error))))
     (concat
-     (with-face "➜ " `(:foreground ,status-color))
-     (with-face (jh/eshell-prompt--compressed-pwd default-directory) `(:foreground ,color-path :weight bold))
+     status
+     (propertize (jh/eshell-prompt--compressed-pwd default-directory) 'face 'font-lock-builtin-face)
      (unless (null branch)
        (concat
-        (with-face " git:(" `(:foreground ,color-git :weight bold))
-        (with-face branch `(:foreground ,color-git-branch :weight bold))
-        (with-face ")" `(:foreground ,color-git :weight bold))))
-     (with-face " $ " `(:foreground ,color-default)))))
+        (propertize " git:(" 'face 'font-lock-constant-face)
+        (propertize branch 'face 'font-lock-keyword-face)
+        (propertize ")" 'face 'font-lock-constant-face)))
+     (propertize " $ " 'face 'font-lock-type-face))))
 
 (use-package eshell
   :custom

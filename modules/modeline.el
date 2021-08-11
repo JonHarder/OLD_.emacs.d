@@ -14,5 +14,7 @@
   (doom-modeline-buffer-file-name 'relative-from-project)
   (doom-modeline-enable-word-count t))
 
+(display-time-mode t)
+
 (provide 'modeline)
 ;;; modeline.el ends here

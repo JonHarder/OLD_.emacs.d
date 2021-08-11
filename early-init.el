@@ -4,19 +4,22 @@
 
 
 ;;; Code:
-(setq gc-cons-threshold most-positive-fixnum
-      gc-cons-percentage 0.6)
-
 (defvar byte-compile-warnings nil)
 
-;; (setq package-enable-at-startup t)
-;; (defvar package-quickstart)
-;; (setq package-quickstart t)
-(setq package--init-file-ensured t)
+(setq package-quickstart t
+      package-enable-at-startup nil
+      package--init-file-ensured t)
+
+(require 'package)
+(setq package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 
 (menu-bar-mode -1)
 (set-scroll-bar-mode nil)
-;; (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
 (setq inhibit-startup-message t)
@@ -47,9 +50,7 @@
 
 (defun jh/post-init-hook ()
   "Post initialization function."
-  (setq gc-cons-threshold (* 2 1000 1000)
-        gc-cons-percentage 0.1
-        file-name-handler-alist old-file-name-handler))
+  (setq file-name-handler-alist old-file-name-handler))
 
 (add-hook 'after-init-hook #'jh/post-init-hook)
 

@@ -25,24 +25,19 @@
       (setq bidi-inhibit-bpa t)
       (global-so-long-mode 1)))
 
-(require 'package)
-(setq package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
-;; (package-initialize)
-;;; this seems to be running every time, commenting out for now
-;; (unless package-archive-contents
-;;   (message "refreshing packages")
-;;   (package-refresh-contents))
-
-
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-;; (require 'use-package)
 (setq use-package-always-defer t
       use-package-minimum-reported-time 0.001
       use-package-verbose t
       use-package-compute-statistics t)
 (defvar use-package-always-defer t)
+
+(require 'use-package)
+
+(use-package gcmh
+  :ensure t
+  :demand t
+  :config
+  (gcmh-mode 1))
 
 (use-package exec-path-from-shell
   :ensure t
@@ -51,12 +46,40 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-(defmacro defer! (time &rest forms)
-  "Execute FORMS after Emacs has been idle for TIME secs."
-  `(run-with-idle-timer ,time
-                        nil
-                        (lambda ()
-                           ,@forms)))
+(defmacro defer! (time-or-feature &rest forms)
+  "Execute FORMS after TIME-OR-FEATURE has occurred.
+
+TIME-OR-FEATURE could be a number or a symbol;
+
+If a number, it will wait the specefied number of seconds
+before executing FORMS.
+
+If a symbol, it will defer the execution of FORMS until the
+feature/file has been loaded.
+
+Examples:
+
+waits three seconds, then evaluates the `message'
+expression.
+
+  \(defer! 3
+    \(message \"I waited 3 seconds\"\)\)
+
+
+Sets up a deferred evaluation of the `message' expression
+until the org has been loaded.
+
+  \(defer! 'org
+    \(message \"Org mode loaded\"\)\)"
+  `(cond
+    ((symbolp ,time-or-feature)
+     (with-eval-after-load ,time-or-feature
+       ,@forms))
+    ((numberp time-or-feature)
+     (run-with-idle-timer ,time-or-feature
+                          nil
+                          (lambda ()
+                             ,@forms)))))
 
 (provide 'bootstrap)
 ;;; bootstrap.el ends here

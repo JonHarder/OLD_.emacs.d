@@ -171,7 +171,7 @@
 
 
 (use-package autorevert
-  :defer t
+  :hook pre-command
   :custom
   (auto-reverse-verbose nil)
   (global-auto-revert-non-file-buffers t)

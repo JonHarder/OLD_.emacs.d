@@ -196,7 +196,6 @@ show-paren-mode 1
   (setq jh/theme-switch-timer
         (run-with-idle-timer 2 1 #'reload-theme))
 
-  (set-frame-font font)
   (add-to-list 'default-frame-alist `(font . ,font)))
 (provide 'appearance)
 ;;; appearance.el ends here

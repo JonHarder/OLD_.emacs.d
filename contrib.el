@@ -4,6 +4,11 @@
 ;; defines miscellaneous helper functions to operate on (surprise) lists
 
 
+;;; Code:
+(defun jh/dir-files (folder extension)
+  "Get all files recursively in FOLDER of the file type EXTENSION."
+  (directory-files-recursively folder (rx (+ alphanumeric) "." (literal extension)) t))
+
 (defun killport (port)
   "Kill all processes using the port number PORT."
   (interactive "nPort: ")
@@ -11,7 +16,7 @@
          (used-ports (shell-command-to-string command)))
     (shell-command (concat "kill -9 " used-ports))))
 
-;;; Code:
+
 (defun find-windows-with-mode (mode)
   "Given the symbol MODE, return a list of windows where MODE is the major mode."
   (seq-filter (lambda (window)

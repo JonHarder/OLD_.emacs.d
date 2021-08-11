@@ -111,6 +111,7 @@ This is determined by `jh/font-size'"
 
    ;; frame based commands
    "f o" 'other-frame
+   "f 0" 'delete-frame
    "f 2" 'make-frame
 
    "h f" 'helpful-callable
