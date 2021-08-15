@@ -7,7 +7,6 @@
 (require 'evil)
 
 (use-package fish-mode
-  :ensure t
   :mode "\\.fish\\'")
 
 (defun jh/vterm-init-hook ()
@@ -25,7 +24,6 @@
           (message "VTerm closed."))))))
 
 (use-package vterm
-  :ensure t
   :commands vterm
   :hook (vterm-mode . jh/vterm-init-hook)
   :config
@@ -38,7 +36,6 @@
    "M-v" 'vterm-yank))
 
 (use-package multi-vterm
-  :ensure t
   :commands multi-vterm
   :general
   (:states 'normal

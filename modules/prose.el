@@ -5,6 +5,7 @@
 ;;; Code:
 
 (use-package prose-mode
+  :straight nil
   :mode "\\.prose\\'")
 
 (provide 'prose)

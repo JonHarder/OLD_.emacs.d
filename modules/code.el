@@ -7,7 +7,7 @@
 
 ;;; Code:
 ;;;; Requirements
-(require 'flycheck)
+;; (require 'flycheck)
 (require 'use-package)
 
 
@@ -25,22 +25,18 @@
   (whitespace-mode 1))
 
 (use-package dumb-jump
-  :ensure t
   :commands dumb-jump-go)
 
 (add-hook 'sh-mode-hook #'flycheck-mode)
 
 (use-package elixir-mode
-  :ensure t
   :mode "\\.exs")
 
 (use-package conf-mode
-  :ensure t
   :mode "\\.env")
 
  ;; language server support
 (use-package lsp-mode
-  :ensure t
   :config
   (setq lsp-idle-delay 0.500
         lsp-enable-file-watchers nil)
@@ -59,7 +55,6 @@
               tab-width 4)
 
 (use-package yaml-mode
-  :ensure t
   :mode "\\ya?ml\'"
   :config
   (add-hook 'yaml-mode-hook #'jh/yaml-mode-hook))

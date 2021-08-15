@@ -40,14 +40,17 @@
     ("oceanic" .
      (:package doom-themes
       :dark doom-oceanic-next
-      :light doom-tomorrow-day))))
+      :light doom-tomorrow-day))
+    ("nord" .
+     (:package doom-themes
+      :dark doom-nord
+      :light doom-nord-light))))
 
 (defun jh/theme-customizations (theme)
   "Perform any theme specific configuration for a given THEME."
   (cond
    ((string-prefix-p "modus-" (symbol-name theme))
     (use-package modus-themes
-      :ensure t
       :custom
       (modus-themes-slanted-constructs t)
       (modus-themes-mode-line 'accented)
@@ -65,7 +68,6 @@
    ;;; doom themes
    ((string-prefix-p "doom-" (symbol-name theme))
     (use-package doom-themes
-      :ensure t
       :config
       (doom-themes-org-config)
       ;; (doom-themes-enable-org-fontification)
@@ -106,19 +108,16 @@ function to load a particular theme."
   (let ((other-themes (seq-filter (lambda (other-theme)
                                     (not (string-equal theme other-theme)))
                                   custom-enabled-themes)))
-    (mapc 'disable-theme other-themes)
-    (jh/theme-customizations theme)
-    (load-theme theme t)))
+    (unless (memq theme custom-enabled-themes)
+      (jh/theme-customizations theme)
+      (load-theme theme t)
+      (mapc 'disable-theme other-themes))))
 
 
 (defun jh/load-theme (theme package)
-  "Enable THEME, installing it's associated PACKAGE if not installed.
-
- If theme is not a built in theme, and not present on the machine, it will be installed."
-  (unless (memq theme custom-enabled-themes)
-    (unless (package-installed-p package)
-      (package-install package))
-    (jh/set-theme theme)))
+  (unless (memq theme custom-known-themes)
+    (straight-use-package package))
+  (jh/set-theme theme))
 
 (defun jh/theme-config ()
   "Get the configuration for the chosen theme."
@@ -169,7 +168,6 @@ show-paren-mode 1
 (global-prettify-symbols-mode +1)
 
 (use-package diff-hl
-  :ensure t
   :custom
   (diff-hl-draw-boarders t)
   (diff-hl-side 'left)
@@ -183,13 +181,12 @@ show-paren-mode 1
 (setq-default overflow-newlines-into-fringe t)
 
 (use-package rainbow-delimiters
-  :ensure t
   :functions 'rainbow-delimiters-mode-enable
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode-enable))
 
+(select-theme jh/theme)
 (let ((font (format "%s %s" jh/font jh/font-size)))
-  (select-theme jh/theme)
 
   (when jh/theme-switch-timer
     (cancel-timer jh/theme-switch-timer))

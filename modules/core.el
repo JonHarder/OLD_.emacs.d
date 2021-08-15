@@ -24,9 +24,6 @@
   :custom
   (ns-pop-up-frames nil))
 
-(use-package quelpa
-  :ensure t)
-
 (defun jh/evil-yank-advice (orig-fn beg end &rest args)
   (pulse-momentary-highlight-region beg end)
   (apply orig-fn beg end args))
@@ -76,37 +73,29 @@
     (server-start)))
 
 (use-package csv-mode
-  :ensure t
   :mode "\\.csv\\'")
 
 (use-package nginx-mode
-  :ensure t
   :commands nginx-mode)
 
 (use-package emacs-everywhere
-  :ensure t)
+  :commands emacs-everywhere)
 
-
-(use-package dash
-  :ensure t)
+;; (use-package dash)
 
 (use-package ag
-  :commands ag
-  :ensure t)
+  :commands ag)
 
-(use-package helpful
-  :ensure t)
+(use-package helpful)
 
 (save-place-mode 1)
 
 (use-package rg
-  :ensure t
   :commands rg
   :config
   (rg-enable-menu))
 
 (use-package scratch
-  :ensure t
   :commands scratch
   :general
   (:states 'normal
@@ -114,12 +103,10 @@
    "a s" 'scratch))
 
 (use-package undo-tree
-  :ensure t
   :config
   (global-undo-tree-mode 1))
 
 (use-package fireplace
-  :ensure t
   :commands fireplace)
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
@@ -129,16 +116,14 @@
 (setq uniquify-buffer-name-style 'forward)
 
 (use-package flycheck
-  :ensure t
+  :hook (prog-mode . flycheck-mode)
   :config
-  (setq-default flycheck-emacs-lisp-load-path 'inherit)
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  (setq-default flycheck-emacs-lisp-load-path 'inherit))
 
  ;;; Fix all my spelling mistakes
 (add-hook 'text-mode-hook #'flyspell-mode)
 
 ;; (use-package yasnippet
-;;   :ensure t
 ;;   :custom
 ;;   (yas-snippet-dirs '("~/.emacs.d/snippets/"))
 ;;   :config
@@ -148,7 +133,6 @@
 ;;       (file-name-base fname))))
 
 (use-package page-break-lines
-  :ensure t
   :config
   (global-page-break-lines-mode 1))
 
@@ -159,8 +143,18 @@
           :publishing-directory "~/Documents/Bethlehem/application_published"
           :exclude "outline.org"))))
 
+(use-package occur
+  :straight nil
+  :general
+  (:states 'normal
+   :keymaps 'occur-mode-map
+   "j" 'next-line
+   "k" 'previous-line
+   "RET" 'occur-mode-goto-occurrence)
+  :config
+  (evil-define-key 'normal 'occur-mode-map [mouse-2] 'occur-mode-mouse-goto))
+
 (use-package avy
-  :ensure t
   :commands avy-goto-word-1
   :custom
   (avy-background t)
@@ -169,26 +163,22 @@
    :prefix "SPC"
    "SPC" 'avy-goto-word-1))
 
-
 (use-package autorevert
-  :hook pre-command
+  :hook (emacs-startup . global-auto-revert-mode)
   :custom
   (auto-reverse-verbose nil)
-  (global-auto-revert-non-file-buffers t)
-  :config
-  (global-auto-revert-mode 1))
+  (global-auto-revert-non-file-buffers t))
 
 (use-package abbrev
-  :defer t
+  :straight nil
+  :hook (emacs-startup . read-abbrev-file)
   :custom
   (abbrev-file-name (concat user-emacs-directory "abbrev_defs"))
   (save-abbrevs 'silent)
-  :config
-  (setq-default abbrev-mode t)
-  (add-hook 'after-init-hook #'read-abbrev-file))
+  :init
+  (setq-default abbrev-mode t))
 
 (use-package writeroom-mode
-  :ensure t
   :commands writeroom-mode
   :custom
   (writeroom-width 0.6)
@@ -198,7 +188,6 @@
    "a w" '(writeroom-mode :wk "Writing Mode")))
 
 (use-package markdown-mode
-  :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)

@@ -1,5 +1,4 @@
 (use-package rust-mode
-  :ensure t
   :mode "\\.rs\\'"
   :config
   (add-hook 'rust-mode-hook

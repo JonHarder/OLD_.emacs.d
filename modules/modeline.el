@@ -5,10 +5,7 @@
 ;;; Code:
 
 (use-package doom-modeline
-  :ensure t
-  :demand t
-  :config
-  (doom-modeline-mode 1)
+  :hook (emacs-startup . doom-modeline-mode)
   :custom
   (doom-modeline-hud t)
   (doom-modeline-buffer-file-name 'relative-from-project)

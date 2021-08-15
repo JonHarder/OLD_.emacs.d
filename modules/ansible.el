@@ -73,7 +73,6 @@
   ("r" "Run playbook" ansible/run-playbook)])
 
 (use-package jinja2-mode
-  :ensure t
   :mode "\\.j2\\'")
 (add-to-list 'auto-mode-alist '("hosts" . conf-mode))
 

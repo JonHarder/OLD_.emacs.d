@@ -6,18 +6,10 @@
 
 
 ;;; Code:
-(use-package sly
-  :ensure t
-  :commands sly
-  :init
-  (setq inferior-lisp-program "/usr/local/bin/sbcl"))
-
 (use-package eros
-  :ensure t
   :hook (lisp-data-mode . eros-mode))
 
 (use-package parinfer-rust-mode
-  :ensure t
   :hook lisp-data-mode
   :init
   (setq parinfer-rust-auto-download t)

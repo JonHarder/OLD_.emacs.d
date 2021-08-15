@@ -1,7 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package cider
-  :ensure t
   :mode "\\.clj\\'"
   :custom
   (cider-repl-display-help-banner nil)

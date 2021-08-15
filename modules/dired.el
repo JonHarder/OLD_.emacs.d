@@ -4,24 +4,24 @@
 
 
 ;;; Code:
-(require 'contrib "~/.emacs.d/contrib.el")
-(require 'general)
+;; (require 'contrib "~/.emacs.d/contrib.el")
+;; (require 'general)
 
-(eval-after-load "dired"
-  '(require 'dired-x))
+;; (eval-after-load "dired"
+;;   '(require 'dired-x))
 
 (use-package diredfl
-  :ensure t
   :config
   (diredfl-global-mode 1))
+
 (put 'dired-find-alternate-file 'disabled nil)
 
  ;; (use-package sunrise
  ;;  :quelpa sunrise-commander)
 
 (use-package dired
+  :straight nil
   :commands (dired dired-jump)
-  :after general
   :custom
   (dired-recursive-deletes 'always)
   (dired-recursive-copies 'always)
@@ -29,26 +29,18 @@
   (dired-dwim-target t)
   (dired-listing-switches "-lvahoG")
   :general
-  (:keymaps 'dired-mode-map
-   :states 'normal
-   "s" 'eshell
-   "f" 'find-file
-   "l" 'dired-find-file
-   "w" 'ace-window
-   "h" 'dired-up-directory
-   "v" 'dired-view-file
-   "RET" 'dired-find-file-other-window
-   "q" (lambda () (interactive) (quit-window t)))
   (:states 'normal
    :prefix "SPC"
-   "a d" 'dired-jump))
-
+   "a d" 'dired-jump)
+  (:states 'normal
+   :keymaps 'dired-mode-map
+   "h" 'dired-up-directory
+   "l" 'dired-find-file))
+  
 (use-package dired-rainbow
-  :ensure t
   :after dired)
 
 (use-package dired-hide-dotfiles
-  :ensure t
   :after dired
   :general
   (:keymaps 'dired-mode-map
@@ -56,7 +48,6 @@
    "H" 'dired-hide-dotfiles-mode))
 
 (use-package dired-subtree
-  :ensure t
   :general
   (:keymaps 'dired-mode-map
    :states 'normal

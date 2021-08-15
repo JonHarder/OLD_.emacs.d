@@ -6,7 +6,6 @@
 
 ;;; Code:
 (use-package notmuch
-  :ensure t
   :commands notmuch
   :custom
   (notmuch-saved-searches

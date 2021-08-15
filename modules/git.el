@@ -4,14 +4,10 @@
 ;;; magit is amazing.  That is all.
 
 ;;; Code:
-(require 'use-package)
-
 (use-package magit-section
-  :ensure t
   :after magit)
 
 (use-package magit
-  :ensure t
   :commands magit-status
   :config
   (defadvice magit-status (around magit-fullscreen activate)
@@ -26,15 +22,26 @@
   :general
   (:states 'normal
    :prefix "SPC"
-   "g" '(:ignore t :wk "Git")
-   "g s" '(magit-status :wk "Status")
-   "g l" '(magit-log :wk "Logs")
-   "g c" '(magit-commit :wk "Commit")
-   "g f" '(magit-file-dispatch :wk "File Dispatch")
-   "g d" '(magit-dispatch :wk "Dispatch"))
+   "g s" 'magit-status
+   "g l" 'magit-log
+   "g c" 'magit-commit
+   "g f" 'magit-file-dispatch
+   "g d" 'magit-dispatch)
   (:keymaps 'magit-status-mode-map
    :states 'normal
-   "q" #'magit-quit-session)
+   "b" #'magit-branch
+   "q" #'magit-quit-session
+   "j" #'magit-next-line
+   "k" #'magit-previous-line
+   "s" #'magit-stage
+   "x" #'magit-discard
+   "c" #'magit-commit
+   "$" #'magit-process-buffer
+   "f" #'magit-fetch
+   "F" #'magit-pull
+   "P" #'magit-push
+   "RET" #'magit-diff-visit-file
+   "TAB" #'magit-section-toggle)
   (:keymaps 'magit-refs-mode-map
    :states 'normal
    "x" #'magit-delete-thing))

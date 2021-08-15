@@ -5,8 +5,24 @@
 
 ;;; Code:
 (use-package ibuffer
-  :ensure t
   :commands ibuffer
+  :general
+  (:states 'normal
+   :keymaps 'ibuffer-mode-map
+   "TAB" 'ibuffer-forward-filter-group
+   "RET" 'ibuffer-visit-buffer
+   "d" 'ibuffer-mark-for-delete
+   "x" 'ibuffer-do-kill-on-deletion-marks
+   "m" 'ibuffer-mark-forward
+   "t" 'ibuffer-toggle-marks
+   "u" 'ibuffer-unmark-forward
+   "s m" 'ibuffer-do-sort-by-major-mode
+   "s f" 'ibuffer-do-sort-by-filename/process
+   "/ RET" 'ibuffer-filter-by-mode
+   "/ SPC" 'ibuffer-filter-chosen-by-completion
+   "J" 'ibuffer-jump-to-buffer
+   "S" 'ibuffer-do-save
+   "D" 'ibuffer-do-delete)
   :custom
   (ibuffer-expert t)
   (ibuffer-show-empty-filter-groups nil)

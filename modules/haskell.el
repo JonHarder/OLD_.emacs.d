@@ -1,6 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 (use-package haskell-mode
-  :ensure t
   :mode "\\.hs\\'"
   :config
   (require 'haskell-interactive-mode)

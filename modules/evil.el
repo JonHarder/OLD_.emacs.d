@@ -10,8 +10,7 @@
 
 ;;;; code
 (use-package evil
-  :ensure t
-  :hook pre-command
+  :hook (emacs-startup . evil-mode)
   :init
   (setq evil-search-module 'evil-search
         evil-ex-complete-emacs-commands t
@@ -25,27 +24,17 @@
         evil-want-keybinding nil
         evil-want-minibuffer nil)
 
-  :hook (sunrise-mode-hook . evil-emacs-state)
   :config
-  (evil-mode 1))
-
-(use-package evil-collection
-  :ensure t
-  :after evil
-  :demand t
-  :init
-  (setq evil-collection-setup-minibuffer t)
-  :config
-  (evil-collection-init))
+  ;; (evil-mode 1)
+  (evil-set-initial-state 'magit-status-mode 'normal)
+  (evil-set-initial-state 'ibuffer-mode 'normal))
 
 (use-package evil-matchit
-  :ensure t
   :after evil
   :config
   (global-evil-matchit-mode 1))
 
 (use-package evil-commentary
-  :ensure t
   :after evil
   :config
   (evil-commentary-mode 1)
@@ -56,18 +45,15 @@
   
   
 (use-package vi-tilde-fringe
-  :ensure t
   :hook (prog-mode . vi-tilde-fringe-mode))
   
   
 (use-package evil-surround
-  :ensure t
   :config
   (global-evil-surround-mode 1))
   
   
 (use-package evil-org
-  :ensure t
   :commands (org-agenda-list)
   :after org
   :hook ((org-mode . evil-org-mode)

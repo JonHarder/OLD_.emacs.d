@@ -6,17 +6,23 @@
 ;;; Code:
 (defvar byte-compile-warnings nil)
 
-(setq package-quickstart t
-      package-enable-at-startup nil
-      package--init-file-ensured t)
+(setq package-enable-at-startup nil
+      straight-use-package-by-default t)
+;;; bootstrap straight
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(require 'package)
-(setq package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
-(package-initialize)
-
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+(straight-use-package 'use-package)
 
 (menu-bar-mode -1)
 (set-scroll-bar-mode nil)
@@ -25,10 +31,11 @@
 (setq inhibit-startup-message t)
 (setq inhibit-startup-echo-area-message user-login-name)
 (setq initial-scratch-message nil)
-(setq initial-major-mode 'fundamental-mode)
 
 (setq native-comp-async-report-warnings-errors 'silent)
 
+;;;; some startup optimizations
+(setq initial-major-mode 'fundamental-mode)
 (setq frame-inhibit-implied-resize t)
 (setq fast-but-imprecise-scrolling t)
 (setq-default cursor-in-non-selected-windows nil)
@@ -53,6 +60,8 @@
   (setq file-name-handler-alist old-file-name-handler))
 
 (add-hook 'after-init-hook #'jh/post-init-hook)
+
+(add-to-list 'load-path (expand-file-name "ext_lisp" user-emacs-directory))
 
 (provide 'early-init)
 ;;; early-init.el ends here

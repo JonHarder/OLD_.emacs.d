@@ -7,7 +7,6 @@
 (require 'use-package)
 
 (use-package elfeed
-  :ensure t
   :commands elfeed
   :config
   (setq-default

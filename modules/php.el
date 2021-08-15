@@ -26,7 +26,6 @@
 
 
 (use-package php-mode
-  :ensure t
   :mode "\\.php\\'"
   :init
   (add-hook 'php-mode-hook #'my-php-mode-hook))
@@ -35,9 +34,7 @@
       '("intelephense" "--stdio" "--maxMemory=3072"))
 
 (use-package ac-php
-  :ensure t
   :after php)
 
 (use-package psysh
-  :ensure t
   :commands psysh)

@@ -5,7 +5,6 @@
 
 ;;; Code:
 (use-package projectile
-  :ensure t
   :custom
   (projectile-create-missing-test-files t)
   :config
@@ -19,7 +18,6 @@
    "p p" '(projectile-switch-project :wk "Switch Project")
    "p f" '(projectile-find-file :wk "Find File in Project")
    "p b" 'projectile-ibuffer
-   "p /" '(rg :wk "RipGrep")
    "p t" '(projectile-toggle-between-implementation-and-test :wk "Toggle With Test")))
 
 (provide 'projects)

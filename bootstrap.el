@@ -5,8 +5,6 @@
 
 ;;; Code:
 
-(add-to-list 'load-path (concat user-emacs-directory "ext_lisp"))
-
 ;; settings these here because some package is loading something
 ;; from evil which means the variables are being read before I
 ;; have a chance to set them.  I don't want to dig through
@@ -34,17 +32,43 @@
 (require 'use-package)
 
 (use-package gcmh
-  :ensure t
   :demand t
+  :init
+  (setq gcmhh-idle-delay 0.5
+        gcmh-high-cons-threshold (* 16 1024 1024))
   :config
   (gcmh-mode 1))
 
 (use-package exec-path-from-shell
-  :ensure t
-  :defer 1
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+  :disabled t
+  :when (memq window-system '(mac ns x))
+  :init
+  (setq exec-path-from-shell-arguments nil)
+  :hook (emacs-startup . exec-path-from-shell-initialize))
+
+(defun parse-export (line)
+  "Return cons cell of (VARABLE . VALUE) as parsed from an `export VAR=VAL` LINE."
+  (let* ((pieces (split-string line "="))
+         (var (nth 1 (split-string (car pieces) " ")))
+         (val (cadr pieces)))
+    (cons var val)))
+
+;;; load PATH
+(defun parse-profile ()
+  "Parse the `~/.profile' file, extracting export statements."
+  (interactive)
+  (with-temp-buffer
+    (insert-file-contents "~/.profile")
+    (let* ((contents (buffer-string))
+           (lines (string-lines contents))
+           (export-lines (seq-filter (lambda (line) (string-prefix-p "export" line)) lines))
+           (env-vars (mapcar #'parse-export export-lines)))
+      (dolist (env-var env-vars)
+        (setenv (car env-var) (cdr env-var)))
+      (setq exec-path (split-string (getenv "PATH") ":")))))
+
+(add-hook 'emacs-startup-hook 'parse-profile)
+   
 
 (defmacro defer! (time-or-feature &rest forms)
   "Execute FORMS after TIME-OR-FEATURE has occurred.

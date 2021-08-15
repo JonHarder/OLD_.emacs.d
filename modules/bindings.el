@@ -1,5 +1,4 @@
 ;;; bindings -- Sets most of all configured keybindings. -*- lexical-binding: t -*-
-
 ;;; Commentary:
 ;; This sets up general which handles setting key bindings.
 ;; As a general design philosopy, the bindings follow a scheme
@@ -11,6 +10,9 @@
 ;; which keys will perform which actions in mid chord.
 
 ;;; Code:
+(require 'use-package)
+(load-file "~/.emacs.d/ext_lisp/how-do-i.el")
+
 (defun text-scale-reset ()
   "Reset the text scale back to configuration default.
 
@@ -18,11 +20,15 @@ This is determined by `jh/font-size'"
   (interactive)
   (text-scale-adjust 0))
 
-
+            
 (use-package general
-  :ensure t
   :config
   (general-evil-setup t)
+  (general-define-key
+   :states 'normal
+   :keymaps 'special-mode-map
+   "TAB" 'forward-button
+   "q" 'quit-window)
   (general-define-key
    "C-c e" 'jh/eshell)
   (general-define-key
@@ -45,12 +51,6 @@ This is determined by `jh/font-size'"
    "RET" 'newline)
   (general-define-key
    :states 'normal
-   :keymaps 'calendar-mode-map
-   "i d" 'diary-insert-entry
-   "H" 'calendar-backward-month
-   "L" 'calendar-forward-month)
-  (general-define-key
-   :states 'normal
    :keymaps 'occur-mode-map
    "e" 'occur-edit-mode)
   (general-define-key
@@ -67,8 +67,6 @@ This is determined by `jh/font-size'"
    "RET" 'org-capture
    "ESC" 'evil-ex-nohighlight
    "TAB" 'switch-to-most-recent-buffer
-   ;; "/" 'consult-line
-   "/" #'projectile-find-file
 
    "1" #'delete-other-windows
    "2" #'split-window-below
@@ -151,30 +149,29 @@ This is determined by `jh/font-size'"
    "-" 'text-scale-decrease))
 
 (use-package winner
-  :ensure t
   :after general
-  :general
-  (:states 'normal
+  :config
+  (general-define-key
+   :states 'normal
    :prefix "SPC"
-   "u" #'winner-undo))
+   "u" 'winner-undo))
 
 (use-package how-do-i
-  :after general
-  :general
-  (:states 'normal
+  :straight nil
+  :config
+  (general-define-key
+   :states 'normal
    :prefix "SPC"
-   ;; "s" '(:ignore t :wk "Search")
    "s g" 'how-do-i-google
    "s d" 'how-do-i-ddg
-   "s o" 'how-do-i-so
-   "s b" 'how-do-i-bible))
+   "s o" 'how-do-i-so))
 
 (use-package tab-bar
   :after general
   :config
   (tab-bar-mode 1)
-  :general
-  (:states 'normal
+  (general-define-key
+   :states 'normal
    :prefix "SPC"
    "t t" 'tab-bar-switch-to-tab
    "t n" 'tab-bar-switch-to-next-tab
@@ -310,8 +307,7 @@ This is determined by `jh/font-size'"
 (put 'narrow-to-region 'disabled nil)
 
 (use-package ace-window
-  :ensure t
-  :commands (ace-window)
+  :commands ace-window
   :after general
   :custom
   (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
@@ -322,12 +318,12 @@ This is determined by `jh/font-size'"
   ("C-x o" . 'ace-window)
   :general
   (:states 'normal
-   "SPC w" #'ace-window)
+   :prefix "SPC"
+   "w" 'ace-window)
   :config
   (face-spec-set 'aw-leading-char-face '((t (:foreground "red" :height 3.0)))))
 
 (use-package imenu-list
-  :ensure t
   :commands (imenu-list))
 
 (defun jh/split-right-switch-buffer ()
@@ -343,14 +339,25 @@ This is determined by `jh/font-size'"
   (switch-to-buffer nil))
 
 (use-package beacon
-  :ensure t
   :after general
   :config
   (beacon-mode 1)
-  :general
-  (:states 'normal
+  (general-define-key
+   :states 'normal
    :prefix "SPC"
    "z" #'beacon-blink))
+
+(use-package calendar
+  :straight nil
+  :after evil
+  :commands 'calendar
+  :general
+  (:keymaps 'calendar-mode-map
+   :states '(normal motion)
+   "l" 'calendar-forward-day
+   "h" 'calendar-backward-day
+   "j" 'calendar-forward-week
+   "k" 'calendar-backward-week))
 
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."

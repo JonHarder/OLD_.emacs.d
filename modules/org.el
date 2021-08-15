@@ -27,7 +27,6 @@
     (color-org-header "Bread:" "#66CD00")
     (color-org-header "Events:" "#faebd7" "#8B4513")))
   
-
 (use-package org
   :mode ("\\.org\\'" . org-mode)
   :config
@@ -107,7 +106,7 @@
        ("o" "One on One" entry (file+headline "~/Org/one_on_one.org" "Agenda")
         "* %?")))
   :custom
-  (org-fontify-whole-heading-line t)
+  (org-fontify-whole-heading-line nil)
   (org-confirm-babel-evaluate nil)
   (org-edit-src-content-indentation 0)
   (org-startup-indented 1)
@@ -147,6 +146,7 @@
 
 
 (use-package org-agenda
+  :straight nil
   :commands (org-agenda-list org-agenda)
   :general
   (:states 'normal
@@ -155,7 +155,6 @@
    "a A" '(org-agenda :wk "Agenda Dispatch")))
 
 (use-package org-journal
-  :ensure t
   :commands (org-journal-new-entry)
   :custom
   (org-journal-dir "~/Org/journal/")
@@ -177,21 +176,17 @@
 
  ;;; Install external packages
 (use-package org-tree-slide
-  :ensure t
   :after org)
 
 (use-package ob-restclient
-  :ensure t
   :after org)
 
 (use-package org-edna
-  :ensure t
   :after org
   :config
   (org-edna-mode))
 
 (use-package org-superstar
-  :ensure t
   :after org
   :custom
   (org-hide-leading-stars t)

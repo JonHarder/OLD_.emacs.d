@@ -4,14 +4,6 @@
 
 
 ;;; Code:
-(require 'eshell)
-(require 'dash)
-(require 's)
-(require 'use-package)
-(require 'magit)
-(require 'general)
-(require 'contrib "~/.emacs.d/contrib.el")
-
 (defvar term-term-name nil)
 
 ;;; some programs don't play nice with eshell, for these, we can use ansi-term automatically
@@ -123,7 +115,6 @@ Takes into account if path contains the home ~ symbol."
 (defalias 'eshell/gs (lambda () (eshell/git "status")))
 
 (use-package eshell-up
-  :ensure t
   :after eshell
   :commands (eshell-up eshell-up-peek)
   :config
@@ -149,6 +140,7 @@ Takes into account if path contains the home ~ symbol."
      (propertize " $ " 'face 'font-lock-type-face))))
 
 (use-package eshell
+  :commands eshell
   :custom
   (eshell-banner-message "")
   (eshell-cmpl-cycle-completions t)
@@ -174,14 +166,12 @@ Takes into account if path contains the home ~ symbol."
    "<tab>" 'completion-at-point))
 
 (use-package eshell-syntax-highlighting
-  :ensure t
   :after esh-mode
   :config
   (eshell-syntax-highlighting-global-mode +1))
 
  ;; fish style autocompletion
 (use-package esh-autosuggest
-  :ensure t
   :after eshell
   :hook (eshell-mode . esh-autosuggest-mode))
 

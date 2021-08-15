@@ -5,10 +5,13 @@
 
 
 ;;; Code:
+
+;;;###autoload
 (defun jh/dir-files (folder extension)
   "Get all files recursively in FOLDER of the file type EXTENSION."
   (directory-files-recursively folder (rx (+ alphanumeric) "." (literal extension)) t))
 
+;;;###autoload
 (defun killport (port)
   "Kill all processes using the port number PORT."
   (interactive "nPort: ")
@@ -17,6 +20,7 @@
     (shell-command (concat "kill -9 " used-ports))))
 
 
+;;;###autoload
 (defun find-windows-with-mode (mode)
   "Given the symbol MODE, return a list of windows where MODE is the major mode."
   (seq-filter (lambda (window)
@@ -24,11 +28,13 @@
                   (eq major-mode mode)))
               (window-list)))
 
+;;;###autoload
 (defun open-notes-file ()
   "Open a kotl note file for today."
   (interactive)
   (find-file (format-time-string "~/notes/%Y-%m-%d.kotl")))
 
+;;;###autoload
 (defun jh/expand-directory (dir)
   "Expand the given DIR to the list of all of its files."
   (interactive)
@@ -36,18 +42,21 @@
                    nil
                    "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)"))
 
+;;;###autoload
 (defun random-alnum ()
   "Generate a random alphanumeric character."
   (let* ((alnum "abcdefghijklmnopqrstuvwxyz01234567890")
          (i (% (abs (random)) (length alnum))))
     (substring alnum i (1+ i))))
 
+;;;###autoload
 (defun random-token ()
   "Generate a random character."
   (let* ((chars "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*(){}|[]")
          (i (% (abs (random)) (length chars))))
     (substring chars i (1+ i))))
 
+;;;###autoload
 (defun random-tokens (n generator)
   "Insert N tokens using the function GENERATOR."
   (interactive (list (read-number "Number of characters: " 24)
@@ -55,11 +64,13 @@
   (dotimes (i n)
     (insert (funcall generator))))
 
+;;;###autoload
 (defun random-token-24 ()
   "Generate 24 random tokens using `random-token'."
   (interactive)
   (random-tokens 24 #'random-token))
 
+;;;###autoload
 (defun contrib/map-alist-values (f alist)
   "Map function F over each value in the ALIST.
 
@@ -69,6 +80,7 @@ Preserves order and keys."
           alist))
 
 
+;;;###autoload
 (defun contrib/plist-to-alist (plist &optional alist)
   "Convert a PLIST into an ALIST."
   (interactive)
@@ -79,16 +91,19 @@ Preserves order and keys."
           (contrib/plist-to-alist (cddr plist) new-alist))
       (reverse alist))))
 
+;;;###autoload
 (defun contrib/alist-keys (alist)
   "Get list of keys in the ALIST."
   (mapcar #'car alist))
 
 
+;;;###autoload
 (defun contrib/str-join (items glue)
   "Concatenate the list of strings, ITEMS together, separated the string GLUE."
   (mapconcat 'identity items glue))
 
 
+;;;###autoload
 (defun contrib/read-file-to-lines (file)
   "Read FILE into a list of strings."
   (with-temp-buffer
@@ -96,6 +111,7 @@ Preserves order and keys."
     (split-string (buffer-string) "\n")))
 
 
+;;;###autoload
 (defmacro with-time (&rest body)
   "Measure and return the time it takes evaluating BODY."
   `(let ((time (current-time)))

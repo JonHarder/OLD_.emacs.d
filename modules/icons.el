@@ -1,8 +1,9 @@
-(use-package all-the-icons
-  :ensure t)
-  
+(use-package all-the-icons)
+
+(use-package all-the-icons-completion
+  :demand t
+  :config
+  (all-the-icons-completion-mode 1))
+
 (use-package all-the-icons-dired
-  :ensure t
-  :after all-the-icons
-  :init
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+  :hook (dired-mode . all-the-icons-dired-mode))

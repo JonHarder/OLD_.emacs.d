@@ -6,11 +6,8 @@
 
 
 ;;; Code:
-;; (require 'use-package)
-;; (require 'evil)
-
 (use-package hyperbole
-  :ensure t
+  :disabled t
   :commands (hkey-either)
   :after evil
   :functions (kotl-mode:add-cell
