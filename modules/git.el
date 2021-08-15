@@ -36,6 +36,7 @@
    "s" #'magit-stage
    "x" #'magit-discard
    "c" #'magit-commit
+   "m" #'magit-merge
    "$" #'magit-process-buffer
    "f" #'magit-fetch
    "F" #'magit-pull
