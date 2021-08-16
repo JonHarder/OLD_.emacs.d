@@ -39,9 +39,8 @@
   :config
   (require 'vertico-directory) ;; ~/.emacs.d/ext_lisp/vertico-directory.el
   (general-define-key
-   :states '(motion insert normal)
    :keymaps 'minibuffer-mode-map
-   "C-n"   'vertico-map
+   "C-n"   'vertico-next
    "C-p"   'vertico-previous
    "DEL"   'vertico-directory-delete-char
    "M-DEL" 'vertico-directory-delete-word

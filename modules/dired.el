@@ -34,8 +34,12 @@
    "a d" 'dired-jump)
   (:states 'normal
    :keymaps 'dired-mode-map
+   "+" 'dired-create-directory
    "h" 'dired-up-directory
-   "l" 'dired-find-file))
+   "u" 'dired-unmark
+   "f" 'find-file
+   "l" 'dired-find-file
+   "C" 'dired-do-copy))
   
 (use-package dired-rainbow
   :after dired)

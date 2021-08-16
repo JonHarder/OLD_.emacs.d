@@ -113,7 +113,9 @@
   (org-agenda-files `("~/Org/calendars"
                       "~/Org/todo.org"
                       "~/Org/journal"
-                      ,@(jh/dir-files "~/Documents/Bethlehem/classes" "org")))
+                      "~/Dropbox/Bethlehem/classes/fall_2021/GREK_5205/assignments.org"
+                      "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5565/assignments.org"
+                      "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5565/worksheets.org"))
   (org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done))
   (calendar-date-style 'iso)
   (calendar-mode-line-format nil)
