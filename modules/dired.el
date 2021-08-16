@@ -16,9 +16,6 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 
- ;; (use-package sunrise
- ;;  :quelpa sunrise-commander)
-
 (use-package dired
   :straight nil
   :commands (dired dired-jump)
@@ -32,11 +29,13 @@
   (:states 'normal
    :prefix "SPC"
    "a d" 'dired-jump)
-  (:states 'normal
-   :keymaps 'dired-mode-map
+  (:keymaps 'dired-mode-map
+   :states '(emacs normal motion)
    "+" 'dired-create-directory
    "h" 'dired-up-directory
    "u" 'dired-unmark
+   "m" 'dired-mark
+   "g r" 'revert-buffer
    "f" 'find-file
    "l" 'dired-find-file
    "C" 'dired-do-copy))

@@ -33,6 +33,7 @@
    "q" #'magit-quit-session
    "j" #'magit-next-line
    "k" #'magit-previous-line
+   "g r" #'magit-refresh
    "s" #'magit-stage
    "x" #'magit-discard
    "c" #'magit-commit
