@@ -159,8 +159,9 @@
 (use-package org-journal
   :commands (org-journal-new-entry)
   :custom
-  (org-journal-dir "~/Org/journal/")
+  (org-journal-dir "~/Dropbox/Work/journal/")
   (org-journal-file-type 'weekly)
+  (org-journal-file-format "%Y%m%d.org")
   :general
   (:states 'normal
    :prefix "SPC"

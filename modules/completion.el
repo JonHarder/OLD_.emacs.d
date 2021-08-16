@@ -59,7 +59,6 @@
   (setq prefix-help-command #'embark-prefix-help-command)
   :general
   (:keymaps 'vertico-map
-   :states '(insert normal)
    "C-." 'embark-dwim
    "C-;" 'embark-act))
 

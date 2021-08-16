@@ -38,7 +38,9 @@
    "g r" 'revert-buffer
    "f" 'find-file
    "l" 'dired-find-file
-   "C" 'dired-do-copy))
+   "C" 'dired-do-copy
+   "R" 'dired-do-rename
+   "D" 'dired-do-delete))
   
 (use-package dired-rainbow
   :after dired)

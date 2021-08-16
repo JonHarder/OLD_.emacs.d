@@ -21,7 +21,7 @@
   :type 'string
   :group 'configuration)
 
-(defcustom jh/theme "doom"
+(defcustom jh/theme "oceanic"
   "Theme to use, must be a key memeber of `jh/themes'."
   :type 'string
   :group 'configuration)

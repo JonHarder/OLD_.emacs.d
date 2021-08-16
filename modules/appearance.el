@@ -151,7 +151,9 @@ Uses the dark or light variant depending on system setting."
   (jh/set-theme-to-system
    (jh/theme-light)
    (jh/theme-dark)
-   (jh/theme-package)))
+   (jh/theme-package))
+  (when (called-interactively-p 'interactive)
+    (message "Theme set for current session only, modify jh/theme in init.el to set permanently.")))
 
 (defun reload-theme ()
   "Load configuration given the current values of jh/config."
