@@ -2,7 +2,6 @@
 
 ;;; Commentary:
 
-
 ;;; Code:
 (use-package corfu
   :init
@@ -39,12 +38,20 @@
   :config
   (require 'vertico-directory) ;; ~/.emacs.d/ext_lisp/vertico-directory.el
   (general-define-key
-   :keymaps 'minibuffer-mode-map
+   ;; :keymaps 'minibuffer-mode-map
+   :keymaps 'vertico-map
    "C-n"   'vertico-next
-   "C-p"   'vertico-previous
-   "DEL"   'vertico-directory-delete-char
+   "C-p"   'vertico-previous))
+
+(use-package vertico-directory
+  :straight nil
+  :after vertico
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  :general
+  (:keymaps 'vertico-map
+   "DEL" 'vertico-directory-delete-char
    "M-DEL" 'vertico-directory-delete-word
-   "RET"   'vertico-directory-enter))
+   "RET" 'vertico-directory-enter))
 
 (use-package orderless
   :custom

@@ -11,6 +11,7 @@
 ;;   '(require 'dired-x))
 
 (use-package diredfl
+  :after dired
   :config
   (diredfl-global-mode 1))
 
@@ -41,6 +42,14 @@
    "C" 'dired-do-copy
    "R" 'dired-do-rename
    "D" 'dired-do-delete))
+
+(use-package dired-x
+  :straight nil
+  :after dired
+  :hook (dired-mode . dired-omit-mode)
+  :config
+  (setq dired-omit-files
+        (concat dired-omit-files "\\|.organice-bak$")))
   
 (use-package dired-rainbow
   :after dired)
