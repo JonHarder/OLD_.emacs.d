@@ -65,7 +65,7 @@
   :init
   (setq prefix-help-command #'embark-prefix-help-command)
   :general
-  (:keymaps 'vertico-map
+  (:keymaps 'global
    "C-." 'embark-dwim
    "C-;" 'embark-act))
 
@@ -78,6 +78,9 @@
 (use-package consult
   :init
   (fset 'multi-occur #'consult-multi-occur)
+  :config
+  (advice-add #'completing-read-multiple
+              :override #'consult-completing-read-multiple)
   :general
   ("C-c h" #'consult-history
    "C-c o" #'consult-outline
