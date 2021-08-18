@@ -29,6 +29,7 @@
    "g d" 'magit-dispatch)
   (:keymaps 'magit-status-mode-map
    :states 'normal
+   "?" #'magit-dispatch
    "b" #'magit-branch
    "q" #'magit-quit-session
    "j" #'magit-next-line
@@ -41,6 +42,7 @@
    "$" #'magit-process-buffer
    "f" #'magit-fetch
    "F" #'magit-pull
+   "M" #'magit-remote
    "P" #'magit-push
    "RET" #'magit-diff-visit-file
    "TAB" #'magit-section-toggle)

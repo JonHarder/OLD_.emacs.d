@@ -4,9 +4,12 @@
 ;; my Emacs configuration
 
 ;;; Code:
+
+;;;; load dependencies
 (load (expand-file-name "contrib" user-emacs-directory))
 (load (expand-file-name "bootstrap" user-emacs-directory))
 
+;;;; Define basic display configuration variables
 (defgroup configuration nil
   "Group for personal configuration."
   :group 'emacs)
@@ -21,7 +24,7 @@
   :type 'string
   :group 'configuration)
 
-(defcustom jh/theme "oceanic"
+(defcustom jh/theme "modus"
   "Theme to use, must be a key memeber of `jh/themes'."
   :type 'string
   :group 'configuration)
@@ -36,6 +39,11 @@
   :type 'boolean
   :group 'configuration)
 
+;;;; Overrides to defaults
+(setq jh/theme "oceanic")
+
+
+;;;; Load configuration proper
 (dolist (module (jh/dir-files "~/.emacs.d/modules" "el"))
   (load-file module))
 
