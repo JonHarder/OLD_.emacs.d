@@ -96,6 +96,16 @@
    "l l" 'consult-flycheck
    "/" 'consult-grep))
 
+(use-package consult-dir
+  :after (vertico consult)
+  :general
+  (:states 'normal
+   :prefix "SPC"
+   "f d" 'consult-dir)
+  (:keymaps 'vertico-map
+   "C-c C-d" #'consult-dir
+   "C-c C-j" #'consult-dir-jump-file))
+
 (use-package marginalia
   :after vertico
   :init

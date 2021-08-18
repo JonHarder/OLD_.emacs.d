@@ -35,6 +35,7 @@
    "+" 'dired-create-directory
    "h" 'dired-up-directory
    "u" 'dired-unmark
+   "o" 'dired-find-file-other-window
    "m" 'dired-mark
    "g r" 'revert-buffer
    "f" 'find-file
