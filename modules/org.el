@@ -134,7 +134,7 @@
    "o c" 'org-ctrl-c-ctrl-c
    "o e" 'org-export-dispatch
    "o t" 'org-todo
-   "o o" 'org-open-at-point
+   "o RET" 'org-open-at-point
    "o l" 'org-insert-link
    "o p" 'org-priority
    "o g" 'org-goto

@@ -11,6 +11,8 @@
    :keymaps 'ibuffer-mode-map
    "TAB" 'ibuffer-forward-filter-group
    "RET" 'ibuffer-visit-buffer
+   "j" 'ibuffer-forward-line
+   "k" 'ibuffer-backward-line
    "d" 'ibuffer-mark-for-delete
    "x" 'ibuffer-do-kill-on-deletion-marks
    "m" 'ibuffer-mark-forward

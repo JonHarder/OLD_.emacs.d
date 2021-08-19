@@ -41,6 +41,7 @@
    "m" #'magit-merge
    "$" #'magit-process-buffer
    "f" #'magit-fetch
+   "t" #'magit-tag
    "F" #'magit-pull
    "M" #'magit-remote
    "P" #'magit-push

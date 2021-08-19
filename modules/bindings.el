@@ -99,7 +99,6 @@ This is determined by `jh/font-size'"
    "f c" 'find-calendar
    "f i" 'find-shell-config
    "f ." 'jh/find-config
-   "f d" 'delete-file
    "f f" 'find-file
    "f s" 'save-buffer
    "f t" 'find-todo-file

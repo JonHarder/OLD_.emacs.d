@@ -55,7 +55,7 @@
 
 (use-package orderless
   :custom
-  (completion-styles '(substring initials flex partial-completion orderless))
+  (completion-styles '(orderless substring initials flex partial-completion))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles . (partial-completion))))))
 
@@ -90,6 +90,7 @@
    "!" #'consult-flycheck)
   (:prefix "SPC"
    :states 'normal
+   "o o" 'consult-outline
    "b b" 'consult-buffer
    "i i" 'consult-imenu
    "h a" 'consult-apropos
@@ -97,20 +98,30 @@
    "/" 'consult-grep))
 
 (use-package consult-dir
-  :after (vertico consult)
+  :after (evil)
+  :demand t
   :general
+  ("C-c C-d" 'consult-dir)
+  (:keymaps 'vertico-map
+   "C-c C-j" 'consult-dir-jump-file)
   (:states 'normal
    :prefix "SPC"
-   "f d" 'consult-dir)
-  (:keymaps 'vertico-map
-   "C-c C-d" #'consult-dir
-   "C-c C-j" #'consult-dir-jump-file))
+   "f d" 'consult-dir))
 
 (use-package marginalia
   :after vertico
   :init
   (marginalia-mode)
   (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light)))
+
+(use-package xref
+  :straight nil
+  :general
+  (:keymaps 'xref--xref-buffer-mode-map
+   :states 'normal
+   "j" 'xref-next-line
+   "k" 'xref-prev-line
+   "RET" 'xref-goto-xref))
 
 (use-package consult-flycheck
   :after consult)

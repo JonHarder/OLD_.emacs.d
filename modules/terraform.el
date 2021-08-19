@@ -52,7 +52,8 @@
 (use-package terraform-mode
   :mode "\\.tf\\'"
   :config
-  (use-package terraform-doc)
+  (use-package terraform-doc
+    :commands (terraform-doc))
 
   (require 'lsp)
   (lsp-register-client

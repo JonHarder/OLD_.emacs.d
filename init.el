@@ -40,7 +40,7 @@
   :group 'configuration)
 
 ;;;; Overrides to defaults
-(setq jh/theme "modus")
+(setq jh/theme "doom")
 
 ;;;; Load configuration proper
 (dolist (module (jh/dir-files "~/.emacs.d/modules" "el"))

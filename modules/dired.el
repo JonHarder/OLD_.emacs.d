@@ -33,6 +33,8 @@
   (:keymaps 'dired-mode-map
    :states '(emacs normal motion)
    "+" 'dired-create-directory
+   "x" 'dired-do-flagged-delete
+   "d" 'dired-flag-file-deletion
    "h" 'dired-up-directory
    "u" 'dired-unmark
    "o" 'dired-find-file-other-window
