@@ -18,7 +18,11 @@
   
 (use-package restclient
   :commands restclient-mode
-  :mode ("\\.http\\'" . restclient-mode))
+  :mode ("\\.http\\'" . restclient-mode)
+  :general
+  (:keymaps 'restclient-mode-map
+   :states 'normal
+   "q" 'quit-window))
 
 (use-package zpresent
   :commands zpresent)

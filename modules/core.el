@@ -72,6 +72,13 @@
   (when (not (server-running-p))
     (server-start)))
 
+(use-package info
+  :straight nil
+  :general
+  (:keymaps 'Info-mode-map
+   :states '(normal motion)
+   "RET" 'Info-follow-nearest-node))
+
 (use-package csv-mode
   :mode "\\.csv\\'")
 

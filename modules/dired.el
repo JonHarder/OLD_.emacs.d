@@ -32,6 +32,7 @@
    "a d" 'dired-jump)
   (:keymaps 'dired-mode-map
    :states '(emacs normal motion)
+   "RET" 'dired-find-file
    "+" 'dired-create-directory
    "x" 'dired-do-flagged-delete
    "d" 'dired-flag-file-deletion

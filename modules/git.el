@@ -29,19 +29,21 @@
    "g d" 'magit-dispatch)
   (:keymaps 'magit-status-mode-map
    :states 'normal
+   "$" #'magit-process-buffer
    "?" #'magit-dispatch
    "b" #'magit-branch
-   "q" #'magit-quit-session
+   "c" #'magit-commit
+   "f" #'magit-fetch
+   "g r" #'magit-refresh
    "j" #'magit-next-line
    "k" #'magit-previous-line
-   "g r" #'magit-refresh
-   "s" #'magit-stage
-   "x" #'magit-discard
-   "c" #'magit-commit
+   "l" #'magit-log
    "m" #'magit-merge
-   "$" #'magit-process-buffer
-   "f" #'magit-fetch
+   "q" #'magit-quit-session
+   "s" #'magit-stage
    "t" #'magit-tag
+   "x" #'magit-discard
+   "z" #'magit-stash
    "F" #'magit-pull
    "M" #'magit-remote
    "P" #'magit-push
