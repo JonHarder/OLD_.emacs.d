@@ -17,6 +17,11 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 
+(defun dired-home ()
+  "Jumps dired window to the home directory."
+  (interactive nil dired-mode)
+  (dired "~/"))
+
 (use-package dired
   :straight nil
   :commands (dired dired-jump)
@@ -35,6 +40,7 @@
    "RET" 'dired-find-file
    "+" 'dired-create-directory
    "x" 'dired-do-flagged-delete
+   "~" 'dired-home
    "d" 'dired-flag-file-deletion
    "h" 'dired-up-directory
    "u" 'dired-unmark

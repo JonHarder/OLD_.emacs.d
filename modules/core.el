@@ -79,6 +79,27 @@
    :states '(normal motion)
    "RET" 'Info-follow-nearest-node))
 
+(defvar hugo-server-process nil)
+
+(defun hugo-server-start ()
+  "Start a hugo server in `default-directory'."
+  (interactive)
+  (setq hugo-server-process (start-process "hugo server -D" "*hugo-server*" "hugo" "server" "-D"))
+  (let ((display-buffer-alist '(("*" display-buffer-no-window))))
+    (async-shell-command "open http://localhost:1313"))
+  (message "Server started"))
+
+(defun hugo-server-stop ()
+  "Stop the running hugo server tracked in `hugo-server-process'."
+  (interactive)
+  (if hugo-server-process
+      (progn
+        (kill-process hugo-server-process)
+        (setq hugo-server-process nil)
+        (kill-buffer "*hugo-server*")
+        (message "server stopped"))
+    (message "server not running.")))
+
 (use-package csv-mode
   :mode "\\.csv\\'")
 

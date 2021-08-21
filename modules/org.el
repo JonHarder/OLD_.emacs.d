@@ -48,6 +48,7 @@
      (php . t)
      (js . t)))
   (setq-default
+   org-latex-packages-alist '(("margin=1in" "geometry" nil))
    org-src-fontify-natively t
    org-hide-emphasis-markers t
    org-archive-location "~/Org/archive/%s.archive::"
