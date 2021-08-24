@@ -27,6 +27,11 @@
    "g c" 'magit-commit
    "g f" 'magit-file-dispatch
    "g d" 'magit-dispatch)
+  (:keymaps 'magit-log-mode-map
+   :states 'normal
+   "j" #'magit-next-line
+   "k" #'magit-previous-line
+   "RET" #'magit-show-commit)
   (:keymaps 'magit-status-mode-map
    :states 'normal
    "$" #'magit-process-buffer

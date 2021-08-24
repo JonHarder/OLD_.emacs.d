@@ -194,7 +194,7 @@ This is determined by `jh/font-size'"
 (defun find-todo-file ()
   "Go to my tasks file."
   (interactive)
-  (find-file "~/Org/todo.org"))
+  (find-file "~/Dropbox/Work/todo.org"))
 
 (defun infer-shell-config-file ()
   "Determine the shell configuration file according to environment variable `SHELL'."

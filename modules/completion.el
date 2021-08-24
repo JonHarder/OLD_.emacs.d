@@ -24,12 +24,12 @@
   (completion-cycle-threshold 3)
   (tab-always-indent 'complete)
   (resize-mini-windows 'grow-only)
-  (minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
+  ;; (minibuffer-prompt-properties
+  ;;       '(read-only t cursor-intangible t face minibuffer-prompt))
   (enable-recursive-minibuffers t)
   :config
-  (minibuffer-depth-indicate-mode 1)
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
+  (minibuffer-depth-indicate-mode 1))
+  ;; (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 
 (use-package vertico
   :hook (emacs-startup . vertico-mode)

@@ -10,6 +10,14 @@
 (require 'evil)
 (require 'general)
 
+(defun org-kipsu-open (ticket _)
+  "Open ticket TICKET in kipsu jira."
+  (browse-url-chrome (format "https://kipsudev.atlassian.net/browse/KIPSU-%s" ticket)))
+
+(with-eval-after-load 'org
+  (org-link-set-parameters "kipsu"
+                           :follow #'org-kipsu-open))
+
 
 (defun color-org-header (tag col &optional bg-col)
    "Color the associated TAG with the color COL, using BG-COL if provided for the background."
@@ -110,10 +118,17 @@
   (org-fontify-whole-heading-line nil)
   (org-confirm-babel-evaluate nil)
   (org-edit-src-content-indentation 0)
+  (org-refile-targets '((("~/Dropbox/notes.org"
+                          "~/Dropbox/Work/todo.org"
+                          "~/Dropbox/Work/devops.org") . (:maxlevel . 1))))
   (org-startup-indented 1)
   (org-agenda-files `("~/Org/calendars"
-                      "~/Org/todo.org"
-                      "~/Org/journal"
+                      "~/Dropbox/notes.org"
+                      "~/Dropbox/Work/todo.org"
+                      "~/Dropbox/Work/projects"
+                      "~/Dropbox/Work/journal"
+                      "~/Dropbox/Work/devops.org"
+                      "~/Dropbox/Bethlehem/notes.org"
                       "~/Dropbox/Bethlehem/classes/fall_2021/GREK_5205/assignments.org"
                       "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5565/assignments.org"
                       "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5565/worksheets.org"))
@@ -135,6 +150,7 @@
    "o c" 'org-ctrl-c-ctrl-c
    "o e" 'org-export-dispatch
    "o t" 'org-todo
+   "o r" 'org-refile
    "o RET" 'org-open-at-point
    "o l" 'org-insert-link
    "o p" 'org-priority

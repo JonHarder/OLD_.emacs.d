@@ -79,6 +79,8 @@
    :states '(normal motion)
    "RET" 'Info-follow-nearest-node))
 
+(setq browse-url-chrome-program "chrome")
+
 (defvar hugo-server-process nil)
 
 (defun hugo-server-start ()
