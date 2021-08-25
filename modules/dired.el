@@ -69,7 +69,7 @@
   :general
   (:keymaps 'dired-mode-map
    :states 'normal
-   "H" 'dired-hide-dotfiles-mode))
+   "." 'dired-hide-dotfiles-mode))
 
 (use-package dired-subtree
   :general

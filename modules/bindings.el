@@ -134,7 +134,7 @@ This is determined by `jh/font-size'"
    "n w" 'widen
 
    "p c" 'compile
-   "p u" 'package-install
+   "p u" 'straight-use-package
 
    "q" #'kill-emacs
 
