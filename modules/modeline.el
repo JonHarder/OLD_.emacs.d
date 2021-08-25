@@ -12,6 +12,7 @@
   (doom-modeline-enable-word-count t))
 
 (display-time-mode t)
+(display-battery-mode t)
 
 (provide 'modeline)
 ;;; modeline.el ends here

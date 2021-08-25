@@ -30,8 +30,6 @@ This is determined by `jh/font-size'"
    "TAB" 'forward-button
    "q" 'quit-window)
   (general-define-key
-   "C-c e" 'jh/eshell)
-  (general-define-key
    :states 'normal
    "M-." 'xref-find-definitions
    "M-," 'xref-pop-marker-stack

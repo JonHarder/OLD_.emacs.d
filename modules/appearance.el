@@ -5,7 +5,8 @@
 ;;; Code:
 ;; (require 'seq)
 ;; (require 'use-package)
-;; (require 'contrib "~/.emacs.d/contrib.el")
+(require 'contrib "~/.emacs.d/contrib.el")
+(require 'straight)
 
 
 (defvar jh/themes
@@ -24,7 +25,7 @@
     ("solarized" .
      (:package doom-themes
       :light doom-solarized-light
-      :dark doom-solarized-dark))
+      :dark doom-solarized-dark-high-contrast))
     ("gruvbox" .
      (:package doom-themes
       :light doom-gruvbox-light
@@ -44,7 +45,13 @@
     ("nord" .
      (:package doom-themes
       :dark doom-nord
-      :light doom-nord-light))))
+      :light doom-nord-light))
+    ("moonlight" .
+     (:package doom-themes
+      :dark doom-moonlight
+      :light doom-one-light))))
+
+(defvar jh/--current-theme nil)
 
 (defun jh/theme-customizations (theme)
   "Perform any theme specific configuration for a given THEME."
@@ -80,7 +87,9 @@
       (doom-solarized-light-brighter-comments t)
       (doom-solarized-dark-brighter-text t)
       (doom-solarized-dark-brighter-modeline t)
-      (doom-solarized-dark-brighter-comments t)))))
+      (doom-solarized-dark-brighter-comments t)
+      (doom-solarized-dark-high-contrast-brighter-modeline t)
+      (doom-solarized-dark-high-contrast-brighter-comments t)))))
 
 
 (defun jh/mac-is-dark-mode-p ()
@@ -89,16 +98,6 @@
   (string-equal "Dark" (string-trim (shell-command-to-string "defaults read -g AppleInterfaceStyle"))))
 
 (defvar jh/dark-mode (jh/mac-is-dark-mode-p) "Boolean which tracks mac system level dark mode.")
-
-(defun jh/set-theme-to-system (light-theme dark-theme package)
-  "Set the theme to LIGHT-THEME if MacOS is not in dark mode, set to DARK-THEME otherwise.
-
-Utilizes `jh/load-theme' under the hood."
-  (setq jh/dark-mode (jh/mac-is-dark-mode-p))
-  (if jh/dark-mode
-      (jh/load-theme dark-theme package)
-    (jh/load-theme light-theme package)))
-
 
 (defun jh/set-theme (theme)
   "Load THEME, disabling other enabled themes.
@@ -115,18 +114,14 @@ function to load a particular theme."
 
 
 (defun jh/load-theme (theme package)
+  "Load THEME, after installing PACKAGE if not found on system."
   (unless (memq theme custom-known-themes)
     (straight-use-package package))
   (jh/set-theme theme))
 
-(defun jh/theme-config ()
-  "Get the configuration for the chosen theme."
-  (alist-get jh/theme jh/themes nil nil #'string-equal))
-
 (defun jh/theme-property (prop)
   "Get a keyword PROP from the theme configuration."
-  (let ((theme-config (jh/theme-config)))
-    (plist-get theme-config prop)))
+  (plist-get jh/--current-theme prop))
 
 (defun jh/theme-dark ()
   "Get the dark theme from theme config."
@@ -147,11 +142,10 @@ Uses the dark or light variant depending on system setting."
   (interactive (list (completing-read
                       "Theme: "
                       (contrib/alist-keys jh/themes))))
-  (setq jh/theme name)
-  (jh/set-theme-to-system
-   (jh/theme-light)
-   (jh/theme-dark)
-   (jh/theme-package))
+  (setq jh/--current-theme (alist-get name jh/themes nil nil #'string-equal)
+        jh/theme name)
+  (let ((current-theme (if (jh/mac-is-dark-mode-p) (jh/theme-dark) (jh/theme-light))))
+    (jh/load-theme current-theme (jh/theme-package)))
   (when (called-interactively-p 'interactive)
     (message "Theme set for current session only, modify jh/theme in init.el to set permanently.")))
 
@@ -159,7 +153,6 @@ Uses the dark or light variant depending on system setting."
   "Load configuration given the current values of jh/config."
   (interactive)
   (select-theme jh/theme))
-  
 
 (defvar jh/theme-switch-timer nil "Timer used to schedule querying OSX system color preference.")
 

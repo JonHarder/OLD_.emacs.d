@@ -163,7 +163,10 @@ Takes into account if path contains the home ~ symbol."
   :general
   (:keymaps 'eshell-mode-map
    :states '(normal insert)
-   "<tab>" 'completion-at-point))
+   "<tab>" 'completion-at-point)
+  (:states 'normal
+   :prefix "SPC"
+   "e e" 'jh/eshell))
 
 (use-package eshell-syntax-highlighting
   :after esh-mode
