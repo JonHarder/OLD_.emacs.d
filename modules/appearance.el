@@ -49,7 +49,11 @@
     ("moonlight" .
      (:package doom-themes
       :dark doom-moonlight
-      :light doom-one-light))))
+      :light doom-one-light))
+    ("tomorrow" .
+     (:package doom-themes
+      :dark doom-tomorrow-night
+      :light doom-tomorrow-day))))
 
 (defvar jh/--current-theme nil)
 
@@ -84,6 +88,7 @@
       (doom-themes-padded-modeline nil)
       (doom-one-light-brighter-comments t)
       (doom-one-brighter-comments t)
+      (doom-tomorrow-night-padded-modeline t)
       (doom-solarized-light-brighter-comments t)
       (doom-solarized-dark-brighter-text t)
       (doom-solarized-dark-brighter-modeline t)

@@ -65,9 +65,9 @@
   :init
   (setq prefix-help-command #'embark-prefix-help-command)
   :general
-  (:keymaps 'global
+  (:keymaps 'override
    "C-." 'embark-dwim
-   "C-;" 'embark-act))
+   "M-." 'embark-act))
 
 (use-package recentf
   :hook (emacs-startup . recentf-mode))

@@ -111,7 +111,7 @@
        ("l" "Leads Meeting" entry (file+headline "~/Dropbox/Work/leads.org" "Notes")
         "* %?")
        ("d" "DevOps Note" entry (file+headline "~/Dropbox/Work/devops/notes.org" "Agenda")
-        "* TODO %?")
+        "* %?")
        ("o" "One on One" entry (file+headline "~/Dropbox/Work/one_on_one.org" "Agenda")
         "* %?")))
   :custom
@@ -163,6 +163,10 @@
   (:states 'normal
    "M-c" 'org-store-link))
 
+
+(use-package org-drill
+  :after org
+  :commands org-drill)
 
 (use-package org-agenda
   :straight nil

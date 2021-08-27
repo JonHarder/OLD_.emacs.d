@@ -62,6 +62,14 @@ Takes into account if path contains the home ~ symbol."
               (substring s 0 1)))
           paths))
 
+(defun shell-command-with-exit-code (command &rest args)
+  "Execute shell command COMMAND with ARGS, returning list of (exit-code stdout)."
+  (with-temp-buffer
+    (condition-case _
+        (list (apply 'call-process command nil (current-buffer) nil args)
+              (string-trim (buffer-string)))
+        (file-missing ""))))
+
 (defun jh/eshell-prompt--git-branch ()
   "Get the git branch of working directory."
   (let* ((cmd-str "git branch | grep '^*' | awk '{ print $2 }'")

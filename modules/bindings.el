@@ -12,6 +12,7 @@
 ;;; Code:
 (require 'use-package)
 (load-file "~/.emacs.d/ext_lisp/how-do-i.el")
+(require 'contrib "~/.emacs.d/contrib.el")
 
 (defun text-scale-reset ()
   "Reset the text scale back to configuration default.
@@ -182,6 +183,7 @@ This is determined by `jh/font-size'"
   (interactive)
   (message "reloading config...")
   (load-file "~/.emacs.d/init.el")
+  (update-frame-font-size jh/font-size)
   (message "reloading config...done!"))
 
 (defun find-init-file ()

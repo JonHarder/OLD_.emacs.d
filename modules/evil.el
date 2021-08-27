@@ -29,6 +29,15 @@
   (evil-set-initial-state 'magit-status-mode 'normal)
   (evil-set-initial-state 'ibuffer-mode 'normal))
 
+(defun evil-org-meta-return ()
+  "Operates like `org-meta-return', but doesn't cut the current line."
+  (interactive)
+  (evil-append-line 1)
+  (org-meta-return))
+
+(with-eval-after-load 'org
+  (evil-define-key 'normal 'org-mode-map (kbd "M-RET") #'evil-org-meta-return))
+
 (use-package evil-matchit
   :after evil
   :config

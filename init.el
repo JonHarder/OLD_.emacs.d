@@ -40,11 +40,11 @@
   :group 'configuration)
 
 ;;;; Overrides to defaults
-(setq jh/theme "doom")
+(setq jh/theme "modus")
+(setq jh/font-size 14)
 
 ;;;; Load configuration proper
 (dolist (module (jh/dir-files "~/.emacs.d/modules" "el"))
   (load-file module))
-
 (provide 'init)
 ;;; init.el ends here

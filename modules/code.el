@@ -54,6 +54,9 @@
               c-basic-offset 4
               tab-width 4)
 
+(use-package hl-todo
+  :hook (prog-mode-hook . hl-todo-mode))
+
 (use-package yaml-mode
   :mode "\\ya?ml\'"
   :config

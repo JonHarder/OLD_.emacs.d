@@ -118,5 +118,12 @@ Preserves order and keys."
      ,@body
      (float-time (time-since time))))
 
+;;;###autoload
+(defun update-frame-font-size (size)
+  "Update current frame font size to SIZE."
+  (interactive (list (read-number "Font size: " jh/font-size)))
+  (set-frame-font (format "%s %s" jh/font size))
+  (setq jh/font-size size))
+
 (provide 'contrib)
 ;;; contrib.el ends here
