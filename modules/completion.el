@@ -95,7 +95,7 @@
    "i i" 'consult-imenu
    "h a" 'consult-apropos
    "l l" 'consult-flycheck
-   "/" 'consult-grep))
+   "/" 'consult-ripgrep))
 
 (use-package consult-dir
   :after (evil)
