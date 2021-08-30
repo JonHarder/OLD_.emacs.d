@@ -19,6 +19,8 @@
     (interactive)
     (kill-buffer)
     (jump-to-register :magit-fullscreen))
+  (evil-set-initial-state 'magit-log-mode 'normal)
+  (evil-set-initial-state 'magit-revision-mode 'normal)
   :general
   (:states 'normal
    :prefix "SPC"
@@ -31,7 +33,14 @@
    :states 'normal
    "j" #'magit-next-line
    "k" #'magit-previous-line
+   "r" #'magit-rebase
+   "?" #'magit-dispatch
    "RET" #'magit-show-commit)
+  (:keymaps 'magit-revision-mode-map
+   :states 'normal
+   "RET" #'magit-diff-visit-file
+   "TAB" #'magit-section-toggle
+   "?" #'magit-dispatch)
   (:keymaps 'magit-status-mode-map
    :states 'normal
    "$" #'magit-process-buffer

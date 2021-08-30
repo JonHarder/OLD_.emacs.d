@@ -311,7 +311,7 @@ This is determined by `jh/font-size'"
   :custom
   (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
   (aw-background t)
-  (aw-scope 'frame)
+  (aw-scope 'global)
   (aw-ignore-current t)
   :bind
   ("C-x o" . 'ace-window)
