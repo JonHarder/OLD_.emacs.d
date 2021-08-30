@@ -127,7 +127,7 @@
                       "~/Dropbox/Work/todo.org"
                       "~/Dropbox/Work/projects"
                       "~/Dropbox/Work/journal"
-                      "~/Dropbox/Work/devops.org"
+                      "~/Dropbox/Work/devops"
                       "~/Dropbox/Bethlehem/notes.org"
                       "~/Dropbox/Bethlehem/classes/fall_2021/GREK_5205/assignments.org"
                       "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5565/assignments.org"

@@ -25,7 +25,7 @@
     ("solarized" .
      (:package doom-themes
       :light doom-solarized-light
-      :dark doom-solarized-dark-high-contrast))
+      :dark doom-solarized-dark))
     ("gruvbox" .
      (:package doom-themes
       :light doom-gruvbox-light

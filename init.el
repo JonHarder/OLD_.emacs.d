@@ -40,7 +40,7 @@
   :group 'configuration)
 
 ;;;; Overrides to defaults
-(setq jh/theme "modus")
+(setq jh/theme "doom")
 (setq jh/font-size 14)
 
 ;;;; Load configuration proper
