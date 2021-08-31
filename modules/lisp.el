@@ -9,6 +9,8 @@
 (use-package eros
   :hook (lisp-data-mode . eros-mode))
 
+(add-hook 'emacs-lisp-mode-hook #'show-paren-mode)
+
 (use-package parinfer-rust-mode
   :hook lisp-data-mode
   :init

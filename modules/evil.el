@@ -28,7 +28,16 @@
   ;; (evil-mode 1)
   (evil-set-initial-state 'magit-status-mode 'normal)
   (evil-set-initial-state 'ibuffer-mode 'normal)
+  (evil-set-initial-state 'custom-mode 'normal)
   (setq evil-undo-system 'undo-redo))
+
+(use-package cus-edit
+  :straight nil
+  :general
+  (:keymaps 'custom-mode-map
+   :states 'normal
+   "TAB" #'widget-forward
+   "RET" #'Custom-newline))
 
 (defun evil-org-meta-return ()
   "Operates like `org-meta-return', but doesn't cut the current line."

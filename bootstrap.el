@@ -39,6 +39,26 @@
   :config
   (gcmh-mode 1))
 
+(use-package dashboard
+  :init
+  (setq dashboard-projects-backend 'project-el)
+  (setq dashboard-items
+        '((recents . 5)
+          (bookmarks . 5)
+          (projects . 5)))
+  (setq dashboard-banner-logo-title "Why did you ever leave?")
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-center-content t)
+  :hook (after-init . dashboard-setup-startup-hook))
+
+(with-eval-after-load 'evil
+  (general-define-key
+    :keymaps 'dashboard-mode-map
+    :states 'normal
+    "r" #'dashboard-jump-to-recent-files
+    "m" #'dashboard-jump-to-bookmarks
+    "p" #'dashboard-jump-to-projects))
+
 (use-package exec-path-from-shell
   :disabled t
   :when (memq window-system '(mac ns x))

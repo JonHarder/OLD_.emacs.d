@@ -8,7 +8,7 @@
 
 (defvar search-engines
   '(("google" . "https://google.com/search?q=")
-    ("ddg" . "https://ddg.gg/?q=")
+    ("ddg" . "https://duckduckgo.com/lite?q=")
     ("stack-overflow" . "https://stackoverflow.com/search?q=")
     ("bible-gateway" . "https://www.biblegateway.com/passage/?version=ESV&search=")))
 

@@ -143,6 +143,10 @@
    :states 'normal
    "j" 'evil-next-visual-line
    "k" 'evil-previous-visual-line)
+  (:keymaps 'org-mode-map
+   :states 'insert
+   "M-k" 'org-metaup
+   "M-j" 'org-metadown)
   (:states 'normal
    :keymaps 'org-mode-map
    :prefix "SPC"

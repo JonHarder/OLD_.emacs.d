@@ -76,6 +76,17 @@
       ;; (modus-themes-scale-headings nil)
       (modus-themes-paren-match 'intense)))
 
+   ((string-prefix-p "humanoid-" (symbol-name theme))
+    (use-package humanoid-themes
+      :custom
+      (humanoid-comment-bg t)
+      (humanoid-org-highlight t)))
+
+   ((string-prefix-p "spacemacs-" (symbol-name theme))
+    (use-package spacemacs-theme
+      :custom
+      (spacemacs-theme-org-highlight t)))
+
    ;;; doom themes
    ((string-prefix-p "doom-" (symbol-name theme))
     (use-package doom-themes
