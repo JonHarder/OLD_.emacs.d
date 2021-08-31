@@ -85,12 +85,16 @@
   :custom
   (consult-narrow-key "<")
   :general
-  ("C-c h" #'consult-history
+  (:keymaps 'override
+   "C-c h" #'consult-history
    "C-c o" #'consult-outline
    "C-x b" #'consult-buffer)
   (:keymaps 'flycheck-command-map
    :states 'normal
    "!" #'consult-flycheck)
+  (:keymaps 'global
+   :states 'normal
+   "/" #'consult-line)
   (:prefix "SPC"
    :states 'normal
    "o o" 'consult-outline

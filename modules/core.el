@@ -45,6 +45,15 @@
 (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 (setq custom-file (expand-file-name "custom.el" temporary-file-directory))
 
+;;; TODO: This is a hack put in place to fix a bad gnu tls implementation
+;;;       which was causing eww to hang on almost any https request.
+;;;       check back in on this at some point to see if it's still necessary.
+(use-package gnutls
+  :straight nil
+  :demand t
+  :custom
+  (gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+
 (setq kill-buffer-query-functions
       (remq 'process-kill-buffer-query-function kill-buffer-query-functions))
 

@@ -75,6 +75,7 @@ This is determined by `jh/font-size'"
    "a =" 'calc
    "a c" 'calendar
    "a i" 'ielm
+   "a p" 'appt-add
    "a t" 'eshell
 
    "b i" 'ibuffer
