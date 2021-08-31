@@ -29,7 +29,12 @@
   (evil-set-initial-state 'magit-status-mode 'normal)
   (evil-set-initial-state 'ibuffer-mode 'normal)
   (evil-set-initial-state 'custom-mode 'normal)
-  (setq evil-undo-system 'undo-redo))
+  (setq evil-undo-system 'undo-redo)
+  (setq evil-normal-state-cursor '("#4db5db" box)
+        evil-insert-state-cursor '("#98be65" bar)
+        evil-visual-state-cursor '("#da8548" hollow)
+        evil-replace-state-cursor '("#ff6c6b" hollow)
+        evil-emacs-state-cursor '("white" hbar)))
 
 (use-package cus-edit
   :straight nil

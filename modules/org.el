@@ -115,6 +115,7 @@
        ("o" "One on One" entry (file+headline "~/Dropbox/Work/one_on_one.org" "Agenda")
         "* %?")))
   :custom
+  (org-tags-column 0)
   (org-directory "~/Dropbox")
   (org-fontify-whole-heading-line nil)
   (org-confirm-babel-evaluate nil)

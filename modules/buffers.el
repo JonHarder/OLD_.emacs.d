@@ -22,6 +22,7 @@
    "s f" 'ibuffer-do-sort-by-filename/process
    "/ RET" 'ibuffer-filter-by-mode
    "/ SPC" 'ibuffer-filter-chosen-by-completion
+   "/ /" 'ibuffer-filter-disable
    "J" 'ibuffer-jump-to-buffer
    "S" 'ibuffer-do-save
    "D" 'ibuffer-do-delete)

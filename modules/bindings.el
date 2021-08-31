@@ -26,6 +26,9 @@ This is determined by `jh/font-size'"
   :config
   (general-evil-setup t)
   (general-define-key
+   "M-[" 'evil-jump-backward
+   "M-]" 'evil-jump-forward)
+  (general-define-key
    :states 'normal
    :keymaps 'special-mode-map
    "TAB" 'forward-button
