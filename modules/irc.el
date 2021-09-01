@@ -8,6 +8,7 @@
 
 ;; (load "~/.emacs.d/.erc-auth")
 (use-package erc
+  :straight nil
   :custom
   (erc-server "irc.libera.chat")
   (erc-hide-list '("JOIN" "PART" "QUIT"))

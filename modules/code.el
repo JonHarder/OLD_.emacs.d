@@ -57,6 +57,12 @@
 (use-package hl-todo
   :hook (prog-mode-hook . hl-todo-mode))
 
+(use-package display-line-numbers
+  :straight nil
+  :hook (prog-mode . display-line-numbers-mode)
+  :custom
+  (display-line-numbers-type 'visual))
+
 (use-package yaml-mode
   :mode "\\ya?ml\'"
   :config

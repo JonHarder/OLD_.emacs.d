@@ -79,7 +79,6 @@ This is determined by `jh/font-size'"
    "a c" 'calendar
    "a i" 'ielm
    "a p" 'appt-add
-   "a t" 'eshell
 
    "b i" 'ibuffer
    "b l" 'jh/switch-buffer-left

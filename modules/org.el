@@ -187,7 +187,7 @@
   :commands (org-journal-new-entry)
   :custom
   (org-journal-dir "~/Dropbox/Work/journal/")
-  (org-journal-file-type 'weekly)
+  (org-journal-file-type 'yearly)
   (org-journal-file-format "%Y%m%d.org")
   :general
   (:states 'normal
