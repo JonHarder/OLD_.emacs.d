@@ -217,15 +217,6 @@
   :init
   (setq-default abbrev-mode t))
 
-(use-package writeroom-mode
-  :commands writeroom-mode
-  :custom
-  (writeroom-width 0.6)
-  :general
-  (:states 'normal
-   :prefix "SPC"
-   "a w" '(writeroom-mode :wk "Writing Mode")))
-
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
@@ -233,5 +224,12 @@
          ("\\.markdown\\'" . markdown-mode))
   :custom
   (markdown-command "pandoc"))
+
+(use-package olivetti
+  :general
+  (:states 'normal
+   :prefix "SPC"
+   "a o" 'olivetti-mode))
+
 (provide 'core)
 ;;; core.el ends here
