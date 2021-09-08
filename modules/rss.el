@@ -13,7 +13,14 @@
    elfeed-feeds '("https://martinfowler.com/feed.atom"
                   "https://emacsredux.com/atom.xml"
                   "https://protesilaos.com/codelog.xml"
-                  "https://desiringgod.org/blog.rss")))
+                  "https://desiringgod.org/blog.rss"))
+  :general
+  (:keymaps 'elfeed-search-mode-map
+   :states 'normal
+   "RET" 'elfeed-search-show-entry)
+  (:keymaps 'elfeed-show-mode-map
+   :states 'normal
+   "q" 'elfeed-kill-buffer))
 
 (provide 'rss)
 ;;; rss.el ends here
