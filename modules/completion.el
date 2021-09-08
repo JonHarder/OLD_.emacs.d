@@ -23,7 +23,8 @@
   :custom
   (completion-cycle-threshold 3)
   (tab-always-indent 'complete)
-  (resize-mini-windows 'grow-only)
+  ;;; (resize-mini-windows 'grow-only)
+  (resize-mini-windows nil)
   ;; (minibuffer-prompt-properties
   ;;       '(read-only t cursor-intangible t face minibuffer-prompt))
   (enable-recursive-minibuffers t)
@@ -92,12 +93,11 @@
   (:keymaps 'flycheck-command-map
    :states 'normal
    "!" #'consult-flycheck)
-  (:keymaps 'global
+  (:prefix ","
    :states 'normal
-   "/" #'consult-line)
+   "o" 'consult-outline)
   (:prefix "SPC"
    :states 'normal
-   "o o" 'consult-outline
    "b b" 'consult-buffer
    "i i" 'consult-imenu
    "h a" 'consult-apropos

@@ -127,6 +127,7 @@
   (org-agenda-files `("~/Org/calendars"
                       "~/Dropbox/notes.org"
                       "~/Dropbox/Work/todo.org"
+                      "~/Dropbox/Work/notes.org"
                       "~/Dropbox/Work/projects"
                       "~/Dropbox/Work/journal"
                       "~/Dropbox/Work/devops"
@@ -151,24 +152,24 @@
   (:states 'normal
    :keymaps 'org-mode-map
    :prefix "SPC"
-   "o a" 'org-archive-subtree
-   "o b" 'jh/org-src-block
-   "o c" 'org-ctrl-c-ctrl-c
-   "o e" 'org-export-dispatch
-   "o t" 'org-todo
-   "o r" 'org-refile
-   "o RET" 'org-open-at-point
-   "o l" 'org-insert-link
-   "o p" 'org-priority
-   "o g" 'org-goto
-   "o ." 'org-time-stamp
-   "o '" 'org-edit-special
-   "o s s" 'org-schedule
-   "o s d" 'org-deadline
    "a c" 'calendar)
   (:states 'normal
-   "M-c" 'org-store-link))
-
+   "M-c" 'org-store-link)
+  (:states 'normal
+   :prefix ","
+   :keymaps 'org-mode-map
+   "a" 'org-archive-subtree
+   "c" 'org-ctrl-c-ctrl-c
+   "e" 'org-export-dispatch
+   "RET" 'org-open-at-point
+   "l" 'org-insert-link
+   "s" 'org-schedule
+   "p" 'org-priority
+   "d" 'org-deadline
+   "g" 'org-goto
+   "t" 'org-todo
+   "r" 'org-refile
+   "." 'org-time-stamp))
 
 (use-package org-drill
   :after org
@@ -188,7 +189,7 @@
   :custom
   (org-journal-dir "~/Dropbox/Work/journal/")
   (org-journal-file-type 'yearly)
-  (org-journal-file-format "%Y%m%d.org")
+  (org-journal-file-format "%Y.org")
   :general
   (:states 'normal
    :prefix "SPC"
@@ -222,4 +223,3 @@
   (org-hide-leading-stars t)
   (org-superstar-special-todo-items t)
   :hook (org-mode . org-superstar-mode))
-

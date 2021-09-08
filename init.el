@@ -24,7 +24,7 @@
   :type 'string
   :group 'configuration)
 
-(defcustom jh/theme "modus"
+(defcustom jh/theme (getenv "EMACS_THEME")
   "Theme to use, must be a key memeber of `jh/themes'."
   :type 'string
   :group 'configuration)
@@ -41,7 +41,7 @@
 
 ;;;; Overrides to defaults
 (setq jh/font-size 14)
-(setq jh/theme "spacemacs")
+(setq jh/theme "doom")
 
 ;;;; Load configuration proper
 (dolist (module (jh/dir-files "~/.emacs.d/modules" "el"))

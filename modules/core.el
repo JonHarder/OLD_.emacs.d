@@ -226,6 +226,8 @@
   (markdown-command "pandoc"))
 
 (use-package olivetti
+  :custom
+  (olivetti-style 'fancy)
   :general
   (:states 'normal
    :prefix "SPC"

@@ -47,6 +47,7 @@
    "?" #'magit-dispatch
    "b" #'magit-branch
    "c" #'magit-commit
+   "e" #'magit-ediff-dwim
    "f" #'magit-fetch
    "g r" #'magit-refresh
    "j" #'magit-next-line

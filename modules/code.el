@@ -57,6 +57,8 @@
 (use-package hl-todo
   :hook (prog-mode-hook . hl-todo-mode))
 
+(add-to-list 'auto-mode-alist '("Pipfile" . conf-toml-mode))
+
 (use-package display-line-numbers
   :straight nil
   :hook (prog-mode . display-line-numbers-mode)

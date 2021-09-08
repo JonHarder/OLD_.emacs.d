@@ -79,6 +79,7 @@ This is determined by `jh/font-size'"
    "a c" 'calendar
    "a i" 'ielm
    "a p" 'appt-add
+   "a t" 'org-todo-list
 
    "b i" 'ibuffer
    "b l" 'jh/switch-buffer-left
@@ -185,6 +186,7 @@ This is determined by `jh/font-size'"
   "Evaluate current settings of Emacs configuration."
   (interactive)
   (message "reloading config...")
+  (parse-profile)
   (load-file "~/.emacs.d/init.el")
   (update-frame-font-size jh/font-size)
   (message "reloading config...done!"))

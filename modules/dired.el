@@ -22,6 +22,11 @@
   (interactive nil dired-mode)
   (dired "~/"))
 
+(defun dired-here ()
+  "Open `dired' in the directory of the current buffer."
+  (interactive)
+  (dired default-directory))
+
 (use-package dired
   :straight nil
   :commands (dired dired-jump)
@@ -34,10 +39,11 @@
   :general
   (:states 'normal
    :prefix "SPC"
-   "a d" 'dired-jump)
+   "a d" 'dired-here)
   (:keymaps 'dired-mode-map
    :states '(emacs normal motion)
    "RET" 'dired-find-file
+   "/" 'dired-goto-file
    "+" 'dired-create-directory
    "x" 'dired-do-flagged-delete
    "~" 'dired-home
@@ -47,6 +53,7 @@
    "o" 'dired-find-file-other-window
    "m" 'dired-mark
    "g r" 'revert-buffer
+   "v" 'dired-view-file
    "f" 'find-file
    "l" 'dired-find-file
    "C" 'dired-do-copy
