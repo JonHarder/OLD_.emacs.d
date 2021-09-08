@@ -16,7 +16,7 @@
 (use-package org-ref
   :after org
   :custom
-  (org-latex-pdf-process '("latexmk -pdf -outdir=%o %f"))
+  (org-latex-pdf-process '("latexmk -f -pdf -%latex -interaction=nonstopmode -output-directory=%o %f"))
   (reftex-default-bibliography '("~/Dropbox/bibliography/references.bib"))
   (bib-files-directory '("~/Dropbox/bibliography/references.bib"))
   (bibtex-dialect 'biblatex)
