@@ -55,7 +55,7 @@
               tab-width 4)
 
 (use-package hl-todo
-  :hook (prog-mode-hook . hl-todo-mode))
+  :hook (emacs-startup . global-hl-todo-mode))
 
 (add-to-list 'auto-mode-alist '("Pipfile" . conf-toml-mode))
 

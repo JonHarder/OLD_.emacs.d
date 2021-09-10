@@ -27,6 +27,8 @@
 (use-package vterm
   :commands vterm
   :hook (vterm-mode . jh/vterm-init-hook)
+  :custom
+  (vterm-timer-delay 0.01)
   :config
   (add-hook 'vterm-mode-hook
             (lambda ()
