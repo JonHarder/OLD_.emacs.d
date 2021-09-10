@@ -91,6 +91,7 @@ This is determined by `jh/font-size'"
    "c c" 'jh/find-config
    "c l" 'select-theme
    "c r" 'jh/reload-config
+   "c t" 'osx/toggle-dark-mode
 
    "d" #'jh/kill-this-buffer
    "D" #'evil-delete-buffer
