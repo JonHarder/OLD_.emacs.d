@@ -26,8 +26,10 @@
          (slot . 0))
         ("\\*ielm\\*"
          (display-buffer-below-selected))
-        ("\\*vterminal*\\*"
-         (display-buffer-below-selected))
+        ("\\*vterm\\*"
+         (display-buffer-at-bottom)
+         (window-height . 0.4)
+         (side . bottom))
         ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|compilation\\|Messages\\)\\*"
          (display-buffer-in-side-window)
          (window-height . 0.3)
@@ -35,8 +37,8 @@
          (slot . 1))
         ("\\*\\(helpful .*: .*\\|Help\\)\\*"
          (display-buffer-in-side-window display-buffer-below-selected)
-         (side . bottom)
-         (window-height 0.2))))
+         (side . left)
+         (window-width . 0.3))))
 
 (provide 'window)
 ;;; window.el ends here

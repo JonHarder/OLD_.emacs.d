@@ -20,7 +20,8 @@
     (let ((buf (process-buffer process)))
       (when (buffer-live-p buf)
         (with-current-buffer buf
-          (kill-buffer)
+          (delete-window)
+          (kill-buffer buf)
           (message "VTerm closed."))))))
 
 (use-package vterm
@@ -31,11 +32,15 @@
             (lambda ()
               (set-process-sentinel (get-buffer-process (buffer-name)) #'vterm--kill-vterm-buffer-and-window)))
   :general
+  (:states 'normal
+   :prefix "SPC"
+   "a v" 'vterm)
   (:keymaps 'vterm-mode-map
    :states '(normal insert)
    "M-v" 'vterm-yank))
 
 (use-package multi-vterm
+  :disabled t
   :commands multi-vterm
   :general
   (:states 'normal
