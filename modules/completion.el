@@ -105,6 +105,11 @@
    "l l" 'consult-flycheck
    "/" 'consult-ripgrep))
 
+(use-package embark-consult
+  :after (consult embark)
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
 (use-package consult-dir
   :after (evil)
   :demand t
