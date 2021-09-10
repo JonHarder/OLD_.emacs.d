@@ -158,6 +158,8 @@
   (:states 'normal
    :prefix ","
    :keymaps 'org-mode-map
+   "i" 'org-clock-in
+   "o" 'org-clock-out
    "a" 'org-archive-subtree
    "c" 'org-ctrl-c-ctrl-c
    "e" 'org-export-dispatch

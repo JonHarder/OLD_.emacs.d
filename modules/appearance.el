@@ -33,7 +33,7 @@
     ("doom" .
      (:package doom-themes
       :light doom-one-light
-      :dark doom-one))
+      :dark doom-vibrant))
     ("dracula" .
      (:package doom-themes
       :dark doom-dracula
@@ -98,8 +98,11 @@
       (doom-themes-enable-italic t)
       (doom-themes-padded-modeline nil)
       (doom-one-light-brighter-comments t)
+      (doom-one-light-brighter-modeline t)
       (doom-one-brighter-comments t)
       (doom-tomorrow-night-padded-modeline t)
+      (doom-vibrant-brighter-comments t)
+      (doom-vibrant-brighter-modeline t)
       (doom-solarized-light-brighter-comments t)
       (doom-solarized-dark-brighter-text t)
       (doom-solarized-dark-brighter-modeline t)
@@ -210,11 +213,10 @@ show-paren-mode 1
 
 (select-theme jh/theme)
 (let ((font (format "%s %s" jh/font jh/font-size)))
-
-  (when jh/theme-switch-timer
-    (cancel-timer jh/theme-switch-timer))
-  (setq jh/theme-switch-timer
-        (run-with-idle-timer 2 1 #'reload-theme))
+  ;; (when jh/theme-switch-timer
+  ;;   (cancel-timer jh/theme-switch-timer))
+  ;; (setq jh/theme-switch-timer
+  ;;       (run-with-idle-timer 2 1 #'reload-theme))
 
   (add-to-list 'default-frame-alist `(font . ,font)))
 (provide 'appearance)

@@ -17,7 +17,8 @@
   :general
   (:keymaps 'elfeed-search-mode-map
    :states 'normal
-   "RET" 'elfeed-search-show-entry)
+   "RET" 'elfeed-search-show-entry
+   "q" 'elfeed-search-quit-window)
   (:keymaps 'elfeed-show-mode-map
    :states 'normal
    "q" 'elfeed-kill-buffer))

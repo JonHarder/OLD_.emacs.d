@@ -7,7 +7,12 @@
 
 ;;; Code:
 (use-package eros
-  :hook (lisp-data-mode . eros-mode))
+  :hook (lisp-data-mode . eros-mode)
+  :general
+  (:keymaps 'emacs-lisp-mode-map
+   :states 'normal
+   :prefix ","
+   "e" 'eros-eval-last-sexp))
 
 (add-hook 'emacs-lisp-mode-hook #'show-paren-mode)
 

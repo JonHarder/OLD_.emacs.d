@@ -96,7 +96,6 @@ This is determined by `jh/font-size'"
    "d" #'jh/kill-this-buffer
    "D" #'evil-delete-buffer
 
-   "e e" 'eval-last-sexp
    "e d" 'eval-defun
    "e ;" 'eval-expression
 

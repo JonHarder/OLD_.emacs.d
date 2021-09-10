@@ -73,6 +73,9 @@
 (add-hook 'php-mode-hook (lambda () (electric-pair-mode 1)))
 (add-hook 'prog-mode-hook #'jh/prog-mode-hook)
 
+(use-package applescript-mode
+  :mode "\\.applescript\'")
+
 (add-hook 'c-mode-hook 'electric-pair-mode)
 (general-define-key
  :keymaps 'c-mode-map
