@@ -29,6 +29,7 @@
   (evil-set-initial-state 'magit-status-mode 'normal)
   (evil-set-initial-state 'ibuffer-mode 'normal)
   (evil-set-initial-state 'custom-mode 'normal)
+  (evil-set-initial-state 'bookmark-bmenu-mode 'normal)
   (setq evil-undo-system 'undo-redo))
   ;;; (setq evil-normal-state-cursor '("#98be65" box)
   ;;;       evil-insert-state-cursor '("#4db5db" bar)

@@ -233,5 +233,17 @@
    :prefix "SPC"
    "a o" 'olivetti-mode))
 
+(use-package bookmark
+  :straight nil
+  :general
+  (:keymaps 'bookmark-bmenu-mode-map
+   :states 'normal
+   "RET" 'bookmark-bmenu-this-window
+   "r" 'bookmark-bmenu-rename
+   "d" 'bookmark-bmenu-delete
+   "x" 'bookmark-bmenu-execute-deletions
+   "u" 'bookmark-bmenu-unmark
+   "o" 'bookmark-bmenu-other-window))
+
 (provide 'core)
 ;;; core.el ends here

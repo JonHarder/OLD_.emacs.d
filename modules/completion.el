@@ -99,6 +99,7 @@
   (:prefix "SPC"
    :states 'normal
    "b b" 'consult-buffer
+   "b m" 'consult-bookmark
    "i i" 'consult-imenu
    "h a" 'consult-apropos
    "l l" 'consult-flycheck
