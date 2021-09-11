@@ -38,7 +38,7 @@
         ("\\*\\(helpful .*: .*\\|Help\\)\\*"
          (display-buffer-in-side-window display-buffer-below-selected)
          (side . left)
-         (window-width . 0.3))))
+         (window-width . 75))))
 
 (provide 'window)
 ;;; window.el ends here
