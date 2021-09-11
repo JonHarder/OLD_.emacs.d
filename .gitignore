@@ -45,3 +45,4 @@ transient/
 /package-quickstart.e*
 /modules-computed.el*
 /bootstrap.elc
+/eln-cache/

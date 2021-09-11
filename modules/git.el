@@ -49,6 +49,7 @@
    "c" #'magit-commit
    "e" #'magit-ediff-dwim
    "f" #'magit-fetch
+   "i" #'magit-gitignore
    "g r" #'magit-refresh
    "j" #'magit-next-line
    "k" #'magit-previous-line
