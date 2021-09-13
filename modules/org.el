@@ -58,7 +58,7 @@
   (setq-default
    org-latex-packages-alist '(("margin=1in" "geometry" nil))
    org-src-fontify-natively t
-   org-hide-emphasis-markers t
+   org-hide-emphasis-markers nil
    org-archive-location "~/Org/archive/%s.archive::"
    ;;; FIXME: setting this to `t' breaks the agenda view for some reason
    org-agenda-include-diary nil
