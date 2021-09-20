@@ -65,6 +65,12 @@
   :commands (embark-dwim embark-act embark-prefix-help-command)
   :init
   (setq prefix-help-command #'embark-prefix-help-command)
+  :config
+  (embark-define-keymap embark-tab-actions
+    "Keymap for actions for tab-bar tabs (when mentioned by name)."
+    ("r" tab-bar-rename-tab-by-name)
+    ("d" tab-bar-close-tab-by-name))
+  (add-to-list 'embark-keymap-alist '(tab . embark-tab-actions))
   :general
   ("C-;" 'embark-act
    "M-;" 'embark-dwim))
@@ -88,7 +94,6 @@
   :general
   (:keymaps 'override
    "C-c h" #'consult-history
-   "C-c o" #'consult-outline
    "C-x b" #'consult-buffer)
   (:keymaps 'flycheck-command-map
    :states 'normal
@@ -103,6 +108,7 @@
    "i i" 'consult-imenu
    "h a" 'consult-apropos
    "l l" 'consult-flycheck
+   "o o" #'consult-outline
    "/" 'consult-ripgrep))
 
 (use-package embark-consult
@@ -125,7 +131,9 @@
   :after vertico
   :init
   (marginalia-mode)
-  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light)))
+  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light))
+  :config
+  (add-to-list 'marginalia-prompt-categories '("tab by name" . tab)))
 
 (use-package xref
   :straight nil

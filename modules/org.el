@@ -14,6 +14,13 @@
   "Open ticket TICKET in kipsu jira."
   (browse-url-chrome (format "https://kipsudev.atlassian.net/browse/KIPSU-%s" ticket)))
 
+(with-eval-after-load 'evil
+  (defun insert-timed-note ()
+    "Insert a list item with the current hour:minute."
+    (interactive)
+    (evil-org-meta-return)
+    (insert (format-time-string "%H:%M "))))
+
 (with-eval-after-load 'org
   (org-link-set-parameters "kipsu"
                            :follow #'org-kipsu-open))
@@ -145,6 +152,9 @@
    :states 'normal
    "j" 'evil-next-visual-line
    "k" 'evil-previous-visual-line)
+  (:keymaps 'org-mode-map
+   :states '(normal insert)
+   "M-t" 'insert-timed-note)
   (:keymaps 'org-mode-map
    :states 'insert
    "M-k" 'org-metaup

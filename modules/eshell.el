@@ -172,6 +172,9 @@ Takes into account if path contains the home ~ symbol."
   (:keymaps 'eshell-mode-map
    :states '(normal insert)
    "<tab>" 'completion-at-point)
+  (:keymaps 'global
+   :states '(normal insert)
+   "C-c C-e" 'jh/eshell)
   (:states 'normal
    :prefix "SPC"
    "e e" 'jh/eshell))
@@ -190,7 +193,9 @@ Takes into account if path contains the home ~ symbol."
   "Open or close eshell window."
   (interactive)
   (if-let ((win (get-buffer-window "*eshell*")))
-      (delete-window win)
+      (if (eq (selected-window) win)
+          (delete-window win)
+        (select-window win))
     (eshell)))
 
 (provide 'eshell)

@@ -54,6 +54,7 @@
    "m" 'dired-mark
    "g r" 'revert-buffer
    "v" 'dired-view-file
+   "s" 'eshell
    "f" 'find-file
    "l" 'dired-find-file
    "C" 'dired-do-copy

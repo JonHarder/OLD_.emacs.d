@@ -16,6 +16,7 @@
 (setq display-buffer-alist
       '(("\\*\\(e?shell\\)\\*"
          (display-buffer-at-bottom)
+         ;; (display-buffer-below-selected)
          (window-height . 0.4)
          (side . bottom)
          (slot . -1))

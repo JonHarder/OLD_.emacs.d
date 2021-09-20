@@ -45,14 +45,17 @@
    :states 'normal
    "$" #'magit-process-buffer
    "?" #'magit-dispatch
+   "g u" #'magit-jump-to-unstaged
+   "g s" #'magit-jump-to-staged
+   "g U" #'magit-jump-to-untracked
    "b" #'magit-branch
    "c" #'magit-commit
    "e" #'magit-ediff-dwim
    "f" #'magit-fetch
    "i" #'magit-gitignore
    "g r" #'magit-refresh
-   "j" #'magit-next-line
-   "k" #'magit-previous-line
+   "j" #'magit-section-forward
+   "k" #'magit-section-backward
    "l" #'magit-log
    "m" #'magit-merge
    "q" #'magit-quit-session

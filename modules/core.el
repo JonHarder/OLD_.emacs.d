@@ -64,6 +64,13 @@
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
+(use-package eww
+  :straight nil
+  :general
+  (:states 'normal
+   :keymaps 'eww-mode-map
+   "H" 'eww-back-url))
+
  ;;; use internal emacs text browser
  ;; (setq browse-url-browser-function #'eww)
  ;;; Let the system default for osx determine which browser to use
@@ -125,7 +132,27 @@
 (use-package ag
   :commands ag)
 
-(use-package helpful)
+(use-package doc-view
+  :straight nil
+  :general
+  (:keymaps 'doc-view-mode-map
+   :states 'normal
+   "j" 'doc-view-next-line-or-next-page
+   "k" 'doc-view-previous-line-or-previous-page
+   "l" 'doc-view-next-page
+   "h" 'doc-view-previous-page))
+  
+
+(use-package helpful
+  :general
+  (:keymaps 'helpful-mode-map
+   :states 'normal
+   "RET" 'helpful-visit-reference)
+  (:states 'normal
+   :prefix "SPC"
+   "h f" 'helpful-callable
+   "h k" 'helpful-key
+   "h v" 'helpful-variable))
 
 (save-place-mode 1)
 

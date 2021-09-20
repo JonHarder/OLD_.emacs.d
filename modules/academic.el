@@ -26,7 +26,19 @@
   (bibtex-completion-pdf-open-function
    (lambda (fpath)
     (start-process "open" "*open*" "open" fpath))))
+
+(use-package ebib
+  :custom
+  (ebib-preload-bib-files '("~/Dropbox/bibliography/references.bib")))
   
+(use-package consult-bibtex
+  :after consult
+  :commands (consult-bibtex)
+  :straight '(consult-bibtex :host github
+                             :repo "mohkale/consult-bibtex")
+  :config
+  (with-eval-after-load 'embark
+    (add-to-list 'embark-keymap-alist '(bibtex-completion . consult-bibtex-embark-map))))
 
 (provide 'academic)
 ;;; academic.el ends here
