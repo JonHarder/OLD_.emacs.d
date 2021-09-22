@@ -41,7 +41,7 @@
 
 ;;;; Overrides to defaults
 (setq jh/font-size 14)
-(setq jh/theme "doom")
+(setq jh/theme "outrun-electric")
 
 ;;;; Load configuration proper
 (dolist (module (jh/dir-files "~/.emacs.d/modules" "el"))

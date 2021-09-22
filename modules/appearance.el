@@ -53,7 +53,11 @@
     ("tomorrow" .
      (:package doom-themes
       :dark doom-tomorrow-night
-      :light doom-tomorrow-day))))
+      :light doom-tomorrow-day))
+    ("outrun-electric" .
+     (:package doom-themes
+      :dark doom-outrun-electric
+      :light doom-one-light))))
 
 (defvar jh/--current-theme nil)
 
@@ -108,7 +112,10 @@
       (doom-solarized-dark-brighter-modeline t)
       (doom-solarized-dark-brighter-comments t)
       (doom-solarized-dark-high-contrast-brighter-modeline t)
-      (doom-solarized-dark-high-contrast-brighter-comments t)))))
+      (doom-solarized-dark-high-contrast-brighter-comments t)
+      (doom-outrun-electric-brighter-text t)
+      (doom-outrun-electric-brighter-modeline t)
+      (doom-outrun-electric-brighter-comments t)))))
 
 
 (defun jh/mac-is-dark-mode-p ()

@@ -140,7 +140,12 @@
    "j" 'doc-view-next-line-or-next-page
    "k" 'doc-view-previous-line-or-previous-page
    "l" 'doc-view-next-page
-   "h" 'doc-view-previous-page))
+   "h" 'doc-view-previous-page
+   "/" 'doc-view-search
+   "+" 'doc-view-enlarge
+   "-" 'doc-view-shrink
+   "gg" 'beginning-of-buffer
+   "G" 'end-of-buffer))
   
 
 (use-package helpful
