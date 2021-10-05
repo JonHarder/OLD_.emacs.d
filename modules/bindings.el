@@ -21,6 +21,14 @@ This is determined by `jh/font-size'"
   (interactive)
   (text-scale-adjust 0))
 
+
+(defun delete-this-file ()
+  "Delete the file of the current window, and it's associated buffer."
+  (interactive)
+  (let ((buf (current-buffer)))
+    (when (y-or-n-p (format "Delete %s? " (buffer-file-name buf)))
+      (delete-file (buffer-file-name buf))
+      (kill-buffer buf))))
             
 (use-package general
   :config
@@ -55,6 +63,10 @@ This is determined by `jh/font-size'"
    :states 'normal
    :keymaps 'occur-mode-map
    "e" 'occur-edit-mode)
+  (general-define-key
+   :prefix ","
+   :states 'normal
+   "m" 'normal-mode)
   (general-define-key
    :prefix "SPC"
    :states 'visual
@@ -93,7 +105,7 @@ This is determined by `jh/font-size'"
    "c r" 'jh/reload-config
    "c t" 'osx/toggle-dark-mode
 
-   "d" #'jh/kill-this-buffer
+   "d" #'kill-this-buffer
    "D" #'evil-delete-buffer
 
    "e d" 'eval-defun
@@ -113,7 +125,7 @@ This is determined by `jh/font-size'"
    "f o" 'other-frame
    "f 0" 'delete-frame
    "f 2" 'make-frame
-
+   "f x" 'delete-this-file
    "h f" 'helpful-callable
    "h k" 'helpful-key
    "h v" 'helpful-variable
@@ -273,11 +285,6 @@ This is determined by `jh/font-size'"
   (delete-minibuffer-contents)
   (insert "~/"))
 
-(defun jh/kill-this-buffer ()
-  "Delete current buffer."
-  (interactive)
-  (kill-buffer (current-buffer)))
-
 (defun jh/copy-to-mac-clipboard (from to)
   "Copy the selected region starting at FROM and ending at TO to the clipboard."
   (interactive
@@ -296,12 +303,13 @@ This is determined by `jh/font-size'"
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
-(defun jh/smart-ace-window ()
-  "If only two windows are present, jump to the other one, otherwise use `ace-window'."
-  (interactive)
-  (if (= 2 (count-windows))
-      (other-window 1)
-    (call-interactively #'ace-window)))
+(defun jh/smart-ace-window (swap-p)
+  "Function like `ace-window`, but if universal argument SWAP-P supplied, use `ace-swap-window`."
+  (interactive "P")
+  (call-interactively
+   (if swap-p
+       #'ace-swap-window
+     #'ace-window)))
 
 (defun open-diary ()
   "Open the diary file as determined by `diary-file`."
@@ -316,14 +324,14 @@ This is determined by `jh/font-size'"
   :custom
   (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
   (aw-background t)
-  (aw-scope 'global)
+  (aw-scope 'frame)
   (aw-ignore-current t)
   :bind
-  ("C-x o" . 'ace-window)
+  ("C-x o" . 'jh/smart-ace-window)
   :general
   (:states 'normal
    :prefix "SPC"
-   "w" 'ace-window)
+   "w" 'jh/smart-ace-window)
   :config
   (face-spec-set 'aw-leading-char-face '((t (:foreground "red" :height 3.0)))))
 

@@ -230,7 +230,7 @@
   :custom
   (avy-background t)
   :general
-  (:states 'normal
+  (:states '(normal visual)
    :prefix "SPC"
    "SPC" 'avy-goto-word-1))
 
@@ -255,7 +255,12 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :custom
-  (markdown-command "pandoc"))
+  (markdown-command "pandoc")
+  :general
+  (:keymaps 'markdown-mode-map
+   :states 'normal
+   :prefix ","
+   "p" 'markdown-preview))
 
 (use-package olivetti
   :custom

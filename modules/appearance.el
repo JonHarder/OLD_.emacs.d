@@ -101,19 +101,31 @@
       (doom-themes-enable-bold t)
       (doom-themes-enable-italic t)
       (doom-themes-padded-modeline nil)
+
       (doom-one-light-brighter-comments t)
       (doom-one-light-brighter-modeline t)
+
       (doom-one-brighter-comments t)
+
       (doom-tomorrow-night-padded-modeline t)
+
       (doom-vibrant-brighter-comments t)
       (doom-vibrant-brighter-modeline t)
+
       (doom-solarized-light-brighter-comments t)
+
       (doom-solarized-dark-brighter-text t)
       (doom-solarized-dark-brighter-modeline t)
       (doom-solarized-dark-brighter-comments t)
+
       (doom-solarized-dark-high-contrast-brighter-modeline t)
       (doom-solarized-dark-high-contrast-brighter-comments t)
       (doom-outrun-electric-brighter-text t)
+
+      (doom-oceanic-next-comment-bg t)
+      (doom-oceanic-next-brighter-comments t)
+      (doom-oceanic-next-brighter-modeline t)
+
       (doom-outrun-electric-brighter-modeline t)
       (doom-outrun-electric-brighter-comments t)))))
 

@@ -40,11 +40,11 @@
   :group 'configuration)
 
 ;;;; Overrides to defaults
-(setq jh/font-size 14)
-(setq jh/theme "outrun-electric")
+(setq jh/font-size 15)
+(setq jh/theme "oceanic")
 
 ;;;; Load configuration proper
-(dolist (module (jh/dir-files "~/.emacs.d/modules" "el"))
-  (load-file module))
+(mapc #'load-file (directory-files "~/.emacs.d/modules" t ".+\.el"))
+
 (provide 'init)
 ;;; init.el ends here

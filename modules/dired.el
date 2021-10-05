@@ -41,8 +41,11 @@
    :prefix "SPC"
    "a d" 'dired-here)
   (:keymaps 'dired-mode-map
-   :states '(emacs normal motion)
+   ;; :states '(emacs normal motion)
+   :states '(normal motion)
    "RET" 'dired-find-file
+   "j" 'dired-next-line
+   "k" 'dired-previous-line
    "/" 'dired-goto-file
    "+" 'dired-create-directory
    "x" 'dired-do-flagged-delete
@@ -54,6 +57,8 @@
    "m" 'dired-mark
    "g r" 'revert-buffer
    "v" 'dired-view-file
+   "t" 'dired-toggle-marks
+   "-" 'dired-do-kill-lines
    "s" 'eshell
    "f" 'find-file
    "l" 'dired-find-file

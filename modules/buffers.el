@@ -2,7 +2,6 @@
 
 ;;; Commentary:
 
-
 ;;; Code:
 (use-package ibuffer
   :commands ibuffer

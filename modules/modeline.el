@@ -9,7 +9,8 @@
   :custom
   (doom-modeline-hud t)
   (doom-modeline-buffer-file-name 'relative-from-project)
-  (doom-modeline-enable-word-count t))
+  (doom-modeline-enable-word-count t)
+  (display-time-24hr-format t))
 
 (display-time-mode t)
 (display-battery-mode t)

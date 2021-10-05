@@ -129,7 +129,8 @@
   (org-edit-src-content-indentation 0)
   (org-refile-targets '((("~/Dropbox/notes.org"
                           "~/Dropbox/Work/todo.org"
-                          "~/Dropbox/Work/devops.org") . (:maxlevel . 1))))
+                          "~/Dropbox/Work/devops.org"
+                          "~/Dropbox/Work/projects") . (:maxlevel . 2))))
   (org-startup-indented 1)
   (org-agenda-files `("~/Org/calendars"
                       "~/Dropbox/notes.org"
@@ -173,6 +174,7 @@
    "a" 'org-archive-subtree
    "c" 'org-ctrl-c-ctrl-c
    "e" 'org-export-dispatch
+   "f" 'org-footnote-action
    "RET" 'org-open-at-point
    "l" 'org-insert-link
    "s" 'org-schedule

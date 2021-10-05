@@ -43,6 +43,12 @@
 
   :hook ((c-mode go-mode php-mode dockerfile-mode) . lsp-deferred))
 
+;; (use-package lsp-ui
+;;   :after lsp-mode
+;;   :config
+;;   (lsp-ui-mode))
+  
+
  ;;; This has been reported as the source of massive slowdowns
  ;;; in lsp mode enabled files, disabling for now until more
  ;;; thourough tests can be done.
@@ -63,7 +69,12 @@
   :straight nil
   :hook (prog-mode . display-line-numbers-mode)
   :custom
-  (display-line-numbers-type 'visual))
+  (display-line-numbers-type 'visual)
+  :general
+  (:prefix "SPC"
+   :states 'normal
+   :keymaps 'prog-mode-map
+   "c n" 'display-line-numbers-mode))
 
 (use-package yaml-mode
   :mode "\\ya?ml\'"
