@@ -45,6 +45,7 @@
 (use-package org
   :mode ("\\.org\\'" . org-mode)
   :config
+  (require 'ox-md)
   (require 'org-agenda)
   (require 'org-habit)
   (require 'org-tempo)
@@ -76,6 +77,7 @@
    org-lowest-priority ?F
    org-treat-insert-todo-heading-as-stage-change t
    org-log-into-drawer t)
+  (add-to-list 'org-latex-default-packages-alist '("greek" "babel" t))
 
   (if jh/scale-org-headings
       (progn
@@ -122,10 +124,13 @@
        ("o" "One on One" entry (file+headline "~/Dropbox/Work/one_on_one.org" "Agenda")
         "* %?")))
   :custom
+  (org-odt-preferred-output-format "docx")
+  (org-ellipsis "↴")
   (org-tags-column 0)
   (org-directory "~/Dropbox")
   (org-fontify-whole-heading-line nil)
   (org-confirm-babel-evaluate nil)
+  (org-latex-inputenc-alist '(("utf8" . "utf8x")))
   (org-edit-src-content-indentation 0)
   (org-refile-targets '((("~/Dropbox/notes.org"
                           "~/Dropbox/Work/todo.org"
@@ -133,6 +138,7 @@
                           "~/Dropbox/Work/projects") . (:maxlevel . 2))))
   (org-startup-indented 1)
   (org-agenda-files `("~/Org/calendars"
+                      "~/Dropbox/BookNotes"
                       "~/Dropbox/notes.org"
                       "~/Dropbox/Work/todo.org"
                       "~/Dropbox/Work/notes.org"
@@ -142,6 +148,7 @@
                       "~/Dropbox/Bethlehem/notes.org"
                       "~/Dropbox/Bethlehem/classes/fall_2021/GREK_5205/assignments.org"
                       "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5565/assignments.org"
+                      "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5581/assignments.org"
                       "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5565/worksheets.org"))
   (org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done))
   (calendar-date-style 'iso)
@@ -202,8 +209,8 @@
   :commands (org-journal-new-entry)
   :custom
   (org-journal-dir "~/Dropbox/Work/journal/")
-  (org-journal-file-type 'yearly)
-  (org-journal-file-format "%Y.org")
+  (org-journal-file-type 'daily)
+  (org-journal-file-format "%Y%m%d.org")
   :general
   (:states 'normal
    :prefix "SPC"

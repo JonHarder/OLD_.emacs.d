@@ -57,6 +57,10 @@
     ("outrun-electric" .
      (:package doom-themes
       :dark doom-outrun-electric
+      :light doom-one-light))
+    ("material" .
+     (:package doom-themes
+      :dark doom-material
       :light doom-one-light))))
 
 (defvar jh/--current-theme nil)
@@ -173,17 +177,13 @@ function to load a particular theme."
   "Get the package name from the theme config."
   (jh/theme-property :package))
 
-(defun osx/run-script (name &optional dir)
-  "Run the applescript NAME found in DIR.
-Uses `user-emacs-directory'/mac if DIR is not specified."
-  (let ((dir (or dir (concat user-emacs-directory "mac"))))
-    (shell-command (concat "osascript " (expand-file-name name dir)))))
 
 (defun osx/toggle-dark-mode ()
   "Toggle OSX dark mode."
   (interactive)
   (osx/run-script "toggle-dark-mode.applescript")
   (reload-theme))
+
 
 (defun select-theme (name)
   "Select the given theme, indexed by NAME.
@@ -226,9 +226,8 @@ show-paren-mode 1
 (setq-default overflow-newlines-into-fringe t)
 
 (use-package rainbow-delimiters
-  :functions 'rainbow-delimiters-mode-enable
   :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode-enable))
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (select-theme jh/theme)
 (let ((font (format "%s %s" jh/font jh/font-size)))

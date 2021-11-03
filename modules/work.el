@@ -44,3 +44,30 @@
   (interactive)
   (let ((datestr (format-time-string "%Y%m%d")))
     (find-file (format "~/Org/standups/%s.org" datestr))))
+
+(require 'request)
+
+(defun quore-request (token action)
+  "Use the provider TOKEN, make a request to the ACTION enpdoint of Quore."
+  (let ((oauth-header (concat "OAuth oauth_token=" token))
+        (response nil))
+    (request "https://api.quore.com/api.php"
+      :sync t
+      :type "POST"
+      :params `(("action" . ,action))
+      :parser #'json-read
+      :headers `(("Accept" . "application/json")
+                 ("Version" . "2")
+                 ("Authorization" . ,oauth-header))
+      :success (cl-function
+                (lambda (&key data &allow-other-keys)
+                  (setq response data))))
+    response))
+
+(defun get-quore-token-id (token)
+  "Get the quore token id from the TOKEN."
+  (let ((json (quore-request token "getTokenInfo")))
+    (cdr (assoc 'id (elt json 0)))))
+
+(provide 'work)
+;;; work.el ends here

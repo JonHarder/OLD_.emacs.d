@@ -4,6 +4,7 @@
 
 
 ;;; Code:
+(require 'ring)
 (defvar term-term-name nil)
 
 ;;; some programs don't play nice with eshell, for these, we can use ansi-term automatically
@@ -99,6 +100,9 @@ Takes into account if path contains the home ~ symbol."
   (let ((f (or file ".")))
     (find-file f)))
 
+(defun eshell/o (file)
+  "Open the given FILE in the other window."
+  (find-file-other-window file))
 
 (defun eshell/back (&optional num)
   "Travel back NUM directories."
@@ -111,6 +115,27 @@ Takes into account if path contains the home ~ symbol."
 
 (defalias 'eshell/b #'eshell/back)
 
+(require 'consult-dir)
+(require 'em-dirs)
+
+(defun eshell/z (&optional regexp)
+  "Navigate to a previously visited directory in eshell, or go to any directory proferred by `consult-dir'."
+  (let ((eshehll-dirs (delete-dups
+                       (mapcar 'abbreviate-file-name
+                               (ring-elements eshell-last-dir-ring)))))
+    (cond
+     ((and (not regexp) (featurep 'consult-dir))
+      (let* ((consult-dir--source-eshell `(:name "Eshell"
+                                           :narrow ?e
+                                           :category file
+                                           :face consult-file
+                                           :items ,eshell-dirstack))
+             (consult-dir-sources (cons consult-dir--source-eshell
+                                        consult-dir-sources)))
+        (eshell/cd (substring-no-properties
+                    (consult-dir--pick "Switch directory: ")))))
+     (t (eshell/cd (if regexp (eshell-find-previous-directory regexp)
+                     (completing-read "cd: " eshell-dirstack)))))))
 
 (defun eshell/git (&rest command)
   "Intercept 'git status' and run magit-status instead, run regular command line git command with COMMAND othrewise."

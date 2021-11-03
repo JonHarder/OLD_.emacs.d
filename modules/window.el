@@ -36,6 +36,10 @@
          (window-height . 0.3)
          (side . bottom)
          (slot . 1))
+        ("\\*Calendar\\*"
+         (display-buffer-at-bottom)
+         (wiwndow-height . 0.2)
+         (side . bottom))
         ("\\*\\(helpful .*: .*\\|Help\\)\\*"
          (display-buffer-in-side-window display-buffer-below-selected)
          (side . left)

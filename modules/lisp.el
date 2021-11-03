@@ -18,6 +18,8 @@
 
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 
+(use-package sly)
+
 (use-package parinfer-rust-mode
   :disabled t
   :hook lisp-data-mode

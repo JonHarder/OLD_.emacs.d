@@ -152,6 +152,7 @@ This is determined by `jh/font-size'"
 
    "p c" 'compile
    "p u" 'straight-use-package
+   "p f" 'project-find-file
 
    "q" #'kill-emacs
 
@@ -357,7 +358,9 @@ This is determined by `jh/font-size'"
   (general-define-key
    :states 'normal
    :prefix "SPC"
-   "z" #'beacon-blink))
+   "z" #'beacon-blink)
+  (general-define-key
+   "C-<return>" #'beacon-blink))
 
 (use-package calendar
   :straight nil

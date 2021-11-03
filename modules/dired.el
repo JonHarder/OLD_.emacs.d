@@ -59,7 +59,7 @@
    "v" 'dired-view-file
    "t" 'dired-toggle-marks
    "-" 'dired-do-kill-lines
-   "s" 'eshell
+   "s" 'dired-mark-suffix
    "f" 'find-file
    "l" 'dired-find-file
    "C" 'dired-do-copy

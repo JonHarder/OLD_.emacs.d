@@ -71,6 +71,11 @@
     ("r" tab-bar-rename-tab-by-name)
     ("d" tab-bar-close-tab-by-name))
   (add-to-list 'embark-keymap-alist '(tab . embark-tab-actions))
+  ;; hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none))))
   :general
   ("C-;" 'embark-act
    "M-;" 'embark-dwim))

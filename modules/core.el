@@ -10,6 +10,10 @@
 (require 'epg-config)
 (require 'general)
 
+(add-hook 'after-init-hook
+          (lambda ()
+            (load "~/.emacs.d/ext_lisp/make.el")))
+
 ;;;; from the variable documentation
 ;;; This variable is obsolete since 27.1; use epg-pinentry-mode instead.
 ;; (setq epa-pinentry-mode 'loopback)
@@ -146,7 +150,7 @@
    "-" 'doc-view-shrink
    "gg" 'beginning-of-buffer
    "G" 'end-of-buffer))
-  
+
 
 (use-package helpful
   :general
@@ -232,7 +236,7 @@
   :general
   (:states '(normal visual)
    :prefix "SPC"
-   "SPC" 'avy-goto-word-1))
+   "SPC" 'avy-goto-char-timer))
 
 (use-package autorevert
   :hook (emacs-startup . global-auto-revert-mode)
