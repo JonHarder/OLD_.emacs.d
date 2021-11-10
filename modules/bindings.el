@@ -374,6 +374,14 @@ This is determined by `jh/font-size'"
    "j" 'calendar-forward-week
    "k" 'calendar-backward-week))
 
+(eval-after-load 'spotify
+  (general-define-key
+   :states 'normal
+   :prefix "SPC"
+   "m RET" #'spotify-toggle-play
+   "m n" #'spotify-next-track
+   "m p" #'spotify-previous-track))
+
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
   (interactive)

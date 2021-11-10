@@ -182,7 +182,8 @@ function to load a particular theme."
   "Toggle OSX dark mode."
   (interactive)
   (osx/run-script "toggle-dark-mode.applescript")
-  (reload-theme))
+  (reload-theme)
+  (normal-mode))
 
 
 (defun select-theme (name)

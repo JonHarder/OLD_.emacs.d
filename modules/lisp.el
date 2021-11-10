@@ -12,22 +12,37 @@
   (:keymaps 'emacs-lisp-mode-map
    :states 'normal
    :prefix ","
-   "e" 'eros-eval-last-sexp))
+   "e" #'eros-eval-last-sexp
+   "RET" #'eros-evail-defun))
 
 (add-hook 'emacs-lisp-mode-hook #'show-paren-mode)
 
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 
-(use-package sly)
+(use-package sly
+  :config
+  (general-define-key
+   :keymaps 'lisp-mode-map
+   :states 'normal
+   :prefix ","
+   "e" #'sly-expand-1
+   "RET" #'sly-compile-defun
+   "f" #'sly-load-file))
 
 (use-package parinfer-rust-mode
-  :disabled t
   :hook lisp-data-mode
   :init
   (setq parinfer-rust-auto-download t)
   :config
+  (parinfer-rust-mode-enable)
   (add-to-list 'parinfer-rust-treat-command-as '(evil-open-below . "paren"))
   (add-to-list 'parinfer-rust-treat-command-as '(evil-open-above . "paren")))
+
+(general-define-key
+ :keymaps 'lisp-mode-map
+ :states 'normal
+ :prefix ","
+ "e" #'sly-expand-1)
 
 (use-package symex
   :config

@@ -13,6 +13,22 @@
 ;;   (bib-files-directory '("~/Dropbox/bibliography/references.bib"))
 ;;   (bibtex-dialect 'biblatex))
 
+(defun add-citation-footnote (reference page)
+  "Insert org footnote using `consult-bibtex' prompting for REFERENCE and PAGE."
+  (interactive (list
+                (consult-bibtex--read-entry)
+                (read-string "Page: ")) org)
+  (save-excursion
+    (call-interactively #'org-footnote-action)
+    (insert (format " \\cite[%s]{%s}" page reference)))
+  (search-forward "]"))
+
+(general-define-key
+ :keymaps 'org-mode-map
+ :states 'normal
+ :prefix ","
+ "f" #'add-citation-footnote)
+
 (use-package org-ref
   :after org
   :custom
