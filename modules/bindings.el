@@ -153,6 +153,7 @@ This is determined by `jh/font-size'"
    "p c" 'compile
    "p u" 'straight-use-package
    "p f" 'project-find-file
+   "p p" 'project-switch-project
 
    "q" #'kill-emacs
 

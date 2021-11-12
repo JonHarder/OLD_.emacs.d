@@ -175,7 +175,9 @@
   :general
   (:states 'normal
    :prefix "SPC"
-   "a s" 'scratch))
+   "a s" (lambda () (interactive)
+           (setq current-prefix-arg '(4))
+           (call-interactively #'scratch))))
 
 (use-package undo-tree
   :config

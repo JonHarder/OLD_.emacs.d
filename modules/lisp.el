@@ -13,7 +13,7 @@
    :states 'normal
    :prefix ","
    "e" #'eros-eval-last-sexp
-   "RET" #'eros-evail-defun))
+   "RET" #'eros-eval-defun))
 
 (add-hook 'emacs-lisp-mode-hook #'show-paren-mode)
 
@@ -25,9 +25,10 @@
    :keymaps 'lisp-mode-map
    :states 'normal
    :prefix ","
-   "e" #'sly-expand-1
    "RET" #'sly-compile-defun
-   "f" #'sly-load-file))
+   "e" #'sly-expand-1
+   "f" #'sly-load-file
+   "i" #'sly-inspect))
 
 (use-package parinfer-rust-mode
   :hook lisp-data-mode
