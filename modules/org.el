@@ -62,6 +62,7 @@
      (haskell t)
      (python . t)
      (php . t)
+     (C . t)
      (js . t)))
   (setq-default
    org-latex-packages-alist '(("margin=1in" "geometry" nil))

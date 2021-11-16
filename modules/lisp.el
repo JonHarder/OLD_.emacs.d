@@ -28,7 +28,12 @@
    "RET" #'sly-compile-defun
    "e" #'sly-expand-1
    "f" #'sly-load-file
-   "i" #'sly-inspect))
+   "i" #'sly-inspect)
+  (general-define-key
+   :keymaps 'sly-mrepl-mode-map
+   :states 'normal
+   :prefix ","
+   "c" #'sly-mrepl-clear-repl))
 
 (use-package parinfer-rust-mode
   :hook lisp-data-mode
