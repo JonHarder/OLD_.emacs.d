@@ -6,6 +6,8 @@
 
 
 ;;; Code:
+(require 'use-package)
+
 (use-package eros
   :hook (lisp-data-mode . eros-mode)
   :general
@@ -20,6 +22,7 @@
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 
 (use-package sly
+  :after general
   :config
   (general-define-key
    :keymaps 'lisp-mode-map

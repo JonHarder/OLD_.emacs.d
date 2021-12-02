@@ -44,6 +44,7 @@
    ;; :states '(emacs normal motion)
    :states '(normal motion)
    "RET" 'dired-find-file
+   "(" 'dired-hide-details-mode
    "j" 'dired-next-line
    "k" 'dired-previous-line
    "/" 'dired-goto-file

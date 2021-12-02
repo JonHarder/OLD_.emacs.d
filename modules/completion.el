@@ -94,12 +94,20 @@
               :override #'consult-completing-read-multiple)
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
+
+  (setq consult-project-root-function
+        (lambda ()
+          (when-let (project (project-current))
+            (car (project-roots project)))))
   :custom
   (consult-narrow-key "<")
   :general
   (:keymaps 'override
    "C-c h" #'consult-history
    "C-x b" #'consult-buffer)
+  (:keymaps 'eshell-mode-map
+   :states 'insert
+   "M-r" #'consult-history)
   (:keymaps 'flycheck-command-map
    :states 'normal
    "!" #'consult-flycheck)

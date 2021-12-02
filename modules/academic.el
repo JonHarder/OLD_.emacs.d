@@ -48,11 +48,22 @@
       (call-interactively #'org-footnote-action)
       (insert (format " \\cite[%s]{%s}" page reference)))
     (search-forward "]"))
-  :general
-  (:keymaps 'org-mode-map
+  (general-define-key
+   :keymaps 'org-mode-map
    :states 'normal
    :prefix ","
    "f" #'add-citation-footnode))
+
+(defvar jh/book-notes-dir "~/Dropbox/BookNotes")
+
+(with-eval-after-load 'consult
+  (defun jh/book-grep (&optional dir)
+    "Grep for a textual match in DIR using `consult-grep'."
+    (interactive)
+    (let ((dir (if (equal current-prefix-arg nil)
+                   jh/book-notes-dir
+                 (read-directory-name "In directory: "))))
+      (consult-grep dir))))
 
 (provide 'academic)
 ;;; academic.el ends here

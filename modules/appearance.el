@@ -14,6 +14,10 @@
      (:package humanoid-themes
       :light humanoid-light
       :dark humanoid-dark))
+    ("acario" .
+     (:package doom-themes
+      :light doom-acario-light
+      :dark doom-acario-dark))
     ("modus" .
      (:package modus-themes
       :light modus-operandi
@@ -61,7 +65,16 @@
     ("material" .
      (:package doom-themes
       :dark doom-material
-      :light doom-one-light))))
+      :light doom-one-light))
+    ("kaolin" .
+     (:package kaolin-themes
+      :dark kaolin-valley-dark
+      :light kaolin-valley-light))
+    ("twilight" .
+     (:package twilight-anti-bright-theme
+      :dark twilight-anti-bright
+      :light twilight-anti-bright))))
+      
 
 (defvar jh/--current-theme nil)
 
@@ -72,17 +85,14 @@
     (use-package modus-themes
       :custom
       (modus-themes-slanted-constructs t)
-      (modus-themes-mode-line 'accented)
+      (modus-themes-mode-line '(borderless accented))
       (modus-themes-completion 'opinionated)
       (modus-themes-org-blocks 'rainbow)
       (modus-themes-bold-constructs t)
       (modus-themes-headings '((t . rainbow-section)))
-      (modus-themes-syntax 'alt-syntax)
-      (modus-themes-completions nil)
-      (modus-themes-completions 'opinionated)
-      ;; (modus-themes-completions 'moderate)
-      ;; (modus-themes-scale-headings nil)
-      (modus-themes-paren-match 'intense)))
+      (modus-themes-syntax '(green-strings alt-syntax))
+      (modus-themes-completions 'moderate)
+      (modus-themes-paren-match '(bold underline intense))))
 
    ((string-prefix-p "humanoid-" (symbol-name theme))
     (use-package humanoid-themes
@@ -93,7 +103,8 @@
    ((string-prefix-p "spacemacs-" (symbol-name theme))
     (use-package spacemacs-theme
       :custom
-      (spacemacs-theme-org-highlight t)))
+      (spacemacs-theme-org-highlight t)
+      (spacemacs-theme-comment-italic nil)))
 
    ;;; doom themes
    ((string-prefix-p "doom-" (symbol-name theme))
