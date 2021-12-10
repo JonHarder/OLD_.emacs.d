@@ -33,6 +33,20 @@
    "f" #'sly-load-file
    "i" #'sly-inspect)
   (general-define-key
+   :keymaps 'sly-db-mode-map
+   :states 'normal
+   "q" #'sly-db-abort
+   "0" #'sly-db-invoke-restart-0
+   "1" #'sly-db-invoke-restart-1
+   "2" #'sly-db-invoke-restart-2
+   "3" #'sly-db-invoke-restart-3
+   "4" #'sly-db-invoke-restart-4
+   "5" #'sly-db-invoke-restart-5
+   "6" #'sly-db-invoke-restart-6
+   "7" #'sly-db-invoke-restart-7
+   "8" #'sly-db-invoke-restart-8
+   "9" #'sly-db-invoke-restart-9)
+  (general-define-key
    :keymaps 'sly-mrepl-mode-map
    :states 'normal
    :prefix ","

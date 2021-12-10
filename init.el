@@ -40,7 +40,7 @@
   :group 'configuration)
 
 ;;;; Overrides to defaults
-(setq jh/font-size 13)
+(setq jh/font-size 15)
 (setq jh/theme "kaolin")
 
 ;;;; Load configuration proper
