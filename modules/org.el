@@ -131,7 +131,7 @@
   (org-directory "~/Dropbox")
   (org-fontify-whole-heading-line nil)
   (org-confirm-babel-evaluate nil)
-  (org-latex-inputenc-alist '(("utf8" . "utf8x")))
+  ;; (org-latex-inputenc-alist '(("utf8" . "utf8x")))
   (org-edit-src-content-indentation 0)
   (org-refile-targets '((("~/Dropbox/notes.org"
                           "~/Dropbox/Work/todo.org"
@@ -139,12 +139,11 @@
                           "~/Dropbox/Work/projects") . (:maxlevel . 2))))
   (org-startup-indented 1)
   (org-agenda-files `("~/Org/calendars"
-                      "~/Dropbox/BookNotes"
                       "~/Dropbox/notes.org"
                       "~/Dropbox/Work/todo.org"
                       "~/Dropbox/Work/notes.org"
+                      "~/Dropbox/Work/onboarding.org"
                       "~/Dropbox/Work/projects"
-                      "~/Dropbox/Work/journal"
                       "~/Dropbox/Work/devops"
                       "~/Dropbox/Bethlehem/notes.org"
                       "~/Dropbox/Bethlehem/classes/fall_2021/GREK_5205/assignments.org"
@@ -200,11 +199,47 @@
 (use-package org-agenda
   :straight nil
   :commands (org-agenda-list org-agenda)
+  :custom
+  (org-agenda-timegrid-use-ampm t)
+  :config
+  (setq org-agenda-custom-commands
+        '(("A" "Daily agenda and top priority tasks"
+           ((tags-todo "*"
+                       ((org-agenda-skip-function '(org-agenda-skip-if nil '(timestamp)))
+                        (org-agenda-skip-function
+                         `(org-agenda-skip-entry-if
+                           'notregexp ,(format "\\[#%s\\]" (char-to-string org-priority-highest))))
+                        (org-agenda-block-separator nil)
+                        (org-agenda-overriding-header "Imortant tasks without a date\n")))
+            (agenda "" ((org-agenda-span 1)
+                        (org-deadline-warning-days 0)
+                        (org-agenda-block-separator nil)
+                        (org-agenda-schedule-past-days 0)
+                        (org-agenda-day-face-function (lambda (date) 'org-agenda-date))
+                        (org-agenda-format-face "%A %-e %B %Y")
+                        (org-agenda-overriding-header "\nToday's agenda\n")))
+            (agenda "" ((org-agenda-start-on-weekday nil)
+                        (org-agenda-start-day "+1d")
+                        (org-agenda-span 3)
+                        (org-deadline-warning-days 0)
+                        (org-agenda-block-separator nil)
+                        (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                        (org-agenda-overriding-header "\nNext three days\n")))
+            (agenda "" ((org-agenda-time-grid nil)
+                        (org-agenda-start-on-weekday nil)
+                        (org-agenda-start-day "+4d")
+                        (org-agenda-span 14)
+                        (org-agenda-show-all-dates nil)
+                        (org-deadline-warning-days 0)
+                        (org-agenda-block-separator nil)
+                        (org-agenda-entry-types '(:deadline))
+                        (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                        (org-agenda-overriding-header "\nUpcoming deadlines (+14d)\n")))))))
   :general
   (:states 'normal
    :prefix "SPC"
-   "a a" '(org-agenda-list :wk "List Agenda")
-   "a A" '(org-agenda :wk "Agenda Dispatch")))
+   "a A" 'org-agenda-list
+   "a a" 'org-agenda))
 
 (use-package org-journal
   :commands (org-journal-new-entry)

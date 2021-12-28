@@ -105,8 +105,8 @@ This is determined by `jh/font-size'"
    "c r" 'jh/reload-config
    "c t" 'osx/toggle-dark-mode
 
-   "d" #'kill-this-buffer
-   "D" #'evil-delete-buffer
+   "d" #'evil-delete-buffer
+   "D" #'kill-this-buffer
 
    "e d" 'eval-defun
    "e ;" 'eval-expression
@@ -149,6 +149,8 @@ This is determined by `jh/font-size'"
    "n d" 'narrow-to-defun
    "n n" 'narrow-to-defun
    "n w" 'widen
+
+   "o c" 'occur
 
    "p c" 'compile
    "p u" 'straight-use-package

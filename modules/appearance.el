@@ -111,7 +111,6 @@
     (use-package doom-themes
       :config
       (doom-themes-org-config)
-      ;; (doom-themes-enable-org-fontification)
       :custom
       (doom-themes-enable-bold t)
       (doom-themes-enable-italic t)

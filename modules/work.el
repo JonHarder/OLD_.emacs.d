@@ -39,11 +39,10 @@
   (let ((default-directory jh/work-dir))
     (call-interactively #'find-file)))
 
-(defun jh/standup-today ()
+(defun jh/standup ()
   "Open or create an agenda for a standup."
   (interactive)
-  (let ((datestr (format-time-string "%Y%m%d")))
-    (find-file (format "~/Org/standups/%s.org" datestr))))
+  (find-file-other-window "~/Dropbox/work/standup.org"))
 
 (require 'request)
 

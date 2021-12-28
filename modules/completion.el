@@ -19,18 +19,16 @@
    "S-TAB" 'corfu-previous
    [backtab] 'corfu-previous))
 
+
 (use-package emacs
   :custom
   (completion-cycle-threshold 3)
+  (completions-detailed t)
   (tab-always-indent 'complete)
-  ;;; (resize-mini-windows 'grow-only)
   (resize-mini-windows nil)
-  ;; (minibuffer-prompt-properties
-  ;;       '(read-only t cursor-intangible t face minibuffer-prompt))
   (enable-recursive-minibuffers t)
   :config
   (minibuffer-depth-indicate-mode 1))
-  ;; (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 
 (use-package vertico
   :hook (emacs-startup . vertico-mode)
@@ -39,7 +37,6 @@
   :config
   (require 'vertico-directory) ;; ~/.emacs.d/ext_lisp/vertico-directory.el
   (general-define-key
-   ;; :keymaps 'minibuffer-mode-map
    :keymaps 'vertico-map
    "C-n"   'vertico-next
    "C-p"   'vertico-previous))
@@ -56,12 +53,12 @@
 
 (use-package orderless
   :custom
-  (completion-styles '(orderless substring initials flex partial-completion))
+  (completion-styles '(substring initials flex partial-completion orderless))
   (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles . (partial-completion))))))
+  (completion-category-overrides '((file (styles . (basic partial-completion orderless))))))
 
 (use-package embark
-  :after (vertico marginalia)
+  ;; :after (vertico marginalia)
   :commands (embark-dwim embark-act embark-prefix-help-command)
   :init
   (setq prefix-help-command #'embark-prefix-help-command)
@@ -141,12 +138,14 @@
    "f d" 'consult-dir))
 
 (use-package marginalia
-  :after vertico
   :init
   (marginalia-mode)
   (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light))
   :config
-  (add-to-list 'marginalia-prompt-categories '("tab by name" . tab)))
+  (add-to-list 'marginalia-prompt-categories '("tab by name" . tab))
+  (let ((map minibuffer-local-completion-map))
+    (define-key map (kbd "SPC") nil)
+    (define-key map (kbd "?") nil)))
 
 (use-package xref
   :straight nil
@@ -159,5 +158,6 @@
 
 (use-package consult-flycheck
   :after consult)
+
 (provide 'completion)
 ;;; completion.el ends here
