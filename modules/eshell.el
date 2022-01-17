@@ -115,7 +115,7 @@ Takes into account if path contains the home ~ symbol."
 
 (defalias 'eshell/b #'eshell/back)
 
-(require 'consult-dir)
+;; (require 'consult-dir)
 (require 'em-dirs)
 
 (defun eshell/z (&optional regexp)

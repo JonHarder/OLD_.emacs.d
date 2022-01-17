@@ -10,6 +10,8 @@
 (require 'epg-config)
 (require 'general)
 
+(setq auth-sources '("~/.authinfo.gpg"))
+
 (add-hook 'after-init-hook
           (lambda ()
             (load "~/.emacs.d/ext_lisp/make.el")))

@@ -43,7 +43,7 @@
     "Insert org footnote using `consult-bibtex' prompting for REFERENCE and PAGE."
     (interactive (list
                   (consult-bibtex--read-entry)
-                  (read-string "Page: ")) org)
+                  (read-string "Page: ")))
     (save-excursion
       (call-interactively #'org-footnote-action)
       (insert (format " \\cite[%s]{%s}" page reference)))

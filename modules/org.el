@@ -67,7 +67,7 @@
   (setq-default
    org-latex-packages-alist '(("margin=1in" "geometry" nil))
    org-src-fontify-natively t
-   org-hide-emphasis-markers nil
+   org-hide-emphasis-markers t
    org-archive-location "~/Org/archive/%s.archive::"
    ;;; FIXME: setting this to `t' breaks the agenda view for some reason
    org-agenda-include-diary nil
@@ -127,7 +127,7 @@
   :custom
   (org-odt-preferred-output-format "docx")
   (org-ellipsis "↴")
-  (org-tags-column 0)
+  (org-tags-column -77)
   (org-directory "~/Dropbox")
   (org-fontify-whole-heading-line nil)
   (org-confirm-babel-evaluate nil)

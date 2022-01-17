@@ -6,11 +6,13 @@
 (use-package corfu
   :init
   (corfu-global-mode 1)
-  :custom
-  (corfu-cycle t)
-  (corfu-auto nil)
-  (corfu-quit-at-boundary t)
-  (corfu-quit-no-match t)
+  :config
+  (setq corfu-cycle t)
+  (setq corfu-preselect-first nil)
+  (setq corfu-auto t)
+  (setq corfu-quit-at-boundary t)
+  (setq corfu-quit-no-match t)
+  (setq corfu-auto-delay 0.6)
   :general
   (:keymaps 'corfu-map
    :states '(normal insert)
@@ -19,13 +21,37 @@
    "S-TAB" 'corfu-previous
    [backtab] 'corfu-previous))
 
+;; (with-eval-after-load 'corfu
+;;   (straight-use-package
+;;   '(corfu-doc :type git :host github :repo "galeo/corfu-doc"))
+;;  (require 'corfu-doc)
+;;  (add-hook 'corfu-mode-hook #'corfu-doc-mode))
+   
+
+
+;; (use-package cape
+;;   :init
+;;   (add-to-list 'completion-at-point-functions #'cape-file)
+;;   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+;;   (add-to-list 'completion-at-point-functions #'cape-keyword)
+;;   (add-to-list 'completion-at-point-functions #'cape-symbol))
+
+(use-package kind-icon
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default)
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+             
 
 (use-package emacs
   :custom
+  (read-extended-command-predicate #'command-completion-default-include-p)
   (completion-cycle-threshold 3)
   (completions-detailed t)
   (tab-always-indent 'complete)
-  (resize-mini-windows nil)
+  (resize-mini-windows t)
+  (resize-mini-frames t)
   (enable-recursive-minibuffers t)
   :config
   (minibuffer-depth-indicate-mode 1))
@@ -35,7 +61,11 @@
   :custom
   (vertico-cycle t)
   :config
-  (require 'vertico-directory) ;; ~/.emacs.d/ext_lisp/vertico-directory.el
+  (add-to-list 'load-path "~/.emacs.d/straight/repos/vertico/extensions")
+  (require 'vertico-directory)
+  (require 'vertico-reverse)
+  (require 'vertico-quick)
+  ;; (vertico-reverse-mode 1)
   (general-define-key
    :keymaps 'vertico-map
    "C-n"   'vertico-next

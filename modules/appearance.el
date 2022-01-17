@@ -8,7 +8,7 @@
 (require 'contrib "~/.emacs.d/contrib.el")
 (require 'straight)
 
-
+;;; TODO: turn this into a hash-table
 (defvar jh/themes
   '(("humanoid" .
      (:package humanoid-themes
@@ -37,7 +37,7 @@
     ("doom" .
      (:package doom-themes
       :light doom-one-light
-      :dark doom-vibrant))
+      :dark doom-one))
     ("dracula" .
      (:package doom-themes
       :dark doom-dracula
@@ -90,7 +90,8 @@
       (modus-themes-org-blocks 'rainbow)
       (modus-themes-bold-constructs t)
       (modus-themes-headings '((t . rainbow-section)))
-      (modus-themes-syntax '(green-strings alt-syntax))
+      ;; (modus-themes-syntax '(alt-syntax))
+      (modus-themes-syntax '())
       (modus-themes-completions 'moderate)
       (modus-themes-paren-match '(bold underline intense))))
 
@@ -122,6 +123,8 @@
       (doom-one-brighter-comments t)
 
       (doom-tomorrow-night-padded-modeline t)
+      (doom-one-brighter-comments t)
+      (doom-one-brighter-modeline t)
 
       (doom-vibrant-brighter-comments t)
       (doom-vibrant-brighter-modeline t)

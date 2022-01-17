@@ -72,5 +72,18 @@
    :states 'normal
    "x" #'magit-delete-thing))
 
+(use-package magit-section
+  :after magit
+  :general
+  (:keymaps 'magit-section-mode-map
+   :states 'normal
+   "TAB" #'magit-section-toggle))
+          
+      
+
+(use-package code-review
+  :commands (code-review-start)
+  :after magit)
+
 (provide 'git)
 ;;; git.el ends here

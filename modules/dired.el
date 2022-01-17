@@ -34,6 +34,7 @@
   (dired-recursive-deletes 'always)
   (dired-recursive-copies 'always)
   (dired-deletion-confirmer 'y-or-n-p)
+  (dired-do-revert-buffer t)
   (dired-dwim-target t)
   (dired-listing-switches "-lvahoG")
   :general
@@ -43,7 +44,7 @@
   (:keymaps 'dired-mode-map
    ;; :states '(emacs normal motion)
    :states '(normal motion)
-   "RET" 'dired-find-file
+   "RET" 'dired-find-alternate-file
    "(" 'dired-hide-details-mode
    "j" 'dired-next-line
    "k" 'dired-previous-line
@@ -62,7 +63,7 @@
    "-" 'dired-do-kill-lines
    "s" 'dired-mark-suffix
    "f" 'find-file
-   "l" 'dired-find-file
+   "l" 'dired-find-alternate-file
    "C" 'dired-do-copy
    "R" 'dired-do-rename
    "D" 'dired-do-delete))
