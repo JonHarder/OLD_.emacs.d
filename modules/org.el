@@ -256,7 +256,7 @@
 (add-hook 'org-agenda-finalize-hook #'color-org-agenda)
 
 (defun jh/org-mode-hook ()
-  (setq fill-column 80)
+  (setq fill-column 70)
   (auto-fill-mode 1)
   (org-toggle-pretty-entities))
 

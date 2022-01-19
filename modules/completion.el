@@ -50,8 +50,8 @@
   (completion-cycle-threshold 3)
   (completions-detailed t)
   (tab-always-indent 'complete)
-  (resize-mini-windows t)
-  (resize-mini-frames t)
+  (resize-mini-windows nil)
+  (resize-mini-frames nil)
   (enable-recursive-minibuffers t)
   :config
   (minibuffer-depth-indicate-mode 1))
