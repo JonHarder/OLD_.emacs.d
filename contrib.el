@@ -122,7 +122,7 @@ Preserves order and keys."
 (defun update-frame-font-size (size)
   "Update current frame font size to SIZE."
   (interactive (list (read-number "Font size: " jh/font-size)))
-  (set-frame-font (format "%s %s" jh/font size))
+  (set-frame-font (format "%s %s" jh/font size) t t)
   (setq jh/font-size size))
 
 (provide 'contrib)

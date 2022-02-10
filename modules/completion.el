@@ -83,7 +83,7 @@
 
 (use-package orderless
   :custom
-  (completion-styles '(substring initials flex partial-completion orderless))
+  (completion-styles '(orderless substring initials flex partial-completion))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles . (basic partial-completion orderless))))))
 
@@ -153,6 +153,7 @@
 
 (use-package embark-consult
   :after (consult embark)
+  :demand t
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 

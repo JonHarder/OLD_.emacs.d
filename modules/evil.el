@@ -93,4 +93,3 @@
    :states 'motion
    "l" #'org-agenda-later
    "h" #'org-agenda-earlier))
-

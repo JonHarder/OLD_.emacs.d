@@ -1,3 +1,5 @@
+(require 'dash)
+
 (defvar jh/work-base-dir "~/Kipsu/ansible-playbooks/vagrant_kipsu/")
 (defvar jh/work-dir (format "%sacct/" jh/work-base-dir))
 
@@ -7,6 +9,43 @@
   (insert (format "[[https://kipsudev.atlassian.net/browse/KIPSU-%i][KIPSU-%i]]"
                   jira-number
                   jira-number)))
+
+(defvar pull-request-checklist-items
+  '("Syntax Errors"
+    "Adequate Logging"
+    "Error handling"
+    "Security considerations"))
+
+(defun jh/generate-pull-request-checklist (title url author date)
+  "Generate a string representing org mode pull request checklist with TITLE at URL by AUTHOR on DATE."
+  (let ((items (string-join (mapcar (lambda (item)
+                                      (format "- [ ] %s" item))
+                                    pull-request-checklist-items)
+                            "\n"))
+        (pr-block (if (fboundp 'jh/org-code-review-block)
+                      (format "\n%s\n" (or (jh/org-code-review-block url) ""))
+                    "")))
+    (format "#+TITLE: %s
+#+AUTHOR: %s
+#+DATE: <%s>
+* Link
+- %s%s
+* Checklist
+%s" title author date url pr-block items)))
+
+
+(defun pull-request-checklist (title url author)
+  "Generate a pull request checklist titled TITLE for URL written by AUTHOR."
+  (interactive "sTitle: \nsPull request: \nsAuthor: ")
+  (let* ((current-date (format-time-string "%Y-%m-%d"))
+         (sanitized-title (--> title
+                               (downcase it)
+                               (replace-regexp-in-string "['\"?]" "" it)
+                               (replace-regexp-in-string "\s" "_" it)))
+         (fname (format "~/Dropbox/Work/pull-requests/%s_%s.org" current-date sanitized-title)))
+    (find-file-other-window fname)
+    (insert (jh/generate-pull-request-checklist title url author current-date))
+    (save-buffer)))
 
 (defun vagrant-up ()
   (interactive)

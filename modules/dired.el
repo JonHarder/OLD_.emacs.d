@@ -9,6 +9,7 @@
 
 ;; (eval-after-load "dired"
 ;;   '(require 'dired-x))
+(use-package ranger)
 
 (use-package diredfl
   :after dired
@@ -61,12 +62,13 @@
    "v" 'dired-view-file
    "t" 'dired-toggle-marks
    "-" 'dired-do-kill-lines
-   "s" 'dired-mark-suffix
+   "s" 'dired-sort-toggle-or-edit
    "f" 'find-file
    "l" 'dired-find-alternate-file
    "C" 'dired-do-copy
-   "R" 'dired-do-rename
-   "D" 'dired-do-delete))
+   "S" 'dired-mark-suffix
+   "D" 'dired-do-delete
+   "R" 'dired-do-rename))
 
 (use-package dired-x
   :straight nil

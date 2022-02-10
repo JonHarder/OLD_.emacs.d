@@ -9,10 +9,6 @@
   (add-hook 'before-save-hook 'lsp-format-buffer t t)
   (add-hook 'before-save-hook 'lsp-organize-imports t t))
 
-(use-package lsp-ui
-  :after go
-  :hook (go-mode-hook 'lsp-ui-mode))
-
 (use-package go-mode
   :mode "\\.go\\'"
   :config

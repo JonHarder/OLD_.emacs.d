@@ -41,7 +41,10 @@
   (setq lsp-idle-delay 0.500
         lsp-enable-file-watchers nil)
 
-  :hook ((c-mode go-mode php-mode dockerfile-mode) . lsp-deferred))
+  :hook ((c-mode go-mode php-mode python-mode dockerfile-mode) . lsp-deferred))
+
+(use-package lsp-ui
+  :after lsp)
 
 ;; (use-package lsp-ui
 ;;   :after lsp-mode

@@ -170,7 +170,12 @@
 (use-package rg
   :commands rg
   :config
-  (rg-enable-menu))
+  (rg-enable-menu)
+  :general
+  (:states '(motion)
+   :keymaps 'rg-mode-map
+   "j" #'next-error-no-select
+   "k" #'previous-error-no-select))
 
 (use-package scratch
   :commands scratch
@@ -240,7 +245,7 @@
   :general
   (:states '(normal visual)
    :prefix "SPC"
-   "SPC" 'avy-goto-char-timer))
+   "SPC" 'avy-goto-word-1))
 
 (use-package autorevert
   :hook (emacs-startup . global-auto-revert-mode)

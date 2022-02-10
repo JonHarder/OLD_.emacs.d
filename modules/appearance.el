@@ -9,72 +9,121 @@
 (require 'straight)
 
 ;;; TODO: turn this into a hash-table
-(defvar jh/themes
-  '(("humanoid" .
-     (:package humanoid-themes
-      :light humanoid-light
-      :dark humanoid-dark))
-    ("acario" .
-     (:package doom-themes
-      :light doom-acario-light
-      :dark doom-acario-dark))
-    ("modus" .
-     (:package modus-themes
-      :light modus-operandi
-      :dark modus-vivendi))
-    ("spacemacs" .
-     (:package spacemacs-theme
-      :light spacemacs-light
-      :dark spacemacs-dark))
-    ("solarized" .
-     (:package doom-themes
-      :light doom-solarized-light
-      :dark doom-solarized-dark))
-    ("gruvbox" .
-     (:package doom-themes
-      :light doom-gruvbox-light
-      :dark doom-gruvbox))
-    ("doom" .
-     (:package doom-themes
-      :light doom-one-light
-      :dark doom-one))
-    ("dracula" .
-     (:package doom-themes
-      :dark doom-dracula
-      :light doom-dracula))
-    ("oceanic" .
-     (:package doom-themes
-      :dark doom-oceanic-next
-      :light doom-tomorrow-day))
-    ("nord" .
-     (:package doom-themes
-      :dark doom-nord
-      :light doom-nord-light))
-    ("moonlight" .
-     (:package doom-themes
-      :dark doom-moonlight
-      :light doom-one-light))
-    ("tomorrow" .
-     (:package doom-themes
-      :dark doom-tomorrow-night
-      :light doom-tomorrow-day))
-    ("outrun-electric" .
-     (:package doom-themes
-      :dark doom-outrun-electric
-      :light doom-one-light))
-    ("material" .
-     (:package doom-themes
-      :dark doom-material
-      :light doom-one-light))
-    ("kaolin" .
-     (:package kaolin-themes
-      :dark kaolin-valley-dark
-      :light kaolin-valley-light))
-    ("twilight" .
-     (:package twilight-anti-bright-theme
-      :dark twilight-anti-bright
-      :light twilight-anti-bright))))
-      
+(defvar jh/themes (make-hash-table :test #'equal))
+
+(cl-defstruct theme
+  (package nil :type symbol)
+  (light nil :type symbol)
+  (dark nil :type symbol))
+
+(puthash "zenburn"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-zenburn
+          :dark 'doom-zenburn)
+         jh/themes)
+(puthash "humanoid"
+         (make-theme
+          :package 'humanoid-themes
+          :light 'humanoid-light
+          :dark 'humanoid-dark)
+         jh/themes)
+(puthash "acario"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-acario-light
+          :dark 'doom-acario-dark)
+         jh/themes)
+(puthash "modus"
+         (make-theme
+          :package 'modus-themes
+          :light 'modus-operandi
+          :dark 'modus-vivendi)
+         jh/themes)
+(puthash "spacemacs"
+         (make-theme
+          :package 'spacemacs-theme
+          :light 'spacemacs-light
+          :dark 'spacemacs-dark)
+         jh/themes)
+(puthash "solarized"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-solarized-light
+          :dark 'doom-solarized-dark)
+         jh/themes)
+(puthash "gruvbox"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-gruvbox-light
+          :dark 'doom-gruvbox)
+         jh/themes)
+(puthash "doom"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-one-light
+          :dark 'doom-one)
+         jh/themes)
+(puthash "dracula"
+         (make-theme
+          :package 'doom-themes
+          :dark 'doom-dracula
+          :light 'doom-dracula)
+         jh/themes)
+(puthash "oceanic"
+         (make-theme
+          :package 'doom-themes
+          :dark 'doom-oceanic-next
+          :light 'doom-tomorrow-day)
+         jh/themes)
+(puthash "nord"
+         (make-theme
+          :package 'doom-themes
+          :dark 'doom-nord
+          :light 'doom-nord-light)
+         jh/themes)
+(puthash "moonlight"
+         (make-theme
+          :package 'doom-themes
+          :dark 'doom-moonlight
+          :light 'doom-one-light)
+         jh/themes)
+(puthash "tomorrow"
+         (make-theme
+          :package 'doom-themes
+          :dark 'doom-tomorrow-night
+          :light 'doom-tomorrow-day)
+         jh/themes)
+(puthash "outrun-electric"
+         (make-theme
+          :package 'doom-themes
+          :dark 'doom-outrun-electric
+          :light 'doom-one-light)
+         jh/themes)
+(puthash "material"
+         (make-theme
+          :package 'doom-themes
+          :dark 'doom-material
+          :light 'doom-one-light)
+         jh/themes)
+(puthash "kaolin"
+         (make-theme
+          :package 'kaolin-themes
+          :dark 'kaolin-valley-dark
+          :light 'kaolin-valley-light)
+         jh/themes)
+(puthash "twilight"
+         (make-theme
+          :package 'twilight-anti-bright-theme
+          :dark 'twilight-anti-bright
+          :light 'twilight-anti-bright)
+         jh/themes)
+(puthash "cyberpunk"
+         (make-theme
+          :package 'cyberpunk-theme
+          :dark 'cyberpunk
+          :light 'cyberpunk)
+         jh/themes)
 
 (defvar jh/--current-theme nil)
 
@@ -130,6 +179,7 @@
       (doom-vibrant-brighter-modeline t)
 
       (doom-solarized-light-brighter-comments t)
+      (doom-solarized-light-brighter-modeline t)
 
       (doom-solarized-dark-brighter-text t)
       (doom-solarized-dark-brighter-modeline t)
@@ -174,22 +224,6 @@ function to load a particular theme."
     (straight-use-package package))
   (jh/set-theme theme))
 
-(defun jh/theme-property (prop)
-  "Get a keyword PROP from the theme configuration."
-  (plist-get jh/--current-theme prop))
-
-(defun jh/theme-dark ()
-  "Get the dark theme from theme config."
-  (jh/theme-property :dark))
-
-(defun jh/theme-light ()
-  "Get the light theme from theme config."
-  (jh/theme-property :light))
-
-(defun jh/theme-package ()
-  "Get the package name from the theme config."
-  (jh/theme-property :package))
-
 
 (defun osx/toggle-dark-mode ()
   "Toggle OSX dark mode."
@@ -205,11 +239,13 @@ function to load a particular theme."
 Uses the dark or light variant depending on system setting."
   (interactive (list (completing-read
                       "Theme: "
-                      (contrib/alist-keys jh/themes))))
-  (setq jh/--current-theme (alist-get name jh/themes nil nil #'string-equal)
+                      (hash-table-keys jh/themes))))
+  (setq jh/--current-theme (gethash name jh/themes)
         jh/theme name)
-  (let ((current-theme (if (jh/mac-is-dark-mode-p) (jh/theme-dark) (jh/theme-light))))
-    (jh/load-theme current-theme (jh/theme-package)))
+  (let ((current-theme (if (jh/mac-is-dark-mode-p)
+                           (theme-dark jh/--current-theme)
+                         (theme-light jh/--current-theme))))
+    (jh/load-theme current-theme (theme-package jh/--current-theme)))
   (when (called-interactively-p 'interactive)
     (message "Theme set for current session only, modify jh/theme in init.el to set permanently.")))
 
@@ -223,7 +259,7 @@ Uses the dark or light variant depending on system setting."
 (require 'whitespace)
 
 (blink-cursor-mode -1)
-show-paren-mode 1
+(show-paren-mode 1)
 (global-prettify-symbols-mode +1)
 
 (use-package diff-hl

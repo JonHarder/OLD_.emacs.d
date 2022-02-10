@@ -62,7 +62,9 @@ This is determined by `jh/font-size'"
   (general-define-key
    :states 'normal
    :keymaps 'occur-mode-map
-   "e" 'occur-edit-mode)
+   "e" 'occur-edit-mode
+   "j" 'next-error-no-select
+   "k" 'previous-error-no-select)
   (general-define-key
    :prefix ","
    :states 'normal
@@ -106,7 +108,6 @@ This is determined by `jh/font-size'"
    "c t" 'osx/toggle-dark-mode
 
    "d" #'evil-delete-buffer
-   "D" #'kill-this-buffer
 
    "e d" 'eval-defun
    "e ;" 'eval-expression
@@ -137,9 +138,7 @@ This is determined by `jh/font-size'"
    "i l" 'imenu-list-smart-toggle
 
    ;;; k
-   "k g" 'jh/work-git
-   "k f" 'jh/work-find-file
-   "k l" 'jh/jira-link
+   "k" 'kill-this-buffer
 
    "l r" 'lsp-ui-peek-find-references
    "l d" 'lsp-ui-peek-find-definitions

@@ -83,7 +83,13 @@
 
 (use-package code-review
   :commands (code-review-start)
-  :after magit)
+  :after magit
+  :config
+  (defun jh/org-code-review-block (url)
+    ;;; BitBuckets api is incomplete, poorly documented and variously broken.
+    ;;; therefore, this only supports github for now.
+    (when (string-match-p "github" url)
+      (format "#+begin_src elisp :results none\n(code-review-start \"%s\")\n#+end_src" url))))
 
 (provide 'git)
 ;;; git.el ends here

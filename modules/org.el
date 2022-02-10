@@ -51,6 +51,10 @@
   (require 'org-tempo)
   (require 'ob-python)
   (require 'ob-php (concat user-emacs-directory "ob-php.el"))
+  (set-face-attribute 'org-checkbox-statistics-done nil
+                      :box '(:line-width (2 . 2)
+                                         :color "green3"
+                                         :inherit org-done))
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
@@ -100,6 +104,7 @@
            "WAITING(w)"
            "INPROGRESS(i)"
            "REVIEW(r)"
+           "MERGE(m)"
            "|"
            "DONE(d)"
            "CANCELLED(c)")))
@@ -111,6 +116,7 @@
           ("WAITING" :foreground "#bf3cc6" :weight bold :underline t)
           ("INPROGRESS" :foreground "#fc5603" :weight bold :underline t)
           ("REVIEW" :foreground "#964B00" :weight bold :underline t)
+          ("MERGE" :foreground "#03fca9" :weight bold :underline t)
           ("DONE" :foreground "#50a14f" :weight bold :underline t)
           ("CANCELLED" :foreground "#fc0303" :weight bold :underline t)))
   (setq org-capture-templates
@@ -146,10 +152,8 @@
                       "~/Dropbox/Work/projects"
                       "~/Dropbox/Work/devops"
                       "~/Dropbox/Bethlehem/notes.org"
-                      "~/Dropbox/Bethlehem/classes/fall_2021/GREK_5205/assignments.org"
-                      "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5565/assignments.org"
-                      "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5581/assignments.org"
-                      "~/Dropbox/Bethlehem/classes/fall_2021/THEO_5565/worksheets.org"))
+                      "~/Dropbox/Bethlehem/classes/winter_2021/GREK_5206"
+                      "~/Dropbox/Bethlehem/classes/winter_2021/THEO_5582"))
   (org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done))
   (calendar-date-style 'iso)
   (calendar-mode-line-format nil)
@@ -259,6 +263,8 @@
   (setq fill-column 70)
   (auto-fill-mode 1)
   (org-toggle-pretty-entities))
+
+                                            
 
 (add-hook 'org-mode-hook #'jh/org-mode-hook)
 

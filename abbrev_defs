@@ -5,7 +5,10 @@
     ("hhttp" "http" nil :count 2)
     ("teh" "the" nil :count 2)
     ("NT" "New Testament" nil :count 2)
-    ("OT" "Old Testament" nil :count 2)))
+    ("OT" "Old Testament" nil :count 2)
+    ("SPirit" "Spirit" nil :count 2)
+    ("wrok" "work" nil :count 2)
+    ("Wrok" "Work" nil :count 2)))
 
 
 (define-abbrev-table 'php-mode-abbrev-table
