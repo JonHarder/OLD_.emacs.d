@@ -41,16 +41,19 @@
   (setq lsp-idle-delay 0.500
         lsp-enable-file-watchers nil)
 
-  :hook ((c-mode go-mode php-mode python-mode dockerfile-mode) . lsp-deferred))
+  :hook ((c-mode go-mode php-mode dockerfile-mode) . lsp-deferred))
 
 (use-package lsp-ui
-  :after lsp)
-
-;; (use-package lsp-ui
-;;   :after lsp-mode
-;;   :config
-;;   (lsp-ui-mode))
-  
+  :commands lsp-ui-mode
+  :after lsp
+  :config
+  (setq lsp-ui-doc-enable t)
+  (setq lsp-ui-doc-header t)
+  (setq lsp-ui-doc-include-signature t)
+  (setq lsp-ui-doc-border (face-background 'default))
+  (setq lsp-ui-sideline-show-code-actions t)
+  (setq lsp-ui-sideline-delay 0.05)
+  (setq lsp-ui-peek-enable t))
 
  ;;; This has been reported as the source of massive slowdowns
  ;;; in lsp mode enabled files, disabling for now until more

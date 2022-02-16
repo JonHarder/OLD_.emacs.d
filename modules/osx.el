@@ -41,8 +41,9 @@ Uses `user-emacs-directory'/mac if DIR is not specified."
   (interactive "nAlert after (minutes): \nMMessage: ")
   (setq *osx/alert-timer*
         (run-with-timer (* 60 time) nil
-                  (lambda ()
-                    (osx/notify (or message "Alert"))))))
+                  (lambda (m)
+                    (osx/notify (or m "Alert")))
+                  message)))
 
 
 

@@ -1,4 +1,12 @@
+;;; docker --- summary
+;;; Configuring utilities and file mode associations
+;;; for the docker container tool
+
+;;; Commentary:
+
 ;;; -*- lexical-binding: t -*-
+
+;;; Code:
 (use-package dockerfile-mode
   :mode "\\.Dockerfile")
 
@@ -20,4 +28,10 @@
    "k" 'tablist-previous-line
    "x" 'docker-container-kill
    "i" 'docker-container-inspect
-   "l" 'docker-container-logs))
+   "l" 'docker-container-logs)
+  (:keymaps 'docker-image-mode-map
+   :state 'motion
+   "d" #'docker-image-rm))
+
+(provide 'docker)
+;;; docker.el ends here

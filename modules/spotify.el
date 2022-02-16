@@ -10,7 +10,6 @@
             (,client-secret (nth 1 ,data)))
        ,@body)))
 
-
 (use-package consult-spotify
   :config
   (with-spotify-auth client-id client-secret

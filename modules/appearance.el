@@ -7,6 +7,8 @@
 ;; (require 'use-package)
 (require 'contrib "~/.emacs.d/contrib.el")
 (require 'straight)
+(require 'async)
+(require 'osx "~/.emacs.d/modules/osx.el")
 
 ;;; TODO: turn this into a hash-table
 (defvar jh/themes (make-hash-table :test #'equal))
@@ -21,6 +23,12 @@
           :package 'doom-themes
           :light 'doom-zenburn
           :dark 'doom-zenburn)
+         jh/themes)
+(puthash "monokai"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-monokai-pro
+          :dark 'doom-monokai-pro)
          jh/themes)
 (puthash "humanoid"
          (make-theme
@@ -196,11 +204,11 @@
       (doom-outrun-electric-brighter-modeline t)
       (doom-outrun-electric-brighter-comments t)))))
 
-
 (defun jh/mac-is-dark-mode-p ()
   "Determine if MacOS dark theme is enabled."
   (interactive)
   (string-equal "Dark" (string-trim (shell-command-to-string "defaults read -g AppleInterfaceStyle"))))
+
 
 (defvar jh/dark-mode (jh/mac-is-dark-mode-p) "Boolean which tracks mac system level dark mode.")
 
@@ -224,15 +232,6 @@ function to load a particular theme."
     (straight-use-package package))
   (jh/set-theme theme))
 
-
-(defun osx/toggle-dark-mode ()
-  "Toggle OSX dark mode."
-  (interactive)
-  (osx/run-script "toggle-dark-mode.applescript")
-  (reload-theme)
-  (normal-mode))
-
-
 (defun select-theme (name)
   "Select the given theme, indexed by NAME.
 
@@ -242,17 +241,26 @@ Uses the dark or light variant depending on system setting."
                       (hash-table-keys jh/themes))))
   (setq jh/--current-theme (gethash name jh/themes)
         jh/theme name)
-  (let ((current-theme (if (jh/mac-is-dark-mode-p)
+  (let ((current-theme (if jh/dark-mode
                            (theme-dark jh/--current-theme)
                          (theme-light jh/--current-theme))))
     (jh/load-theme current-theme (theme-package jh/--current-theme)))
   (when (called-interactively-p 'interactive)
     (message "Theme set for current session only, modify jh/theme in init.el to set permanently.")))
 
+
 (defun reload-theme ()
   "Load configuration given the current values of jh/config."
   (interactive)
   (select-theme jh/theme))
+
+(defun osx/toggle-dark-mode ()
+  "Toggle OSX dark mode."
+  (interactive)
+  (setq jh/dark-mode (not jh/dark-mode))
+  (reload-theme)
+  (normal-mode)
+  (osx/run-script "toggle-dark-mode.applescript"))
 
 (defvar jh/theme-switch-timer nil "Timer used to schedule querying OSX system color preference.")
 

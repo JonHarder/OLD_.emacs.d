@@ -36,11 +36,15 @@ This is determined by `jh/font-size'"
   (general-define-key
    "M-[" 'evil-jump-backward
    "M-]" 'evil-jump-forward)
+
+  ;;; Special mode bindings
   (general-define-key
    :states 'normal
    :keymaps 'special-mode-map
    "TAB" 'forward-button
    "q" 'quit-window)
+
+  ;;; Global normal mode bindings, not prefixed
   (general-define-key
    :states 'normal
    "M-." 'xref-find-definitions
@@ -49,30 +53,61 @@ This is determined by `jh/font-size'"
    "C-t" 'transpose-chars
    "=" 'balance-windows
    "M-o" 'org-open-at-point-global)
+
+
+  ;;; Normal + Insert bindings
   (general-define-key
    :states '(normal insert)
    "M-v" 'jh/paste-from-mac-clipboard)
+
+  ;;; Visual mode bindings
   (general-define-key
    :states 'visual
    "M-c" 'jh/copy-to-mac-clipboard)
+
+  ;;; Prog mode
   (general-define-key
    :keymaps 'prog-mode-map
    :states 'insert
    "RET" 'newline)
+
+  ;;; Tabulated list mode bindings
+  (general-define-key
+   :keymaps 'tabulated-list-mode-map
+   :states 'normal
+   "l" #'tabulated-list-next-column
+   "h" #'tabulated-list-previous-column
+   "w" #'tabulated-list-next-column
+   "b" #'tabulated-list-previous-column
+   "s" #'tabulated-list-sort
+   "{" #'tabulated-list-narrow-current-column
+   "}" #'tabulated-list-widen-current-column)
+
+  ;;; Occur mode bindings
   (general-define-key
    :states 'normal
    :keymaps 'occur-mode-map
    "e" 'occur-edit-mode
    "j" 'next-error-no-select
    "k" 'previous-error-no-select)
+
+  ;;; General mode modifier prefixed bindings
+  ;;; These will have mode specific bindings set by that particular
+  ;;; mode. look to the mode specific module file for details.
   (general-define-key
    :prefix ","
    :states 'normal
    "m" 'normal-mode)
+
+  ;;; Prefixed visual mode bindings
   (general-define-key
    :prefix "SPC"
    :states 'visual
    "n" 'narrow-to-region)
+
+  ;;; Prefixed normal mode bindings.
+  ;;; In general, these should include bindings with widespread, mode-agnostic use.
+  ;;; Mode specific bindings should be set under the mode specific modifier: ,
   (general-define-key
    :prefix "SPC"
    :states 'normal

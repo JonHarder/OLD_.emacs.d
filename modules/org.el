@@ -145,6 +145,7 @@
                           "~/Dropbox/Work/projects") . (:maxlevel . 2))))
   (org-startup-indented 1)
   (org-agenda-files `("~/Org/calendars"
+                      "~/Dropbox/calendar.org"
                       "~/Dropbox/notes.org"
                       "~/Dropbox/Work/todo.org"
                       "~/Dropbox/Work/notes.org"
