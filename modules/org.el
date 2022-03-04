@@ -10,6 +10,11 @@
 (require 'evil)
 (require 'general)
 
+;; (eval-after-load 'org
+;;   (require 'oc))
+
+(setq org-cite-global-bibliography '("/Users/jharder/Dropbox/bibiography/references.bib"))
+
 (defun org-kipsu-open (ticket _)
   "Open ticket TICKET in kipsu jira."
   (browse-url-chrome (format "https://kipsudev.atlassian.net/browse/KIPSU-%s" ticket)))
@@ -152,6 +157,7 @@
                       "~/Dropbox/Work/onboarding.org"
                       "~/Dropbox/Work/projects"
                       "~/Dropbox/Work/devops"
+                      "~/Dropbox/Work/team.org"
                       "~/Dropbox/Bethlehem/notes.org"
                       "~/Dropbox/Bethlehem/classes/winter_2021/GREK_5206"
                       "~/Dropbox/Bethlehem/classes/winter_2021/THEO_5582"))
@@ -210,27 +216,37 @@
   (setq org-agenda-custom-commands
         '(("A" "Daily agenda and top priority tasks"
            ((tags-todo "*"
-                       ((org-agenda-skip-function '(org-agenda-skip-if nil '(timestamp)))
+                       ((org-agenda-overriding-header "Imortant tasks without a date\n")
+                        (org-agenda-skip-function '(org-agenda-skip-if nil '(timestamp)))
                         (org-agenda-skip-function
                          `(org-agenda-skip-entry-if
                            'notregexp ,(format "\\[#%s\\]" (char-to-string org-priority-highest))))
+                        (org-agenda-block-separator nil)))
+
+            (tags-todo "*"
+                       ((org-agenda-overriding-header "\nBlocked tasks\n")
+                        (org-agenda-time-grid nil)
                         (org-agenda-block-separator nil)
-                        (org-agenda-overriding-header "Imortant tasks without a date\n")))
-            (agenda "" ((org-agenda-span 1)
+                        (org-agenda-skip-function '(org-agenda-skip-entry-if  'nottodo '("BLOCKED")))))
+
+            (agenda "" ((org-agenda-overriding-header "\nToday's agenda\n")
+                        (org-agenda-span 1)
                         (org-deadline-warning-days 0)
                         (org-agenda-block-separator nil)
                         (org-agenda-schedule-past-days 0)
                         (org-agenda-day-face-function (lambda (date) 'org-agenda-date))
-                        (org-agenda-format-face "%A %-e %B %Y")
-                        (org-agenda-overriding-header "\nToday's agenda\n")))
-            (agenda "" ((org-agenda-start-on-weekday nil)
+                        (org-agenda-format-face "%A %-e %B %Y")))
+
+            (agenda "" ((org-agenda-overriding-header "\nNext three days\n")
+                        (org-agenda-start-on-weekday nil)
                         (org-agenda-start-day "+1d")
                         (org-agenda-span 3)
                         (org-deadline-warning-days 0)
                         (org-agenda-block-separator nil)
-                        (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                        (org-agenda-overriding-header "\nNext three days\n")))
-            (agenda "" ((org-agenda-time-grid nil)
+                        (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))))
+
+            (agenda "" ((org-agenda-overriding-header "\nUpcoming deadlines (+14d)\n")
+                        (org-agenda-time-grid nil)
                         (org-agenda-start-on-weekday nil)
                         (org-agenda-start-day "+4d")
                         (org-agenda-span 14)
@@ -238,8 +254,12 @@
                         (org-deadline-warning-days 0)
                         (org-agenda-block-separator nil)
                         (org-agenda-entry-types '(:deadline))
-                        (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                        (org-agenda-overriding-header "\nUpcoming deadlines (+14d)\n")))))))
+                        (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))))))
+          ("T" . "Team + Name tag searches")
+          ("Tr" tags "+ryan")
+          ("Tc" tags "+chee")
+          ("Tm" tags "+minh")))
+           
   :general
   (:states 'normal
    :prefix "SPC"

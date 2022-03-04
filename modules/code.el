@@ -44,23 +44,16 @@
   :hook ((c-mode go-mode php-mode dockerfile-mode) . lsp-deferred))
 
 (use-package lsp-ui
-  :commands lsp-ui-mode
   :after lsp
   :config
   (setq lsp-ui-doc-enable t)
   (setq lsp-ui-doc-header t)
+  (setq lsp-ui-doc-position 'bottom)
   (setq lsp-ui-doc-include-signature t)
   (setq lsp-ui-doc-border (face-background 'default))
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-delay 0.05)
   (setq lsp-ui-peek-enable t))
-
- ;;; This has been reported as the source of massive slowdowns
- ;;; in lsp mode enabled files, disabling for now until more
- ;;; thourough tests can be done.
- ;; (use-package lsp-ui
- ;;   :config
- ;;   (setq lsp-ui-doc-enable nil))
 
 (setq-default default-tab-width 4
               c-basic-offset 4

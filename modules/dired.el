@@ -9,7 +9,18 @@
 
 ;; (eval-after-load "dired"
 ;;   '(require 'dired-x))
-(use-package ranger)
+(require 'dired)
+(use-package ranger
+  :general
+  (:states 'normal
+   :prefix "SPC"
+   "a r" #'ranger))
+
+(use-package treemacs)
+
+(use-package treemacs-evil
+  :after (treemacs evil))
+  
 
 (use-package diredfl
   :after dired
@@ -47,6 +58,7 @@
    :states '(normal motion)
    "RET" 'dired-find-alternate-file
    "(" 'dired-hide-details-mode
+   "e" #'jh/eshell
    "j" 'dired-next-line
    "k" 'dired-previous-line
    "/" 'dired-goto-file

@@ -2,7 +2,10 @@
 
 ;;; TODO: doesn't actually start the mode?
 (use-package all-the-icons-completion
-  :hook (emacs-startup . all-the-icons-completion-mode))
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init
+  (all-the-icons-completion-mode))
 
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))

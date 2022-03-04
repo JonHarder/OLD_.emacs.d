@@ -4,9 +4,6 @@
 ;;; magit is amazing.  That is all.
 
 ;;; Code:
-(use-package magit-section
-  :after magit)
-
 (use-package magit
   :commands magit-status
   :config
@@ -78,8 +75,6 @@
   (:keymaps 'magit-section-mode-map
    :states 'normal
    "TAB" #'magit-section-toggle))
-          
-      
 
 (use-package code-review
   :commands (code-review-start)

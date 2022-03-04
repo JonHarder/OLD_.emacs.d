@@ -3,16 +3,26 @@
 ;;; Commentary:
 
 ;;; Code:
+;; (require 'svg-lib)
+
 (use-package corfu
+  :demand t
+  :hook (lsp-completion-mode . jh/corfu-setup-lsp)
   :init
   (corfu-global-mode 1)
+  :custom
+  (corfu-echo-documentation nil)
+  (corfu-cycle t)
+  (corfu-preselect-first t)
+  (corfu-auto t)
+  (corfu-quit-at-boundary t)
+  (corfu-quit-no-match t)
+  (corfu-auto-delay 0.6)
+  (lsp-completion-provider :none)
   :config
-  (setq corfu-cycle t)
-  (setq corfu-preselect-first nil)
-  (setq corfu-auto t)
-  (setq corfu-quit-at-boundary t)
-  (setq corfu-quit-no-match t)
-  (setq corfu-auto-delay 0.6)
+  (defun jh/corfu-setup-lsp ()
+    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+          '(orderless)))
   :general
   (:keymaps 'corfu-map
    :states '(normal insert)
@@ -21,28 +31,31 @@
    "S-TAB" 'corfu-previous
    [backtab] 'corfu-previous))
 
-;; (with-eval-after-load 'corfu
-;;   (straight-use-package
-;;   '(corfu-doc :type git :host github :repo "galeo/corfu-doc"))
-;;  (require 'corfu-doc)
-;;  (add-hook 'corfu-mode-hook #'corfu-doc-mode))
-   
-
-
-;; (use-package cape
-;;   :init
-;;   (add-to-list 'completion-at-point-functions #'cape-file)
-;;   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-;;   (add-to-list 'completion-at-point-functions #'cape-keyword)
-;;   (add-to-list 'completion-at-point-functions #'cape-symbol))
 
 (use-package kind-icon
   :after corfu
   :custom
+  (kind-icon-use-icons t)
   (kind-icon-default-face 'corfu-default)
+  (kind-icon-blend-background nil)
+  (kind-icon-blend-frac 0.08)
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
-             
+
+(use-package corfu-doc
+  :straight (corfu-doc :type git :host github :repo "galeo/corfu-doc")
+  :after corfu
+  :general (:keymaps 'corfu-map
+                     [remap corfu-show-documentation] #'corfu-doc-toggle
+                     "M-n" #'corfu-doc-scroll-up
+                     "M-p" #'corfu-doc-scroll-down)
+  :custom
+  (corfu-doc-delay 0.5)
+  (corfu-doc-max-width 70)
+  (corfu-doc-max-height 20)
+  (corfu-echo-documentation nil)
+  :config
+  (corfu-doc-mode))
 
 (use-package emacs
   :custom
@@ -58,18 +71,44 @@
 
 (use-package vertico
   :hook (emacs-startup . vertico-mode)
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  :straight (vertico :files (:defaults "extensions/*")
+                     :includes (vertico-indexed
+                                vertico-flat
+                                vertico-grid
+                                vertico-mouse
+                                vertico-quick
+                                vertico-buffer
+                                vertico-repeat
+                                vertico-reverse
+                                vertico-directory
+                                vertico-multiform
+                                vertico-unobtrusive))
   :custom
   (vertico-cycle t)
+  (vertico-count 13)
+  (vertico-resize nil)
   :config
   (add-to-list 'load-path "~/.emacs.d/straight/repos/vertico/extensions")
   (require 'vertico-directory)
   (require 'vertico-reverse)
   (require 'vertico-quick)
-  ;; (vertico-reverse-mode 1)
   (general-define-key
    :keymaps 'vertico-map
    "C-n"   'vertico-next
-   "C-p"   'vertico-previous))
+   "C-p"   'vertico-previous
+   "<escape>" #'keyboard-escape-quit)
+  (defvar vertico-cand-once nil)
+  (unless vertico-cand-once
+   (advice-add #'vertico--format-candidate :around
+               (lambda (orig cand prefix suffix index _start)
+                 (setq vertico-cand-once t)
+                 (setq cand (funcall orig cand prefix suffix index _start))
+                 (concat
+                  (if (= vertico--index index)
+                      (propertize "» " 'face 'vertico-current)
+                    "  ")
+                  cand)))))
 
 (use-package vertico-directory
   :straight nil

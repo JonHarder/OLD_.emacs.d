@@ -238,6 +238,8 @@
   :config
   (evil-define-key 'normal 'occur-mode-map [mouse-2] 'occur-mode-mouse-goto))
 
+(use-package svg-lib)
+
 (use-package avy
   :commands avy-goto-word-1
   :custom
@@ -245,7 +247,7 @@
   :general
   (:states '(normal visual)
    :prefix "SPC"
-   "SPC" 'avy-goto-word-1))
+   "SPC" 'avy-goto-subword-1))
 
 (use-package autorevert
   :hook (emacs-startup . global-auto-revert-mode)
