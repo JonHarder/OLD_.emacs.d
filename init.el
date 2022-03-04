@@ -4,6 +4,18 @@
 ;; my Emacs configuration
 
 ;;; Code:
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs loaded in %s."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time before-init-time))))))
+(use-package general
+  :demand t)
+
+
+(add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "ext_lisp" user-emacs-directory))
 
 ;;;; load dependencies
 (load (expand-file-name "contrib" user-emacs-directory))
@@ -19,7 +31,7 @@
   :type 'integer
   :group 'configuration)
 
-(defcustom jh/font "Source Code Pro"
+(defcustom jh/font "Fira Code"
   "Default font to use for text."
   :type 'string
   :group 'configuration)

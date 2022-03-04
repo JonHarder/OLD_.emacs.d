@@ -32,7 +32,9 @@
 (setq inhibit-startup-echo-area-message user-login-name)
 (setq initial-scratch-message nil)
 
-(setq native-comp-async-report-warnings-errors 'silent)
+(when (featurep 'native-compile)
+  (setq native-comp-async-report-warnings-errors 'silent)
+  (setq native-comp-deferred-compilation t))
 
 ;;;; some startup optimizations
 (setq initial-major-mode 'fundamental-mode)
