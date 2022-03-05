@@ -15,12 +15,12 @@
   :demand t)
 
 
-(add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "ext_lisp" user-emacs-directory))
-
 ;;;; load dependencies
 (load (expand-file-name "contrib" user-emacs-directory))
 (load (expand-file-name "bootstrap" user-emacs-directory))
+
+(add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "ext_lisp" user-emacs-directory))
 
 ;;;; Define basic display configuration variables
 (defgroup configuration nil
