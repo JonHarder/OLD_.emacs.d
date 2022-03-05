@@ -290,11 +290,6 @@ Uses the dark or light variant depending on system setting."
 
 (select-theme jh/theme)
 (let ((font (format "%s %s" jh/font jh/font-size)))
-  ;; (when jh/theme-switch-timer
-  ;;   (cancel-timer jh/theme-switch-timer))
-  ;; (setq jh/theme-switch-timer
-  ;;       (run-with-idle-timer 2 1 #'reload-theme))
-
   (add-to-list 'default-frame-alist `(font . ,font)))
 (provide 'jh-appearance)
 ;;; jh-appearance.el ends here

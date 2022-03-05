@@ -53,7 +53,7 @@
   :group 'configuration)
 
 ;;;; Overrides to defaults
-(setq jh/font-size 15)
+(setq jh/font-size 16)
 (setq jh/theme "modus")
 
 ;;;; Load configuration proper
