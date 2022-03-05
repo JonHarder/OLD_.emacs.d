@@ -10,6 +10,7 @@
                      (format "%.2f seconds"
                              (float-time
                               (time-subtract after-init-time before-init-time))))))
+(require 'use-package)
 (use-package general
   :demand t)
 
