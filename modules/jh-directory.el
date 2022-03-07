@@ -10,22 +10,21 @@
 ;; (eval-after-load "dired"
 ;;   '(require 'dired-x))
 ;; (require 'dired)
-(use-package ranger
+
+(require 'general)
+(require 'use-package)
+
+(use-package dirvish
+  :commands (dirvish dirvish-side)
   :general
   (:states 'normal
    :prefix "SPC"
-   "a r" #'ranger))
+   "a d" #'dirvish))
 
 (use-package treemacs)
 
 (use-package treemacs-evil
   :after (treemacs evil))
-  
-
-(use-package diredfl
-  :after dired
-  :config
-  (diredfl-global-mode 1))
 
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -50,9 +49,6 @@
   (dired-dwim-target t)
   (dired-listing-switches "-lvahoG")
   :general
-  (:states 'normal
-   :prefix "SPC"
-   "a d" 'dired-here)
   (:keymaps 'dired-mode-map
    ;; :states '(emacs normal motion)
    :states '(normal motion)

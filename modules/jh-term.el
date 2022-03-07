@@ -29,6 +29,7 @@
   :hook (vterm-mode . jh/vterm-init-hook)
   :custom
   (vterm-timer-delay 0.01)
+  (vterm-shell "/opt/homebrew/bin/fish")
   :config
   (add-hook 'vterm-mode-hook
             (lambda ()

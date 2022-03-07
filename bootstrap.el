@@ -87,6 +87,14 @@
         (setenv (car env-var) (cdr env-var)))
       (setq exec-path (split-string (getenv "PATH") ":")))))
 
+;;;
+(defvar jh/ARCH (string-trim (shell-command-to-string "uname -m")))
+
+;;; Add new homebrew path for m1 macs
+(when (and (string= (window-system) "ns")
+           (string= jh/ARCH "arm64"))
+  (add-to-list 'exec-path "/opt/homebrew/bin"))
+
 (add-hook 'emacs-startup-hook 'parse-profile)
    
 
