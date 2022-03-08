@@ -12,8 +12,7 @@
 (use-package evil
   :hook (emacs-startup . evil-mode)
   :init
-  (setq evil-search-module 'evil-search
-        evil-ex-complete-emacs-commands t
+  (setq evil-ex-complete-emacs-commands t
         evil-vsplit-window-right nil
         evil-split-window-below nil
         evil-echo-state nil
@@ -26,6 +25,7 @@
 
   :config
   ;; (evil-mode 1)
+  (evil-select-search-module evil-search-module 'evil-search)
   (evil-set-initial-state 'magit-status-mode 'normal)
   (evil-set-initial-state 'ibuffer-mode 'normal)
   (evil-set-initial-state 'custom-mode 'normal)

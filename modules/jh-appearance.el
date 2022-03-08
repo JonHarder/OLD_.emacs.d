@@ -284,6 +284,21 @@ Uses the dark or light variant depending on system setting."
 (setq-default indicate-empty-lines nil)
 (setq-default overflow-newlines-into-fringe t)
 
+(defvar --high-contrast-p nil)
+(defvar --high-contrast-old-theme jh/theme)
+
+(defun high-contrast-toggle nil
+  "Toggle high contrast 'modus' theme off and on."
+  (interactive)
+  (if --high-contrast-p
+      (progn
+        (setq --high-contrast-p nil
+              --high-contrast-old-theme jh/theme)
+        (select-theme "modus"))
+    (progn
+      (setq --high-contrast-p t)
+      (select-theme --high-contrast-old-theme))))
+
 (use-package rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))

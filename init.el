@@ -54,7 +54,7 @@
 
 ;;;; Overrides to defaults
 (setq jh/font-size 16)
-(setq jh/theme "modus")
+(setq jh/theme "oceanic")
 
 ;;;; Load configuration proper
 (mapc #'load-file (directory-files "~/.emacs.d/modules" t ".+\.el"))
