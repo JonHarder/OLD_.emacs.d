@@ -16,6 +16,14 @@
   "Configuration to be enabled an yaml buffers."
   (hl-line-mode +1))
 
+(use-package highlight-indent-guides
+  :custom
+  ;; (highlight-indent-guides-method 'line)
+  (highlight-indent-guides-method 'column)
+  :config
+  (add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
+  (add-hook 'yaml-mode-hook #'highlight-indent-guides-mode))
+
 (defun jh/prog-mode-hook ()
   "Settings that should be enabled or disabled for all programming modes."
   (setq-default whitespace-style '(face space-before-tab line-tail empty space-after-tab))
@@ -35,25 +43,34 @@
 (use-package conf-mode
   :mode "\\.env")
 
+(use-package ansible
+  :config
+  (dir-locals-set-class-variables 'ansible-directory
+                                  '((yaml-mode . ((eval . (ansible 1))))))
+  (dir-locals-set-directory-class
+   "~/Kipsu/ansible-playbooks/playbooks" 'ansible-directory)
+  (dir-locals-set-directory-class
+   "~/Kipsu/ansible-playbooks/roles" 'ansible-directory))
+
  ;; language server support
 (use-package lsp-mode
   :config
   (setq lsp-idle-delay 0.500
         lsp-enable-file-watchers nil)
-
   :hook ((c-mode go-mode php-mode dockerfile-mode) . lsp-deferred))
 
 (use-package lsp-ui
-  :after lsp
-  :config
-  (setq lsp-ui-doc-enable t)
-  (setq lsp-ui-doc-header t)
-  (setq lsp-ui-doc-position 'bottom)
-  (setq lsp-ui-doc-include-signature t)
-  (setq lsp-ui-doc-border (face-background 'default))
-  (setq lsp-ui-sideline-show-code-actions t)
-  (setq lsp-ui-sideline-delay 0.05)
-  (setq lsp-ui-peek-enable t))
+  :custom
+  (lsp-ui-doc-enable t)
+  (lsp-ui-doc-header nil)
+  (lsp-ui-doc-position 'bottom)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-doc-show-with-cursor t)
+  (lsp-ui-doc-show-with-moude nil)
+  (lsp-ui-doc-border (face-background 'default))
+  (lsp-ui-sideline-show-code-actions t)
+  (lsp-ui-sideline-delay 0.05)
+  (lsp-ui-peek-enable t))
 
 (setq-default default-tab-width 4
               c-basic-offset 4

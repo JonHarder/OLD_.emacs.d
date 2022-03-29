@@ -20,7 +20,6 @@
 (load (expand-file-name "bootstrap" user-emacs-directory))
 
 (add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "ext_lisp" user-emacs-directory))
 
 ;;;; Define basic display configuration variables
 (defgroup configuration nil
@@ -32,7 +31,7 @@
   :type 'integer
   :group 'configuration)
 
-(defcustom jh/font "Fira Code"
+(defcustom jh/font "Hack"
   "Default font to use for text."
   :type 'string
   :group 'configuration)
@@ -54,10 +53,11 @@
 
 ;;;; Overrides to defaults
 (setq jh/font-size 16)
-(setq jh/theme "oceanic")
+(setq jh/theme "tomorrow")
 
 ;;;; Load configuration proper
 (mapc #'load-file (directory-files "~/.emacs.d/modules" t ".+\.el"))
 
 (provide 'init)
 ;;; init.el ends here
+(put 'narrow-to-page 'disabled nil)

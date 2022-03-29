@@ -16,10 +16,15 @@
 
 (use-package dirvish
   :commands (dirvish dirvish-side)
+  :config
+  (setq dirvish-preview-dispatchers (remove 'directory-exa dirvish-preview-dispatchers))
+  (dirvish-override-dired-mode 1)
   :general
   (:states 'normal
    :prefix "SPC"
-   "a d" #'dirvish))
+   "a d d" #'dirvish-dired
+   "a d s" #'dirvish-side
+   "a d f" #'dirvish))
 
 (use-package treemacs)
 

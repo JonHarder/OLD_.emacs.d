@@ -45,6 +45,12 @@ This is determined by `jh/font-size'"
    "TAB" 'forward-button
    "q" 'quit-window)
 
+  (general-define-key
+   :states 'emacs
+   :keymaps 'occur-mode-map
+   "j" #'next-error-no-select
+   "k" #'previous-error-no-select)
+
   ;;; Global normal mode bindings, not prefixed
   (general-define-key
    :states 'normal
@@ -141,7 +147,8 @@ This is determined by `jh/font-size'"
    "c c" 'jh/find-config
    "c l" 'select-theme
    "c r" 'jh/reload-config
-   "c t" 'osx/toggle-dark-mode
+   "c d" 'osx/toggle-dark-mode
+   "c v" #'variable-pitch-mode
 
    "d" #'evil-delete-buffer
 
@@ -180,9 +187,11 @@ This is determined by `jh/font-size'"
    "l d" 'lsp-ui-peek-find-definitions
    "l n" 'flycheck-next-error
    "l p" 'flycheck-previous-error
+   "l R" 'lsp-rename
 
    "n d" 'narrow-to-defun
    "n n" 'narrow-to-defun
+   "n p" 'narrow-to-page
    "n w" 'widen
 
    "o c" 'occur
@@ -221,6 +230,8 @@ This is determined by `jh/font-size'"
 
 (use-package tab-bar
   :after general
+  :custom
+  (tab-bar-show 1)
   :config
   (tab-bar-mode 1)
   (general-define-key
@@ -390,15 +401,14 @@ This is determined by `jh/font-size'"
   (switch-to-buffer nil))
 
 (use-package beacon
-  :after general
+  :commands (beacon-blink)
   :config
   (beacon-mode 1)
-  (general-define-key
-   :states 'normal
+  :general
+  (:states 'normal
    :prefix "SPC"
    "z" #'beacon-blink)
-  (general-define-key
-   "C-<return>" #'beacon-blink))
+  ("C-<return>" #'beacon-blink))
 
 (use-package calendar
   :straight nil

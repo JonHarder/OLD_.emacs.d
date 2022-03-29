@@ -7,7 +7,8 @@
 (defvar byte-compile-warnings nil)
 
 (setq package-enable-at-startup nil
-      straight-use-package-by-default t)
+      straight-use-package-by-default t
+      straight-check-for-modifications nil)
 ;;; bootstrap straight
 (defvar bootstrap-version)
 (let ((bootstrap-file

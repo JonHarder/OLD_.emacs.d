@@ -40,6 +40,7 @@
   (gcmh-mode 1))
 
 (use-package dashboard
+  :disabled t
   :init
   (setq dashboard-projects-backend 'project-el)
   (setq dashboard-items
@@ -51,16 +52,21 @@
   (setq dashboard-center-content t)
   :hook (after-init . dashboard-setup-startup-hook))
 
-(with-eval-after-load 'evil
-  (general-define-key
-    :keymaps 'dashboard-mode-map
-    :states 'normal
-    "r" #'dashboard-jump-to-recent-files
-    "m" #'dashboard-jump-to-bookmarks
-    "p" #'dashboard-jump-to-projects))
+;; (with-eval-after-load 'evil
+;;   (general-define-key
+;;     :keymaps 'dashboard-mode-map
+;;     :states 'normal
+;;     "r" #'dashboard-jump-to-recent-files
+;;     "m" #'dashboard-jump-to-bookmarks
+;;     "p" #'dashboard-jump-to-projects))
 
+;;; NOTE: esp. with fish shell, I've had the best luck
+;;; by setting path directories in ~/.profile, not
+;;; in the fish config itself.
+;;; 2022-03-08
+;;; this resolved an issue with my go environment
+;;; not being configured correctly
 (use-package exec-path-from-shell
-  :disabled t
   :when (memq window-system '(mac ns x))
   :init
   (setq exec-path-from-shell-arguments nil)
@@ -91,8 +97,11 @@
 (defvar jh/ARCH (string-trim (shell-command-to-string "uname -m")))
 
 ;;; Add new homebrew path for m1 macs
-(when (and (string= (window-system) "ns")
-           (string= jh/ARCH "arm64"))
+(defvar MAC-M1-P
+  (and (string= (window-system) "ns")
+       (string= jh/ARCH "arm64")))
+
+(when MAC-M1-P
   (add-to-list 'exec-path "/opt/homebrew/bin"))
 
 (add-hook 'emacs-startup-hook 'parse-profile)

@@ -20,7 +20,11 @@
 
 (add-hook 'emacs-lisp-mode-hook #'show-paren-mode)
 
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(setq inferior-lisp-program
+      (if MAC-M1-P
+          "/opt/homebrew/bin/sbcl"
+        "/usr/local/bin/sbcl"))
+    
 
 (use-package sly
   :after general
@@ -54,6 +58,7 @@
    "c" #'sly-mrepl-clear-repl))
 
 (use-package parinfer-rust-mode
+  :disabled t
   :hook lisp-data-mode
   :init
   (setq parinfer-rust-auto-download t)

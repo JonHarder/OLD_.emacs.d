@@ -234,5 +234,9 @@
 (use-package consult-flycheck
   :after consult)
 
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
 (provide 'jh-completion)
 ;;; jh-completion.el ends here

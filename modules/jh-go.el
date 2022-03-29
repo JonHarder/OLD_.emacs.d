@@ -5,7 +5,10 @@
 
 
 ;;; Code:
+(require 'use-package)
+
 (defun jh/go-mode-hook ()
+  "Personal hook to be ran when opening go files."
   (add-hook 'before-save-hook 'lsp-format-buffer t t)
   (add-hook 'before-save-hook 'lsp-organize-imports t t))
 

@@ -132,6 +132,26 @@
           :dark 'cyberpunk
           :light 'cyberpunk)
          jh/themes)
+(puthash "stimmung"
+         (make-theme
+          :package 'stimmung-themes
+          :dark 'stimmung-themes-dark
+          :light 'stimmung-themes-light)
+         jh/themes)
+
+(use-package lin
+  :straight (lin :type git :host gitlab :repo "protesilaos/lin")
+  :custom
+  (lin-mode-hooks '(dired-mode-hook
+                    git-rebase-mode-hook
+                    ibuffer-mode-hook
+                    ilist-mode-hook
+                    magit-log-mode-hook
+                    occur-mode-hook
+                    org-agenda-mode-hook
+                    tabulated-list-mode-hook))
+  :config
+  (lin-global-mode 1))
 
 (defvar jh/--current-theme nil)
 
@@ -144,9 +164,9 @@
       (modus-themes-slanted-constructs t)
       (modus-themes-mode-line '(borderless accented))
       (modus-themes-org-blocks 'tinted-background)
-      (modus-themes-headings '((t . (rainbow background))))
+      (modus-themes-headings '((t . (rainbow))))
       (modus-themes-bold-constructs t)
-      (modus-themes-syntax '())
+      (modus-themes-syntax '(alt-syntax))
       (modus-themes-prompts '(intense background))
       (modus-themes-completions '((matches . (extrabold background intense))
                                   (selection . (semibold accented intense))
@@ -299,6 +319,11 @@ Uses the dark or light variant depending on system setting."
       (setq --high-contrast-p t)
       (select-theme --high-contrast-old-theme))))
 
+(general-define-key
+ :states 'normal
+ :prefix "SPC"
+ "c t" #'high-contrast-toggle)
+
 (use-package rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
@@ -306,5 +331,30 @@ Uses the dark or light variant depending on system setting."
 (select-theme jh/theme)
 (let ((font (format "%s %s" jh/font jh/font-size)))
   (add-to-list 'default-frame-alist `(font . ,font)))
+
+
+(defvar-local hidden-mode-line-mode nil)
+(defvar-local hide-mode-line nil)
+
+(define-minor-mode hidden-mode-line-mode
+  "Minor mode to hide the mode-line in the current buffer."
+  :init-value nil
+  :global nil
+  :variable hidden-mode-line-mode
+  :group 'editing-basics
+  (if hidden-mode-line-mode
+      (setq hide-mode-line mode-line-format
+            mode-line-format nil)
+    (setq mode-line-format hide-mode-line
+          hide-mode-line nil))
+  (force-mode-line-update)
+  (redraw-display)
+  (when (and (called-interactively-p 'interactive)
+             hidden-mode-line-mode)
+    (run-with-idle-timer
+     0 nil 'message
+     (concat "Hidden Mode Line Mode enabled.  "
+             "Use M-x hidden-mode-line-mode to make the mode-line appear."))))
+
 (provide 'jh-appearance)
 ;;; jh-appearance.el ends here

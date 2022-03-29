@@ -76,7 +76,7 @@
   (setq-default
    org-latex-packages-alist '(("margin=1in" "geometry" nil))
    org-src-fontify-natively t
-   org-hide-emphasis-markers t
+   org-hide-emphasis-markers nil
    org-archive-location "~/Org/archive/%s.archive::"
    ;;; FIXME: setting this to `t' breaks the agenda view for some reason
    org-agenda-include-diary nil
@@ -149,7 +149,7 @@
                           "~/Dropbox/Work/devops.org"
                           "~/Dropbox/Work/projects") . (:maxlevel . 2))))
   (org-startup-indented 1)
-  (org-agenda-files `("~/Org/calendars"
+  (org-agenda-files `("~/Org/calendars.org"
                       "~/Dropbox/calendar.org"
                       "~/Dropbox/notes.org"
                       "~/Dropbox/Work/todo.org"
@@ -160,7 +160,8 @@
                       "~/Dropbox/Work/team.org"
                       "~/Dropbox/Bethlehem/notes.org"
                       "~/Dropbox/Bethlehem/classes/winter_2021/GREK_5206"
-                      "~/Dropbox/Bethlehem/classes/winter_2021/THEO_5582"))
+                      "~/Dropbox/Bethlehem/classes/winter_2021/THEO_5582"
+                      "~/Dropbox/Bethlehem/classes/spring_2022/THEO_5567"))
   (org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done))
   (calendar-date-style 'iso)
   (calendar-mode-line-format nil)
@@ -258,7 +259,8 @@
           ("T" . "Team + Name tag searches")
           ("Tr" tags "+ryan")
           ("Tc" tags "+chee")
-          ("Tm" tags "+minh")))
+          ("Tm" tags "+minh")
+          ("N" todo "NEXT")))
            
   :general
   (:states 'normal
@@ -281,8 +283,10 @@
 (add-hook 'org-agenda-finalize-hook #'color-org-agenda)
 
 (defun jh/org-mode-hook ()
-  (setq fill-column 70)
-  (auto-fill-mode 1)
+  ;; (setq fill-column 70)
+  ;; (auto-fill-mode 1)
+  (visual-line-mode 1)
+  (olivetti-mode -1)
   (org-toggle-pretty-entities))
 
                                             
