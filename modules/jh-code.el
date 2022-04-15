@@ -10,7 +10,6 @@
 ;; (require 'flycheck)
 (require 'use-package)
 
-
 ;;;; mode hook functions
 (defun jh/yaml-mode-hook ()
   "Configuration to be enabled an yaml buffers."
@@ -59,16 +58,22 @@
         lsp-enable-file-watchers nil)
   :hook ((c-mode go-mode php-mode dockerfile-mode) . lsp-deferred))
 
+(use-package apheleia
+  :config
+  (apheleia-global-mode 1))
+
 (use-package lsp-ui
   :custom
   (lsp-ui-doc-enable t)
   (lsp-ui-doc-header nil)
-  (lsp-ui-doc-position 'bottom)
+  (lsp-ui-doc-position 'top)
   (lsp-ui-doc-include-signature t)
   (lsp-ui-doc-show-with-cursor t)
-  (lsp-ui-doc-show-with-moude nil)
+  (lsp-ui-doc-show-with-mouse t)
   (lsp-ui-doc-border (face-background 'default))
   (lsp-ui-sideline-show-code-actions t)
+  (lsp-ui-sideline-show-hover nil)
+  (lsp-ui-sideline-show-code-diagnostics nil)
   (lsp-ui-sideline-delay 0.05)
   (lsp-ui-peek-enable t))
 

@@ -7,6 +7,7 @@
 
 ;;; Code:
 (require 'use-package)
+(require 'general)
 
 (use-package eros
   :after general
@@ -66,6 +67,10 @@
   (parinfer-rust-mode-enable)
   (add-to-list 'parinfer-rust-treat-command-as '(evil-open-below . "paren"))
   (add-to-list 'parinfer-rust-treat-command-as '(evil-open-above . "paren")))
+
+(use-package evil-lispy
+  :hook ((emacs-lisp-mode . evil-lispy-mode)
+         (lisp-mode . evil-lispy-mode)))
 
 (general-define-key
  :keymaps 'lisp-mode-map

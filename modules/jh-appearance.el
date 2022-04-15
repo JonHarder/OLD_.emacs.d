@@ -18,6 +18,18 @@
   (light nil :type symbol)
   (dark nil :type symbol))
 
+(puthash "dark+"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-dark+
+          :dark 'doom-dark+)
+         jh/themes)
+(puthash "iosvkem"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-one-light
+          :dark 'doom-Iosvkem)
+         jh/themes)
 (puthash "zenburn"
          (make-theme
           :package 'doom-themes
@@ -138,6 +150,12 @@
           :dark 'stimmung-themes-dark
           :light 'stimmung-themes-light)
          jh/themes)
+(puthash "shanty"
+         (make-theme
+          :package 'shanty-themes
+          :dark 'shanty-themes-dark
+          :light 'shanty-themes-light)
+         jh/themes)
 
 (use-package lin
   :straight (lin :type git :host gitlab :repo "protesilaos/lin")
@@ -165,6 +183,7 @@
       (modus-themes-mode-line '(borderless accented))
       (modus-themes-org-blocks 'tinted-background)
       (modus-themes-headings '((t . (rainbow))))
+      (modus-themes-markup '(bold italic intense))
       (modus-themes-bold-constructs t)
       (modus-themes-syntax '(alt-syntax))
       (modus-themes-prompts '(intense background))
@@ -176,8 +195,10 @@
    ((string-prefix-p "humanoid-" (symbol-name theme))
     (use-package humanoid-themes
       :custom
-      (humanoid-comment-bg t)
-      (humanoid-org-highlight t)))
+      (humanoid-themes-comment-bg t)
+      (humanoid-themes-org-height nil)
+      (humanoid-themes-org-agenda-hight t)
+      (humanoid-themes-org-highlight t)))
 
    ((string-prefix-p "spacemacs-" (symbol-name theme))
     (use-package spacemacs-theme
@@ -189,7 +210,7 @@
    ((string-prefix-p "doom-" (symbol-name theme))
     (use-package doom-themes
       :config
-      (doom-themes-org-config)
+      ;; (doom-themes-org-config)
       :custom
       (doom-themes-enable-bold t)
       (doom-themes-enable-italic t)
@@ -244,6 +265,7 @@ function to load a particular theme."
     (unless (memq theme custom-enabled-themes)
       (jh/theme-customizations theme)
       (load-theme theme t)
+      (message "disabling other themes: %s" other-themes)
       (mapc 'disable-theme other-themes))))
 
 
@@ -330,7 +352,9 @@ Uses the dark or light variant depending on system setting."
 
 (select-theme jh/theme)
 (let ((font (format "%s %s" jh/font jh/font-size)))
-  (add-to-list 'default-frame-alist `(font . ,font)))
+  (add-to-list 'default-frame-alist `(font . ,font))
+  (set-face-attribute 'variable-pitch nil :family jh/font)
+  (set-face-attribute 'default nil :family jh/font))
 
 
 (defvar-local hidden-mode-line-mode nil)
@@ -355,6 +379,11 @@ Uses the dark or light variant depending on system setting."
      0 nil 'message
      (concat "Hidden Mode Line Mode enabled.  "
              "Use M-x hidden-mode-line-mode to make the mode-line appear."))))
+
+(general-define-key
+ :states 'normal
+ :prefix "SPC"
+ "c h" #'hidden-mode-line-mode)
 
 (provide 'jh-appearance)
 ;;; jh-appearance.el ends here

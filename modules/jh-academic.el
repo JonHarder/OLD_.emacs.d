@@ -12,6 +12,7 @@
 ;;   (reftex-default-bibliography '("~/Dropbox/bibliography/references.bib"))
 ;;   (bib-files-directory '("~/Dropbox/bibliography/references.bib"))
 ;;   (bibtex-dialect 'biblatex))
+(require 'use-package)
 
 (use-package org-ref
   :after org

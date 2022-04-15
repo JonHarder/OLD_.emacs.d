@@ -76,7 +76,6 @@
   (setq-default
    org-latex-packages-alist '(("margin=1in" "geometry" nil))
    org-src-fontify-natively t
-   org-hide-emphasis-markers nil
    org-archive-location "~/Org/archive/%s.archive::"
    ;;; FIXME: setting this to `t' breaks the agenda view for some reason
    org-agenda-include-diary nil
@@ -89,17 +88,6 @@
    org-log-into-drawer t)
   (add-to-list 'org-latex-default-packages-alist '("greek" "babel" t))
 
-  (if jh/scale-org-headings
-      (progn
-        (face-spec-set 'org-level-1 `((t (:height 1.5))))
-        (face-spec-set 'org-level-2 `((t (:height 1.3))))
-        (face-spec-set 'org-level-3 `((t (:height 1.2))))
-        (face-spec-set 'org-level-4 `((t (:height 1.1)))))
-    (progn
-      (face-spec-set 'org-level-1 `((t (:height unspecified))))
-      (face-spec-set 'org-level-2 `((t (:height unspecified))))
-      (face-spec-set 'org-level-3 `((t (:height unspecified))))
-      (face-spec-set 'org-level-4 `((t (:height unspecified))))))
   (setq org-todo-keywords
         '((sequence
            "SOMEDAY(s)"
@@ -137,8 +125,6 @@
         "* %?")))
   :custom
   (org-odt-preferred-output-format "docx")
-  (org-ellipsis "↴")
-  (org-tags-column -77)
   (org-directory "~/Dropbox")
   (org-fontify-whole-heading-line nil)
   (org-confirm-babel-evaluate nil)
@@ -148,7 +134,8 @@
                           "~/Dropbox/Work/todo.org"
                           "~/Dropbox/Work/devops.org"
                           "~/Dropbox/Work/projects") . (:maxlevel . 2))))
-  (org-startup-indented 1)
+  ;; (org-startup-indented 1)
+  (org-startup-indented nil)
   (org-agenda-files `("~/Org/calendars.org"
                       "~/Dropbox/calendar.org"
                       "~/Dropbox/notes.org"
@@ -289,7 +276,6 @@
   (olivetti-mode -1)
   (org-toggle-pretty-entities))
 
-                                            
 
 (add-hook 'org-mode-hook #'jh/org-mode-hook)
 
@@ -306,11 +292,63 @@
   (org-edna-mode))
 
 (use-package org-superstar
+  :disabled t
   :after org
   :custom
   (org-hide-leading-stars t)
   (org-superstar-special-todo-items t)
   :hook (org-mode . org-superstar-mode))
+
+(defun reset-window-dividers (orig-load-theme &rest args)
+  (message "resetting window dividers")
+  (mapc 'disable-theme custom-enabled-themes)
+  (let ((res (apply orig-load-theme args)))
+    (dolist (face '(window-divider
+                    window-divider-first-pixel
+                    window-divider-last-pixel))
+      (face-spec-reset-face face)
+      (set-face-foreground face (face-attribute 'default :background)))
+    (set-face-background 'fringe (face-attribute 'default :background))
+    (highlight-indent-guides-mode -1)
+    (highlight-indent-guides-mode +1)
+    res))
+
+(advice-add 'load-theme :around #'reset-window-dividers)
+
+(with-eval-after-load 'org
+  (face-spec-set 'org-level-1 '((t (:height 1.9))))
+  (face-spec-set 'org-level-2 '((t (:height 1.6))))
+  (face-spec-set 'org-level-3 '((t (:height 1.3))))
+  (face-spec-set 'org-level-4 '((t (:height 1.0)))))
+
+(use-package org-modern
+  :hook ((org-mode . org-modern-mode)
+         (org-agenda-finalize-hook . org-modern-agenda))
+  :config
+  (modify-all-frames-parameters
+   '((right-divider-width . 20)
+     (internal-border-width . 20)))
+  (dolist (face '(window-divider
+                  window-divider-first-pixel
+                  window-divider-last-pixel))
+    (face-spec-reset-face face)
+    (set-face-foreground face (face-attribute 'default :background)))
+  (set-face-background 'fringe (face-attribute 'default :background))
+  (set-face-attribute 'org-modern-symbol nil :family "Iosevka")
+  :custom
+  (org-modern-todo-faces
+   '(("TODO" :background "red" :foreground "yellow")
+     ("NEXT" :background "blue" :foreground "white")
+     ("INPROGRESS" :background "orange" :foreground "black")))
+  (line-spacing 0.1)
+  (org-auto-align-tags nil)
+  (org-tags-column 0)
+  (org-catch-invisible-edits 'show-and-error)
+  (org-special-ctrl-a/e t)
+  (org-insert-heading-respect-content t)
+  (org-hide-emphasis-markers t)
+  (org-pretty-entities t)
+  (org-ellipsis "…"))
 
 (provide 'jh-org)
 ;;; jh-org.el ends here

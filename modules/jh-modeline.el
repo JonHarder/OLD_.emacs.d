@@ -3,6 +3,7 @@
 ;;; Commentary:
 
 ;;; Code:
+(require 'use-package)
 
 (use-package doom-modeline
   :hook (emacs-startup . doom-modeline-mode)

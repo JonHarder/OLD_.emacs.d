@@ -12,6 +12,10 @@
 
 (setq auth-sources '("~/.authinfo.gpg"))
 
+(when (fboundp 'pixel-scroll-precision-mode)
+  (pixel-scroll-precision-mode t))
+    
+
 (add-hook 'after-init-hook
           (lambda ()
             (load "~/.emacs.d/ext_lisp/make.el")))

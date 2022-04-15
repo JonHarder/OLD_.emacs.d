@@ -31,7 +31,8 @@
   :type 'integer
   :group 'configuration)
 
-(defcustom jh/font "Hack"
+;; (defcustom jh/font "Iosevka"
+(defcustom jh/font "Fira Code"
   "Default font to use for text."
   :type 'string
   :group 'configuration)
@@ -46,7 +47,7 @@
   :type 'boolean
   :group 'configuration)
 
-(defcustom jh/scale-org-headings t
+(defcustom jh/scale-org-headings nil
   "Whether or not to scale org headings."
   :type 'boolean
   :group 'configuration)

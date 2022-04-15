@@ -22,9 +22,9 @@
   :general
   (:states 'normal
    :prefix "SPC"
-   "a d d" #'dirvish-dired
-   "a d s" #'dirvish-side
-   "a d f" #'dirvish))
+   "a d" #'dirvish)
+  :general
+  ("<f4>" #'dirvish-side))
 
 (use-package treemacs)
 
