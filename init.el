@@ -53,12 +53,14 @@
   :group 'configuration)
 
 ;;;; Overrides to defaults
-(setq jh/font-size 16)
-(setq jh/theme "tomorrow")
+(setq jh/font-size 18)
+(setq jh/theme "xcode")
+(setq jh/font "Iosevka")
 
 ;;;; Load configuration proper
 (mapc #'load-file (directory-files "~/.emacs.d/modules" t ".+\.el"))
 
+(put 'narrow-to-page 'disabled nil)
+
 (provide 'init)
 ;;; init.el ends here
-(put 'narrow-to-page 'disabled nil)

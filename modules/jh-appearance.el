@@ -18,6 +18,18 @@
   (light nil :type symbol)
   (dark nil :type symbol))
 
+(puthash "xcode"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-xcode
+          :dark 'doom-xcode)
+         jh/themes)
+(puthash "rouge"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-rouge
+          :dark 'doom-rouge)
+         jh/themes)
 (puthash "dark+"
          (make-theme
           :package 'doom-themes
@@ -165,6 +177,7 @@
                     ibuffer-mode-hook
                     ilist-mode-hook
                     magit-log-mode-hook
+                    notmuch-search-mode-hook
                     occur-mode-hook
                     org-agenda-mode-hook
                     tabulated-list-mode-hook))

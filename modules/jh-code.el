@@ -10,6 +10,17 @@
 ;; (require 'flycheck)
 (require 'use-package)
 
+
+;;; Tree sitter experimentation
+(use-package tree-sitter
+  :hook ((go-mode . tree-sitter-mode)
+         (python-mode . tree-sitter-mode))
+  :config
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+(use-package tree-sitter-langs
+  :after tree-sitter)
+
+
 ;;;; mode hook functions
 (defun jh/yaml-mode-hook ()
   "Configuration to be enabled an yaml buffers."
@@ -56,7 +67,11 @@
   :config
   (setq lsp-idle-delay 0.500
         lsp-enable-file-watchers nil)
-  :hook ((c-mode go-mode php-mode dockerfile-mode) . lsp-deferred))
+  :hook ((c-mode go-mode php-mode dockerfile-mode) . lsp-deferred)
+  :general
+  (:prefix "SPC"
+   :states 'normal
+   "l a" #'lsp-execute-code-action))
 
 (use-package apheleia
   :config

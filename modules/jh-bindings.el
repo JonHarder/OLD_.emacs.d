@@ -62,6 +62,11 @@ This is determined by `jh/font-size'"
    "M-o" 'org-open-at-point-global)
 
 
+  ;;; Insert mode only bindings
+  (general-define-key
+   :states 'insert
+   "M-c" #'jh/capitalize-word-start)
+
   ;;; Normal + Insert bindings
   (general-define-key
    :states '(normal insert)
@@ -374,7 +379,8 @@ This is determined by `jh/font-size'"
   :custom
   (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
   (aw-background t)
-  (aw-scope 'frame)
+  ;; (aw-scope 'frame)
+  (aw-scope 'global)
   (aw-ignore-current t)
   :bind
   ("C-x o" . 'jh/smart-ace-window)

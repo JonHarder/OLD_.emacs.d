@@ -62,6 +62,7 @@
    "z" #'magit-stash
    "F" #'magit-pull
    "M" #'magit-remote
+   "W" #'magit-patch
    "P" #'magit-push
    "RET" #'magit-diff-visit-file
    "TAB" #'magit-section-toggle)

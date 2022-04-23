@@ -25,6 +25,14 @@
 
   :config
   ;; (evil-mode 1)
+  (defun jh/capitalize-word-start ()
+    "Capitalize the first letter of the word the cursor is on."
+    (interactive)
+    (save-excursion
+      (evil-normal-state)
+      (evil-backward-WORD-begin)
+      (evil-invert-char (point) (1+ (point))))
+    (evil-insert-state))
   (evil-select-search-module evil-search-module 'evil-search)
   (evil-set-initial-state 'magit-status-mode 'normal)
   (evil-set-initial-state 'ibuffer-mode 'normal)
@@ -32,6 +40,9 @@
   (evil-set-initial-state 'bookmark-bmenu-mode 'normal)
   (evil-set-initial-state 'vterm-mode 'insert)
   (evil-set-initial-state 'doc-view-mode 'normal)
+  (evil-set-initial-state 'notmuch-search-mode 'normal)
+  (evil-set-initial-state 'notmuch-show-mode 'normal)
+  (evil-set-initial-state 'notmuch-tree-mode-map 'normal)
   (setq evil-undo-system 'undo-redo))
   ;;; (setq evil-normal-state-cursor '("#98be65" box)
   ;;;       evil-insert-state-cursor '("#4db5db" bar)
