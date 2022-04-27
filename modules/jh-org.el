@@ -101,17 +101,6 @@
            "|"
            "DONE(d)"
            "CANCELLED(c)")))
-  (setq org-todo-keyword-faces
-        '(("SOMEDAY" :foreground "#eeeeee" :background "#444444" :weight bold :underline t)
-          ("TODO" :foreground "#fc9d03" :weight bold :underline t)
-          ("BLOCKED" :foreground "#eee" :background "#ff0000" :weight bold :underline t)
-          ("NEXT" :foreground "#0098dd" :weight bold :underline t)
-          ("WAITING" :foreground "#bf3cc6" :weight bold :underline t)
-          ("INPROGRESS" :foreground "#fc5603" :weight bold :underline t)
-          ("REVIEW" :foreground "#964B00" :weight bold :underline t)
-          ("MERGE" :foreground "#03fca9" :weight bold :underline t)
-          ("DONE" :foreground "#50a14f" :weight bold :underline t)
-          ("CANCELLED" :foreground "#fc0303" :weight bold :underline t)))
   (setq org-capture-templates
      '(("t" "Todo" entry (file+headline "~/Dropbox/Work/todo.org" "Work")
         "* TODO %?\n %i\n %a")
@@ -128,6 +117,8 @@
   (org-directory "~/Dropbox")
   (org-fontify-whole-heading-line nil)
   (org-confirm-babel-evaluate nil)
+  (org-hide-leading-stars nil)
+  (org-hide-emphasis-markers t)
   ;; (org-latex-inputenc-alist '(("utf8" . "utf8x")))
   (org-edit-src-content-indentation 0)
   (org-refile-targets '((("~/Dropbox/notes.org"
@@ -295,7 +286,6 @@
   :disabled t
   :after org
   :custom
-  (org-hide-leading-stars t)
   (org-superstar-special-todo-items t)
   :hook (org-mode . org-superstar-mode))
 
@@ -322,6 +312,7 @@
   (face-spec-set 'org-level-4 '((t (:height 1.0)))))
 
 (use-package org-modern
+  :disabled t
   :hook ((org-mode . org-modern-mode)
          (org-agenda-finalize-hook . org-modern-agenda))
   :config
@@ -349,6 +340,94 @@
   (org-hide-emphasis-markers t)
   (org-pretty-entities t)
   (org-ellipsis "…"))
+
+(use-package svg-tag-mode
+  :after org
+  :hook (org-mode . svg-tag-mode)
+  :init
+  (defconst date-re (rx (= 4 num) "-" (= 2 num) "-" (= 2 num)))
+  (defconst time-re (rx (= 2 num) ":" (= 2 num)))
+  (defconst day-re (rx (= 3 letter)))
+  ;; (defconst date-time-re (format "\\(%s\\)? ?\\(%s\\)?" day-re time-re))
+  (defconst date-time-re (rx
+                          (? (group (literal day-re)))
+                          (? space)
+                          (? (group (literal time-re)))))
+  :config
+  (defun svg-progress-percent (value)
+    (svg-image (svg-lib-concat
+                (svg-lib-progress-bar (/ (string-to-number value) 100.0)
+                                      nil :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+                (svg-lib-tag (concat value "%")
+                             nil :stroke 0 :margin 0))
+               :ascent 'center))
+  (defun svg-progress-count (value)
+    (let* ((seq (mapcar #'string-to-number (split-string value "/")))
+           (count (float (car seq)))
+           (total (float (cadr seq))))
+      (svg-image (svg-lib-concat
+                  (svg-lib-progress-bar (/ count total) nil
+                                        :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+                  (svg-lib-tag value nil
+                               :stroke 0 :margin 0))
+                 :ascent 'center)))
+  :custom
+  (svg-tag-tags
+   `(
+     ;; Org tags
+     (":\\([A-Za-z0-9]+\\)" . ((lambda (tag) (svg-tag-make tag))))
+     (":\\([A-Za-z0-9]+[ \-]\\)" . ((lambda (tag) tag)))
+     
+     ;; Task priority
+     ("\\[#[A-Z]\\]" . ((lambda (tag)
+                          (svg-tag-make tag :face 'org-priority
+                                        :beg 2 :end -1 :margin 0))))
+     
+     ;; Progress
+     ("\\(\\[[0-9]\\{1,3\\}%\\]\\)" . ((lambda (tag)
+                                         (svg-progress-percent (substring tag 1 -2)))))
+     ("\\(\\[[0-9]+/[0-9]+\\]\\)" . ((lambda (tag)
+                                       (svg-progress-count (substring tag 1 -1)))))
+     
+     ;; TODO / DONE
+     ("TODO" . ((lambda (tag) (svg-tag-make "TODO" :face 'org-todo :inverse t :margin 0))))
+     ("DONE" . ((lambda (tag) (svg-tag-make "DONE" :face 'org-done :margin 0))))
+     ("INPROGRESS" . ((lambda (tag) (svg-tag-make "IN-PROGRESS" :face 'org-footnote :inverse t :margin 0))))
+     
+     
+     ;; Citation of the form [cite:@Knuth:1984]
+     ("\\(\\[cite:@[A-Za-z]+:\\)" . ((lambda (tag)
+                                       (svg-tag-make tag
+                                                     :inverse t
+                                                     :beg 7 :end -1
+                                                     :crop-right t))))
+     ("\\[cite:@[A-Za-z]+:\\([0-9]+\\]\\)" . ((lambda (tag)
+                                                (svg-tag-make tag
+                                                              :end -1
+                                                              :crop-left t))))
+     
+     
+     ;; Active date (with or without day name, with or without time)
+     (,(format "\\(<%s>\\)" date-re) .
+      ((lambda (tag)
+         (svg-tag-make tag :beg 1 :end -1 :margin 0))))
+     (,(format "\\(<%s \\)%s>" date-re date-time-re) .
+      ((lambda (tag)
+         (svg-tag-make tag :beg 1 :inverse nil :crop-right t :margin 0))))
+     (,(format "<%s \\(%s>\\)" date-re date-time-re) .
+      ((lambda (tag)
+         (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0))))
+     
+     ;; Inactive date  (with or without day name, with or without time)
+     (,(format "\\(\\[%s\\]\\)" date-re) .
+      ((lambda (tag)
+         (svg-tag-make tag :beg 1 :end -1 :margin 0 :face 'org-date))))
+     (,(format "\\(\\[%s \\)%s\\]" date-re date-time-re) .
+      ((lambda (tag)
+         (svg-tag-make tag :beg 1 :inverse nil :crop-right t :margin 0 :face 'org-date))))
+     (,(format "\\[%s \\(%s\\]\\)" date-re date-time-re) .
+      ((lambda (tag)
+         (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0 :face 'org-date)))))))
 
 (provide 'jh-org)
 ;;; jh-org.el ends here

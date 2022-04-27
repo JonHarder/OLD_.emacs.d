@@ -23,6 +23,7 @@
      (:name "archived" :query "tag:archived" :key "a")
      (:name "todo"     :query "tag:todo" :key "o")
      (:name "security" :query "tag:security" :key "s")))
+  (notmuch-archive-tags '("-inbox" "-unread"))
   :general
   ;;; Global map to enter notmuch
   (:states 'normal

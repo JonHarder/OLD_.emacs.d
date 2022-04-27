@@ -54,8 +54,8 @@
 
 ;;;; Overrides to defaults
 (setq jh/font-size 18)
-(setq jh/theme "xcode")
 (setq jh/font "Iosevka")
+(setq jh/theme "dark+")
 
 ;;;; Load configuration proper
 (mapc #'load-file (directory-files "~/.emacs.d/modules" t ".+\.el"))
