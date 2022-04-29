@@ -265,8 +265,6 @@
   (string-equal "Dark" (string-trim (shell-command-to-string "defaults read -g AppleInterfaceStyle"))))
 
 
-(defvar jh/dark-mode (jh/mac-is-dark-mode-p) "Boolean which tracks mac system level dark mode.")
-
 (defun jh/set-theme (theme)
   "Load THEME, disabling other enabled themes.
 
@@ -297,7 +295,7 @@ Uses the dark or light variant depending on system setting."
                       (hash-table-keys jh/themes))))
   (setq jh/--current-theme (gethash name jh/themes)
         jh/theme name)
-  (let ((current-theme (if jh/dark-mode
+  (let ((current-theme (if (jh/mac-is-dark-mode-p)
                            (theme-dark jh/--current-theme)
                          (theme-light jh/--current-theme))))
     (jh/load-theme current-theme (theme-package jh/--current-theme)))
@@ -313,10 +311,9 @@ Uses the dark or light variant depending on system setting."
 (defun osx/toggle-dark-mode ()
   "Toggle OSX dark mode."
   (interactive)
-  (setq jh/dark-mode (not jh/dark-mode))
+  (osx/run-script "toggle-dark-mode.applescript")
   (reload-theme)
-  (normal-mode)
-  (osx/run-script "toggle-dark-mode.applescript"))
+  (normal-mode))
 
 (defvar jh/theme-switch-timer nil "Timer used to schedule querying OSX system color preference.")
 

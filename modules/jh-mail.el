@@ -13,16 +13,17 @@
   :commands notmuch
   :custom
   (notmuch-saved-searches
-   '((:name "today"    :query "date:today and tag:inbox" :key "t")
-     (:name "inbox"    :query "tag:inbox" :key "i")
-     (:name "unread"   :query "tag:unread" :key "u")
-     (:name "flagged"  :query "tag:flagged" :key "f")
-     (:name "sent"     :query "tag:sent" :key "t")
-     (:name "drafts"   :query "tag:draft" :key "d")
-     (:name "all mail" :query "*")
-     (:name "archived" :query "tag:archived" :key "a")
-     (:name "todo"     :query "tag:todo" :key "o")
-     (:name "security" :query "tag:security" :key "s")))
+   '((:name "today"         :query "date:today and tag:inbox" :key "t")
+     (:name "Pull requests" :query "tag:pr"                   :key "p")
+     (:name "inbox"         :query "tag:inbox"                :key "i")
+     (:name "unread"        :query "tag:unread"               :key "u")
+     (:name "flagged"       :query "tag:flagged"              :key "f")
+     (:name "sent"          :query "tag:sent"                 :key "t")
+     (:name "drafts"        :query "tag:draft"                :key "d")
+     (:name "all mail"      :query "*")
+     (:name "archived"      :query "tag:archived"             :key "a")
+     (:name "todo"          :query "tag:todo"                 :key "o")
+     (:name "security"      :query "tag:security"             :key "s")))
   (notmuch-archive-tags '("-inbox" "-unread"))
   :general
   ;;; Global map to enter notmuch

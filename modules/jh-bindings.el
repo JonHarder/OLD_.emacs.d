@@ -141,6 +141,7 @@ This is determined by `jh/font-size'"
    "a i" 'ielm
    "a p" 'appt-add
    "a t" 'org-todo-list
+   "a w" 'eww
 
    "b i" 'ibuffer
    "b l" 'jh/switch-buffer-left
