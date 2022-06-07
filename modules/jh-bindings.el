@@ -388,7 +388,11 @@ This is determined by `jh/font-size'"
   :general
   (:states 'normal
    :prefix "SPC"
-   "w" 'jh/smart-ace-window)
+   "w w" 'jh/smart-ace-window
+   "w c" 'evil-window-delete
+   "w s" 'evil-window-split
+   "w v" 'evil-window-vsplit
+   "w o" 'delete-other-windows)
   :config
   (face-spec-set 'aw-leading-char-face '((t (:foreground "red" :height 3.0)))))
 
