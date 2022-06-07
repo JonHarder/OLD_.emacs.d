@@ -378,7 +378,7 @@ This is determined by `jh/font-size'"
   :commands ace-window
   :after general
   :custom
-  (aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i))
+  (aw-keys '(?r ?s ?n ?d ?d ?a ?e ?i ?h))
   (aw-background t)
   ;; (aw-scope 'frame)
   (aw-scope 'global)
