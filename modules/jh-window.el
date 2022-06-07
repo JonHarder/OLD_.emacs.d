@@ -17,7 +17,7 @@
       '(("\\*\\(e?shell\\)\\*"
          (display-buffer-at-bottom)
          ;; (display-buffer-below-selected)
-         (window-height . 0.25)
+         (window-height . 0.30)
          (side . bottom)
          (slot . -1))
         ("\\*info\\*"
@@ -29,7 +29,7 @@
          (display-buffer-below-selected))
         ("\\*vterm\\*"
          (display-buffer-at-bottom)
-         (window-height . 0.25)
+         (window-height . 0.30)
          (side . bottom))
         ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|compilation\\|Messages\\)\\*"
          (display-buffer-in-side-window)

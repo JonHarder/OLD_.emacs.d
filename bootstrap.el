@@ -39,27 +39,6 @@
   :config
   (gcmh-mode 1))
 
-(use-package dashboard
-  :disabled t
-  :init
-  (setq dashboard-projects-backend 'project-el)
-  (setq dashboard-items
-        '((recents . 5)
-          (bookmarks . 5)
-          (projects . 5)))
-  (setq dashboard-banner-logo-title "Why did you ever leave?")
-  (setq dashboard-startup-banner 'logo)
-  (setq dashboard-center-content t)
-  :hook (after-init . dashboard-setup-startup-hook))
-
-;; (with-eval-after-load 'evil
-;;   (general-define-key
-;;     :keymaps 'dashboard-mode-map
-;;     :states 'normal
-;;     "r" #'dashboard-jump-to-recent-files
-;;     "m" #'dashboard-jump-to-bookmarks
-;;     "p" #'dashboard-jump-to-projects))
-
 ;;; NOTE: esp. with fish shell, I've had the best luck
 ;;; by setting path directories in ~/.profile, not
 ;;; in the fish config itself.
@@ -96,9 +75,11 @@
 ;;;
 (defvar jh/ARCH (string-trim (shell-command-to-string "uname -m")))
 
+(defvar jh/MAC-P (string= (window-system) "ns"))
+
 ;;; Add new homebrew path for m1 macs
 (defvar MAC-M1-P
-  (and (string= (window-system) "ns")
+  (and jh/MAC-P
        (string= jh/ARCH "arm64")))
 
 (when MAC-M1-P

@@ -24,6 +24,12 @@
           :light 'doom-xcode
           :dark 'doom-xcode)
          jh/themes)
+(puthash "snazzy"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-one-light
+          :dark 'doom-snazzy)
+         jh/themes)
 (puthash "rouge"
          (make-theme
           :package 'doom-themes
@@ -262,7 +268,12 @@
 (defun jh/mac-is-dark-mode-p ()
   "Determine if MacOS dark theme is enabled."
   (interactive)
-  (string-equal "Dark" (string-trim (shell-command-to-string "defaults read -g AppleInterfaceStyle"))))
+  (if jh/MAC-P
+    (string-equal "Dark"
+                  (string-trim
+                   (shell-command-to-string
+                    "defaults read -g AppleInterfaceStyle")))
+    t))
 
 
 (defun jh/set-theme (theme)
@@ -360,7 +371,10 @@ Uses the dark or light variant depending on system setting."
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
-(select-theme jh/theme)
+(if (display-graphic-p)
+    (select-theme jh/theme)
+  (select-theme "modus"))
+
 (let ((font (format "%s %s" jh/font jh/font-size)))
   (add-to-list 'default-frame-alist `(font . ,font))
   (set-face-attribute 'variable-pitch nil :family jh/font)

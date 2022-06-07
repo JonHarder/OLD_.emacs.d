@@ -33,7 +33,8 @@
   ;;; bindings for viewing emails
   (:states 'normal
    :keymaps 'notmuch-show-mode-map
-   "q" #'notmuch-bury-or-kill-this-buffer)
+   "q" #'notmuch-bury-or-kill-this-buffer
+   "r" #'notmuch-show-reply-sender)
   ;;; bindings for the emails list view
   (:states 'normal
    :keymaps 'notmuch-search-mode-map

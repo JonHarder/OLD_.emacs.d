@@ -55,12 +55,21 @@
 ;;;; Overrides to defaults
 (setq jh/font-size 18)
 (setq jh/font "Iosevka")
-(setq jh/theme "dark+")
+(setq jh/theme "kaolin")
 
 ;;;; Load configuration proper
 (mapc #'load-file (directory-files "~/.emacs.d/modules" t ".+\.el"))
 
 (put 'narrow-to-page 'disabled nil)
+
+(defun command-of-the-day ()
+  "Show the documentation for a random command."
+  (interactive)
+  (let ((commands))
+    (mapatoms (lambda (s) (when (commandp s) (push s commands))))
+    (describe-function (nth (random (length commands)) commands))))
+
+(command-of-the-day)
 
 (provide 'init)
 ;;; init.el ends here

@@ -32,24 +32,21 @@
   (vterm-timer-delay nil)
   (vterm-shell "/opt/homebrew/bin/fish")
   :config
+  (defun jh/vterm ()
+    (interactive)
+    (vterm)
+    (when (equal current-prefix-arg '(4))
+        (delete-other-windows)))
   (add-hook 'vterm-mode-hook
             (lambda ()
               (set-process-sentinel (get-buffer-process (buffer-name)) #'vterm--kill-vterm-buffer-and-window)))
   :general
   (:states 'normal
    :prefix "SPC"
-   "a v" 'vterm)
+   "a v" 'jh/vterm)
   (:keymaps 'vterm-mode-map
    :states '(normal insert)
    "M-v" 'vterm-yank))
-
-(use-package multi-vterm
-  :disabled t
-  :commands multi-vterm
-  :general
-  (:states 'normal
-   :prefix "SPC"
-   "a v" '(multi-vterm :wk "VTerm")))
 
 (defadvice term-handle-exit
     (after term-kill-buffer-on-exit activate)

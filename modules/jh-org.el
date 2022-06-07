@@ -134,6 +134,7 @@
                       "~/Dropbox/Work/notes.org"
                       "~/Dropbox/Work/onboarding.org"
                       "~/Dropbox/Work/projects"
+                      "~/Dropbox/Work/projects.org"
                       "~/Dropbox/Work/devops"
                       "~/Dropbox/Work/team.org"
                       "~/Dropbox/Bethlehem/notes.org"
@@ -320,7 +321,7 @@
   :custom
   (org-modern-todo-faces
    '(("TODO" :background "yellow" :foreground "black")
-     ("NEXT" :background "white" :foreground "blue")
+     ("NEXT" :background "#c4cfff" :foreground "blue")
      ("WAITING" :background "purple" :foreground "white")
      ("INPROGRESS" :background "blue" :foreground "white")))
   (line-spacing 0.1)
