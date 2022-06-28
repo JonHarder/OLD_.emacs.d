@@ -88,6 +88,26 @@
    org-log-into-drawer t)
   (add-to-list 'org-latex-default-packages-alist '("greek" "babel" t))
 
+  (setq org-latex-classes
+        '(("article" "\\documentclass[12pt]{article}"
+           ("\\section{%s}" . "\\section*{%s}")
+           ("\\subsection{%s}" . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}" . "\\paragraph*{%s}")
+           ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+          ("report" "\\documentclass[11pt]{report}"
+           ("\\part{%s}" . "\\part*{%s}")
+           ("\\chapter{%s}" . "\\chapter*{%s}")
+           ("\\section{%s}" . "\\section*{%s}")
+           ("\\subsection{%s}" . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+          ("book" "\\documentclass[11pt]{book}"
+           ("\\part{%s}" . "\\part*{%s}")
+           ("\\chapter{%s}" . "\\chapter*{%s}")
+           ("\\section{%s}" . "\\section*{%s}")
+           ("\\subsection{%s}" . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
+
   (setq org-todo-keywords
         '((sequence
            "SOMEDAY(s)"
@@ -118,7 +138,7 @@
   (org-fontify-whole-heading-line nil)
   (org-confirm-babel-evaluate nil)
   (org-hide-leading-stars nil)
-  (org-hide-emphasis-markers t)
+  (org-hide-emphasis-markers nil)
   ;; (org-latex-inputenc-alist '(("utf8" . "utf8x")))
   (org-edit-src-content-indentation 0)
   (org-refile-targets '((("~/Dropbox/notes.org"
@@ -330,7 +350,6 @@
   (org-catch-invisible-edits 'show-and-error)
   (org-special-ctrl-a/e t)
   (org-insert-heading-respect-content t)
-  (org-hide-emphasis-markers t)
   (org-pretty-entities t)
   (org-ellipsis "…")
   (org-agenda-block-separator ?-)

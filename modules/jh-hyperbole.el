@@ -7,7 +7,6 @@
 
 ;;; Code:
 (use-package hyperbole
-  :disabled t
   :commands (hkey-either)
   :after evil
   :functions (kotl-mode:add-cell

@@ -147,7 +147,7 @@
 (puthash "kaolin"
          (make-theme
           :package 'kaolin-themes
-          :dark 'kaolin-valley-dark
+          :dark 'kaolin-temple
           :light 'kaolin-valley-light)
          jh/themes)
 (puthash "twilight"
@@ -199,6 +199,7 @@
     (use-package modus-themes
       :custom
       (modus-themes-slanted-constructs t)
+      (modus-themes-diffs 'bg-only)
       (modus-themes-mode-line '(borderless accented))
       (modus-themes-org-blocks 'tinted-background)
       (modus-themes-headings '((t . (rainbow))))

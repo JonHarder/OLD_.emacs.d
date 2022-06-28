@@ -216,6 +216,11 @@ This is determined by `jh/font-size'"
    "=" 'text-scale-increase
    "-" 'text-scale-decrease))
 
+;;;; Global Meta prefixed bindings
+(general-define-key
+ "M-=" 'text-scale-increase
+ "M--" 'text-scale-decrease)
+
 (use-package winner
   :after general
   :config
@@ -412,6 +417,7 @@ This is determined by `jh/font-size'"
   (switch-to-buffer nil))
 
 (use-package beacon
+  :disabled t
   :commands (beacon-blink)
   :config
   (beacon-mode 1)

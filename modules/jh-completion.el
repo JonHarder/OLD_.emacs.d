@@ -238,5 +238,11 @@
   :config
   (yas-global-mode 1))
 
+(use-package link-hint
+  :general
+  (:states 'normal
+   :prefix "SPC"
+   "l o" #'link-hint-open-link))
+
 (provide 'jh-completion)
 ;;; jh-completion.el ends here
