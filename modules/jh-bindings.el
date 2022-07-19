@@ -165,7 +165,6 @@ This is determined by `jh/font-size'"
    "f i" 'find-shell-config
    "f ." 'jh/find-config
    "f f" 'find-file
-   "f s" 'save-buffer
    "f t" 'find-todo-file
    "f m" 'jh/find-module
    "f p" 'ffap
@@ -211,6 +210,9 @@ This is determined by `jh/font-size'"
 
    ;; r
    "r" #'winner-redo
+
+   ;; s
+   "s" #'save-buffer
 
    ;;; v
    "=" 'text-scale-increase

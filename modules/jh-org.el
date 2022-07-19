@@ -87,6 +87,7 @@
    org-treat-insert-todo-heading-as-stage-change t
    org-log-into-drawer t)
   (add-to-list 'org-latex-default-packages-alist '("greek" "babel" t))
+  (add-to-list 'org-latex-default-packages-alist '("" "times" t))
 
   (setq org-latex-classes
         '(("article" "\\documentclass[12pt]{article}"
