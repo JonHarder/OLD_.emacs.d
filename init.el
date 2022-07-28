@@ -26,7 +26,7 @@
   "Group for personal configuration."
   :group 'emacs)
 
-(defcustom jh/font-size 13
+(defcustom jh/font-size 18
   "Default font size all buffers will display as."
   :type 'integer
   :group 'configuration)
@@ -53,8 +53,7 @@
   :group 'configuration)
 
 ;;;; Overrides to defaults
-(setq jh/font-size 18)
-(setq j/font "Iosevka")
+(setq jh/font "Iosevka")
 (setq jh/theme "humanoid")
 
 ;;;; Load configuration proper

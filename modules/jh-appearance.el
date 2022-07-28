@@ -18,6 +18,12 @@
   (light nil :type symbol)
   (dark nil :type symbol))
 
+(puthash "jetbrains"
+         (make-theme
+          :package 'jetbrains-darcula-theme
+          :light 'jetbrains-darcula
+          :dark 'jetbrains-darcula)
+         jh/themes)
 (puthash "xcode"
          (make-theme
           :package 'doom-themes

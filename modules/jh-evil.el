@@ -22,7 +22,6 @@
         evil-want-integration t
         evil-want-keybinding nil
         evil-want-minibuffer nil)
-
   :config
   ;; (evil-mode 1)
   (defun jh/capitalize-word-start ()
@@ -49,6 +48,7 @@
   ;;;       evil-visual-state-cursor '("#da8548" hollow)
   ;;;       evil-replace-state-cursor '("#ff6c6b" hollow)
   ;;;       evil-emacs-state-cursor '("white" hbar)))
+
 
 (use-package cus-edit
   :straight nil

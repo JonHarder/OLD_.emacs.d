@@ -87,7 +87,7 @@
    org-treat-insert-todo-heading-as-stage-change t
    org-log-into-drawer t)
   (add-to-list 'org-latex-default-packages-alist '("greek" "babel" t))
-  (add-to-list 'org-latex-default-packages-alist '("" "times" t))
+  (add-to-list 'org-latex-default-packages-alist '("" "newtxtext" t))
 
   (setq org-latex-classes
         '(("article" "\\documentclass[12pt]{article}"
@@ -159,7 +159,10 @@
                       "~/Dropbox/Work/devops"
                       "~/Dropbox/Work/team.org"
                       "~/Dropbox/Bethlehem/notes.org"
+                      "~/Dropbox/Bethlehem/classes/spring_2022/todo.org"
                       "~/Dropbox/Bethlehem/classes/winter_2021/GREK_5206"
+                      "~/Dropbox/Bethlehem/classes/spring_2022/GREK_5215"
+                      "~/Dropbox/Bethlehem/classes/spring_2022/HERM_5010"
                       "~/Dropbox/Bethlehem/classes/winter_2021/THEO_5582"
                       "~/Dropbox/Bethlehem/classes/spring_2022/THEO_5567"))
   (org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done))

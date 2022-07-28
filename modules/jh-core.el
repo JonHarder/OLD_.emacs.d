@@ -158,8 +158,12 @@
    :states 'normal
    "j" 'doc-view-next-line-or-next-page
    "k" 'doc-view-previous-line-or-previous-page
+   "<up>" 'doc-view-previous-line-or-previous-page
+   "<down>" 'doc-view-next-line-or-next-page
    "l" 'doc-view-next-page
    "h" 'doc-view-previous-page
+   "<right>" 'doc-view-next-page
+   "<left>" 'doc-view-previous-page
    "/" 'doc-view-search
    "+" 'doc-view-enlarge
    "-" 'doc-view-shrink
