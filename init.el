@@ -54,7 +54,7 @@
 
 ;;;; Overrides to defaults
 (setq jh/font "Iosevka")
-(setq jh/theme "humanoid")
+(setq jh/theme "doom")
 
 ;;;; Load configuration proper
 (mapc #'load-file (directory-files "~/.emacs.d/modules" t ".+\.el"))
