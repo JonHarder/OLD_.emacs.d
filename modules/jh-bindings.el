@@ -123,6 +123,12 @@ This is determined by `jh/font-size'"
   (general-define-key
    :prefix "SPC"
    :states 'normal
+   ;;; quick window commends
+   "." #'split-window-below
+   "/" #'split-window-right
+   "\"" #'evil-window-delete
+   "'" #'delete-other-windows
+   
    "x" 'execute-extended-command
    ";" 'eval-expression
    "`" 'shell-command
@@ -167,11 +173,11 @@ This is determined by `jh/font-size'"
    "f f" 'find-file
    "f t" 'find-todo-file
    "f m" 'jh/find-module
+   "f o" 'find-file-other-window
    "f p" 'ffap
    "f r" 'rename-current-buffer-file
 
    ;; frame based commands
-   "f o" 'other-frame
    "f 0" 'delete-frame
    "f 2" 'make-frame
    "f x" 'delete-this-file
@@ -395,11 +401,12 @@ This is determined by `jh/font-size'"
   :general
   (:states 'normal
    :prefix "SPC"
-   "w w" 'jh/smart-ace-window
-   "w c" 'evil-window-delete
-   "w s" 'evil-window-split
-   "w v" 'evil-window-vsplit
-   "w o" 'delete-other-windows)
+   "w" #'jh/smart-ace-window)
+   ;; "w w" 'jh/smart-ace-window
+   ;; "w c" 'evil-window-delete
+   ;; "w s" 'evil-window-split
+   ;; "w v" 'evil-window-vsplit
+   ;; "w o" 'delete-other-windows)
   :config
   (face-spec-set 'aw-leading-char-face '((t (:foreground "red" :height 3.0)))))
 

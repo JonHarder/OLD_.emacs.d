@@ -18,6 +18,12 @@
   (light nil :type symbol)
   (dark nil :type symbol))
 
+(puthash "atom"
+         (make-theme
+          :package 'atom-one-dark-theme
+          :light 'atom-one-dark
+          :dark 'atom-one-dark)
+         jh/themes)
 (puthash "jetbrains"
          (make-theme
           :package 'jetbrains-darcula-theme

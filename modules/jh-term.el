@@ -20,7 +20,8 @@
     (let ((buf (process-buffer process)))
       (when (buffer-live-p buf)
         (with-current-buffer buf
-          (delete-window)
+          (unless (one-window-p)
+            (delete-window))
           (kill-buffer buf)
           (message "VTerm closed."))))))
 

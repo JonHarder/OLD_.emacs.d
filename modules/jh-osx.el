@@ -5,6 +5,8 @@
 
 
 ;;; Code:
+(require 'general)
+
 (defvar *osx/alert-timer* nil "Variable which stores the timer created by `osx/alert-after`.")
 
 
@@ -45,7 +47,10 @@ Uses `user-emacs-directory'/mac if DIR is not specified."
                     (osx/notify (or m "Alert")))
                   message)))
 
-
+(general-define-key
+ :prefix "SPC"
+ :states 'normal
+ "a n" #'osx/alert-after)
 
 (provide 'jh-osx)
 ;;; jh-osx.el ends here

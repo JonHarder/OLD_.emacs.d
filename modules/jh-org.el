@@ -123,7 +123,7 @@
            "DONE(d)"
            "CANCELLED(c)")))
   (setq org-capture-templates
-     '(("t" "Todo" entry (file+headline "~/Dropbox/Work/todo.org" "Work")
+     '(("t" "Todo" entry (file+headline "~/Dropbox/Work/todo.org" "Inbox")
         "* TODO %?\n %i\n %a")
        ("s" "Standup" entry (file+headline "~/Dropbox/Work/standup.org" "Announcements")
         "* TODO %?")
@@ -159,12 +159,12 @@
                       "~/Dropbox/Work/devops"
                       "~/Dropbox/Work/team.org"
                       "~/Dropbox/Bethlehem/notes.org"
-                      "~/Dropbox/Bethlehem/classes/spring_2022/todo.org"
-                      "~/Dropbox/Bethlehem/classes/winter_2021/GREK_5206"
-                      "~/Dropbox/Bethlehem/classes/spring_2022/GREK_5215"
-                      "~/Dropbox/Bethlehem/classes/spring_2022/HERM_5010"
-                      "~/Dropbox/Bethlehem/classes/winter_2021/THEO_5582"
-                      "~/Dropbox/Bethlehem/classes/spring_2022/THEO_5567"))
+                      "~/Dropbox/Bethlehem/classes/2022_1_spring/todo.org"
+                      "~/Dropbox/Bethlehem/classes/2021_3_winter/GREK_5206"
+                      "~/Dropbox/Bethlehem/classes/2022_1_spring/GREK_5215"
+                      "~/Dropbox/Bethlehem/classes/2022_1_spring/HERM_5010"
+                      "~/Dropbox/Bethlehem/classes/2021_3_winter/THEO_5582"
+                      "~/Dropbox/Bethlehem/classes/2022_1_spring/THEO_5567"))
   (org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done))
   (calendar-date-style 'iso)
   (calendar-mode-line-format nil)
@@ -288,6 +288,7 @@
 (defun jh/org-mode-hook ()
   "Hook to run when loading an org mode buffer."
   (visual-line-mode 1)
+  (org-indent-mode 1)
   (olivetti-mode -1)
   (org-toggle-pretty-entities))
 

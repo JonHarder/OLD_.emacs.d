@@ -80,7 +80,7 @@
 (use-package lsp-ui
   :custom
   (lsp-ui-doc-enable t)
-  (lsp-ui-doc-header nil)
+  (lsp-ui-doc-header t)
   (lsp-ui-doc-position 'top)
   (lsp-ui-doc-include-signature t)
   (lsp-ui-doc-show-with-cursor t)

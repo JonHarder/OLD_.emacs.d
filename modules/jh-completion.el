@@ -32,7 +32,6 @@
    "S-TAB" 'corfu-previous
    [backtab] 'corfu-previous))
 
-
 (use-package kind-icon
   :after corfu
   :custom
@@ -191,8 +190,8 @@
    "i i" 'consult-imenu
    "h a" 'consult-apropos
    "l l" 'consult-flycheck
-   "o o" #'consult-outline
-   "/" 'consult-ripgrep))
+   "o o" #'consult-outline))
+   ;; "/" 'consult-ripgrep))
 
 (use-package embark-consult
   :after (consult embark)

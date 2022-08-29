@@ -151,6 +151,30 @@
 (use-package ag
   :commands ag)
 
+(use-package pdf-tools
+  :demand t)
+
+;; (defvar-local hide-cursor--original nil)
+(define-minor-mode hide-cursor-mode
+  "Hide or show the cursor.
+
+When the cursor is hidden `scroll-lock-mode' is enabled, so that
+the buffer works like a pager."
+  :global nil
+  (if hide-cursor-mode
+      (progn
+        (scroll-lock-mode 1)
+        ;;; there seems to be a bug with evil mode not respecting cursor-type,
+        ;;; so using `(internal-show-cursor)' instead
+        (internal-show-cursor nil nil)
+        ;; (setq-local hide-cursor--original cursor-type)
+        ;; (setq-local cursor-type nil))
+        )
+    (scroll-lock-mode -1)
+    (internal-show-cursor nil t)
+    ;; (setq-local cursor-type (or hide-cursor--original t))
+    ))
+
 (use-package doc-view
   :straight nil
   :general

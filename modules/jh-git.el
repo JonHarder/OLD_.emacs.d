@@ -28,8 +28,10 @@
    "g d" 'magit-dispatch)
   (:keymaps 'magit-log-mode-map
    :states 'normal
-   "j" #'magit-next-line
-   "k" #'magit-previous-line
+   "J" #'magit-next-line
+   "K" #'magit-previous-line
+   "j" #'evil-next-line
+   "k" #'evil-previous-line
    "r" #'magit-rebase
    "?" #'magit-dispatch
    "RET" #'magit-show-commit)
@@ -51,8 +53,10 @@
    "f" #'magit-fetch
    "i" #'magit-gitignore
    "g r" #'magit-refresh
-   "j" #'magit-section-forward
-   "k" #'magit-section-backward
+   "J" #'magit-section-forward
+   "K" #'magit-section-backward
+   "j" #'evil-next-line
+   "k" #'evil-previous-line
    "l" #'magit-log
    "m" #'magit-merge
    "q" #'magit-quit-session
