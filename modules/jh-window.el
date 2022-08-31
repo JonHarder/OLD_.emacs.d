@@ -42,7 +42,7 @@
          (side . bottom))
         ("\\*\\(helpful .*: .*\\|Help\\)\\*"
          (display-buffer-in-side-window display-buffer-below-selected)
-         (side . left)
+         (side . right)
          (window-width . 75))))
 
 (provide 'jh-window)
