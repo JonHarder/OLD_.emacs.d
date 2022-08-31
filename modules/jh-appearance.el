@@ -159,7 +159,7 @@
 (puthash "kaolin"
          (make-theme
           :package 'kaolin-themes
-          :dark 'kaolin-temple
+          :dark 'kaolin-valley-dark
           :light 'kaolin-valley-light)
          jh/themes)
 (puthash "twilight"
