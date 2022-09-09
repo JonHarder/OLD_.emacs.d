@@ -16,9 +16,16 @@
 
 (use-package dirvish
   :commands (dirvish dirvish-side)
+  :init
   :config
-  (setq dirvish-preview-dispatchers (remove 'directory-exa dirvish-preview-dispatchers))
   (dirvish-override-dired-mode 1)
+  ;; (require 'dirvish-extras)
+  (setq dirvish-preview-dispatchers (remove 'directory-extra dirvish-preview-dispatchers))
+  ;; (setq dirvish-attributes '(vc-state subtree-state all-the-icons collapse git-msg file-size))
+  ;; broken attributes:
+  ;;  - collapse
+  ;;  - subtree-state
+  (setq dirvish-attributes '(vc-state file-size))
   :general
   (:states 'normal
    :prefix "SPC"

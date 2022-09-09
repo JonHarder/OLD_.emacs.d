@@ -55,6 +55,21 @@
    :prefix ","
    "f" #'add-citation-footnode))
 
+(use-package citar
+  :custom
+  (citar-bibliography '("~/Dropbox/bibliography/references.bib")))
+
+(use-package citar-org
+  :disabled t
+  :bind
+  (:map org-mode-map
+        ("C-c b" . #'org-cite-insert))
+  :custom
+  (org-cite-global-bibliography '("~/Dropbox/bibliography/references.bib"))
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar))
+
 (defvar jh/book-notes-dir "~/Dropbox/BookNotes")
 
 (with-eval-after-load 'consult

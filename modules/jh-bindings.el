@@ -250,9 +250,9 @@ This is determined by `jh/font-size'"
 (use-package tab-bar
   :after general
   :custom
-  (tab-bar-show 1)
+  (tab-bar-show nil)
   :config
-  (tab-bar-mode 1)
+  (tab-bar-mode -1)
   (general-define-key
    :states 'normal
    :prefix "SPC"
