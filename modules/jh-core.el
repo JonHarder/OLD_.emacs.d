@@ -63,7 +63,8 @@
 ;;;       check back in on this at some point to see if it's still necessary.
 (use-package gnutls
   :straight nil
-  :demand t
+  ;; :demand t
+  :disabled t
   :custom
   (gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 
@@ -152,9 +153,15 @@
   :commands ag)
 
 (use-package pdf-tools
-  :demand t)
+  :mode ("\\.pdf" . pdf-view-mode)
+  :general
+  (:keymaps 'pdf-view-mode-map
+   :states '(normal motion)
+   "j" 'pdf-view-next-line-or-next-page
+   "k" 'pdf-view-previous-line-or-previous-page))
 
-;; (defvar-local hide-cursor--original nil)
+
+;; (mode-local hide-cursor--original nil)
 (define-minor-mode hide-cursor-mode
   "Hide or show the cursor.
 

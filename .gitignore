@@ -46,3 +46,7 @@ transient/
 /modules-computed.el*
 /bootstrap.elc
 /eln-cache/
+/multisession/
+/org-persist/
+/request/
+/dirvish/

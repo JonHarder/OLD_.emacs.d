@@ -31,8 +31,7 @@
   :type 'integer
   :group 'configuration)
 
-;; (defcustom jh/font "Iosevka"
-(defcustom jh/font "Fira Code"
+(defcustom jh/font "Iosevka"
   "Default font to use for text."
   :type 'string
   :group 'configuration)
@@ -53,23 +52,13 @@
   :group 'configuration)
 
 ;;;; Overrides to defaults
-(setq jh/font "Iosevka")
-(setq jh/theme "monokai")
-(setq jh/font-size 18)
+(setq jh/theme "doom")
+(setq jh/font-size 20)
 
 ;;;; Load configuration proper
-(mapc #'load-file (directory-files "~/.emacs.d/modules" t ".+\.el"))
+(load-modules)
 
 (put 'narrow-to-page 'disabled nil)
-
-(defun command-of-the-day ()
-  "Show the documentation for a random command."
-  (interactive)
-  (let ((commands))
-    (mapatoms (lambda (s) (when (commandp s) (push s commands))))
-    (describe-function (nth (random (length commands)) commands))))
-
-(command-of-the-day)
 
 (provide 'init)
 ;;; init.el ends here

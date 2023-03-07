@@ -145,6 +145,7 @@
   (org-refile-targets '((("~/Dropbox/notes.org"
                           "~/Dropbox/Work/todo.org"
                           "~/Dropbox/Work/devops.org"
+                          "~/Dropbox/Work/one_one_one.org"
                           "~/Dropbox/Work/projects") . (:maxlevel . 2))))
   ;; (org-startup-indented 1)
   (org-startup-indented nil)

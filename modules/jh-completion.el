@@ -129,7 +129,7 @@
 
 (use-package embark
   ;; :after (vertico marginalia)
-  :after general
+  ;; :after general
   :commands (embark-dwim embark-act embark-prefix-help-command)
   :init
   (setq prefix-help-command #'embark-prefix-help-command)
@@ -185,13 +185,11 @@
    "o" 'consult-outline)
   (:prefix "SPC"
    :states 'normal
-   "b b" 'consult-buffer
-   "b m" 'consult-bookmark
+   "b" 'consult-buffer
    "i i" 'consult-imenu
    "h a" 'consult-apropos
    "l l" 'consult-flycheck
    "o o" #'consult-outline))
-   ;; "/" 'consult-ripgrep))
 
 (use-package embark-consult
   :after (consult embark)
@@ -200,8 +198,8 @@
   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package consult-dir
-  :after (evil general)
-  :demand t
+  :commands consult-dir
+  ;; :after (evil general)
   :general
   ("C-c C-d" 'consult-dir)
   (:keymaps 'vertico-map
@@ -241,7 +239,7 @@
   :general
   (:states 'normal
    :prefix "SPC"
-   "l o" #'link-hint-open-link))
+   "o l" #'link-hint-open-link))
 
 (provide 'jh-completion)
 ;;; jh-completion.el ends here

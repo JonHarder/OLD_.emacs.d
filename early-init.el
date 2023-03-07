@@ -66,5 +66,9 @@
 
 (add-to-list 'load-path (expand-file-name "ext_lisp" user-emacs-directory))
 
+(defun load-modules ()
+  "Load all elisp files in the modules directory."
+  (mapc #'load-file (directory-files "~/.emacs.d/modules" t ".+\.el")))
+
 (provide 'early-init)
 ;;; early-init.el ends here

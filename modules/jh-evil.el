@@ -34,6 +34,7 @@
     (evil-insert-state))
   (evil-select-search-module evil-search-module 'evil-search)
   (evil-set-initial-state 'magit-status-mode 'normal)
+  (evil-set-initial-state 'pdf-view-mode 'normal)
   (evil-set-initial-state 'ibuffer-mode 'normal)
   (evil-set-initial-state 'custom-mode 'normal)
   (evil-set-initial-state 'bookmark-bmenu-mode 'normal)
@@ -49,6 +50,9 @@
   ;;;       evil-replace-state-cursor '("#ff6c6b" hollow)
   ;;;       evil-emacs-state-cursor '("white" hbar)))
 
+(use-package evil-ruby-text-objects
+  :after evil
+  :hook (ruby-mode . evil-ruby-text-objects-mode))
 
 (use-package cus-edit
   :straight nil

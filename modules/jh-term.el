@@ -25,8 +25,8 @@
           (kill-buffer buf)
           (message "VTerm closed."))))))
 
-(use-package vterm
-  :commands vterm
+(use-package multi-vterm
+  :commands multi-vterm
   :hook (vterm-mode . jh/vterm-init-hook)
   :custom
   ; (vterm-timer-delay 0.01)
@@ -35,7 +35,7 @@
   :config
   (defun jh/vterm ()
     (interactive)
-    (vterm)
+    (multi-vterm)
     (when (equal current-prefix-arg '(4))
         (delete-other-windows)))
   (add-hook 'vterm-mode-hook

@@ -10,6 +10,7 @@
 ;; which keys will perform which actions in mid chord.
 
 ;;; Code:
+(require 'straight)
 (require 'use-package)
 (require 'general)
 ;; (load-file "~/.emacs.d/ext_lisp/how-do-i.el")
@@ -30,6 +31,10 @@ This is determined by `jh/font-size'"
     (when (y-or-n-p (format "Delete %s? " (buffer-file-name buf)))
       (delete-file (buffer-file-name buf))
       (kill-buffer buf))))
+
+(straight-use-package 'ctrlf)
+(require 'ctrlf)
+(ctrlf-mode +1)
             
 (use-package general
   :config
@@ -37,6 +42,11 @@ This is determined by `jh/font-size'"
   (general-define-key
    "M-[" 'evil-jump-backward
    "M-]" 'evil-jump-forward)
+
+  (general-define-key
+   :keymaps 'ctrlf-mode-map
+   "C-n" 'ctrlf-forward-default
+   "C-p" 'ctrlf-backward-default)
 
   ;;; Special mode bindings
   (general-define-key
@@ -54,6 +64,8 @@ This is determined by `jh/font-size'"
   ;;; Global normal mode bindings, not prefixed
   (general-define-key
    :states 'normal
+   "/" 'ctrlf-forward-default
+   "?" 'ctrlf-backward-default
    "M-." 'xref-find-definitions
    "M-," 'xref-pop-marker-stack
    "M-v" 'jh/paste-from-mac-clipboard
@@ -148,13 +160,6 @@ This is determined by `jh/font-size'"
    "a p" 'appt-add
    "a t" 'org-todo-list
    "a w" 'eww
-
-   "b i" 'ibuffer
-   "b l" 'jh/switch-buffer-left
-   "b r" 'jh/switch-buffer-right
-   "b R" 'rename-buffer
-   "b s" 'buffer-move-out-of-side-window
-   "b t" 'window-toggle-side-windows
 
    "c c" 'jh/find-config
    "c l" 'select-theme

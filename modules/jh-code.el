@@ -14,7 +14,8 @@
 ;;; Tree sitter experimentation
 (use-package tree-sitter
   :hook ((go-mode . tree-sitter-mode)
-         (python-mode . tree-sitter-mode))
+         (python-mode . tree-sitter-mode)
+         (ruby-mode . tree-sitter-mode))
   :config
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 (use-package tree-sitter-langs

@@ -24,6 +24,18 @@
           :light 'atom-one-dark
           :dark 'atom-one-dark)
          jh/themes)
+(puthash "ef-duo"
+         (make-theme
+          :package 'ef-themes
+          :light 'ef-duo-light
+          :dark 'ef-duo-dark)
+         jh/themes)
+(puthash "ef-light-dark"
+         (make-theme
+          :package 'ef-themes
+          :light 'ef-light
+          :dark 'ef-dark)
+         jh/themes)
 (puthash "jetbrains"
          (make-theme
           :package 'jetbrains-darcula-theme
@@ -35,6 +47,12 @@
           :package 'doom-themes
           :light 'doom-xcode
           :dark 'doom-xcode)
+         jh/themes)
+(puthash "horizon"
+         (make-theme
+          :package 'doom-themes
+          :light 'doom-horizon
+          :dark 'doom-horizon)
          jh/themes)
 (puthash "snazzy"
          (make-theme
@@ -212,7 +230,7 @@
       :custom
       (modus-themes-slanted-constructs t)
       (modus-themes-diffs 'bg-only)
-      (modus-themes-mode-line '(borderless accented))
+      (modus-themes-mode-line '())
       (modus-themes-org-blocks 'tinted-background)
       (modus-themes-headings '((t . (rainbow))))
       (modus-themes-markup '(bold italic intense))
@@ -228,9 +246,16 @@
     (use-package humanoid-themes
       :custom
       (humanoid-themes-comment-bg t)
+      (humanoid-themes-arc-bg t)
       (humanoid-themes-org-height nil)
       (humanoid-themes-org-agenda-hight t)
+      (humanoid-themes-comment-light nil)
       (humanoid-themes-org-highlight t)))
+
+   ((string-prefix-p "kaolin-" (symbol-name theme))
+    (use-package kaolin-themes
+      :custom
+      (kaolin-themes-comments-style 'alt)))
 
    ((string-prefix-p "spacemacs-" (symbol-name theme))
     (use-package spacemacs-theme
@@ -381,8 +406,9 @@ Uses the dark or light variant depending on system setting."
  "c t" #'high-contrast-toggle)
 
 (use-package rainbow-delimiters
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+  :hook ('prog-mode-hook . rainbow-delimiters-mode))
+  ;; :config
+  ;; (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (if (display-graphic-p)
     (select-theme jh/theme)

@@ -7,7 +7,7 @@
 
 ;;; Code:
 (use-package hyperbole
-  :commands (hkey-either)
+  :commands (hyperbole hkey-either)
   :after evil
   :functions (kotl-mode:add-cell
               kotl-mode:transpose-cells
@@ -17,6 +17,10 @@
               kotl-mode:kill-line
               kotl-mode:move-beginning-of-line
               kotl-mode:move-end-of-line)
+  :general
+  (:states 'normal
+   :prefix "SPC"
+   "h h" #'hyperbole)
   :custom
   (hyrole-file-list (cons "~/.rolo.otl"
                           (append

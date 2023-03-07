@@ -2,7 +2,6 @@
 
 ;;; Commentary:
 ;;; This is mostly a wrapper around configuring `display-buffer-alist'
-
 ;;; Code:
 (defun buffer-move-out-of-side-window ()
   (interactive)

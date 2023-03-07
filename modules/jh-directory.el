@@ -29,7 +29,8 @@
   :general
   (:states 'normal
    :prefix "SPC"
-   "a d" #'dirvish)
+   "a d" #'dirvish
+   "a D" #'dirvish-dwim)
   :general
   ("<f4>" #'dirvish-side))
 
@@ -65,11 +66,11 @@
    ;; :states '(emacs normal motion)
    :states '(normal motion)
    "RET" 'dired-find-alternate-file
+   "DEL" #'dired-up-directory
    "(" 'dired-hide-details-mode
    "e" #'jh/eshell
    "j" 'dired-next-line
    "k" 'dired-previous-line
-   "/" 'dired-goto-file
    "+" 'dired-create-directory
    "x" 'dired-do-flagged-delete
    "~" 'dired-home

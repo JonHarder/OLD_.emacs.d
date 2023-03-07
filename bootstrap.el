@@ -45,11 +45,12 @@
 ;;; 2022-03-08
 ;;; this resolved an issue with my go environment
 ;;; not being configured correctly
-(use-package exec-path-from-shell
-  :when (memq window-system '(mac ns x))
-  :init
-  (setq exec-path-from-shell-arguments nil)
-  :hook (emacs-startup . exec-path-from-shell-initialize))
+
+;; (use-package exec-path-from-shell
+;;   :when (memq window-system '(mac ns x))
+;;   :init
+;;   (setq exec-path-from-shell-arguments nil)
+;;  :hook (emacs-startup . exec-path-from-shell-initialize))
 
 (defun parse-export (line)
   "Return cons cell of (VARABLE . VALUE) as parsed from an `export VAR=VAL` LINE."
@@ -85,7 +86,7 @@
 (when MAC-M1-P
   (add-to-list 'exec-path "/opt/homebrew/bin"))
 
-(add-hook 'emacs-startup-hook 'parse-profile)
+;; (add-hook 'emacs-startup-hook 'parse-profile)
    
 
 (defmacro defer! (time-or-feature &rest forms)
